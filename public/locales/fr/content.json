@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "name": "Nom",
+    "version": "Version",
+    "active": "Actif",
+    "acceptance_required": "Acceptation requise",
+    "content": "Contenu (Markdown)"
+  },
+  "enums": {
+    "name": {
+      "tos": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "tos-privacy": "Conditions d'utilisation et politique de confidentialité (combinés)",
+      "app-info": "Page Informations sur l'application pour l'authentification"
+    }
+  }
+}

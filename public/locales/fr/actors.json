@@ -1,0 +1,43 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "parent_id": "ID parent",
+    "image": "Image",
+    "active": "Actif",
+    "actor_type": "Taper",
+    "short_name": "Nom court",
+    "full_name": "Nom et prénom",
+    "name": "Nom",
+    "title": "Titre",
+    "path": "Chemin",
+    "email": "E-mail",
+    "modules_available": "Modules disponibles:"
+  },
+  "enums": {
+    "actor_type": {
+      "mapping": "Cartographie",
+      "container": "Récipient",
+      "apps": "applications",
+      "app": "Application",
+      "tenants": "Locataires",
+      "tenant": "Locataire",
+      "group": "Groupe",
+      "ou": "Unité d'organisation",
+      "position": "Position",
+      "user": "Utilisateur",
+      "containertenants": "Locataires",
+      "organization": "Organisme"
+    }
+  },
+  "tenants": {
+    "confirm-delete": {
+      "delete-multi": "supprimer plusieurs locataires",
+      "title": "Effacer",
+      "explainer": "Voulez-vous vraiment supprimer ce locataire? Entrez le texte '{{CONFIRM_STR}}' dans la zone de texte ci-dessous pour confirmer la suppression dudit locataire.",
+      "explainer-multi": "Voulez-vous vraiment supprimer ces locataires? Entrez le texte '{{CONFIRM_STR}}' dans la zone de texte ci-dessous pour confirmer la suppression des locataires sélectionnés.",
+      "text-box-label": "Confirmation",
+      "close": "proche",
+      "confirm": "Confirmer"
+    }
+  }
+}

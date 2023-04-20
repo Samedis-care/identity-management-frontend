@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "id": "Я БЫ",
+    "title": "Заголовок",
+    "description": "Описание",
+    "functionality_ids": "Функциональность",
+    "actor_ids": "Актеры"
+  },
+  "form": {
+    "tabs": {
+      "main": "Главный",
+      "functions": "Разрешения",
+      "actors": "Актеры"
+    }
+  },
+  "relationships": {
+    "functionalities": {
+      "label": "Функциональность",
+      "placeholder": "Выберите функциональность"
+    }
+  },
+  "save-actors": "Сохраните, прежде чем вы сможете назначать актеров",
+  "save-functionalities": "Сохраните, прежде чем сможете назначать разрешения"
+}

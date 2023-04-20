@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Titel",
+    "description": "Beschrijving",
+    "functionality_ids": "Functionaliteiten",
+    "actor_ids": "Acteurs"
+  },
+  "form": {
+    "tabs": {
+      "main": "Hoofd",
+      "functions": "Rechten",
+      "actors": "Acteurs"
+    }
+  },
+  "relationships": {
+    "functionalities": {
+      "label": "Functionaliteiten",
+      "placeholder": "Selecteer een functionaliteit"
+    }
+  },
+  "save-actors": "Sla op voordat je acteurs kunt toewijzen",
+  "save-functionalities": "Sla op voordat je machtigingen kunt toewijzen"
+}

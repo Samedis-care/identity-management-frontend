@@ -1,0 +1,65 @@
+{
+  "dialogs": {
+    "error-title": "Error"
+  },
+  "buttons": {
+    "ok": "Okay"
+  },
+  "data-grid": {
+    "pick": "Select",
+    "open": "Open",
+    "export": {
+      "excel": {
+        "label": "Excel"
+      }
+    }
+  },
+  "errors": {
+    "js": {
+      "title": "Something went wrong."
+    },
+    "chunk-load-error": "A error occurred while loading the web application. Please reload the page. If the issue persists check your internet connection."
+  },
+  "maintenance": {
+    "active": "Maintenance mode active!",
+    "planned": "Maintenance planned",
+    "fetch-fail-reason": "Failed fetching maintenance info",
+    "header": "Maintenances",
+    "current-header": "Current maintenance",
+    "planned-header": "Planned maintenances",
+    "explainer": {
+      "planned": {
+        "off": "No service interruptions expected.",
+        "read-only": "You will most likely be able to access your data in read-only mode. Making changes will not be possible and special functionality may be limited.",
+        "full": "You will most likely not be able to access your data."
+      },
+      "header": "The application is currently under maintenance.",
+      "off": "The service is currently undergoing maintenance. There should not be any interruption of service.",
+      "read-only": "You can access your data (read-only), but not not perform any changes. Special functionality may be limited.",
+      "full": "You can't access your data.",
+      "footer": "We will try to provide you with the full functionality of the application as soon as possible."
+    },
+    "entry": {
+      "start": "Start: {{TIMESTAMP}}",
+      "end": "Estimated end: {{TIMESTAMP}}",
+      "end-unknown": "UNKNOWN"
+    }
+  },
+  "auth_provider": {
+    "fail_fetch_profile": {
+      "title": "Failed receiving your profile",
+      "retry": "Retry"
+    },
+    "fail_accept_invite": {
+      "title": "Failed accepting your invite",
+      "ignore": "Ignore",
+      "retry": "Retry"
+    }
+  },
+  "browser-compat": {
+    "title": "We found the following issues with your browser:",
+    "local-storage": "Your browser does not support local storage",
+    "session-storage": "Your browser does not support session storage",
+    "info": "Please correct these issues or try using a different browser"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "header": {
+    "account": {
+      "hello": "Hallo ",
+      "menu": {
+        "language": "Taal",
+        "logout": "Uitloggen"
+      }
+    }
+  }
+}

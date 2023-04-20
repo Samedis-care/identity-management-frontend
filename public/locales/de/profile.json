@@ -1,0 +1,168 @@
+{
+  "fields": {
+    "id": "ID",
+    "first_name": "Vorname",
+    "last_name": "Nachname",
+    "email": "E-Mail",
+    "mobile": "Mobilnummer",
+    "image": "Profilbild"
+  },
+  "tabs": {
+    "account": {
+      "title": "Konto",
+      "buttons": {
+        "reset-password": "Passwort zurücksetzen",
+        "enable-mfa": "MFA aktivieren",
+        "disable-mfa": "MFA deaktivieren",
+        "delete-account": "Konto löschen"
+      },
+      "dialogs": {
+        "close-confirm": {
+          "title": "Konto schließen?",
+          "message": "Bist du sicher? Alle Daten werden unwiderruflich gelöscht!",
+          "yes": "Ja",
+          "no": "Nein",
+          "text-field-label": "Deine E-Mail Adresse",
+          "text-field-placeholder": "Bitte trage Deine E-Mail Adresse ein um den Vorgang zu bestätigen"
+        },
+        "close-error": {
+          "title": "Kontoschließung fehlgeschlagen"
+        },
+        "reset-password": {
+          "title": "Passwort zurücksetzen",
+          "fields": {
+            "current-password": "Aktuelles Passwort",
+            "new-password": "Neues Passwort",
+            "new-password-repeat": "Neues Passwort (Wiederholung)"
+          },
+          "actions": {
+            "reset": "Zurücksetzen",
+            "cancel": "Abbrechen"
+          },
+          "result": {
+            "success": {
+              "title": "Passwort aktualisiert",
+              "message": "Dein Passwort wurde geändert"
+            },
+            "error-mismatch": {
+              "title": "Neues Passwort fehlerhaft",
+              "message": "Das Passwort stimmt nicht mit dem wiederholten Passwort überein"
+            },
+            "error-backend": {
+              "title": "Fehler bei Passwort Änderung "
+            },
+            "error-password-empty": {
+              "title": "Neues Passwort ist leer",
+              "message": "Bitte gib ein neues Passwort ein"
+            }
+          }
+        },
+        "enroll-totp": {
+          "title": "Registrierung für Multi-Faktor-Authentifizierung (MFA).",
+          "explainer-top": "Scanne den folgenden Code mit Ihrer MFA-App",
+          "explainer-middle-top": "oder gib den Schlüssel manuell ein",
+          "explainer-middle-bottom": "Gib dann unten einen generierten MFA-Code zur Überprüfung ein",
+          "explainer-bottom": "Klicke abschließend auf Senden, um MFA zu aktivieren",
+          "secret-key": "Privater Schlüssel",
+          "fields": {
+            "otp": "Code (6-stelliges Einmalpasswort)"
+          },
+          "actions": {
+            "submit": "Senden",
+            "cancel": "Abbrechen"
+          },
+          "result": {
+            "success": {
+              "title": "Multi-Faktor-Authentifizierung (MFA) aktiviert",
+              "info": "MFA wurde erfolgreich aktiviert. Unten findest du Deine Backup-Codes. Bitte bewahre sie an einem sicheren Ort auf, da du Dein Konto nicht wiederherstellen kannst, wenn du sie verlierst. Mit diesen Codes kannst du Dein Konto wiederherstellen (z. B. wenn Deine App nicht mehr verfügbar ist).",
+              "download": "Download",
+              "download-content": "Deine {{HOSTNAME}} MFA-Sicherungscodes:\n{{BACKUP_CODES}}\nBitte bewahre diese sicher auf.\n",
+              "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
+              "copy": "In die Zwischenablage kopieren",
+              "close": "Schließen"
+            },
+            "failure": {
+              "title": "MFA nicht aktiviert",
+              "info": "MFA wurde nicht aktiviert. Hast du einen korrekten Code eingegeben?"
+            }
+          }
+        },
+        "unroll-totp": {
+          "title": "Deaktivierung der Multi-Faktor-Authentifizierung (MFA)",
+          "explainer-top": "Gib einen aktuell gültigen MFA-Code ein",
+          "explainer-bottom": "Klicke auf Senden, um MFA zu deaktivieren",
+          "fields": {
+            "otp": "Code (6-stelliges Einmalpasswort)"
+          },
+          "actions": {
+            "submit": "Senden",
+            "cancel": "Abbrechen"
+          },
+          "result": {
+            "success": {
+              "title": "MFA deaktiviert",
+              "info": "MFA wurde erfolgreich deaktiviert."
+            },
+            "failure": {
+              "title": "MFA nicht deaktiviert",
+              "info": "MFA wurde nicht deaktiviert. Hast du einen korrekten Code eingegeben?"
+            }
+          }
+        }
+      }
+    },
+    "apps": {
+      "title": "Apps",
+      "buttons": {
+        "visit": "App aufrufen",
+        "review-policy": "Bestimmungen ansehen",
+        "remove-app": "App entfernen"
+      },
+      "dialogs": {
+        "select-document": {
+          "title": "Wähle das anzuzeigende Dokument aus",
+          "option": {
+            "tos": "Nutzungsbedingungen",
+            "privacy": "Datenschutz-Bestimmungen",
+            "tos-privacy": "Nutzungsbedingungen und Datenschutz-Bestimmungen"
+          }
+        },
+        "remove-app-confirm": {
+          "title": "App entfernen?",
+          "message": "Bist du dir sicher? Alle Daten gehen unwiederbringlich verloren",
+          "yes": "Ja",
+          "no": "Nein",
+          "text-field-label": "Dein E-Mail Adresse",
+          "text-field-placeholder": "Bitte gib zur Bestätigung Deine E-Mail-Adresse ein"
+        },
+        "remove-app-error": {
+          "title": "Entfernen der App fehlgeschlagen"
+        }
+      }
+    },
+    "logins": {
+      "title": "Anmeldungen",
+      "buttons": {
+        "delete-all": "Alle löschen"
+      },
+      "fields": {
+        "id": "ID",
+        "location": "Standort",
+        "device": "Gerät",
+        "current": "Aktuell",
+        "app": "App",
+        "created_at": "Zeitstempel"
+      }
+    },
+    "activity": {
+      "title": "Aktivität",
+      "fields": {
+        "id": "ID",
+        "location": "Standort",
+        "device": "Gerät",
+        "app": "App",
+        "created_at": "Zeitstempel"
+      }
+    }
+  }
+}

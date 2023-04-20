@@ -1,0 +1,43 @@
+{
+  "fields": {
+    "id": "ID",
+    "parent_id": "Ouder ID",
+    "image": "Afbeelding",
+    "active": "Actief",
+    "actor_type": "Type",
+    "short_name": "Korte naam",
+    "full_name": "Volledige naam",
+    "name": "Naam",
+    "title": "Titel",
+    "path": "Pad",
+    "email": "E-mail",
+    "modules_available": "Modules beschikbaar:"
+  },
+  "enums": {
+    "actor_type": {
+      "mapping": "In kaart brengen",
+      "container": "Container",
+      "apps": "Apps",
+      "app": "App",
+      "tenants": "Accounts ",
+      "tenant": "Account",
+      "group": "Groep",
+      "ou": "Organisatie-eenheid",
+      "position": "Positie ",
+      "user": "Gebruiker",
+      "containertenants": "Accounts ",
+      "organization": "Organisatie"
+    }
+  },
+  "tenants": {
+    "confirm-delete": {
+      "delete-multi": "Meerdere tenants verwijderen",
+      "title": "Verwijderen",
+      "explainer": "Wilt u deze tenant echt verwijderen? Typ de tekst '{{CONFIRM_STR}}' in het onderstaande tekstvak om de verwijdering van het genoemde account te bevestigen.",
+      "explainer-multi": "Wilt u deze huurders echt verwijderen? Typ de tekst '{{CONFIRM_STR}}' in het onderstaande tekstvak om de verwijdering van de geselecteerde accounts te bevestigen.",
+      "text-box-label": "Bevestiging",
+      "close": "Sluiten",
+      "confirm": "Bevestigen"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "fields": {
+    "id": "Я БЫ",
+    "name": "Имя",
+    "short_name": "Короткое имя",
+    "full_name": "ФИО",
+    "import_roles": "Роли",
+    "locale_import_roles": "Роли (локализация)",
+    "import_candos": "Разрешения",
+    "locale_import_candos": "Разрешения (локализация)",
+    "config": {
+      "url": "URL-адрес",
+      "uses_bearer_token": "Использует аутентификацию носителя",
+      "locales": "Места",
+      "default_locale": "Язык по умолчанию",
+      "mailer": {
+        "from": "Из",
+        "reply_to": "Ответить на",
+        "logo_b64": "Логотип",
+        "footer_html": "Нижний колонтитул (HTML)",
+        "smtp_settings": {
+          "address": "SMTP: адрес сервера",
+          "port": "SMTP: порт сервера",
+          "domain": "SMTP: домен сервера HELO",
+          "user_name": "SMTP: имя пользователя",
+          "password": "SMTP: пароль",
+          "authentication": "SMTP: режим аутентификации",
+          "enable_starttls": "SMTP: включить StartTLS",
+          "enable_starttls_auto": "SMTP: включить StartTLS автоматически",
+          "openssl_verify_mode": "SMTP: режим проверки OpenSSL",
+          "ssl": "SMTP: использовать SSL",
+          "open_timeout": "SMTP: тайм-аут открытия соединения",
+          "open_timeout_unit": "секунды",
+          "read_timeout": "SMTP: тайм-аут чтения соединения",
+          "read_timeout_unit": "секунды"
+        }
+      },
+      "theme": {
+        "primary": {
+          "main": "Основной основной цвет",
+          "light": "Основной светлый цвет",
+          "dark": "Основной темный цвет"
+        },
+        "secondary": {
+          "main": "Вторичный основной цвет",
+          "light": "Вторичный светлый цвет",
+          "dark": "Вторичный темный цвет"
+        },
+        "background": {
+          "default": "Фоновый цвет"
+        },
+        "components_care": {
+          "ui_kit": {
+            "action_button": {
+              "background_color": "Цвет фона кнопки действия"
+            }
+          }
+        },
+        "type": "Тип"
+      }
+    }
+  },
+  "enums": {
+    "config": {
+      "mailer": {
+        "smtp_settings": {
+          "authentication": {
+            "": "автоматический",
+            "plain": "Простой",
+            "login": "Авторизоваться",
+            "cram_md5": "CRAM-MD5"
+          },
+          "openssl_verify_mode": {
+            "": "По умолчанию",
+            "none": "Никто",
+            "peer": "Вглядеться"
+          }
+        }
+      },
+      "theme": {
+        "type": {
+          "light": "Светлая тема",
+          "dark": "Темная тема"
+        }
+      }
+    }
+  },
+  "validations": {
+    "config": {
+      "mailer": {
+        "footer_html_translations": {
+          "fallback-missing": "Вы должны предоставить нижний колонтитул"
+        }
+      },
+      "default_locale": {
+        "not-in-set": "Выбранная локаль не включена для приложения"
+      }
+    }
+  },
+  "form": {
+    "export-roles-permissions": "Экспорт разрешений и ролей",
+    "import-roles-permissions": "Импорт разрешений и ролей"
+  }
+}

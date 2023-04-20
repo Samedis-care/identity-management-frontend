@@ -1,0 +1,43 @@
+{
+  "fields": {
+    "id": "ID",
+    "parent_id": "Parent ID",
+    "image": "Image",
+    "active": "Active",
+    "actor_type": "Type",
+    "short_name": "Short name",
+    "full_name": "Full name",
+    "name": "Name",
+    "title": "Title",
+    "path": "Path",
+    "email": "Email",
+    "modules_available": "Modules available:"
+  },
+  "enums": {
+    "actor_type": {
+      "mapping": "Mapping",
+      "container": "Container",
+      "apps": "Apps",
+      "app": "App",
+      "tenants": "Tenants",
+      "tenant": "Tenant",
+      "group": "Group",
+      "ou": "Organization Unit",
+      "position": "Position",
+      "user": "User",
+      "containertenants": "Tenants",
+      "organization": "Organization"
+    }
+  },
+  "tenants": {
+    "confirm-delete": {
+      "delete-multi": "delete multiple tenants",
+      "title": "Delete",
+      "explainer": "Do you really want to delete this tenant? Enter the text '{{CONFIRM_STR}}' in the text box below to confirm the deletion of the said tenant.",
+      "explainer-multi": "Do you really want to delete these tenants? Enter the text '{{CONFIRM_STR}}' in the text box below to confirm the deletion of the the selected tenants.",
+      "text-box-label": "Confirmation",
+      "close": "Close",
+      "confirm": "Confirm"
+    }
+  }
+}

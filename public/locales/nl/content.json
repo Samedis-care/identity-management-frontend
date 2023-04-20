@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Naam",
+    "version": "Versie",
+    "active": "Actief",
+    "acceptance_required": "Acceptatie vereist",
+    "content": "Inhoud (prijsverlaging)"
+  },
+  "enums": {
+    "name": {
+      "tos": "Terms of Service",
+      "privacy": "Privacybeleid",
+      "tos-privacy": "Servicevoorwaarden en privacybeleid (gecombineerd)",
+      "app-info": "Applicatie-informatie voor authenticatiepagina"
+    }
+  }
+}

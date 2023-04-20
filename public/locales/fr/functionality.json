@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "title": "Titre",
+    "description": "La description",
+    "app": "Application",
+    "module": "Module",
+    "ident": "Identifiant"
+  },
+  "form": {
+    "tabs": {
+      "main": "Principal",
+      "roles": "Les rôles"
+    }
+  },
+  "save-roles": "Enregistrez avant de pouvoir attribuer des rôles"
+}

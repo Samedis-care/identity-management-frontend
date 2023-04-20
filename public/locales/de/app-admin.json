@@ -1,0 +1,104 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Name",
+    "short_name": "Kurz-Name",
+    "full_name": "Voller Name",
+    "import_roles": "Rollen",
+    "locale_import_roles": "Rollen (Lokalisierung)",
+    "import_candos": "Berechtigungen",
+    "locale_import_candos": "Berechtigungen (Lokalisierung)",
+    "config": {
+      "url": "URL",
+      "uses_bearer_token": "Verwendet Bearer-Token-Authentifizierung",
+      "locales": "Lokalisierungen",
+      "default_locale": "Standard Lokalisierung",
+      "mailer": {
+        "from": "Von",
+        "reply_to": "Antwort an",
+        "logo_b64": "Logo",
+        "footer_html": "Fußzeile (HTML)",
+        "smtp_settings": {
+          "address": "SMTP: Serveradresse",
+          "port": "SMTP: Serverport",
+          "domain": "SMTP: Server HELO-Domäne",
+          "user_name": "SMTP: Benutzername",
+          "password": "SMTP: Passwort",
+          "authentication": "SMTP: Authentifizierungsmodus",
+          "enable_starttls": "SMTP: Aktivieren Sie StartTLS",
+          "enable_starttls_auto": "SMTP: StartTLS automatisch aktivieren",
+          "openssl_verify_mode": "SMTP: OpenSSL-Überprüfungsmodus",
+          "ssl": "SMTP: SSL verwenden",
+          "open_timeout": "SMTP: Timeout für das Öffnen der Verbindung",
+          "open_timeout_unit": "Sekunden",
+          "read_timeout": "SMTP: Timeout beim Lesen der Verbindung",
+          "read_timeout_unit": "Sekunden"
+        }
+      },
+      "theme": {
+        "primary": {
+          "main": "Primär-Hauptfarbe",
+          "light": "Primär-Farbe Light Theme",
+          "dark": "Primär-Farbe Dark-Theme"
+        },
+        "secondary": {
+          "main": "Sekundär-Hauptfarbe",
+          "light": "Sekundär-Farbe Light Theme",
+          "dark": "Sekundär-Farbe Dark Theme"
+        },
+        "background": {
+          "default": "Hintergrundfarbe"
+        },
+        "components_care": {
+          "ui_kit": {
+            "action_button": {
+              "background_color": "Hintergrundfarbe der Aktionsschaltfläche"
+            }
+          }
+        },
+        "type": "Typ"
+      }
+    }
+  },
+  "enums": {
+    "config": {
+      "mailer": {
+        "smtp_settings": {
+          "authentication": {
+            "": "Automatisch",
+            "plain": "Schmucklos",
+            "login": "Anmeldung",
+            "cram_md5": "CRAM-MD5"
+          },
+          "openssl_verify_mode": {
+            "": "Standard",
+            "none": "Keine",
+            "peer": "Peer"
+          }
+        }
+      },
+      "theme": {
+        "type": {
+          "light": "Light-Theme",
+          "dark": "Dark-Theme"
+        }
+      }
+    }
+  },
+  "validations": {
+    "config": {
+      "mailer": {
+        "footer_html_translations": {
+          "fallback-missing": "Du musst eine Fußzeile bereitstellen"
+        }
+      },
+      "default_locale": {
+        "not-in-set": "Das ausgewählte Gebietsschema ist für die App nicht aktiviert"
+      }
+    }
+  },
+  "form": {
+    "export-roles-permissions": "Berechtigungen und Rollen exportieren",
+    "import-roles-permissions": "Berechtigungen und Rollen importieren"
+  }
+}

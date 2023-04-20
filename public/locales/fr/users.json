@@ -1,0 +1,61 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "actor_id": "identifiant de l'acteur",
+    "email": "Compte",
+    "username": "Nom d'utilisateur",
+    "set_password": "Définir le mot de passe",
+    "first_name": "Prénom",
+    "last_name": "Nom de famille",
+    "locale": "Lieu",
+    "gender": "Le genre",
+    "active": "Actif",
+    "invalid_at": "Invalide à",
+    "updated_at": "Mis à jour à"
+  },
+  "enums": {
+    "gender": {
+      "0": "Non spécifié",
+      "1": "Homme",
+      "2": "Femelle"
+    },
+    "locales": {
+      "unspecified": "Non spécifié",
+      "en-US": "États Unis Anglais)",
+      "de-DE": "Allemand Allemagne)"
+    }
+  },
+  "form": {
+    "tabs": {
+      "main": "Formulaire",
+      "tenants": "Locataires",
+      "actors": "Acteurs",
+      "roles": "Les rôles",
+      "permissions": "Autorisations"
+    },
+    "dialogs": {
+      "reset_pwd": {
+        "title": "Réinitialiser le mot de passe",
+        "open": "Réinitialiser le mot de passe",
+        "password": "Nouveau mot de passe",
+        "password_confirm": "Confirmation du nouveau mot de passe)",
+        "reset": "Réinitialiser",
+        "cancel": "Annuler",
+        "errors": {
+          "password_mismatch": {
+            "title": "Erreur de validation",
+            "message": "Le mot de passe ne correspond pas"
+          },
+          "backend": {
+            "title": "Erreur"
+          },
+          "none": {
+            "title": "Succès",
+            "message": "Le mot de passe a été défini avec succès"
+          }
+        }
+      }
+    }
+  },
+  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs"
+}

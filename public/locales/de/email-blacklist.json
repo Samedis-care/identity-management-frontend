@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "id": "ID",
+    "domain": "Domäne",
+    "active": "Aktiv"
+  }
+}

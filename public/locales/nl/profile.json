@@ -1,0 +1,168 @@
+{
+  "fields": {
+    "id": "ID",
+    "first_name": "Voornaam",
+    "last_name": "Achternaam",
+    "email": "E-mail",
+    "mobile": "Mobiel nummer",
+    "image": "Profielfoto"
+  },
+  "tabs": {
+    "account": {
+      "title": "Account",
+      "buttons": {
+        "reset-password": "Wachtwoord resetten",
+        "enable-mfa": "MFA inschakelen",
+        "disable-mfa": "MFA uitschakelen",
+        "delete-account": "Verwijder account"
+      },
+      "dialogs": {
+        "close-confirm": {
+          "title": "Account afsluiten?",
+          "message": "Weet je het zeker? Alle gegevens gaan onomkeerbaar verloren",
+          "yes": "Ja",
+          "no": "Nee",
+          "text-field-label": "Jouw e-mailadres",
+          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
+        },
+        "close-error": {
+          "title": "Account afsluiten mislukt"
+        },
+        "reset-password": {
+          "title": "Wachtwoord resetten",
+          "fields": {
+            "current-password": "Huidig ​​wachtwoord",
+            "new-password": "Nieuw wachtwoord",
+            "new-password-repeat": "Nieuw wachtwoord (herhalen)"
+          },
+          "actions": {
+            "reset": "Resetten",
+            "cancel": "Annuleren"
+          },
+          "result": {
+            "success": {
+              "title": "Wachtwoord bijgewerkt",
+              "message": "Jouww wachtwoord is veranderd"
+            },
+            "error-mismatch": {
+              "title": "Nieuw wachtwoord komt niet overeen",
+              "message": "Het wachtwoord komt niet overeen met het herhaalde wachtwoord"
+            },
+            "error-backend": {
+              "title": "Wachtwoord wijzigen fout"
+            },
+            "error-password-empty": {
+              "title": "Nieuw wachtwoord is leeg",
+              "message": "Voer een nieuw wachtwoord in"
+            }
+          }
+        },
+        "enroll-totp": {
+          "title": "Multi Factor Authentication (MFA) Inschrijving",
+          "explainer-top": "Scan onderstaande code met uw MFA-app",
+          "explainer-middle-top": "of voer onderstaande toets handmatig in",
+          "explainer-middle-bottom": "voer dan hieronder een gegenereerde MFA-code in",
+          "explainer-bottom": "Klik ten slotte op verzenden om MFA in te schakelen",
+          "secret-key": "Geheime sleutel",
+          "fields": {
+            "otp": "Code (eenmalig wachtwoord van 6 cijfers)"
+          },
+          "actions": {
+            "submit": "Indienen",
+            "cancel": "Annuleren"
+          },
+          "result": {
+            "success": {
+              "title": "Multi Factor Authentication (MFA) ingeschakeld",
+              "info": "MFA is succesvol ingeschakeld. Hieronder vindt je jouw back-upcodes. Bewaar ze op een veilige plaats, aangezien je jouw account niet kunt herstellen als je ze kwijtraakt. Met deze codes kun je jouw account herstellen (bijv. als uw app niet meer beschikbaar is)",
+              "download": "Download",
+              "download-content": "Jouww {{HOSTNAME}} MFA-back-upcodes:\n{{BACKUP_CODES}}\nBerg ze veilig op.\n",
+              "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
+              "copy": "Kopieer naar klembord",
+              "close": "Sluiten"
+            },
+            "failure": {
+              "title": "MFA niet ingeschakeld",
+              "info": "MFA is niet ingeschakeld. Heb je een juiste code ingevoerd?"
+            }
+          }
+        },
+        "unroll-totp": {
+          "title": "Schakel meervoudige authenticatie (MFA) uit",
+          "explainer-top": "Voer een momenteel geldige MFA-code in",
+          "explainer-bottom": "Klik op verzenden om MFA uit te schakelen",
+          "fields": {
+            "otp": "Code (eenmalig wachtwoord van 6 cijfers)"
+          },
+          "actions": {
+            "submit": "Indienen",
+            "cancel": "Annuleren"
+          },
+          "result": {
+            "success": {
+              "title": "MFA uitgeschakeld",
+              "info": "MFA is met succes uitgeschakeld."
+            },
+            "failure": {
+              "title": "MFA niet uitgeschakeld",
+              "info": "MFA is niet uitgeschakeld. Heb je een juiste code ingevoerd?"
+            }
+          }
+        }
+      }
+    },
+    "apps": {
+      "title": "Apps",
+      "buttons": {
+        "visit": "Bezoek app",
+        "review-policy": "Beoordelingsbeleid",
+        "remove-app": "App verwijderen"
+      },
+      "dialogs": {
+        "select-document": {
+          "title": "Selecteer document om te bekijken",
+          "option": {
+            "tos": "Terms of Service",
+            "privacy": "Privacybeleid",
+            "tos-privacy": "Servicevoorwaarden en privacybeleid"
+          }
+        },
+        "remove-app-confirm": {
+          "title": "App verwijderen?",
+          "message": "Weet je het zeker? Alle gegevens gaan onomkeerbaar verloren",
+          "yes": "Ja",
+          "no": "Nee",
+          "text-field-label": "Jouw e-mailadres",
+          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
+        },
+        "remove-app-error": {
+          "title": "Kan de app niet verwijderen"
+        }
+      }
+    },
+    "logins": {
+      "title": "Logins",
+      "buttons": {
+        "delete-all": "Verwijder alles"
+      },
+      "fields": {
+        "id": "ID",
+        "location": "Plaats",
+        "device": "Apparaat",
+        "current": "Huidig",
+        "app": "App",
+        "created_at": "Tijdstempel"
+      }
+    },
+    "activity": {
+      "title": "Activiteit",
+      "fields": {
+        "id": "ID",
+        "location": "Plaats",
+        "device": "Apparaat",
+        "app": "App",
+        "created_at": "Tijdstempel"
+      }
+    }
+  }
+}

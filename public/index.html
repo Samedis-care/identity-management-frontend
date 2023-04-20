@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Identity Management</title>
+    <style>
+      #root {
+          width: 100%;
+          height: 100vh;
+      }
+    </style>
+    <script>
+      function handleIncompatibleBrowser() {
+        var lang = window.navigator.language;
+        var separator = lang.indexOf("-");
+        lang = lang.substring(0, separator);
+        if (lang !== "de") {
+          // if not supported lang
+          lang = "en";
+        }
+        window.location.href = "/browser-unsupported." + lang + ".html";
+      }
+
+      if (
+        typeof Promise == "undefined" ||
+        typeof Object.fromEntries == "undefined"
+      ) {
+        handleIncompatibleBrowser();
+      }
+
+      window.onerror = function (message) {
+        if (
+          message === "Syntax error" ||
+          (typeof message === "string" &&
+            message.indexOf("Object doesn't support property or method") === 0)
+        ) {
+          handleIncompatibleBrowser();
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

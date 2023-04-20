@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Titel",
+    "description": "Beschrijving",
+    "app": "App",
+    "module": "Modulair",
+    "ident": "Identificatie"
+  },
+  "form": {
+    "tabs": {
+      "main": "Hoofd",
+      "roles": "Rollen"
+    }
+  },
+  "save-roles": "Sla op voordat je rollen kunt toewijzen"
+}

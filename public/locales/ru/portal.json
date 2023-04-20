@@ -1,0 +1,11 @@
+{
+  "header": {
+    "account": {
+      "hello": "Привет",
+      "menu": {
+        "language": "Язык",
+        "logout": "Выйти"
+      }
+    }
+  }
+}

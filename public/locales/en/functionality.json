@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Title",
+    "description": "Description",
+    "app": "App",
+    "module": "Module",
+    "ident": "Identifier"
+  },
+  "form": {
+    "tabs": {
+      "main": "Main",
+      "roles": "Roles"
+    }
+  },
+  "save-roles": "Save before you can assign roles"
+}

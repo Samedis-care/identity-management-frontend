@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Title",
+    "description": "Description",
+    "functionality_ids": "Functionalities",
+    "actor_ids": "Actors"
+  },
+  "form": {
+    "tabs": {
+      "main": "Main",
+      "functions": "Permissions",
+      "actors": "Actors"
+    }
+  },
+  "relationships": {
+    "functionalities": {
+      "label": "Functionalities",
+      "placeholder": "Select a functionality"
+    }
+  },
+  "save-actors": "Save before you can assign actors",
+  "save-functionalities": "Save before you can assign permissions"
+}

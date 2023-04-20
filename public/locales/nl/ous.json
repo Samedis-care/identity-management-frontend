@@ -1,0 +1,17 @@
+{
+  "breadcrumbs": {
+    "root": "Wortel",
+    "new": "Nieuw"
+  },
+  "relationships": {
+    "roles": {
+      "label": "Rollen",
+      "placeholder": "Zoek naar rol"
+    }
+  },
+  "tab": {
+    "children": "Kinderen",
+    "edit": "Bewerken"
+  },
+  "save-actors": "Sla op voordat je acteurs kunt toewijzen"
+}

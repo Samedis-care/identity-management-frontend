@@ -1,0 +1,11 @@
+{
+  "header": {
+    "account": {
+      "hello": "Bonjour",
+      "menu": {
+        "language": "Langue",
+        "logout": "Se déconnecter"
+      }
+    }
+  }
+}

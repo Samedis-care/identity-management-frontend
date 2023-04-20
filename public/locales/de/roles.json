@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Titel",
+    "description": "Beschreibung",
+    "functionality_ids": "Funktionalitäten",
+    "actor_ids": "Akteure"
+  },
+  "form": {
+    "tabs": {
+      "main": "Hauptseite",
+      "functions": "Berechtigungen",
+      "actors": "Akteure"
+    }
+  },
+  "relationships": {
+    "functionalities": {
+      "label": "Funktionalitäten",
+      "placeholder": "Wähle eine Funktion aus"
+    }
+  },
+  "save-actors": "Das Formular speichern, bevor Benutzer hinzugefügt werden können",
+  "save-functionalities": "Speichern, bevor Berechtigungen zugewiesen werden können"
+}

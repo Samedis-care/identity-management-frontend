@@ -1,0 +1,17 @@
+{
+  "breadcrumbs": {
+    "root": "Root",
+    "new": "Neu"
+  },
+  "relationships": {
+    "roles": {
+      "label": "Rollen",
+      "placeholder": "Nach einer Rolle suchen"
+    }
+  },
+  "tab": {
+    "children": "Kinder",
+    "edit": "Bearbeiten"
+  },
+  "save-actors": "Du musst speichern, bevor Du Nutzer hinzufügen kannst."
+}

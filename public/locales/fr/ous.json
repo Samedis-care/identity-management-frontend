@@ -1,0 +1,17 @@
+{
+  "breadcrumbs": {
+    "root": "Racine",
+    "new": "Nouveau"
+  },
+  "relationships": {
+    "roles": {
+      "label": "Les rôles",
+      "placeholder": "Rechercher un rôle"
+    }
+  },
+  "tab": {
+    "children": "Enfants",
+    "edit": "Éditer"
+  },
+  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs"
+}

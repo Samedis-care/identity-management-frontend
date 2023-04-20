@@ -1,0 +1,80 @@
+git:
+  filters:
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/actors.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/actors.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/app-admin.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/app-admin.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/auth.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/auth.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/common.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/common.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/content.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/content.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/document-viewer.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/document-viewer.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/email-blacklist.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/email-blacklist.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/functionality.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/functionality.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/ous.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/ous.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/portal.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/portal.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/profile.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/profile.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/roles.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/roles.json'
+
+    - filter_type: file
+      file_format: KEYVALUEJSON
+      source_file: public/locales/en/users.json
+      source_language: en
+      translation_files_expression: 'public/locales/<lang>/users.json'
+

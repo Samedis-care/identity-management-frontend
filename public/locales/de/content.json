@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Name",
+    "version": "Version",
+    "active": "Aktiv",
+    "acceptance_required": "Einwilligung erforderlich",
+    "content": "Inhalt (Markdown)"
+  },
+  "enums": {
+    "name": {
+      "tos": "Nutzungsbedingungen",
+      "privacy": "Datenschutz-Bestimmungen",
+      "tos-privacy": "Nutzungsbedingungen & Datenschutzbestimmungen (kombiniert)",
+      "app-info": "Anwendungsinformationen für die Seite Authentifizierung"
+    }
+  }
+}

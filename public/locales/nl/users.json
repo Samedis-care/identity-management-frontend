@@ -1,0 +1,61 @@
+{
+  "fields": {
+    "id": "ID",
+    "actor_id": "Acteur-ID",
+    "email": "Account",
+    "username": "Gebruikersnaam",
+    "set_password": "Stel een wachtwoord in",
+    "first_name": "Voornaam",
+    "last_name": "Achternaam",
+    "locale": "Lokaal",
+    "gender": "Geslacht",
+    "active": "Actief",
+    "invalid_at": "Ongeldig om",
+    "updated_at": "Bijgewerkt op"
+  },
+  "enums": {
+    "gender": {
+      "0": "Niet gespecificeerd",
+      "1": "Mannelijk",
+      "2": "Vrouwelijk"
+    },
+    "locales": {
+      "unspecified": "Niet gespecificeerd",
+      "en-US": "Engels (Verenigde Staten)",
+      "de-DE": "Duits (Duitsland)"
+    }
+  },
+  "form": {
+    "tabs": {
+      "main": "Formulier",
+      "tenants": "Accounts ",
+      "actors": "Acteurs",
+      "roles": "Rollen",
+      "permissions": "Rechten"
+    },
+    "dialogs": {
+      "reset_pwd": {
+        "title": "Wachtwoord resetten",
+        "open": "Wachtwoord resetten",
+        "password": "Nieuw wachtwoord",
+        "password_confirm": "New password (confirmation)",
+        "reset": "Resetten",
+        "cancel": "Annuleren",
+        "errors": {
+          "password_mismatch": {
+            "title": "Validatie fout",
+            "message": "Wachtwoord komt niet overeen"
+          },
+          "backend": {
+            "title": "Error"
+          },
+          "none": {
+            "title": "Succes",
+            "message": "Wachtwoord is succesvol ingesteld"
+          }
+        }
+      }
+    }
+  },
+  "save-actors": "Sla op voordat je acteurs kunt toewijzen"
+}

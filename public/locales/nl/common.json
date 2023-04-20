@@ -1,0 +1,65 @@
+{
+  "dialogs": {
+    "error-title": "Error"
+  },
+  "buttons": {
+    "ok": "Oké"
+  },
+  "data-grid": {
+    "pick": "Selecteer",
+    "open": "Open",
+    "export": {
+      "excel": {
+        "label": "Excel"
+      }
+    }
+  },
+  "errors": {
+    "js": {
+      "title": "Er is iets fout gegaan."
+    },
+    "chunk-load-error": "Er is een fout opgetreden tijdens het laden van de webapplicatie. Herlaad alstublieft de pagina. Als het probleem zich blijft voordoen, controleer dan jouw internetverbinding."
+  },
+  "maintenance": {
+    "active": "Onderhoudsmodus actief!",
+    "planned": "Onderhoud gepland",
+    "fetch-fail-reason": "Ophalen van onderhoudsinformatie mislukt",
+    "header": "Onderhouden",
+    "current-header": "Actueel onderhoud",
+    "planned-header": "Gepland onderhoud",
+    "explainer": {
+      "planned": {
+        "off": "Geen serviceonderbrekingen verwacht.",
+        "read-only": "Je zult hoogstwaarschijnlijk toegang hebben tot jouw gegevens in de modus alleen-lezen. Wijzigingen aanbrengen is niet mogelijk en speciale functionaliteit kan beperkt zijn.",
+        "full": "Je zult hoogstwaarschijnlijk niet bij jouw gegevens kunnen."
+      },
+      "header": "De applicatie is momenteel in onderhoud.",
+      "off": "De dienst is momenteel in onderhoud. Er mag geen onderbreking van de dienstverlening zijn.",
+      "read-only": "Je kunt uw gegevens inzien (alleen-lezen), maar geen wijzigingen aanbrengen. Speciale functionaliteit kan beperkt zijn.",
+      "full": "Je hebt geen toegang tot jouw gegevens.",
+      "footer": "We zullen proberen je zo snel mogelijk de volledige functionaliteit van de applicatie te bieden."
+    },
+    "entry": {
+      "start": "Start: {{TIMESTAMP}}",
+      "end": "Geschat einde: {{TIMESTAMP}}",
+      "end-unknown": "ONBEKEND"
+    }
+  },
+  "auth_provider": {
+    "fail_fetch_profile": {
+      "title": "Kan jouw profiel niet ontvangen",
+      "retry": "Opnieuw proberen"
+    },
+    "fail_accept_invite": {
+      "title": "Kan uw uitnodiging niet accepteren",
+      "ignore": "Negeren",
+      "retry": "Opnieuw proberen"
+    }
+  },
+  "browser-compat": {
+    "title": "We hebben de volgende problemen met jouw browser gevonden:",
+    "local-storage": "Jouw browser ondersteunt geen lokale opslag",
+    "session-storage": "Jouw browser ondersteunt geen sessieopslag",
+    "info": "Corrigeer deze problemen of probeer een andere browser"
+  }
+}

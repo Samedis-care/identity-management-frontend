@@ -1,0 +1,65 @@
+{
+  "dialogs": {
+    "error-title": "Erreur"
+  },
+  "buttons": {
+    "ok": "D'accord"
+  },
+  "data-grid": {
+    "pick": "Sélectionner",
+    "open": "Ouvert",
+    "export": {
+      "excel": {
+        "label": "Exceller"
+      }
+    }
+  },
+  "errors": {
+    "js": {
+      "title": "Quelque chose s'est mal passé."
+    },
+    "chunk-load-error": "Une erreur s'est produite lors du chargement de l'application Web. Veuillez recharger la page. Si le problème persiste, vérifiez votre connexion Internet."
+  },
+  "maintenance": {
+    "active": "Mode entretien activé !",
+    "planned": "Entretien prévu",
+    "fetch-fail-reason": "Échec de la récupération des informations de maintenance",
+    "header": "Entretiens",
+    "current-header": "Entretien courant",
+    "planned-header": "Entretiens planifiés",
+    "explainer": {
+      "planned": {
+        "off": "Aucune interruption de service prévue.",
+        "read-only": "Vous pourrez très probablement accéder à vos données en mode lecture seule. Il ne sera pas possible d'apporter des modifications et des fonctionnalités spéciales peuvent être limitées.",
+        "full": "Vous ne pourrez probablement pas accéder à vos données."
+      },
+      "header": "L'application est actuellement en maintenance.",
+      "off": "Le service est actuellement en maintenance. Il ne doit pas y avoir d'interruption de service.",
+      "read-only": "Vous pouvez accéder à vos données (en lecture seule), mais pas effectuer de modifications. Les fonctionnalités spéciales peuvent être limitées.",
+      "full": "Vous ne pouvez pas accéder à vos données.",
+      "footer": "Nous essaierons de vous fournir toutes les fonctionnalités de l'application dès que possible."
+    },
+    "entry": {
+      "start": "Début : {{TIMESTAMP}}",
+      "end": "Fin estimée : {{TIMESTAMP}}",
+      "end-unknown": "INCONNUE"
+    }
+  },
+  "auth_provider": {
+    "fail_fetch_profile": {
+      "title": "Échec de la réception de votre profil",
+      "retry": "Recommencez"
+    },
+    "fail_accept_invite": {
+      "title": "Échec de l'acceptation de votre invitation",
+      "ignore": "Ignorer",
+      "retry": "Recommencez"
+    }
+  },
+  "browser-compat": {
+    "title": "Nous avons détecté les problèmes suivants avec votre navigateur:",
+    "local-storage": "Votre navigateur ne prend pas en charge le stockage local",
+    "session-storage": "Votre navigateur ne prend pas en charge le stockage de session",
+    "info": "Veuillez corriger ces problèmes ou essayer d'utiliser un autre navigateur"
+  }
+}

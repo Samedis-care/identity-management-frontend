@@ -1,0 +1,104 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "name": "Nom",
+    "short_name": "Nom court",
+    "full_name": "Nom et prénom",
+    "import_roles": "Les rôles",
+    "locale_import_roles": "Rôles (localisation)",
+    "import_candos": "Autorisations",
+    "locale_import_candos": "Autorisations (localisation)",
+    "config": {
+      "url": "URL",
+      "uses_bearer_token": "Utilise l'authentification du porteur",
+      "locales": "Paramètres régionaux",
+      "default_locale": "Paramètres régionaux par défaut",
+      "mailer": {
+        "from": "De",
+        "reply_to": "Répondre à",
+        "logo_b64": "Logo",
+        "footer_html": "Pied de page (HTML)",
+        "smtp_settings": {
+          "address": "SMTP: adresse du serveur",
+          "port": "SMTP: port du serveur",
+          "domain": "SMTP: domaine HELO du serveur",
+          "user_name": "SMTP: nom d'utilisateur",
+          "password": "SMTP: mot de passe",
+          "authentication": "SMTP: mode d'authentification",
+          "enable_starttls": "SMTP: Activer StartTLS",
+          "enable_starttls_auto": "SMTP: Activer StartTLS automatiquement",
+          "openssl_verify_mode": "SMTP: mode de vérification OpenSSL",
+          "ssl": "SMTP: utiliser SSL",
+          "open_timeout": "SMTP: Délai d'ouverture de la connexion",
+          "open_timeout_unit": "secondes",
+          "read_timeout": "SMTP: délai de lecture de la connexion dépassé",
+          "read_timeout_unit": "secondes"
+        }
+      },
+      "theme": {
+        "primary": {
+          "main": "Couleur principale principale",
+          "light": "Primaire-Clair-Couleur",
+          "dark": "Couleur primaire-foncée"
+        },
+        "secondary": {
+          "main": "Couleur principale secondaire",
+          "light": "Couleur de lumière secondaire",
+          "dark": "Couleur sombre secondaire"
+        },
+        "background": {
+          "default": "Couleur de l'arrière plan"
+        },
+        "components_care": {
+          "ui_kit": {
+            "action_button": {
+              "background_color": "Couleur d'arrière-plan du bouton d'action"
+            }
+          }
+        },
+        "type": "Taper"
+      }
+    }
+  },
+  "enums": {
+    "config": {
+      "mailer": {
+        "smtp_settings": {
+          "authentication": {
+            "": "Automatique",
+            "plain": "Plaine",
+            "login": "Connexion",
+            "cram_md5": "CRAM-MD5"
+          },
+          "openssl_verify_mode": {
+            "": "Défaut",
+            "none": "Aucun",
+            "peer": "Pair"
+          }
+        }
+      },
+      "theme": {
+        "type": {
+          "light": "Lumière-Thème",
+          "dark": "Thème sombre"
+        }
+      }
+    }
+  },
+  "validations": {
+    "config": {
+      "mailer": {
+        "footer_html_translations": {
+          "fallback-missing": "Vous devez fournir un pied de page"
+        }
+      },
+      "default_locale": {
+        "not-in-set": "Les paramètres régionaux sélectionnés ne sont pas activés pour l'application"
+      }
+    }
+  },
+  "form": {
+    "export-roles-permissions": "Exporter les autorisations et les rôles",
+    "import-roles-permissions": "Autorisations et rôles d'importation"
+  }
+}

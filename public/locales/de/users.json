@@ -1,0 +1,61 @@
+{
+  "fields": {
+    "id": "ID",
+    "actor_id": "Akteur ID",
+    "email": "Konto",
+    "username": "Benutzername",
+    "set_password": "Passwort setzen",
+    "first_name": "Vorname",
+    "last_name": "Nachname",
+    "locale": "Gebietsschema",
+    "gender": "Geschlecht",
+    "active": "Aktiv",
+    "invalid_at": "Ungültig seit",
+    "updated_at": "Aktualisiert am"
+  },
+  "enums": {
+    "gender": {
+      "0": "Nicht spezifiziert",
+      "1": "Männlich",
+      "2": "Weiblich"
+    },
+    "locales": {
+      "unspecified": "Nicht spezifiziert",
+      "en-US": "Englisch (USA)",
+      "de-DE": "Deutsches (Deutschland)"
+    }
+  },
+  "form": {
+    "tabs": {
+      "main": "Hauptseite",
+      "tenants": "Mandanten",
+      "actors": "Akteure",
+      "roles": "Rollen",
+      "permissions": "Berechtigungen"
+    },
+    "dialogs": {
+      "reset_pwd": {
+        "title": "Passwort zurücksetzen",
+        "open": "Passwort zurücksetzen",
+        "password": "Neues Passwort",
+        "password_confirm": "Neues Passwort (wiederholen)",
+        "reset": "Zurücksetzen",
+        "cancel": "Abbrechen",
+        "errors": {
+          "password_mismatch": {
+            "title": "Validierungsfehler",
+            "message": "Das Kennwort stimmt nicht überein"
+          },
+          "backend": {
+            "title": "Fehler"
+          },
+          "none": {
+            "title": "Erfolg",
+            "message": "Das Passwort wurde erfolgreich festgelegt"
+          }
+        }
+      }
+    }
+  },
+  "save-actors": "Speichern, bevor Benutzer hinzugefügt werden können"
+}

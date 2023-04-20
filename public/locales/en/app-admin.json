@@ -1,0 +1,105 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Name",
+    "short_name": "Short name",
+    "full_name": "Full name",
+    "import_roles": "Roles",
+    "locale_import_roles": "Roles (Localization)",
+    "import_candos": "Permissions",
+    "locale_import_candos": "Permissions (Localization)",
+    "config": {
+      "url": "URL",
+      "uses_bearer_token": "Uses Bearer Authentication",
+      "locales": "Locales",
+      "default_locale": "Default locale",
+      "mailer": {
+        "from": "From",
+        "reply_to": "Reply to",
+        "logo_b64": "Logo",
+        "footer_html": "Footer (HTML)",
+        "smtp_settings": {
+          "address": "SMTP: Server address",
+          "port": "SMTP: Server port",
+          "domain": "SMTP: Server HELO Domain",
+          "user_name": "SMTP: Username",
+          "password": "SMTP: Password",
+          "authentication": "SMTP: Authentication mode",
+          "enable_starttls": "SMTP: Enable StartTLS",
+          "enable_starttls_auto": "SMTP: Enable StartTLS automatically",
+          "openssl_verify_mode": "SMTP: OpenSSL verify mode",
+          "ssl": "SMTP: Use SSL",
+          "open_timeout": "SMTP: Connection open timeout",
+          "open_timeout_unit": "seconds",
+          "read_timeout": "SMTP: Connection read timeout",
+          "read_timeout_unit": "seconds"
+        },
+        "support_email": "Support E-Mail"
+      },
+      "theme": {
+        "primary": {
+          "main": "Primary-Main-Color",
+          "light": "Prinary-Light-Color",
+          "dark": "Primary-Dark-Color"
+        },
+        "secondary": {
+          "main": "Secondary-Main-Color",
+          "light": "Secondary-Light-Color",
+          "dark": "Secondary-Dark-Color"
+        },
+        "background": {
+          "default": "Background color"
+        },
+        "components_care": {
+          "ui_kit": {
+            "action_button": {
+              "background_color": "Action button background color"
+            }
+          }
+        },
+        "mode": "Type"
+      }
+    }
+  },
+  "enums": {
+    "config": {
+      "mailer": {
+        "smtp_settings": {
+          "authentication": {
+            "": "Automatic",
+            "plain": "Plain",
+            "login": "Login",
+            "cram_md5": "CRAM-MD5"
+          },
+          "openssl_verify_mode": {
+            "": "Default",
+            "none": "None",
+            "peer": "Peer"
+          }
+        }
+      },
+      "theme": {
+        "mode": {
+          "light": "Light-Theme",
+          "dark": "Dark-Theme"
+        }
+      }
+    }
+  },
+  "validations": {
+    "config": {
+      "mailer": {
+        "footer_html_translations": {
+          "fallback-missing": "You must provide a footer"
+        }
+      },
+      "default_locale": {
+        "not-in-set": "The selected locale is not enabled for the app"
+      }
+    }
+  },
+  "form": {
+    "export-roles-permissions": "Export permissions and roles",
+    "import-roles-permissions": "Import permissions and roles"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Naam",
+    "short_name": "Korte naam",
+    "full_name": "Volledige naam",
+    "import_roles": "Rollen",
+    "locale_import_roles": "Rollen (lokalisatie)",
+    "import_candos": "Rechten",
+    "locale_import_candos": "Rechten (lokalisatie)",
+    "config": {
+      "url": "URL",
+      "uses_bearer_token": "Maakt gebruik van Bearer-authenticatie",
+      "locales": "Locaties",
+      "default_locale": "Standaard landinstelling",
+      "mailer": {
+        "from": "Van",
+        "reply_to": "Reageer op ",
+        "logo_b64": "Logo",
+        "footer_html": "Voettekst (HTML)",
+        "smtp_settings": {
+          "address": "SMTP: Server adres",
+          "port": "SMTP: Serverpoort",
+          "domain": "SMTP: Server HELO Domein",
+          "user_name": "SMTP: Gebruikersnaam",
+          "password": "SMTP: Wachtwoord",
+          "authentication": "SMTP: Verificatiemodus",
+          "enable_starttls": "SMTP: Schakel StartTLS in",
+          "enable_starttls_auto": "SMTP: Schakel StartTLS automatisch in",
+          "openssl_verify_mode": "SMTP: OpenSSL-verificatiemodus",
+          "ssl": "SMTP: Gebruik SSL",
+          "open_timeout": "SMTP: Time-out verbinding open",
+          "open_timeout_unit": "seconden",
+          "read_timeout": "SMTP: time-out voor het lezen van de verbinding",
+          "read_timeout_unit": "seconden"
+        }
+      },
+      "theme": {
+        "primary": {
+          "main": "Primaire hoofdkleur",
+          "light": "Primaire lichtkleur",
+          "dark": "Primaire donkere kleur"
+        },
+        "secondary": {
+          "main": "Secundaire hoofdkleur",
+          "light": "Secundaire-lichtkleur",
+          "dark": "Secundaire-donkere kleur"
+        },
+        "background": {
+          "default": "Achtergrond kleur"
+        },
+        "components_care": {
+          "ui_kit": {
+            "action_button": {
+              "background_color": "Achtergrondkleur actieknop"
+            }
+          }
+        },
+        "type": "Type"
+      }
+    }
+  },
+  "enums": {
+    "config": {
+      "mailer": {
+        "smtp_settings": {
+          "authentication": {
+            "": "Automatisch",
+            "plain": "Vlak",
+            "login": "Log in",
+            "cram_md5": "CRAM-MD5"
+          },
+          "openssl_verify_mode": {
+            "": "Standaard",
+            "none": "Geen",
+            "peer": "Gelijke"
+          }
+        }
+      },
+      "theme": {
+        "type": {
+          "light": "Licht-thema",
+          "dark": "Donker thema"
+        }
+      }
+    }
+  },
+  "validations": {
+    "config": {
+      "mailer": {
+        "footer_html_translations": {
+          "fallback-missing": "U moet een voettekst opgeven"
+        }
+      },
+      "default_locale": {
+        "not-in-set": "De geselecteerde locale is niet ingeschakeld voor de app"
+      }
+    }
+  },
+  "form": {
+    "export-roles-permissions": "Exportrechten en rollen",
+    "import-roles-permissions": "Importeer machtigingen en rollen"
+  }
+}

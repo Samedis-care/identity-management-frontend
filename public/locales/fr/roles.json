@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "title": "Titre",
+    "description": "La description",
+    "functionality_ids": "Fonctionnalités",
+    "actor_ids": "Acteurs"
+  },
+  "form": {
+    "tabs": {
+      "main": "Principal",
+      "functions": "Autorisations",
+      "actors": "Acteurs"
+    }
+  },
+  "relationships": {
+    "functionalities": {
+      "label": "Fonctionnalités",
+      "placeholder": "Sélectionnez une fonctionnalité"
+    }
+  },
+  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",
+  "save-functionalities": "Enregistrez avant de pouvoir attribuer des autorisations"
+}

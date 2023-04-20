@@ -1,0 +1,65 @@
+{
+  "dialogs": {
+    "error-title": "Fehler"
+  },
+  "buttons": {
+    "ok": "OK"
+  },
+  "data-grid": {
+    "pick": "Wählen",
+    "open": "Öffnen",
+    "export": {
+      "excel": {
+        "label": "Excel"
+      }
+    }
+  },
+  "errors": {
+    "js": {
+      "title": "Etwas ist schief gelaufen."
+    },
+    "chunk-load-error": "Beim Laden der Webanwendung ist ein Fehler aufgetreten. Bitte laden die Seite neu. Wenn das Problem weiterhin besteht, überprüfe die Internetverbindung."
+  },
+  "maintenance": {
+    "active": "Wartungsmodus aktiv!",
+    "planned": "Wartung geplant",
+    "fetch-fail-reason": "Fehler beim Abrufen der Wartungsinformationen",
+    "header": "Wartungen",
+    "current-header": "Aktuelle Wartung",
+    "planned-header": "Geplante Wartungen",
+    "explainer": {
+      "planned": {
+        "off": "Keine Service-Unterbrechungen zu erwarten.",
+        "read-only": "Du wirst höchstwahrscheinlich temporär im schreibgeschützten Modus auf die Daten zugreifen können. Änderungen sind nicht möglich und spezielle Funktionen können eingeschränkt sein.",
+        "full": "Du wirst höchstwahrscheinlich temporär nicht auf Deine Daten zugreifen können."
+      },
+      "header": "Die Service-Anwendung wird derzeit gewartet.",
+      "off": "Die Service-Anwendung wird derzeit gewartet. Es darf keine Dienstunterbrechung geben.",
+      "read-only": "Du kannst temporär auf Daten (nur lesend) zugreifen, aber keine Änderungen vornehmen. Spezielle Funktionen können eingeschränkt sein.",
+      "full": "Du kannst temporär nicht auf Daten zugreifen.",
+      "footer": "Wir versuchen, den vollen Funktionsumfang der Anwendung so schnell wie möglich wieder zur Verfügung zu stellen."
+    },
+    "entry": {
+      "start": "Beginn: {{TIMESTAMP}}",
+      "end": "Voraussichtliches Ende: {{TIMESTAMP}}",
+      "end-unknown": "UNBEKANNT"
+    }
+  },
+  "auth_provider": {
+    "fail_fetch_profile": {
+      "title": "Das Profil konnte nicht geladen werden",
+      "retry": "Wiederholen"
+    },
+    "fail_accept_invite": {
+      "title": "Die Einladung konnte nicht angenommen werden",
+      "ignore": "Ignorieren",
+      "retry": "Wiederholen"
+    }
+  },
+  "browser-compat": {
+    "title": "Wir haben die folgenden Probleme mit Deinem Browser gefunden:",
+    "local-storage": "Dein Browser unterstützt keine lokale Speicherung",
+    "session-storage": "Dein Browser unterstützt keine Sitzungsspeicherung",
+    "info": "Bitte behebe diese Probleme oder versuche es mit einem anderen Browser"
+  }
+}

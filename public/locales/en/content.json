@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "id": "ID",
+    "name": "Name",
+    "version": "Version",
+    "active": "Active",
+    "acceptance_required": "Acceptance required",
+    "content": "Content (Markdown)"
+  },
+  "enums": {
+    "name": {
+      "tos": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "tos-privacy": "Terms of Service & Privacy Policy (combined)",
+      "app-info": "Application Information for Authentication page"
+    }
+  }
+}

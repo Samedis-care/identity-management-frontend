@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "id": "IDENTIFIANT",
+    "domain": "Domaine",
+    "active": "Actif"
+  }
+}

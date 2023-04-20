@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "id": "ID",
+    "title": "Titel",
+    "description": "Beschreibung",
+    "app": "App",
+    "module": "Modul",
+    "ident": "Ident"
+  },
+  "form": {
+    "tabs": {
+      "main": "Hauptseite",
+      "roles": "Rollen"
+    }
+  },
+  "save-roles": "Speichern, bevor Rollen zugewiesen werden können"
+}

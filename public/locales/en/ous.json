@@ -1,0 +1,17 @@
+{
+  "breadcrumbs": {
+    "root": "Root",
+    "new": "New"
+  },
+  "relationships": {
+    "roles": {
+      "label": "Roles",
+      "placeholder": "Search for role"
+    }
+  },
+  "tab": {
+    "children": "Children",
+    "edit": "Edit"
+  },
+  "save-actors": "Save before you can assign actors"
+}

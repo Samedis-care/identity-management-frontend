@@ -1,0 +1,61 @@
+{
+  "fields": {
+    "id": "ID",
+    "actor_id": "Actor ID",
+    "email": "Account",
+    "username": "Username",
+    "set_password": "Set password",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "locale": "Locale",
+    "gender": "Gender",
+    "active": "Active",
+    "invalid_at": "Invalid at",
+    "updated_at": "Updated at"
+  },
+  "enums": {
+    "gender": {
+      "0": "Unspecified",
+      "1": "Male",
+      "2": "Female"
+    },
+    "locales": {
+      "unspecified": "Unspecified",
+      "en-US": "English (United States)",
+      "de-DE": "German (Germany)"
+    }
+  },
+  "form": {
+    "tabs": {
+      "main": "Form",
+      "tenants": "Tenants",
+      "actors": "Actors",
+      "roles": "Roles",
+      "permissions": "Permissions"
+    },
+    "dialogs": {
+      "reset_pwd": {
+        "title": "Reset password",
+        "open": "Reset password",
+        "password": "New password",
+        "password_confirm": "New password (confirmation)",
+        "reset": "Reset",
+        "cancel": "Cancel",
+        "errors": {
+          "password_mismatch": {
+            "title": "Validation error",
+            "message": "Password did not match"
+          },
+          "backend": {
+            "title": "Error"
+          },
+          "none": {
+            "title": "Success",
+            "message": "Password was successfully set"
+          }
+        }
+      }
+    }
+  },
+  "save-actors": "Save before you can assign actors"
+}
