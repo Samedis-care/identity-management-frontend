@@ -33,7 +33,8 @@
           "open_timeout_unit": "secondes",
           "read_timeout": "SMTP: délai de lecture de la connexion dépassé",
           "read_timeout_unit": "secondes"
-        }
+        },
+        "support_email": "Support E-Mail"
       },
       "theme": {
         "primary": {
@@ -56,7 +57,7 @@
             }
           }
         },
-        "type": "Taper"
+        "mode": "Taper"
       }
     }
   },
@@ -78,7 +79,7 @@
         }
       },
       "theme": {
-        "type": {
+        "mode": {
           "light": "Lumière-Thème",
           "dark": "Thème sombre"
         }
