@@ -33,7 +33,8 @@
           "open_timeout_unit": "секунды",
           "read_timeout": "SMTP: тайм-аут чтения соединения",
           "read_timeout_unit": "секунды"
-        }
+        },
+        "support_email": "Support E-Mail"
       },
       "theme": {
         "primary": {
@@ -56,7 +57,7 @@
             }
           }
         },
-        "type": "Тип"
+        "mode": "Тип"
       }
     }
   },
@@ -78,7 +79,7 @@
         }
       },
       "theme": {
-        "type": {
+        "mode": {
           "light": "Светлая тема",
           "dark": "Темная тема"
         }
