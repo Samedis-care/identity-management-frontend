@@ -91,7 +91,12 @@ const AuthPassword = (props: AuthPageProps) => {
           activeAccount: AccountManager.updateAccount({
             id: resp.data.attributes.id,
             email: resp.data.attributes.email,
-            name: resp.data.attributes.username,
+            name: [
+              resp.data.attributes.first_name,
+              resp.data.attributes.last_name,
+            ]
+              .filter((x) => x)
+              .join(" "),
             avatar: image,
             session: staySignedIn
               ? {

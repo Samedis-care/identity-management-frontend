@@ -8,7 +8,6 @@ export interface OauthTokenResponse {
       email: string;
       first_name: string;
       last_name: string;
-      username: string;
       image: Image;
       candos: string[];
       otp_enabled: boolean;
