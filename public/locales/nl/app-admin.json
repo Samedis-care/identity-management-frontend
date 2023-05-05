@@ -33,7 +33,8 @@
           "open_timeout_unit": "seconden",
           "read_timeout": "SMTP: time-out voor het lezen van de verbinding",
           "read_timeout_unit": "seconden"
-        }
+        },
+        "support_email": "Support E-Mail"
       },
       "theme": {
         "primary": {
@@ -56,7 +57,7 @@
             }
           }
         },
-        "type": "Type"
+        "mode": "Type"
       }
     }
   },
@@ -78,7 +79,7 @@
         }
       },
       "theme": {
-        "type": {
+        "mode": {
           "light": "Licht-thema",
           "dark": "Donker thema"
         }
