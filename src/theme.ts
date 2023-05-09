@@ -83,6 +83,12 @@ export const getTheme = (preferDark: boolean): ThemeOptions => ({
         variant: "standard",
       },
     },
+    MuiTabs: {
+      defaultProps: {
+        indicatorColor: "secondary",
+        textColor: "inherit",
+      },
+    },
   },
   // @ts-ignore
   componentsCare: cc,
