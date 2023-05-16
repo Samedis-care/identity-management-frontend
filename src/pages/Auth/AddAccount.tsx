@@ -62,11 +62,9 @@ const AddAccount = (props: AuthPageProps) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant={"h1"}>
-            {!AccountManager.isEmpty() && (
-              <IconButton onClick={handleBack} size="large">
-                <ArrowBack />
-              </IconButton>
-            )}
+            <IconButton onClick={handleBack} size="large">
+              <ArrowBack />
+            </IconButton>
             {t("add.title")}
           </Typography>
         </Grid>
