@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import {
   ActionButton,
-  FrameworkHistory,
   Loader,
   showInfoDialog,
   sleep,
@@ -29,7 +28,7 @@ import { AuthPageProps } from "./components/AuthPageLayout";
 import AccountManager from "../../utils/AccountManager";
 import { Trans, useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 import PolicyViewer from "../../components/PolicyViewer";
 
@@ -53,6 +52,7 @@ const WaitForRecaptcha = (props: { children: React.ReactElement }) => {
 const CreateAccount = (props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const { app } = params;
   const { t } = useTranslation("auth");
@@ -82,7 +82,10 @@ const CreateAccount = (props: AuthPageProps) => {
   const recaptchaExpireCallback = useCallback(() => {
     setState((prev) => ({ ...prev, captcha: "" }));
   }, []);
-  const handleBack = useCallback(() => FrameworkHistory.back(), []);
+  const handleBack = useCallback(
+    () => navigate(`/login/${app}/add-account`),
+    [app, navigate]
+  );
 
   const showPrivacyDialog = useCallback(() => {
     pushDialog(<PolicyViewer document={"tos-privacy"} />);
@@ -185,7 +188,7 @@ const CreateAccount = (props: AuthPageProps) => {
             },
           ],
         });
-        FrameworkHistory.push(`/login/${app}`);
+        navigate(`/login/${app}`);
       } catch (e) {
         await showInfoDialog(pushDialog, {
           title: t("create.result.failed.title"),
@@ -195,7 +198,7 @@ const CreateAccount = (props: AuthPageProps) => {
 
       captcha.current?.reset();
     },
-    [app, location.search, pushDialog, state, t]
+    [app, location.search, pushDialog, state, t, navigate]
   );
 
   return (

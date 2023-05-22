@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from "react";
-import { FrameworkHistory } from "components-care";
 import {
   AuthFactorType,
   AuthPageProps,
@@ -8,20 +7,21 @@ import {
 import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import AuthPassword from "./components/AuthPassword";
 import AuthTotp from "./components/AuthTotp";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 
 const AuthAccount = (props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const { app } = params;
   const [state, setState] = useAuthPageState();
 
   useEffect(() => {
     if (state.activeAccount) return;
 
-    FrameworkHistory.push(preserveUrlParams(`/login/${app}`, location));
-  }, [state.activeAccount, app, location]);
+    navigate(preserveUrlParams(`/login/${app}`, location));
+  }, [state.activeAccount, app, location, navigate]);
   useEffect(() => {
     if (state.currentFactor) return;
     if (state.remainingFactors.length === 0) {

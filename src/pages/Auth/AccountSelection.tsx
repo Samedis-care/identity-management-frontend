@@ -3,7 +3,6 @@ import { Typography, Unstable_Grid2 as Grid } from "@mui/material";
 import AccountEntry from "./components/AccountEntry";
 import AccountListButton from "./components/AccountListButton";
 import { Add as AddIcon } from "@mui/icons-material";
-import { FrameworkHistory } from "components-care";
 import {
   AuthFactorType,
   AuthPageProps,
@@ -17,21 +16,19 @@ import { OauthTokenResponse } from "../../api/ident-services/Auth";
 import * as Sentry from "@sentry/react";
 import downloadProfileImage from "../../utils/downloadProfileImage";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 
 const AccountSelection = (props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const { app } = params;
   const { t } = useTranslation("auth");
 
   const onAddNewAccount = useCallback(
-    () =>
-      FrameworkHistory.push(
-        preserveUrlParams(`/login/${app}/add-account`, location)
-      ),
-    [app, location]
+    () => navigate(preserveUrlParams(`/login/${app}/add-account`, location)),
+    [app, location, navigate]
   );
   const [, setState] = useAuthPageState();
   useEffect(() => {
@@ -114,11 +111,9 @@ const AccountSelection = (props: AuthPageProps) => {
         activeAccount: account,
         currentFactor: undefined,
       }));
-      FrameworkHistory.push(
-        preserveUrlParams(`/login/${app}/authenticate`, location)
-      );
+      navigate(preserveUrlParams(`/login/${app}/authenticate`, location));
     },
-    [setState, app, location]
+    [setState, app, location, navigate]
   );
   const onForgotAccount = (id: string) => {
     const account = AccountManager.forceFind(id);

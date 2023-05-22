@@ -1,18 +1,18 @@
 import React, { useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { FrameworkHistory } from "components-care";
+import { useNavigate, useParams } from "react-router-dom";
 import DocumentViewer from "./DocumentViewer";
 import { useLocation } from "react-router";
 
 const DocumentViewerPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = useParams<"app" | "name">();
   const app = params.app ?? "";
   const name = params.name ?? "";
 
   const decline = useCallback(() => {
-    FrameworkHistory.push("/my-profile");
-  }, []);
+    navigate("/my-profile");
+  }, [navigate]);
   const accept = useCallback(async (redirect_url: string) => {
     window.location.href = redirect_url;
   }, []);

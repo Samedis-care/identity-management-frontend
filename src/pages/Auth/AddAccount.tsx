@@ -6,8 +6,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { ActionButton, FrameworkHistory } from "components-care";
-import { Link, useParams } from "react-router-dom";
+import { ActionButton } from "components-care";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -23,6 +23,7 @@ import { validateEmailRaw } from "components-care/dist/utils/validations/validat
 const AddAccount = (props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const { app } = params;
   if (!app) throw new Error("App not set");
   const { t } = useTranslation("auth");
@@ -34,7 +35,10 @@ const AddAccount = (props: AuthPageProps) => {
     },
     []
   );
-  const handleBack = useCallback(() => FrameworkHistory.back(), []);
+  const handleBack = useCallback(
+    () => navigate(`/login/${app}`),
+    [app, navigate]
+  );
   const handleNext = useCallback(
     (evt: React.MouseEvent) => {
       evt.preventDefault();
@@ -50,11 +54,9 @@ const AddAccount = (props: AuthPageProps) => {
         currentFactor: undefined,
         remainingFactors: [AuthFactorType.PASSWORD],
       });
-      FrameworkHistory.push(
-        preserveUrlParams(`/login/${app}/authenticate`, location)
-      );
+      navigate(preserveUrlParams(`/login/${app}/authenticate`, location));
     },
-    [app, email, setState, location]
+    [app, email, setState, location, navigate]
   );
 
   return (
