@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Grid,
   IconButton,
@@ -29,6 +29,12 @@ const AddAccount = (props: AuthPageProps) => {
   const { t } = useTranslation("auth");
   const [email, setEmail] = useState("");
   const [, setState] = useAuthPageState();
+  useEffect(() => {
+    setState((prev) => ({ ...prev, showSocialLogins: true }));
+    return () => {
+      setState((prev) => ({ ...prev, showSocialLogins: false }));
+    };
+  }, [setState]);
   const handleEmailChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(evt.target.value);
@@ -36,8 +42,8 @@ const AddAccount = (props: AuthPageProps) => {
     []
   );
   const handleBack = useCallback(
-    () => navigate(`/login/${app}`),
-    [app, navigate]
+    () => navigate(preserveUrlParams(`/login/${app}`, location)),
+    [app, navigate, location]
   );
   const handleNext = useCallback(
     (evt: React.MouseEvent) => {

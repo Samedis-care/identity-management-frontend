@@ -32,9 +32,9 @@ const AccountSelection = (props: AuthPageProps) => {
   );
   const [, setState] = useAuthPageState();
   useEffect(() => {
-    setState((prev) => ({ ...prev, isAccountSelection: true }));
+    setState((prev) => ({ ...prev, showSocialLogins: true }));
     return () => {
-      setState((prev) => ({ ...prev, isAccountSelection: false }));
+      setState((prev) => ({ ...prev, showSocialLogins: false }));
     };
   }, [setState]);
 

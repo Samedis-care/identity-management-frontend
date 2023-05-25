@@ -114,9 +114,9 @@ export enum AuthFactorType {
 
 export interface AuthPageState {
   /**
-   * Is account selection page
+   * Show social logins?
    */
-  isAccountSelection?: boolean;
+  showSocialLogins?: boolean;
   /**
    * Active (selected) account ID of user (may not be known)
    */
@@ -218,7 +218,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
   }, [pushDialog]);
 
   const statePack = useState<AuthPageState>({
-    isAccountSelection: false,
+    showSocialLogins: false,
     remainingFactors: [AuthFactorType.PASSWORD],
   });
 
@@ -265,7 +265,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                     </Box>
                   </Paper>
                 </Grid>
-                {enableSocialLogins() && statePack[0].isAccountSelection && (
+                {enableSocialLogins() && statePack[0].showSocialLogins && (
                   <Grid item className={classes.appInfo}>
                     <Box py={2}>
                       <Paper>

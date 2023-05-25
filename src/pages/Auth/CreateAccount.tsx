@@ -24,13 +24,14 @@ import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import Recaptcha from "react-recaptcha";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
-import { AuthPageProps } from "./components/AuthPageLayout";
+import { AuthPageProps, useAuthPageState } from "./components/AuthPageLayout";
 import AccountManager from "../../utils/AccountManager";
 import { Trans, useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
 import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 import PolicyViewer from "../../components/PolicyViewer";
+import { preserveUrlParams } from "../../utils/preserveUrlParams";
 
 const { REACT_APP_RECAPTCHA_KEY } = process.env;
 
@@ -67,6 +68,15 @@ const CreateAccount = (props: AuthPageProps) => {
     captcha: "",
   });
   const theme = useTheme();
+
+  const [, setAuthPageState] = useAuthPageState();
+  useEffect(() => {
+    setAuthPageState((prev) => ({ ...prev, showSocialLogins: true }));
+    return () => {
+      setAuthPageState((prev) => ({ ...prev, showSocialLogins: false }));
+    };
+  }, [setAuthPageState]);
+
   const handleChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setState((prev) => ({
@@ -83,8 +93,8 @@ const CreateAccount = (props: AuthPageProps) => {
     setState((prev) => ({ ...prev, captcha: "" }));
   }, []);
   const handleBack = useCallback(
-    () => navigate(`/login/${app}/add-account`),
-    [app, navigate]
+    () => navigate(preserveUrlParams(`/login/${app}/add-account`, location)),
+    [app, navigate, location]
   );
 
   const showPrivacyDialog = useCallback(() => {
@@ -188,7 +198,7 @@ const CreateAccount = (props: AuthPageProps) => {
             },
           ],
         });
-        navigate(`/login/${app}`);
+        navigate(preserveUrlParams(`/login/${app}`, location));
       } catch (e) {
         await showInfoDialog(pushDialog, {
           title: t("create.result.failed.title"),
@@ -198,7 +208,7 @@ const CreateAccount = (props: AuthPageProps) => {
 
       captcha.current?.reset();
     },
-    [app, location.search, pushDialog, state, t, navigate]
+    [app, location, pushDialog, state, t, navigate]
   );
 
   return (
