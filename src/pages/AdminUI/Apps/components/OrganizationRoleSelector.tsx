@@ -50,15 +50,15 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
       placeholder={t("relationships.roles.placeholder")}
       serialize={(record: OrganizationRoleData) => ({
         id: record.value,
-        role_id: record.role_id,
+        role_id: record.value,
         label: record.label,
         icon: record.icon,
       })}
       deserialize={(data: Record<string, unknown>): OrganizationRoleData => ({
         value: data.id as string,
-        role_id: data.role_id as string,
+        role_id: data.id as string,
         label: (data.label as string) ?? (data.title as string),
-        onClick: () => navigate(`/apps/${app}/roles/${data.role_id}`),
+        onClick: () => navigate(`/apps/${app}/roles/${data.id}`),
       })}
       deserializeModel={(
         data: Record<keyof ReturnType<typeof RoleModel>["fields"], unknown>
