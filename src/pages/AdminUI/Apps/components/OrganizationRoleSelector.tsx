@@ -50,7 +50,7 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
       placeholder={t("relationships.roles.placeholder")}
       serialize={(record: OrganizationRoleData) => ({
         id: record.value,
-        role_id: record.value,
+        role_id: record.role_id,
         label: record.label,
         icon: record.icon,
       })}
