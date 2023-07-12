@@ -5,7 +5,7 @@ import {
 } from "../../utils/MaintenanceMode";
 import { Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import marked from "marked";
+import { marked } from "marked";
 
 export interface MaintenancePageEntryProps {
   entry: MaintenanceEntry;

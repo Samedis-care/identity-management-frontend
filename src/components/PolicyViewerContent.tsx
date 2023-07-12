@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import BackendHttpClient from "../components-care/connectors/BackendHttpClient";
-import marked from "marked";
+import { marked } from "marked";
 import { PolicyViewerProps } from "./PolicyViewer";
 import { DataResponse } from "../api/ident-services/Common";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";

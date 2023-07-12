@@ -34,7 +34,7 @@ import { AppInfo, AppInfoResponse } from "../../../api/ident-services/AppInfo";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
 import { ContentDataResponse } from "../../../api/ident-services/Content";
 import { Trans, useTranslation } from "react-i18next";
-import marked from "marked";
+import { marked } from "marked";
 import { useParams } from "react-router-dom";
 import SocialLogins, { enableSocialLogins } from "./SocialLogins";
 import PolicyViewer from "../../../components/PolicyViewer";

@@ -22,7 +22,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import marked from "marked";
+import { marked } from "marked";
 import { useTranslation } from "react-i18next";
 
 export interface DocumentViewerProps {

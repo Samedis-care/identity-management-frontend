@@ -18,7 +18,7 @@ import moment from "moment";
 import "@fontsource/roboto";
 import { getTheme } from "./theme";
 import MarkedRenderer from "./components/MarkedRenderer";
-import marked from "marked";
+import { marked } from "marked";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { IS_DEV } from "./constants";
 import BackendConnector from "./components-care/connectors/BackendConnector";
