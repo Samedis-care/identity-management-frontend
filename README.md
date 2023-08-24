@@ -2,7 +2,8 @@
 
 ## Configuration
 
-Configuration is done exclusively via the environment file `.env`. To get started copy `.env.example` to `.env` and modify `.env`.
+Configuration is done via the environment file `.env`. To get started copy `.env.example` to `.env` and modify `.env`.
+You can define custom nginx options in `deploy/security-custom.conf`. For example use `add_header` commands to set HSTS and CSP headers.
 
 ## Build / Dev Setup
 

@@ -30,3 +30,4 @@ COPY --from=build /app/http2_push.conf /etc/nginx/
 COPY --from=build /app/key.pem /app/cert.pem /etc/nginx/ssl/
 
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY deploy/security*.conf /etc/nginx/
