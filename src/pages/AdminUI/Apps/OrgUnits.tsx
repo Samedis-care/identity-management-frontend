@@ -5,6 +5,7 @@ import {
   DefaultErrorComponent,
   Form,
   Loader,
+  throwError,
 } from "components-care";
 import { useLocation, useNavigate } from "react-router";
 import GridWrapper from "../../../components-care/GridWrapper";
@@ -191,6 +192,7 @@ export const useOrgUnitTree = (
                             .slice(0, path.length - 1)
                             .join("/")}`
                         ),
+                      open: () => throwError("open not implemented"),
                       hasCustomSubmitHandler: false,
                     }}
                   >

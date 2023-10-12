@@ -12,7 +12,6 @@ import makeStyles from "@mui/styles/makeStyles";
 import {
   copyText,
   Loader,
-  ModelDataStore,
   showInfoDialog,
   TextFieldWithHelp,
   useDialogContext,
@@ -50,7 +49,6 @@ export type OtpResponse = DataResponse<{
 
 const EnrollTotpDialog = () => {
   const model = useProfileModel();
-  const queryKey = model.getReactQueryKey("singleton");
   const [pushDialog, popDialog] = useDialogContext();
   const classes = useStyles();
   const otpEnrollment = useAsyncMemo(
@@ -98,7 +96,7 @@ const EnrollTotpDialog = () => {
         if (!result.data.attributes.otp_enabled) {
           throw new Error("TOTP activation failed");
         }
-        await ModelDataStore.invalidateQueries(queryKey);
+        await model.invalidateCacheForId("singleton");
         popDialog();
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.enroll-totp.result.success.title"),
@@ -163,7 +161,7 @@ const EnrollTotpDialog = () => {
         });
       }
     },
-    [otpEnrollment, state.otp, popDialog, pushDialog, t, queryKey, downloadFile]
+    [model, otpEnrollment, state.otp, popDialog, pushDialog, t, downloadFile]
   );
 
   return (

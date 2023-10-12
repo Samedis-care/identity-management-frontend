@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  ModelDataStore,
   showInfoDialog,
   TextFieldWithHelp,
   useDialogContext,
@@ -27,7 +26,6 @@ export interface UnrollTotpDialogState {
 const UnrollTotpDialog = () => {
   const [pushDialog, popDialog] = useDialogContext();
   const model = useProfileModel();
-  const queryKey = model.getReactQueryKey("singleton");
   const { t } = useTranslation("profile");
   const [state, setState] = useState<UnrollTotpDialogState>({
     otp: "",
@@ -63,7 +61,7 @@ const UnrollTotpDialog = () => {
           title: t("tabs.account.dialogs.unroll-totp.result.success.title"),
           message: t("tabs.account.dialogs.unroll-totp.result.success.info"),
         });
-        await ModelDataStore.invalidateQueries(queryKey);
+        model.invalidateCacheForId("singleton");
       } catch (e) {
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.unroll-totp.result.failure.title"),
@@ -71,7 +69,7 @@ const UnrollTotpDialog = () => {
         });
       }
     },
-    [popDialog, pushDialog, state.otp, t, queryKey]
+    [popDialog, pushDialog, state.otp, t, model]
   );
 
   return (

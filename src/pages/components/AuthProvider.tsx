@@ -108,11 +108,30 @@ export const destroySession = async () => {
     } catch (e) {}
   }
 
+  const errors: string[] = [];
   ["token", "token_expire", "refresh_token"].forEach((key) => {
     Cookies.remove(key);
+    if (Cookies.get(key)) errors.push(`cookie ${key}`);
     delete localStorage[key];
+    if (localStorage.getItem(key)) errors.push(`localStorage ${key}`);
     delete sessionStorage[key];
+    if (sessionStorage.getItem(key)) errors.push(`sessionStorage ${key}`);
   });
+  if (getSession()) errors.push("getSession");
+  if (getSessionExpire()) errors.push("getSessionExpire");
+  if (getSessionRefreshToken()) errors.push("getSessionRefreshToken");
+  if (errors.length > 0) {
+    Sentry.captureException(new Error("destroySession failure"), {
+      extra: {
+        errors,
+        href: window.location.href,
+        cookies: Object.keys(Cookies.get()),
+        localStorage: Object.keys(localStorage),
+        sessionStorage: Object.keys(sessionStorage),
+      },
+    });
+    throw new Error("Failed deleting session.");
+  }
 };
 
 export const redirectToLogin = (includeRedirectURl = true) => {
