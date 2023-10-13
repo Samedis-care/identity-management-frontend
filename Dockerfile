@@ -24,7 +24,8 @@ RUN bash -c 'while read file; do echo "http2_push $file;"; done <<< $(grep -oP "
 RUN bash -c '[ -f "key.pem" ] || openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pem -subj "/C=DE/ST=Local/L=Local/O=Local/OU=Local/CN=Local/emailAddress=ssl@localhost"'
 
 # production environment
-FROM macbre/nginx-brotli:1.19.8
+FROM fholzer/nginx-brotli:mainline-latest
+
 COPY --from=build /app/build /usr/share/nginx/html
 COPY --from=build /app/http2_push.conf /etc/nginx/
 COPY --from=build /app/key.pem /app/cert.pem /etc/nginx/ssl/
