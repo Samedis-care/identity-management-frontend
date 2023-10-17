@@ -10,7 +10,7 @@ You can define custom nginx options in `deploy/security-custom.conf`. For exampl
 ### Docker
 
 1. Optionally put an SSL key (`key.pem`) and certificate (`cert.pem`) in `deploy/ssl`. These are used to enable HTTP/2 on the docker container. If you don't provide them self-signed certificates will be created for the docker container
-2. Build the docker container using `docker build`
+2. Build the docker container using `docker build --pull`
 
 ### Local
 
