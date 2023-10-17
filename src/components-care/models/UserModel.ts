@@ -176,7 +176,7 @@ export const UserModel = (
       undefined,
       {
         overrideRecordBaseDelete: tenant
-          ? `v1/access_control/tenant/${tenant}/users`
+          ? `v1/access_control/apps/${app}/tenant/${tenant}/users`
           : undefined,
       }
     ),
