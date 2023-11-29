@@ -28,9 +28,14 @@ import { useProfileActivityModel } from "../../components-care/models/ProfileAct
 import ResetPasswordDialog from "./components/ResetPasswordDialog";
 import AppsList from "./components/AppsList";
 import ProfilePicture from "./components/ProfilePicture";
-import { destroySession, redirectToLogin } from "../components/AuthProvider";
+import {
+  destroySession,
+  redirectToLogin,
+  useAuthProviderContext,
+} from "../components/AuthProvider";
 import EnrollTotpDialog from "./components/EnrollTotpDialog";
 import UnrollTotpDialog from "./components/UnrollTotpDialog";
+import AccountManager from "../../utils/AccountManager";
 
 const useStyles = makeStyles({
   root: {
@@ -72,6 +77,7 @@ const ProfileForm = (
   const { mutateAsync: deleteProfile } = useModelDelete(model);
   const email = (props.values!.email as string) ?? "";
   const [deleteRequested, setDeleteRequested] = useState(false);
+  const authCtx = useAuthProviderContext();
 
   const openResetPasswordDialog = useCallback(
     () => pushDialog(<ResetPasswordDialog />),
@@ -131,19 +137,20 @@ const ProfileForm = (
   }, [deleteSessions, loginsModel]);
 
   useEffect(() => {
-    if (!deleteRequested || props.dirty) return;
+    const profileId = props.id; // should be "singleton" always
+    if (!deleteRequested || props.dirty || !profileId) return;
     setDeleteRequested(false);
     (async () => {
       try {
-        await deleteProfile(props.id ?? "singleton");
+        await deleteProfile(profileId);
       } catch (err) {
         console.error("Fail deleting user", err);
-        showErrorDialog(pushDialog, {
+        return showErrorDialog(pushDialog, {
           title: t("tabs.account.dialogs.close-error.title"),
           message: (err as Error).message,
         });
-        return;
       }
+      AccountManager.forgetAccount(authCtx.id);
       await destroySession();
       redirectToLogin(false);
     })();
