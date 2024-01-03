@@ -1,13 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Grid,
-  IconButton,
-  Link as MuiLink,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Grid, IconButton, TextField, Typography } from "@mui/material";
 import { ActionButton } from "components-care";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -19,8 +13,21 @@ import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
+import makeStyles from "@mui/styles/makeStyles";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.getContrastText(theme.palette.primary.main),
+    },
+  },
+}));
 
 const AddAccount = (props: AuthPageProps) => {
+  const classes = useStyles();
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -64,6 +71,13 @@ const AddAccount = (props: AuthPageProps) => {
     },
     [app, email, setState, location, navigate]
   );
+  const handleCreate = useCallback(() => {
+    navigate(
+      preserveUrlParams(`/login/${app}/create-account`, location, {
+        emailHint: email,
+      })
+    );
+  }, [app, email, location, navigate]);
 
   return (
     <form>
@@ -88,6 +102,14 @@ const AddAccount = (props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
+        <Grid item xs={12}>
+          {t("add.mailhint")}
+        </Grid>
+        <Grid item xs={6}>
+          <ActionButton className={classes.button} onClick={handleCreate}>
+            {t("add.new")}
+          </ActionButton>
+        </Grid>
         <Grid item xs={6}>
           <ActionButton
             type={"submit"}
@@ -96,16 +118,6 @@ const AddAccount = (props: AuthPageProps) => {
           >
             {t("add.next")}
           </ActionButton>
-        </Grid>
-        <Grid item xs={12}>
-          <MuiLink
-            component={Link}
-            to={preserveUrlParams(`/login/${app}/create-account`, location, {
-              emailHint: email,
-            })}
-          >
-            {t("add.new")}
-          </MuiLink>
         </Grid>
       </Grid>
     </form>
