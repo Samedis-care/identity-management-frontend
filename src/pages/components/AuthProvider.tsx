@@ -109,6 +109,7 @@ export const destroySession = async () => {
   }
 
   const errors: string[] = [];
+  const search = parseUrlParams();
   ["token", "token_expire", "refresh_token"].forEach((key) => {
     Cookies.remove(key);
     if (Cookies.get(key)) errors.push(`cookie ${key}`);
@@ -116,7 +117,11 @@ export const destroySession = async () => {
     if (localStorage.getItem(key)) errors.push(`localStorage ${key}`);
     delete sessionStorage[key];
     if (sessionStorage.getItem(key)) errors.push(`sessionStorage ${key}`);
+    search.delete(key);
   });
+  const newHash = search.toString(); // also strip tokens from URL if present
+  window.location.hash = newHash ? "#" + newHash : "";
+
   if (getSession()) errors.push("getSession");
   if (getSessionExpire()) errors.push("getSessionExpire");
   if (getSessionRefreshToken()) errors.push("getSessionRefreshToken");
@@ -198,7 +203,14 @@ const AuthProvider = (props: AuthProviderProps) => {
       if (location.pathname === "/authenticated") {
         // save auth params
         const search = parseUrlParams();
-        window.location.hash = "";
+        navigate(
+          {
+            pathname: location.pathname,
+            search: location.search,
+            hash: "",
+          },
+          { replace: true }
+        );
         const rememberMe = search.get("remember_me") === "true";
         const tokens = Object.fromEntries(
           ["token", "refresh_token", "token_expire", "invite_token"].map(
@@ -248,7 +260,7 @@ const AuthProvider = (props: AuthProviderProps) => {
           }
         }
 
-        navigate(search.get("redirect_path") ?? "/");
+        navigate(search.get("redirect_path") ?? "/", { replace: true });
       } else {
         // special case: auth info passed in URL (e.g. my-profile)
         // save auth params in session storage and remove from URL
@@ -260,7 +272,14 @@ const AuthProvider = (props: AuthProviderProps) => {
           search.delete(key);
         });
         const newHash = search.toString();
-        window.location.hash = newHash ? "#" + newHash : "";
+        navigate(
+          {
+            pathname: location.pathname,
+            search: location.search,
+            hash: newHash ? "#" + newHash : "",
+          },
+          { replace: true }
+        );
       }
 
       // check for session
