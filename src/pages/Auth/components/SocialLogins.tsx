@@ -4,6 +4,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
+import i18n from "../../../i18n";
 
 export interface SocialLoginsProps {
   app: string;
@@ -43,6 +44,7 @@ export const doOauthSignIn = (
 ) => {
   const payload: Record<string, string> = {
     app,
+    locale: i18n.language,
     state: JSON.stringify({
       ...Object.fromEntries(new URLSearchParams(location.search).entries()),
       app,
