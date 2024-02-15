@@ -35,6 +35,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export const doOauthSignIn = (
+  type: string,
+  app: string,
+  location: ReturnType<typeof useLocation>,
+  emailHint: string | null
+) => {
+  const payload: Record<string, string> = {
+    app,
+    state: JSON.stringify({
+      ...Object.fromEntries(new URLSearchParams(location.search).entries()),
+      app,
+    }),
+  };
+  if (emailHint) payload.login_hint = emailHint;
+
+  const form = document.createElement("form");
+  form.style.visibility = "hidden";
+  form.method = "POST";
+  form.action = `/api/v1/users/auth/${encodeURI(type)}`;
+  Object.entries(payload).forEach(([k, v]) => {
+    const input = document.createElement("input");
+    input.name = k;
+    input.value = v;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+};
+
 const SocialLogins = (props: SocialLoginsProps) => {
   const { app } = props;
 
@@ -51,25 +80,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
         | "microsoft_graph"
         | "apple"
     ) => {
-      const payload: Record<string, string> = {
-        app,
-        state: JSON.stringify({
-          ...Object.fromEntries(new URLSearchParams(location.search).entries()),
-          app,
-        }),
-      };
-      const form = document.createElement("form");
-      form.style.visibility = "hidden";
-      form.method = "POST";
-      form.action = `/api/v1/users/auth/${encodeURI(type)}`;
-      Object.entries(payload).forEach(([k, v]) => {
-        const input = document.createElement("input");
-        input.name = k;
-        input.value = v;
-        form.appendChild(input);
-      });
-      document.body.appendChild(form);
-      form.submit();
+      doOauthSignIn(type, app, location, null);
     },
     [app, location]
   );

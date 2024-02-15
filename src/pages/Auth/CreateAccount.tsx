@@ -24,7 +24,11 @@ import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import Recaptcha from "react-recaptcha";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
-import { AuthPageProps, useAuthPageState } from "./components/AuthPageLayout";
+import {
+  AuthPageProps,
+  useAuthPageAppInfo,
+  useAuthPageState,
+} from "./components/AuthPageLayout";
 import AccountManager from "../../utils/AccountManager";
 import { Trans, useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
@@ -32,6 +36,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router";
 import PolicyViewer from "../../components/PolicyViewer";
 import { preserveUrlParams } from "../../utils/preserveUrlParams";
+import getEmailDomain from "../../utils/getEmailDomain";
+import { md5 } from "js-md5";
+import { doOauthSignIn } from "./components/SocialLogins";
 
 const { REACT_APP_RECAPTCHA_KEY } = process.env;
 
@@ -58,6 +65,7 @@ const CreateAccount = (props: AuthPageProps) => {
   const { app } = params;
   const { t } = useTranslation("auth");
   const [pushDialog] = useDialogContext();
+  const appInfo = useAuthPageAppInfo();
   const [state, setState] = useState({
     email: queryParams.get("emailHint") ?? "",
     email_confirm: queryParams.get("emailConfirmHint") ?? "",
@@ -137,6 +145,26 @@ const CreateAccount = (props: AuthPageProps) => {
         return;
       }
 
+      const emailDomain = getEmailDomain(state.email);
+      console.log(emailDomain, md5(emailDomain), appInfo.auth_provider_hints);
+      if (appInfo.auth_provider_hints.includes(md5(emailDomain))) {
+        // email has custom auth provider
+        if (!app) throw new Error("app null");
+        await showInfoDialog(pushDialog, {
+          title: t("create.validations.email-custom-auth.title"),
+          message: t("create.validations.email-custom-auth.message"),
+        });
+        AccountManager.addAccount({
+          id: null,
+          email: state.email,
+          name: null,
+          avatar: null,
+          session: null,
+        });
+        doOauthSignIn(emailDomain, app, location, state.email);
+        return;
+      }
+
       if (state.password !== state.password_confirm) {
         await showInfoDialog(pushDialog, {
           title: t("create.validations.password-mismatch.title"),
@@ -208,7 +236,21 @@ const CreateAccount = (props: AuthPageProps) => {
 
       captcha.current?.reset();
     },
-    [app, location, pushDialog, state, t, navigate]
+    [
+      state.email,
+      state.email_confirm,
+      state.password,
+      state.password_confirm,
+      state.captcha,
+      state.first_name,
+      state.last_name,
+      appInfo.auth_provider_hints,
+      pushDialog,
+      t,
+      app,
+      location,
+      navigate,
+    ]
   );
 
   return (

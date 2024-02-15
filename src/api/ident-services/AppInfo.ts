@@ -8,6 +8,7 @@ export interface AppInfo {
   short_name: string;
   full_name: string;
   image: Image;
+  auth_provider_hints: string[]; // md5(email domain)[]
   config: {
     url: string;
     uses_bearer_token: boolean;

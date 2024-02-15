@@ -110,6 +110,10 @@ export enum AuthFactorType {
    * Universal 2nd Factor => WebAuthn
    */
   U2F = "u2f",
+  /**
+   * managed account, used to show redirect screen
+   */
+  EXTERNAL_OAUTH = "ext_oauth",
 }
 
 export interface AuthPageState {
