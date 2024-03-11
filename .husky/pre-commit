@@ -1,2 +1,1 @@
-./mktransifex.sh
 node_modules/.bin/lint-staged --allow-empty
