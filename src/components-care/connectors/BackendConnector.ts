@@ -48,7 +48,11 @@ interface DataResponse {
     id: string;
     type: string;
   }[];
-  meta: {};
+  meta: {
+    message: {
+      success: boolean;
+    };
+  };
 }
 
 interface IndexResponse {
@@ -100,7 +104,7 @@ class BackendConnector<
   KeyT extends ModelFieldName,
   RelationsKeyT extends string,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 > extends ApiConnector<KeyT, VisibilityT, CustomT> {
   private apiBase: string;
   includedRelations: IncludedRelations<RelationsKeyT>;
@@ -127,7 +131,7 @@ class BackendConnector<
     putTag: string | null = null,
     includedRelations: IncludedRelations<RelationsKeyT> = {},
     additionalQueryParameters?: Record<string, unknown>,
-    additionalOptions?: AdditionalBackendOptions
+    additionalOptions?: AdditionalBackendOptions,
   ) {
     super();
 
@@ -152,7 +156,7 @@ class BackendConnector<
       "include" in this.additionalQueryParameters
     ) {
       throw new Error(
-        "include cannot be set via additionalQueryParameters, use includedRelations struct instead"
+        "include cannot be set via additionalQueryParameters, use includedRelations struct instead",
       );
     }
 
@@ -168,7 +172,7 @@ class BackendConnector<
 
   getApiBase = (
     record: boolean,
-    action: "index" | "show" | "update" | "create" | "delete"
+    action: "index" | "show" | "update" | "create" | "delete",
   ): string => {
     if (!record) return this.apiBase;
     if (action === "delete" && this.additionalOptions.overrideRecordBaseDelete)
@@ -190,7 +194,7 @@ class BackendConnector<
   });
 
   toAgGridFilterType = (
-    filterType: ModelFilterType
+    filterType: ModelFilterType,
   ): "text" | "date" | "datetime" | "number" | "bool" => {
     switch (filterType) {
       case "string":
@@ -212,22 +216,22 @@ class BackendConnector<
 
   toAgGridFilterDef = (
     filter: IFilterDef,
-    filterType: "text" | "date" | "datetime" | "number" | "bool"
+    filterType: "text" | "date" | "datetime" | "number" | "bool",
   ) => ({
     filterType,
     type: filter.type,
     [filterType === "date"
       ? "dateFrom"
       : filterType === "datetime"
-      ? "dateTimeFrom"
-      : "filter"]: ["inSet", "notInSet"].includes(filter.type)
+        ? "dateTimeFrom"
+        : "filter"]: ["inSet", "notInSet"].includes(filter.type)
       ? filter.value1.split(",")
       : filter.value1,
     [filterType === "date"
       ? "dateTo"
       : filterType === "datetime"
-      ? "dateTimeTo"
-      : "filterTo"]: filter.value2 || undefined,
+        ? "dateTimeTo"
+        : "filterTo"]: filter.value2 || undefined,
   });
 
   isFilterValid = (filter: IFilterDef | undefined): boolean => {
@@ -247,7 +251,7 @@ class BackendConnector<
     extraParams?: Record<string, unknown>,
     model?: Model<KeyT, VisibilityT, CustomT>,
     columns?: IDataGridColumnDef[],
-    pageIsOffset?: boolean
+    pageIsOffset?: boolean,
   ): Record<string, unknown> {
     if (!extraParams) extraParams = {};
     const dataGridColumns =
@@ -263,7 +267,7 @@ class BackendConnector<
           Object.entries(gridFilter).map(([field, filter]) => {
             if (!this.isFilterValid(filter)) return [field, undefined];
             const filterTypeCC = dataGridColumns!.find(
-              (entry) => entry.field === field
+              (entry) => entry.field === field,
             )!.type;
             const filterType = this.toAgGridFilterType(filterTypeCC);
             const agGridFilter = this.isFilterValid(filter.nextFilter)
@@ -271,7 +275,7 @@ class BackendConnector<
                   condition1: this.toAgGridFilterDef(filter, filterType),
                   condition2: this.toAgGridFilterDef(
                     filter.nextFilter!,
-                    filterType
+                    filterType,
                   ),
                   filterType,
                   operator: filter.nextFilterType!.toUpperCase(),
@@ -285,18 +289,18 @@ class BackendConnector<
                 : field,
               agGridFilter,
             ];
-          })
+          }),
         ),
         ...additionalFilters,
       },
       extraParams,
-      this.additionalQueryParameters
+      this.additionalQueryParameters,
     );
   }
 
   async index(
     params: Partial<IDataGridLoadDataParameters> | undefined,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<[Record<KeyT, unknown>[], ResponseMeta, unknown?]> {
     // load reasonable defaults if nothing is set
     if (!params) params = {};
@@ -315,7 +319,7 @@ class BackendConnector<
       params.fieldFilter,
       params.additionalFilters,
       undefined,
-      model
+      model,
     );
 
     return this.indexCommon(indexParams, model);
@@ -323,7 +327,7 @@ class BackendConnector<
 
   public async index2(
     params: ConnectorIndex2Params,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<[Record<string, unknown>[], ResponseMeta, unknown?]> {
     // load reasonable defaults if nothing is set
     if (!params.sort) params.sort = [];
@@ -341,7 +345,7 @@ class BackendConnector<
       undefined,
       model,
       undefined,
-      true
+      true,
     );
 
     return this.indexCommon(indexParams, model);
@@ -349,7 +353,7 @@ class BackendConnector<
 
   private async indexCommon(
     indexParams: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<[Record<KeyT, unknown>[], ResponseMeta, unknown?]> {
     if (this.additionalOptions.singleton)
       throw new Error("Backend connector in singleton mode, index disabled");
@@ -357,7 +361,7 @@ class BackendConnector<
     const resp = await BackendHttpClient.get<IndexResponse>(
       this.getApiBase(false, "index"),
       indexParams,
-      this.getAuthMode()
+      this.getAuthMode(),
     );
 
     return [
@@ -365,9 +369,9 @@ class BackendConnector<
         resp.data.map((entry) =>
           this.completeAttributes(
             Object.assign({}, entry.attributes, { id: entry.id }, entry.links),
-            model
-          )
-        )
+            model,
+          ),
+        ),
       ),
       {
         totalRows: resp.meta.total,
@@ -383,15 +387,15 @@ class BackendConnector<
           ...this.additionalQueryParameters,
           include: uniqueArray(
             Object.values(this.includedRelations).map(
-              (entry) => (entry as string[2])[1]
-            )
+              (entry) => (entry as string[2])[1],
+            ),
           ).join(","),
         };
   }
 
   async processDataResponse(
     resp: DataResponse,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<ModelGetResponse<KeyT>> {
     const included: ModelGetResponseRelations<KeyT> = {};
     if (resp.included) {
@@ -400,7 +404,7 @@ class BackendConnector<
           {},
           entry.attributes,
           { id: entry.id },
-          entry.links
+          entry.links,
         );
         const listOfFields = this.includedRelationsReverse[entry.type] ?? [];
         listOfFields.forEach((field) => {
@@ -436,9 +440,9 @@ class BackendConnector<
           relationIds,
           resp.data.attributes,
           { id: resp.data.id },
-          resp.data.links
+          resp.data.links,
         ),
-        model
+        model,
       ),
       included,
       resp.meta,
@@ -447,7 +451,7 @@ class BackendConnector<
 
   async completeAttributes(
     data: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<Record<KeyT, unknown>> {
     if (!model) return data;
 
@@ -469,7 +473,7 @@ class BackendConnector<
 
   async create(
     data: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<ModelGetResponse<KeyT>> {
     if (this.additionalOptions.singleton)
       throw new Error("BackendConnector is in singleton mode, create disabled");
@@ -478,28 +482,28 @@ class BackendConnector<
       this.getApiBase(true, "create"),
       this.getQueryParameters(),
       this.putTag ? { [this.putTag]: data } : { data },
-      this.getAuthMode()
+      this.getAuthMode(),
     );
     return this.processDataResponse(resp, model);
   }
 
   async read(
     id: string,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<ModelGetResponse<KeyT>> {
     const resp = await BackendHttpClient.get<DataResponse>(
       this.additionalOptions.singleton
         ? this.getApiBase(true, "show")
         : `${this.getApiBase(true, "show")}/${id}`,
       this.getQueryParameters(),
-      this.getAuthMode()
+      this.getAuthMode(),
     );
     return this.processDataResponse(resp, model);
   }
 
   async update(
     data: Record<ModelFieldName, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>
+    model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<ModelGetResponse<KeyT>> {
     // remove not updated images
     if (model) {
@@ -520,7 +524,7 @@ class BackendConnector<
         : `${this.getApiBase(true, "update")}/${data.id}`,
       this.getQueryParameters(),
       this.putTag ? { [this.putTag]: data } : { data },
-      this.getAuthMode()
+      this.getAuthMode(),
     );
     return this.processDataResponse(resp, model);
   }
@@ -531,7 +535,7 @@ class BackendConnector<
         ? this.getApiBase(true, "delete")
         : `${this.getApiBase(true, "delete")}/${id}`,
       this.additionalQueryParameters ?? null,
-      this.getAuthMode()
+      this.getAuthMode(),
     );
   }
 
@@ -541,7 +545,7 @@ class BackendConnector<
     return BackendHttpClient.delete(
       `${this.getApiBase(true, "delete")}/${ids.join(",")}`,
       this.additionalQueryParameters ?? null,
-      this.getAuthMode()
+      this.getAuthMode(),
     );
   }
 
@@ -558,7 +562,7 @@ class BackendConnector<
         additionalFilters: DataGridAdditionalFilters,
         fieldFilter: IDataGridFieldFilter,
         sort: DataGridSortSetting[],
-        columns: IDataGridColumnDef[]
+        columns: IDataGridColumnDef[],
       ): Promise<unknown> => {
         const indexParams = this.getIndexParams(
           null,
@@ -572,13 +576,13 @@ class BackendConnector<
             locale: i18n.language,
           },
           undefined,
-          columns
+          columns,
         );
 
         const resp = await BackendHttpClient.get<ExportResponse>(
           this.getApiBase(false, "index") + ".xlsx",
           indexParams,
-          this.getAuthMode()
+          this.getAuthMode(),
         );
 
         return resp.meta.msg.url;

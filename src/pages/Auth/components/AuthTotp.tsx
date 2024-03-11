@@ -11,7 +11,7 @@ import {
 } from "components-care";
 import { isValidTotp, stripInvalidTotpChars } from "../../../utils/totpUtils";
 
-const AuthTotp = (props: AuthPageProps) => {
+const AuthTotp = (_props: AuthPageProps) => {
   const [pushDialog] = useDialogContext();
   const [state, setState] = useAuthPageState();
   const [busy, setBusy] = useState(false);
@@ -22,7 +22,7 @@ const AuthTotp = (props: AuthPageProps) => {
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setOtp(stripInvalidTotpChars(evt.target.value));
     },
-    []
+    [],
   );
 
   const handleNext = useCallback(
@@ -49,7 +49,7 @@ const AuthTotp = (props: AuthPageProps) => {
         setBusy(false);
       }
     },
-    [setState, pushDialog, t, otp]
+    [setState, pushDialog, t, otp],
   );
 
   return (

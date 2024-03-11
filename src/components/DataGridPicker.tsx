@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 export type DataGridPickerProps<
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 > = Omit<
   BackendDataGridProps<KeyT, VisibilityT, CustomT>,
   | "disableSelection"
@@ -57,9 +57,9 @@ export type DataGridPickerProps<
 const DataGridPicker = <
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 >(
-  props: DataGridPickerProps<KeyT, VisibilityT, CustomT>
+  props: DataGridPickerProps<KeyT, VisibilityT, CustomT>,
 ) => {
   const { onSelect, onClose, multiple, ...gridProps } = props;
   const { t } = useTranslation("common");
@@ -102,7 +102,7 @@ const DataGridPicker = <
               disableFooter
               disableExport
               customSelectionControl={(
-                props: IDataGridContentSelectRowViewProps
+                props: IDataGridContentSelectRowViewProps,
               ) => {
                 return (
                   <Tooltip title={t("data-grid.pick") ?? ""}>

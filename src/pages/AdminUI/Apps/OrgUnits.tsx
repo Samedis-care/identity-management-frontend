@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import {
   BackendDataGrid,
   DefaultErrorComponent,
   Form,
   Loader,
   throwError,
+  Link,
+  useParams,
+  useNavigate,
+  useLocation,
 } from "components-care";
-import { useLocation, useNavigate } from "react-router";
 import GridWrapper from "../../../components-care/GridWrapper";
 import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
 import {
@@ -50,15 +52,15 @@ export const useOrgUnitTree = (
       keyof ReturnType<typeof OrganizationModel>["fields"],
       CrudFormProps
     >
-  >
+  >,
 ) => {
   const classes = useStyles();
   const { t } = useTranslation("ous");
-  const { app } = useParams<{ app: string }>();
+  const { app } = useParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [tab, setTab] = useState<"edit" | "children">("children");
-  const handleTabChange = useCallback((evt, newValue: "edit" | "children") => {
+  const handleTabChange = useCallback((_evt, newValue: "edit" | "children") => {
     setTab(newValue);
   }, []);
   const [pathPrefix, path] = useMemo(() => {
@@ -108,18 +110,18 @@ export const useOrgUnitTree = (
           await Promise.all(
             path
               .filter((id) => id !== "new")
-              .map((id) => fetchModel.getCached(id))
+              .map((id) => fetchModel.getCached(id)),
           )
-        ).map((entry) => [entry[0].id, entry[0].title])
+        ).map((entry) => [entry[0].id, entry[0].title]),
       ) as Record<string, string>;
     },
     [path],
-    true
+    true,
   );
   const model = useOrganizationModel(
     current,
     true,
-    parentRecord ? (parentRecord.insertable_child_types as string[]) : null
+    parentRecord ? (parentRecord.insertable_child_types as string[]) : null,
   );
   if (currentRecord == null || parentRecord == null) return <Loader />;
   return (
@@ -182,7 +184,7 @@ export const useOrgUnitTree = (
                       navigate(
                         path
                           .map((part) => (part === "new" ? id : part))
-                          .join("/")
+                          .join("/"),
                       );
                     }}
                     customProps={{
@@ -190,7 +192,7 @@ export const useOrgUnitTree = (
                         navigate(
                           `${pathPrefix}/${path
                             .slice(0, path.length - 1)
-                            .join("/")}`
+                            .join("/")}`,
                         ),
                       open: () => throwError("open not implemented"),
                       hasCustomSubmitHandler: false,

@@ -21,7 +21,7 @@ import { useActorPickerModel } from "../../../components-care/models/ActorPicker
 import { useActorListModel } from "../../../components-care/models/ActorListModel";
 
 const RoleForm = (
-  props: PageProps<keyof ReturnType<typeof RoleModel>["fields"], CrudFormProps>
+  props: PageProps<keyof ReturnType<typeof RoleModel>["fields"], CrudFormProps>,
 ) => {
   const { t } = useTranslation("roles");
   const tab = useRoutedTabPanel();
@@ -57,7 +57,7 @@ const RoleForm = (
                 pickerProps={{
                   isSelected: (
                     selected: boolean,
-                    record: Record<string, unknown>
+                    record: Record<string, unknown>,
                   ) =>
                     !!(record.already_in_role_raw as boolean | undefined) ||
                     selected,
@@ -67,7 +67,7 @@ const RoleForm = (
               />
             ) : (
               t("save-actors")
-            )
+            ),
           )}
           {tab(
             "",
@@ -77,9 +77,9 @@ const RoleForm = (
                   <Grid item xs={12} key={field}>
                     <FormField name={field} />
                   </Grid>
-                )
+                ),
               )}
-            </Grid>
+            </Grid>,
           )}
         </RoutedTabPanelWrapper>
       </FormPagePaper>

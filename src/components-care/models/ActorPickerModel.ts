@@ -7,12 +7,12 @@ import {
   ModelVisibilityGridView,
   MultiSelectorData,
   throwError,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
-import { useParams } from "react-router-dom";
 import { DataGridSortSetting } from "components-care/dist/standalone/DataGrid/DataGrid";
 
 export interface ActorPickerModelParams {
@@ -26,7 +26,7 @@ export interface ActorPickerModelParams {
 
 export const ActorPickerModel = (
   t: TFunction,
-  { app, tenant, user, role, org, pickerType }: ActorPickerModelParams
+  { app, tenant, user, role, org, pickerType }: ActorPickerModelParams,
 ) =>
   new Model(
     "actors-picker",
@@ -114,29 +114,29 @@ export const ActorPickerModel = (
             ? `v1/apps/${app}/tenants/${tenant}/picker/users/${user}/groups`
             : `v1/apps/${app}/tenants/${tenant}/users/${user}/actors`
           : org
-          ? `v1/apps/${app}/tenants/${tenant}/organizations/${org}/picker/mappable_users`
-          : pickerType === "mappable_users"
-          ? `v1/apps/${app}/tenants/${tenant}/picker/mappable_users`
-          : pickerType === "user_organization"
-          ? `v1/apps/${app}/tenants/${tenant}/picker/user_organization`
-          : throwError("Unknown endpoint, or pickerType not set")
+            ? `v1/apps/${app}/tenants/${tenant}/organizations/${org}/picker/mappable_users`
+            : pickerType === "mappable_users"
+              ? `v1/apps/${app}/tenants/${tenant}/picker/mappable_users`
+              : pickerType === "user_organization"
+                ? `v1/apps/${app}/tenants/${tenant}/picker/user_organization`
+                : throwError("Unknown endpoint, or pickerType not set")
         : role
-        ? `v1/apps/${app}/picker/roles/${role}/user_organization`
-        : user
-        ? pickerType === "user_organization"
-          ? `v1/apps/${app}/picker/users/${user}/groups`
-          : `v1/apps/${app}/users/${user}/actors`
-        : pickerType === "user_organization"
-        ? `v1/apps/${app}/picker/user_organization`
-        : throwError(
-            "Unknown endpoint, tenant id not set, or pickerType not set"
-          ),
+          ? `v1/apps/${app}/picker/roles/${role}/user_organization`
+          : user
+            ? pickerType === "user_organization"
+              ? `v1/apps/${app}/picker/users/${user}/groups`
+              : `v1/apps/${app}/users/${user}/actors`
+            : pickerType === "user_organization"
+              ? `v1/apps/${app}/picker/user_organization`
+              : throwError(
+                  "Unknown endpoint, tenant id not set, or pickerType not set",
+                ),
       null,
       undefined,
       undefined,
       {
         overrideRecordBase: user ? undefined : "v1/actors",
-      }
+      },
     ),
     {
       app,
@@ -145,14 +145,14 @@ export const ActorPickerModel = (
       role,
       org,
       pickerType,
-    }
+    },
   );
 
 export const useActorPickerModel = (
-  params: Omit<ActorPickerModelParams, "app"> & { app?: string | null }
+  params: Omit<ActorPickerModelParams, "app"> & { app?: string | null },
 ) => {
   const { t } = useTranslation("actors");
-  const { app, tenant } = useParams<{ app?: string; tenant?: string }>();
+  const { app, tenant } = useParams();
   if (!params.app) params = { ...params, app };
   if (!params.tenant && tenant) params = { ...params, tenant };
   if (!params.app) throw new Error("No app specified");
@@ -160,7 +160,7 @@ export const useActorPickerModel = (
 };
 
 export const ActorPickerModelToSelectorData = (
-  data: Record<keyof ReturnType<typeof ActorPickerModel>["fields"], unknown>
+  data: Record<keyof ReturnType<typeof ActorPickerModel>["fields"], unknown>,
 ): MultiSelectorData => ({
   value: data.id as string,
   label: data.path as string,

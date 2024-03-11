@@ -26,7 +26,7 @@ import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
 export interface DataGridMultiSelectCRUDProps<
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 > extends UseLazyCrudConnectorParams<KeyT, VisibilityT, CustomT>,
     Omit<
       DataGridProps,
@@ -47,9 +47,9 @@ export interface DataGridMultiSelectCRUDProps<
 const DataGridMultiSelectCRUD = <
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 >(
-  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>
+  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>,
 ) => {
   // This is a CRUD version of BackendDataGridMultiSelect from Components-Care
   const [lazyCrudParams, otherProps] = extractLazyCrudConnectorParams<
@@ -72,9 +72,9 @@ const DataGridMultiSelectCRUD = <
       () =>
         relationshipConnector.index(
           { rows: Number.MAX_SAFE_INTEGER, page: 0 },
-          model
+          model,
         ),
-      []
+      [],
     ) ?? [];
 
   const [selection, setSelection] = useState<string[]>([]);
@@ -85,7 +85,7 @@ const DataGridMultiSelectCRUD = <
       relationshipRecords.map((record) => [
         getIdOfRecord(record),
         record.id as string,
-      ])
+      ]),
     );
     setSelection(relationshipRecords.map(getIdOfRecord));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +98,7 @@ const DataGridMultiSelectCRUD = <
       model.connector.index2 === Connector.prototype.index2
     ) {
       console.warn(
-        "[Components-Care] [DataGridMultiSelectCRUD] Backend connector does not support index2 function, offset based pagination will be emulated (inefficient)"
+        "[Components-Care] [DataGridMultiSelectCRUD] Backend connector does not support index2 function, offset based pagination will be emulated (inefficient)",
       );
     }
   }, [model]);
@@ -120,7 +120,7 @@ const DataGridMultiSelectCRUD = <
         disableSelection={false}
         prohibitMultiSelect={false}
         customSelectionControl={undefined}
-        onSelectionChange={(invert, newIds) => {
+        onSelectionChange={(_invert, newIds) => {
           if (!initialSelectionChangeReceived) {
             setInitialSelectionChangeReceived(true);
             return;
@@ -128,7 +128,7 @@ const DataGridMultiSelectCRUD = <
           setSelection((oldIds) => {
             if (readOnly) return [...oldIds];
             const removedIds = oldIds.filter(
-              (oldId) => !newIds.includes(oldId)
+              (oldId) => !newIds.includes(oldId),
             );
             const addedIds = newIds.filter((newId) => !oldIds.includes(newId));
 
@@ -137,12 +137,12 @@ const DataGridMultiSelectCRUD = <
                 ...removedIds.map((removeId) =>
                   relationshipConnector.delete(
                     relationshipIdMap.current[removeId],
-                    model
-                  )
+                    model,
+                  ),
                 ),
                 ...addedIds
                   .map((addId) =>
-                    relationshipConnector.create(serializeCreate(addId), model)
+                    relationshipConnector.create(serializeCreate(addId), model),
                   )
                   .map(async (promise) => {
                     const [result] = await promise;
@@ -160,7 +160,7 @@ const DataGridMultiSelectCRUD = <
         }}
         selection={[false, selection]}
         loadData={async (
-          params: IDataGridLoadDataParameters
+          params: IDataGridLoadDataParameters,
         ): Promise<DataGridData> => {
           if (!relationshipRecords || !relationshipMeta)
             throw new Error("Relationship data not loaded");
@@ -171,7 +171,7 @@ const DataGridMultiSelectCRUD = <
                 id: getIdOfRecord(record),
               })),
               params,
-              model.toDataGridColumnDefinition()
+              model.toDataGridColumnDefinition(),
             );
           const requestedOffset =
             (params.page - 1) * params.rows - relationshipRecordFilteredCount;
@@ -208,5 +208,5 @@ const DataGridMultiSelectCRUD = <
 };
 
 export default React.memo(
-  DataGridMultiSelectCRUD
+  DataGridMultiSelectCRUD,
 ) as typeof DataGridMultiSelectCRUD;

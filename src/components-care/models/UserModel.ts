@@ -10,18 +10,18 @@ import {
   ModelVisibilityEditReadOnly,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
-import { useParams } from "react-router-dom";
 
 export const UserModel = (
   t: TFunction,
   app?: string,
   tenant?: string,
-  resetPwd = false
+  resetPwd = false,
 ) =>
   new Model(
     "user",
@@ -116,7 +116,7 @@ export const UserModel = (
           })),
           true,
           (e) => e,
-          true
+          true,
         ),
         getLabel: () => t("users:fields.gender"),
         customData: null,
@@ -132,7 +132,7 @@ export const UserModel = (
             value: locale,
             getLabel: () =>
               t("users:enums.locales." + (locale || "unspecified")),
-          }))
+          })),
         ),
         getLabel: () => t("users:fields.locale"),
         customData: null,
@@ -169,8 +169,8 @@ export const UserModel = (
       tenant
         ? `v1/apps/${app}/tenants/${tenant}/users`
         : app
-        ? `v1/apps/${app}/users`
-        : "v1/users",
+          ? `v1/apps/${app}/users`
+          : "v1/users",
       undefined,
       undefined,
       undefined,
@@ -178,18 +178,18 @@ export const UserModel = (
         overrideRecordBaseDelete: tenant
           ? `v1/access_control/apps/${app}/tenant/${tenant}/users`
           : undefined,
-      }
+      },
     ),
-    { app, tenant }
+    { app, tenant },
   );
 
 export const useUserModel = (
   appOverride?: string,
   tenantOverride?: string,
-  resetPwd = false
+  resetPwd = false,
 ) => {
   const { t } = useTranslation("users");
-  let { app, tenant } = useParams<{ app?: string; tenant?: string }>();
+  let { app, tenant } = useParams<"app" | "tenant">();
   if (appOverride) app = appOverride;
   if (tenantOverride) tenant = tenantOverride;
   return UserModel(t, app, tenant, resetPwd);

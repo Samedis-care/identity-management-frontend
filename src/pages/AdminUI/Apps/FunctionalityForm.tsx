@@ -15,7 +15,7 @@ const FunctionalityForm = (
   props: PageProps<
     keyof ReturnType<typeof FunctionalityModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   const { t } = useTranslation("functionality");
   const tab = useRoutedTabPanel();
@@ -32,7 +32,7 @@ const FunctionalityForm = (
         <RoutedTabPanelWrapper>
           {tab(
             "roles",
-            <FunctionalityRoleSelector functionalityId={props.id} />
+            <FunctionalityRoleSelector functionalityId={props.id} />,
           )}
           {tab(
             "",
@@ -47,7 +47,7 @@ const FunctionalityForm = (
                   <FormField name={field} />
                 </Grid>
               ))}
-            </Grid>
+            </Grid>,
           )}
         </RoutedTabPanelWrapper>
       </FormPagePaper>

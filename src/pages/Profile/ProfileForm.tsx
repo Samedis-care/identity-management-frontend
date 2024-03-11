@@ -63,7 +63,7 @@ const ProfileForm = (
   props: PageProps<
     keyof ReturnType<typeof ProfileModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   const { t } = useTranslation("profile");
   const classes = useStyles();
@@ -81,17 +81,17 @@ const ProfileForm = (
 
   const openResetPasswordDialog = useCallback(
     () => pushDialog(<ResetPasswordDialog />),
-    [pushDialog]
+    [pushDialog],
   );
 
   const enrollMFA = useCallback(
     () => pushDialog(<EnrollTotpDialog />),
-    [pushDialog]
+    [pushDialog],
   );
 
   const unrollMFA = useCallback(
     () => pushDialog(<UnrollTotpDialog />),
-    [pushDialog]
+    [pushDialog],
   );
 
   const deleteUserAccount = useCallback(async () => {
@@ -106,14 +106,14 @@ const ProfileForm = (
         textButtonYes: t("tabs.account.dialogs.close-confirm.yes"),
         textButtonNo: t("tabs.account.dialogs.close-confirm.no"),
         textFieldLabel: t(
-          "tabs.account.dialogs.close-confirm.text-field-label"
+          "tabs.account.dialogs.close-confirm.text-field-label",
         ),
         textFieldPlaceholder: t(
-          "tabs.account.dialogs.close-confirm.text-field-placeholder"
+          "tabs.account.dialogs.close-confirm.text-field-placeholder",
         ),
         textFieldValidator: (value) => value === email,
       });
-    } catch (e) {
+    } catch (_e) {
       // cancelled
       return;
     }
@@ -206,7 +206,7 @@ const ProfileForm = (
                 "apps",
                 <Box p={2} className={classes.content}>
                   <AppsList confirmEmail={email} />
-                </Box>
+                </Box>,
               )}
               {tab(
                 "logins",
@@ -231,7 +231,7 @@ const ProfileForm = (
                   deletePermission={null}
                 >
                   {undefined}
-                </ImCrud>
+                </ImCrud>,
               )}
               {tab(
                 "activity",
@@ -247,7 +247,7 @@ const ProfileForm = (
                   deletePermission={false}
                 >
                   {undefined}
-                </ImCrud>
+                </ImCrud>,
               )}
               {tab(
                 "",
@@ -316,7 +316,7 @@ const ProfileForm = (
                       </Grid>
                     </Grid>
                   </EditOnlyFormPage>
-                </Box>
+                </Box>,
               )}
             </RoutedTabPanelWrapper>
           </Paper>

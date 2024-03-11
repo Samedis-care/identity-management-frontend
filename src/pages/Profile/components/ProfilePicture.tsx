@@ -30,7 +30,7 @@ const ProfilePicture = () => {
       value={data[0][name] as string}
       label={field.getLabel()}
       readOnly={false}
-      onChange={async (name, value) => {
+      onChange={async (_name, value) => {
         await updateProfile({ id, image: value });
         await refetch();
       }}

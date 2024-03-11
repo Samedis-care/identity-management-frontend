@@ -62,7 +62,7 @@ const cc: ComponentsCareTheme = {
   },
 };
 
-export const getTheme = (preferDark: boolean): ThemeOptions => ({
+export const getTheme = (_preferDark: boolean): ThemeOptions => ({
   typography: {
     h1: { fontSize: "1.5rem", fontWeight: 700 },
     h2: { fontSize: "1.25rem", fontWeight: 700 },
@@ -90,6 +90,5 @@ export const getTheme = (preferDark: boolean): ThemeOptions => ({
       },
     },
   },
-  // @ts-ignore
   componentsCare: cc,
 });

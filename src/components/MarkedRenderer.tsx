@@ -13,17 +13,17 @@ import { Variant } from "@mui/material/styles/createTypography";
 
 const renderer: marked.RendererObject = {
   heading(
-    text: string,
+    _text: string,
     level: 1 | 2 | 3 | 4 | 5 | 6,
     raw: string,
-    slugger: marked.Slugger
+    _slugger: marked.Slugger,
   ): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
           <Typography variant={`h${level}` as Variant}>{raw}</Typography>
         </ThemeProvider>
-      </StyledEngineProvider>
+      </StyledEngineProvider>,
     );
   },
   link(href: string | null, title: string | null, text: string): string {
@@ -37,7 +37,7 @@ const renderer: marked.RendererObject = {
             target={"_blank"}
           />
         </ThemeProvider>
-      </StyledEngineProvider>
+      </StyledEngineProvider>,
     );
   },
   text(text: string): string {
@@ -49,7 +49,7 @@ const renderer: marked.RendererObject = {
             dangerouslySetInnerHTML={{ __html: text }}
           />
         </ThemeProvider>
-      </StyledEngineProvider>
+      </StyledEngineProvider>,
     );
   },
 };

@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "components-care";
 
 const useApp = (): string => {
-  const { app } = useParams<{ app?: string }>();
+  const { app } = useParams();
   if (!app) throw new Error("No app context");
   return app;
 };

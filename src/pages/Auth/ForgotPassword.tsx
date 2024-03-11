@@ -6,6 +6,8 @@ import {
   showErrorDialog,
   showInfoDialog,
   useDialogContext,
+  useParams,
+  useLocation,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
@@ -13,11 +15,9 @@ import { AuthPageProps, useAuthPageState } from "./components/AuthPageLayout";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
 import { useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
 
-const ForgotPassword = (props: AuthPageProps) => {
+const ForgotPassword = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -32,7 +32,7 @@ const ForgotPassword = (props: AuthPageProps) => {
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(evt.target.value);
     },
-    []
+    [],
   );
 
   const resetPassword = useCallback(
@@ -60,12 +60,12 @@ const ForgotPassword = (props: AuthPageProps) => {
           {
             user: {
               ...Object.fromEntries(
-                new URLSearchParams(location.search).entries()
+                new URLSearchParams(location.search).entries(),
               ),
               email: state.activeAccount?.email ?? email,
             },
           },
-          AuthMode.Off
+          AuthMode.Off,
         );
         await showInfoDialog(pushDialog, {
           title: t("auth.password.forgot.success.title"),
@@ -78,7 +78,7 @@ const ForgotPassword = (props: AuthPageProps) => {
         });
       }
     },
-    [app, email, location.search, pushDialog, state.activeAccount, t]
+    [app, email, location.search, pushDialog, state.activeAccount, t],
   );
 
   return (

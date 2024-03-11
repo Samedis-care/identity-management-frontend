@@ -14,7 +14,7 @@ import DataGridPicker, { DataGridPickerProps } from "./DataGridPicker";
 export interface DataGridMultiSelectCRUDProps<
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 > extends Omit<
     BackendDataGridProps<KeyT, VisibilityT, CustomT>,
     | "model"
@@ -38,9 +38,9 @@ export interface DataGridMultiSelectCRUDProps<
 const DataGridMultiSelectCRUD = <
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 >(
-  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>
+  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>,
 ) => {
   const {
     selectedModel,
@@ -55,7 +55,7 @@ const DataGridMultiSelectCRUD = <
   const [refreshToken, setRefreshToken] = useState(Date.now().toString(16));
   useEffect(
     () => setRefreshToken(Date.now().toString(16)),
-    [gridProps.forceRefreshToken]
+    [gridProps.forceRefreshToken],
   );
 
   const addToSelection = useCallback(
@@ -65,11 +65,11 @@ const DataGridMultiSelectCRUD = <
       await Promise.all(
         ids
           .map(serializeCreate)
-          .map((record) => addSelected(record).catch(console.error))
+          .map((record) => addSelected(record).catch(console.error)),
       );
       setRefreshToken(Date.now().toString(16));
     },
-    [addSelected, serializeCreate]
+    [addSelected, serializeCreate],
   );
 
   const handleAdd = useCallback(() => {
@@ -80,7 +80,7 @@ const DataGridMultiSelectCRUD = <
         onClose={popDialog}
         onSelect={addToSelection as (id: string | string[]) => void}
         multiple
-      />
+      />,
     );
   }, [pushDialog, optionsModel, popDialog, addToSelection, pickerProps]);
 
@@ -101,5 +101,5 @@ const DataGridMultiSelectCRUD = <
 };
 
 export default React.memo(
-  DataGridMultiSelectCRUD
+  DataGridMultiSelectCRUD,
 ) as typeof DataGridMultiSelectCRUD;

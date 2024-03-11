@@ -72,7 +72,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     const scrollProgress =
       maxScrollTop === 0 ? 1.0 : evt.currentTarget.scrollTop / maxScrollTop;
     setScrollProgress((prev) =>
-      prev > scrollProgress ? prev : scrollProgress
+      prev > scrollProgress ? prev : scrollProgress,
     );
     setScrolledToEnd((prev) => prev || scrollProgress > 0.9);
   }, []);
@@ -92,10 +92,10 @@ const DocumentViewer = (props: DocumentViewerProps) => {
         await BackendHttpClient.get<ContentDataResponse>(
           `/api/v1/${app}/content_acceptance/${name}`,
           null,
-          getSession() ? AuthMode.On : AuthMode.Off
+          getSession() ? AuthMode.On : AuthMode.Off,
         )
       ).data.attributes;
-    }
+    },
   );
 
   const markdown = useMemo(() => {

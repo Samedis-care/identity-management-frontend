@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
 import Cookies from "js-cookie";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
@@ -11,9 +10,10 @@ import {
   showInfoDialog,
   useDialogContext,
   usePermissionContext,
+  useLocation,
+  useNavigate,
 } from "components-care";
 import * as Sentry from "@sentry/react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export const ANONYMOUS_USER_ID = "anonymous";
@@ -103,9 +103,11 @@ export const destroySession = async () => {
             ? "access_token"
             : undefined,
         },
-        AuthMode.Try
+        AuthMode.Try,
       );
-    } catch (e) {}
+    } catch (_e) {
+      // ignored
+    }
   }
 
   const errors: string[] = [];
@@ -164,7 +166,7 @@ export const isSessionValid = (): boolean => {
 let temporarilyDisableAutoRedirectToLogin = false;
 
 export const handleAuth = async (): Promise<string> => {
-  let session = getSession();
+  const session = getSession();
   if (!isSessionValid()) {
     await destroySession();
     if (!temporarilyDisableAutoRedirectToLogin) {
@@ -186,7 +188,7 @@ const AuthProvider = (props: AuthProviderProps) => {
   const { t } = useTranslation("common");
   const [pushDialog] = useDialogContext();
   const [ctx, setCtx] = useState<AuthProviderContextType | undefined>(
-    undefined
+    undefined,
   );
   const [, setPerms] = usePermissionContext();
 
@@ -209,13 +211,13 @@ const AuthProvider = (props: AuthProviderProps) => {
             search: location.search,
             hash: "",
           },
-          { replace: true }
+          { replace: true },
         );
         const rememberMe = search.get("remember_me") === "true";
         const tokens = Object.fromEntries(
           ["token", "refresh_token", "token_expire", "invite_token"].map(
-            (key) => [key, search.get(key)]
-          )
+            (key) => [key, search.get(key)],
+          ),
         );
         Object.entries(tokens)
           .filter(([k]) => k !== "invite_token")
@@ -229,13 +231,13 @@ const AuthProvider = (props: AuthProviderProps) => {
         // accept invite
         const { invite_token } = tokens;
         if (invite_token) {
-          while (true) {
-            let tryAgain = true;
+          let tryAgain = true;
+          while (tryAgain) {
             try {
               await BackendHttpClient.put<never>(
                 `/api/v1/user/invitations/${encodeURI(invite_token)}`,
                 null,
-                {}
+                {},
               );
             } catch (e) {
               Sentry.captureException(e);
@@ -278,7 +280,7 @@ const AuthProvider = (props: AuthProviderProps) => {
             search: location.search,
             hash: newHash ? "#" + newHash : "",
           },
-          { replace: true }
+          { replace: true },
         );
       }
 
@@ -315,14 +317,14 @@ const AuthProvider = (props: AuthProviderProps) => {
           .map((key) => [key, localStorage[key] ?? Cookies.get(key)])
           .filter(([key, value]) => value && !sessionStorage.getItem(key))
           .forEach(([key, value]) =>
-            sessionStorage.setItem(key as string, value as string)
+            sessionStorage.setItem(key as string, value as string),
           );
         // get user info
         try {
           temporarilyDisableAutoRedirectToLogin = !!props.optional;
           const userInfo = await BackendHttpClient.get<GetCurrentUserResponse>(
             "/api/v1/identity-management/oauth/token/info",
-            null
+            null,
           );
           setCtx({
             ...userInfo.data.attributes,

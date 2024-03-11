@@ -16,7 +16,7 @@ const ModuleSelector = () => {
       if (checked) newSelected.push(name);
       setFieldValue("modules_selected", newSelected);
     },
-    [selected, setFieldValue]
+    [selected, setFieldValue],
   );
 
   return (

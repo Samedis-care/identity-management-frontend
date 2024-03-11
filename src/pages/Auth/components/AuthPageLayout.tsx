@@ -26,6 +26,9 @@ import {
   Loader,
   showErrorDialog,
   useDialogContext,
+  useParams,
+  useLocation,
+  useNavigate,
 } from "components-care";
 import { Account } from "../../../utils/AccountManager";
 import { useQuery } from "react-query";
@@ -35,11 +38,9 @@ import AuthMode from "components-care/dist/backend-integration/Connector/AuthMod
 import { ContentDataResponse } from "../../../api/ident-services/Content";
 import { Trans, useTranslation } from "react-i18next";
 import { marked } from "marked";
-import { useParams } from "react-router-dom";
 import SocialLogins, { enableSocialLogins } from "./SocialLogins";
 import PolicyViewer from "../../../components/PolicyViewer";
 import LangSelector from "./LangSelector";
-import { useLocation, useNavigate } from "react-router";
 
 declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -139,11 +140,11 @@ export interface AuthPageState {
   redirectURL?: string;
 }
 
-export type AuthPageProps = {};
+export type AuthPageProps = Record<string, never>;
 
 export type AuthPageStateContextType = [
   AuthPageState,
-  Dispatch<SetStateAction<AuthPageState>>
+  Dispatch<SetStateAction<AuthPageState>>,
 ];
 const AuthPageStateContext =
   React.createContext<AuthPageStateContextType | null>(null);
@@ -200,14 +201,14 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
 
   const { data: appText } = useQuery(["app-info", appInfo.id], async () => {
     const contentRecord = appInfo.contents.find(
-      (entry) => entry.name === "app-info"
+      (entry) => entry.name === "app-info",
     );
     if (!contentRecord) return "";
 
     const resp = await BackendHttpClient.get<ContentDataResponse>(
       contentRecord.url,
       null,
-      AuthMode.Off
+      AuthMode.Off,
     );
 
     const contents = resp.data.attributes.content_translations;
@@ -357,7 +358,7 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
     return BackendHttpClient.get<AppInfoResponse>(
       `/api/v1/app/info/${app}`,
       null,
-      AuthMode.Off
+      AuthMode.Off,
     );
   });
 
@@ -372,10 +373,10 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
         k
           .toLowerCase()
           .replace(/([-_][a-z])/g, (group) =>
-            group.toUpperCase().replace("-", "").replace("_", "")
+            group.toUpperCase().replace("-", "").replace("_", ""),
           ),
         isPlainObject(v) ? remapKeys(v) : v,
-      ])
+      ]),
     );
 
   const inner = {
@@ -389,7 +390,7 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
       <ThemeProvider
         theme={(outer) =>
           createTheme(
-            deepAssign({}, outer as unknown as Record<string, unknown>, inner)
+            deepAssign({}, outer as unknown as Record<string, unknown>, inner),
           )
         }
       >

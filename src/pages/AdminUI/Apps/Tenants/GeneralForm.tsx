@@ -11,7 +11,7 @@ const GeneralForm = (
   props: PageProps<
     keyof ReturnType<typeof TenantModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   return (
     <EditOnlyFormPage {...props} customProps={undefined}>

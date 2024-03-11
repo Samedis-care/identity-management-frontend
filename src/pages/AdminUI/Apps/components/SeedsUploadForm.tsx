@@ -9,7 +9,7 @@ const SeedsUploadForm = (
   props: PageProps<
     keyof ReturnType<typeof AppAdminModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   return (
     <EditOnlyFormPage {...props} customProps={undefined}>

@@ -9,8 +9,6 @@ import {
   Framework,
   ModelFieldName,
   PageVisibility,
-  reactRouterV6Instrumentation,
-  SentryRoutesTracing,
   setDefaultConnectorAPI,
 } from "components-care";
 import i18n from "./i18n";
@@ -35,13 +33,13 @@ Sentry.init({
   tunnel: "/api/error-reporting",
   integrations: [
     new Integrations.BrowserTracing({
-      routingInstrumentation: reactRouterV6Instrumentation(),
+      //routingInstrumentation: reactRouterV6Instrumentation(), // TODO
       tracingOrigins: [/^\//],
     }),
   ],
   // performance trace sample rate
   tracesSampleRate: parseFloat(
-    process.env.REACT_APP_SENTRY_SAMPLE_RATE ?? "0.0"
+    process.env.REACT_APP_SENTRY_SAMPLE_RATE ?? "0.0",
   ),
   enabled: sentryEnabled,
   environment: process.env.REACT_APP_SENTRY_ENV,
@@ -65,9 +63,9 @@ marked.use({ renderer: MarkedRenderer });
 
 // Dev Exports
 if (IS_DEV) {
-  // @ts-ignore
+  // @ts-expect-error global export
   window.API = BackendHttpClient;
-  // @ts-ignore
+  // @ts-expect-error global export
   window.i18n = i18n;
 }
 
@@ -81,10 +79,10 @@ ComponentsCareI18n.on("languageChanged", (language) => {
 setDefaultConnectorAPI(
   (
     endpoint,
-    extraParams
+    extraParams,
   ): ApiConnector<ModelFieldName, PageVisibility, unknown> => {
     return new BackendConnector(endpoint, "data", {}, extraParams);
-  }
+  },
 );
 
 ReactDOM.render(
@@ -93,14 +91,12 @@ ReactDOM.render(
       {IS_DEV && <ReactQueryDevtools position={"bottom-right"} />}
       <ErrorBoundary>
         <BrowserCompatCheck>
-          <SentryRoutesTracing>
-            <MaintenanceModeProvider>
-              <RootPage />
-            </MaintenanceModeProvider>
-          </SentryRoutesTracing>
+          <MaintenanceModeProvider>
+            <RootPage />
+          </MaintenanceModeProvider>
         </BrowserCompatCheck>
       </ErrorBoundary>
     </Framework>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

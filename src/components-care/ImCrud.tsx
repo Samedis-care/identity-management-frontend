@@ -7,11 +7,10 @@ import {
   ModelFieldName,
   ModelFilterType,
   PageVisibility,
-  SentryRoute,
+  useLocation,
 } from "components-care";
 import { useTheme } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import { useLocation } from "react-router";
 import { DataGridProps } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { FilterType } from "components-care/dist/standalone/DataGrid/Content/FilterEntry";
 import Forbidden from "../pages/Forbidden";
@@ -27,7 +26,7 @@ export type CrudPageProps = PropsWithChildren<
 export interface ImCrudProps<
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 > extends Omit<
     CrudProps<KeyT, VisibilityT, CustomT>,
     "formProps" | "gridProps" | "forbiddenPage"
@@ -70,7 +69,7 @@ export const useDefaultGridProps = (): Pick<
       sortLimit: 1,
       isFilterSupported: (
         dataType: ModelFilterType,
-        filterType: FilterType
+        filterType: FilterType,
       ): boolean => {
         if (dataType === "date") {
           if (filterType === "lessThanOrEqual") return false;
@@ -82,7 +81,7 @@ export const useDefaultGridProps = (): Pick<
         ? Object.fromEntries(new URLSearchParams(location.search).entries())
         : undefined,
     }),
-    [gridFilterBreakpoint, location.search]
+    [gridFilterBreakpoint, location.search],
   );
 };
 
@@ -94,15 +93,15 @@ const useStyles = makeStyles(
       flexDirection: "column",
     },
   },
-  { name: "ImCrud" }
+  { name: "ImCrud" },
 );
 
 const ImCrud = <
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
-  CustomT
+  CustomT,
 >(
-  props: Omit<ImCrudProps<KeyT, VisibilityT, CustomT>, "customCloseHandler">
+  props: Omit<ImCrudProps<KeyT, VisibilityT, CustomT>, "customCloseHandler">,
 ) => {
   const defaultGridProps = useDefaultGridProps();
   const classes = useStyles();
@@ -114,7 +113,7 @@ const ImCrud = <
       ...props.formProps,
       errorComponent: DefaultErrorComponent,
     }),
-    [props.formProps, classes.form]
+    [props.formProps, classes.form],
   );
   const gridPropsCached = useMemo<
     CrudProps<KeyT, VisibilityT, CustomT>["gridProps"]
@@ -123,7 +122,7 @@ const ImCrud = <
       ...defaultGridProps,
       ...props.gridProps,
     }),
-    [defaultGridProps, props.gridProps]
+    [defaultGridProps, props.gridProps],
   );
   const { disableGridWrapper, ...otherProps } = props;
   return (
@@ -136,7 +135,6 @@ const ImCrud = <
         gridProps={gridPropsCached}
         gridWrapper={GridWrapper}
         forbiddenPage={Forbidden}
-        routeComponent={SentryRoute}
       />
     </DataGridLocalStoragePersist>
   );

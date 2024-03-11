@@ -51,7 +51,7 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setConfirmStr(evt.target.value);
     },
-    []
+    [],
   );
 
   return (
@@ -79,7 +79,7 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
                     multiDelete
                       ? "tenants.confirm-delete.explainer-multi"
                       : "tenants.confirm-delete.explainer",
-                    { CONFIRM_STR: expectedConfirmStr }
+                    { CONFIRM_STR: expectedConfirmStr },
                   )}
                 </Typography>
               </Grid>
@@ -133,7 +133,7 @@ export const useShowTenantDeleteConfirmDialog = () => {
               reject();
             }
           }}
-        />
+        />,
       );
     });
   };

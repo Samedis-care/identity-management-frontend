@@ -51,7 +51,7 @@ const MaintenanceInfoContext = React.createContext<MaintenanceState>({
 const fetchInterval = 30000; // 30sec
 
 const decodeMaintenanceEntry = (
-  data: MaintenanceEntryJSON
+  data: MaintenanceEntryJSON,
 ): MaintenanceEntry => {
   return {
     ...data,
@@ -72,7 +72,7 @@ export interface MaintenanceModeProviderProps {
 }
 
 export const MaintenanceModeProvider = (
-  props: MaintenanceModeProviderProps
+  props: MaintenanceModeProviderProps,
 ) => {
   const { children } = props;
   const { t } = useTranslation("common");
@@ -112,7 +112,7 @@ export const MaintenanceModeProvider = (
                 supportedLanguages.map((lang: string) => [
                   lang,
                   t("maintenance.fetch-fail-reason", { lng: lang }),
-                ])
+                ]),
               ),
               reason_long: {
                 en: "`" + (e as Error).message + "`",
@@ -127,7 +127,7 @@ export const MaintenanceModeProvider = (
     setMaintenanceInfoValue((prev) =>
       prev && deepEqual(prev, maintenanceInfo.current)
         ? prev
-        : maintenanceInfo.current
+        : maintenanceInfo.current,
     );
     return maintenanceInfo.current;
   }, [t]);
@@ -172,7 +172,7 @@ export const MaintenanceModeProvider = (
           : perm + "-maintenance-disabled";
     }
   };
-  let extraPerms: string[] = ["maintenance." + currentMaintenanceType];
+  const extraPerms: string[] = ["maintenance." + currentMaintenanceType];
 
   return (
     <MaintenanceInfoContext.Provider value={maintenanceInfoValue}>

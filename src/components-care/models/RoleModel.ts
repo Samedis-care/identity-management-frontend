@@ -8,12 +8,12 @@ import {
   ModelVisibilityGridView,
   ModelVisibilityHidden,
   throwError,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
-import { useParams } from "react-router-dom";
 import { DataGridSortSetting } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { SupportedLanguages } from "../../i18n";
 
@@ -27,7 +27,7 @@ export interface RoleModelParams {
 
 export const RoleModel = (
   t: TFunction,
-  { app, user, tenant, functionality, picker }: RoleModelParams
+  { app, user, tenant, functionality, picker }: RoleModelParams,
 ) =>
   new Model(
     "role",
@@ -115,25 +115,25 @@ export const RoleModel = (
           ? `v1/apps/${app}/tenants/${tenant}/users/${user}/roles`
           : throwError("invalid config")
         : functionality
-        ? picker
-          ? `v1/apps/${app}/picker/functionalities/${functionality}/roles`
-          : `v1/apps/${app}/functionalities/${functionality}/roles`
-        : user
-        ? `v1/apps/${app}/users/${user}/roles`
-        : `v1/apps/${app}/roles`
+          ? picker
+            ? `v1/apps/${app}/picker/functionalities/${functionality}/roles`
+            : `v1/apps/${app}/functionalities/${functionality}/roles`
+          : user
+            ? `v1/apps/${app}/users/${user}/roles`
+            : `v1/apps/${app}/roles`,
     ),
     {
       app,
       user,
       tenant,
-    }
+    },
   );
 
 export const useRoleModel = (
-  params?: Omit<RoleModelParams, "app"> & { app?: string }
+  params?: Omit<RoleModelParams, "app"> & { app?: string },
 ) => {
   const { t } = useTranslation(["roles", "functionality", "roles"]);
-  let { app, tenant } = useParams<{ app?: string; tenant?: string }>();
+  const { app, tenant } = useParams();
   if (!app) throw new Error("No app specified");
   return RoleModel(t, { app, tenant, ...params });
 };

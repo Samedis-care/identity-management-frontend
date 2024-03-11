@@ -31,17 +31,17 @@ const AccountActions = () => {
   const classes = useStyles();
   const authInfo = useAuthProviderContext();
   const [profileMenuAnchor, setProfileMenuAnchor] = useState<Element | null>(
-    null
+    null,
   );
 
   const openProfileMenu = useCallback(
     (evt: React.MouseEvent<HTMLElement>) =>
       setProfileMenuAnchor(evt.currentTarget),
-    [setProfileMenuAnchor]
+    [setProfileMenuAnchor],
   );
   const closeProfileMenu = useCallback(
     () => setProfileMenuAnchor(null),
-    [setProfileMenuAnchor]
+    [setProfileMenuAnchor],
   );
 
   return (

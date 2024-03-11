@@ -38,7 +38,7 @@ const menuTransformOrigin: PopoverOrigin = {
 const langData = supportedLanguages
   .map((lang) => {
     const locales = Object.keys(localeData).filter((locale) =>
-      locale.startsWith(lang + "-")
+      locale.startsWith(lang + "-"),
     );
     locales.sort(sortByLocaleRelevance);
     return {
@@ -60,14 +60,14 @@ const LangSelector = (props: LangSelectorProps) => {
       void ComponentsCareI18n.changeLanguage(newLocale);
       setLangMenuAnchor(null);
     },
-    [setLangMenuAnchor]
+    [setLangMenuAnchor],
   );
 
   const handleFlagClick = React.useCallback(
     (evt: React.MouseEvent<HTMLElement>) => {
       setLangMenuAnchor(evt.currentTarget);
     },
-    [setLangMenuAnchor]
+    [setLangMenuAnchor],
   );
   const handleMenuClose = React.useCallback(() => {
     setLangMenuAnchor(null);

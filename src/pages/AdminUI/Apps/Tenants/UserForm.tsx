@@ -16,7 +16,7 @@ import { OpenFunctionality, OpenRole } from "../UserForm";
 import FormPagePaper from "../../../../components/FormPagePaper";
 
 const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>
+  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
 ) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
@@ -55,7 +55,7 @@ const UserForm = (
               }}
             >
               {undefined}
-            </ImCrud>
+            </ImCrud>,
           )}
           {tab(
             "permissions",
@@ -75,7 +75,7 @@ const UserForm = (
               }}
             >
               {undefined}
-            </ImCrud>
+            </ImCrud>,
           )}
           {tab(
             "",
@@ -98,7 +98,7 @@ const UserForm = (
               <Grid item xs={6}>
                 <FormField name={"locale"} />
               </Grid>
-            </Grid>
+            </Grid>,
           )}
         </RoutedTabPanelWrapper>
       </FormPagePaper>

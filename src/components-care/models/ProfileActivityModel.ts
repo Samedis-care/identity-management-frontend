@@ -69,7 +69,7 @@ export const ProfileActivityModel = (t: TFunction) =>
         sortable: true,
       },
     },
-    new BackendConnector("v1/user/account_activity")
+    new BackendConnector("v1/user/account_activity"),
   );
 
 export const useProfileActivityModel = () => {

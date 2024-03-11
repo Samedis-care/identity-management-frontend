@@ -3,7 +3,7 @@ import { Grid, IconButton, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router";
+import { useLocation } from "components-care";
 import i18n from "../../../i18n";
 
 export interface SocialLoginsProps {
@@ -40,7 +40,7 @@ export const doOauthSignIn = (
   type: string,
   app: string,
   location: ReturnType<typeof useLocation>,
-  emailHint: string | null
+  emailHint: string | null,
 ) => {
   const payload: Record<string, string> = {
     app,
@@ -80,31 +80,31 @@ const SocialLogins = (props: SocialLoginsProps) => {
         | "twitter"
         | "google_oauth2"
         | "microsoft_graph"
-        | "apple"
+        | "apple",
     ) => {
       doOauthSignIn(type, app, location, null);
     },
-    [app, location]
+    [app, location],
   );
   const userFacebookSignIn = useCallback(
     () => doThirdPartySignIn("facebook"),
-    [doThirdPartySignIn]
+    [doThirdPartySignIn],
   );
   const userGoogleSignIn = useCallback(
     () => doThirdPartySignIn("google_oauth2"),
-    [doThirdPartySignIn]
+    [doThirdPartySignIn],
   );
   const userMicrosoftSignIn = useCallback(
     () => doThirdPartySignIn("microsoft_graph"),
-    [doThirdPartySignIn]
+    [doThirdPartySignIn],
   );
   const userTwitterSignIn = useCallback(
     () => doThirdPartySignIn("twitter"),
-    [doThirdPartySignIn]
+    [doThirdPartySignIn],
   );
   const userAppleSignIn = useCallback(
     () => doThirdPartySignIn("apple"),
-    [doThirdPartySignIn]
+    [doThirdPartySignIn],
   );
 
   return (

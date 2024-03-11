@@ -85,7 +85,7 @@ export const ProfileModel = (t: TFunction) =>
         type: new ModelDataTypeStringRendererMUI(),
         getLabel: () =>
           t(
-            "profile:tabs.account.dialogs.reset-password.fields.current-password"
+            "profile:tabs.account.dialogs.reset-password.fields.current-password",
           ),
         customData: null,
         visibility: BackendVisibility,
@@ -105,7 +105,7 @@ export const ProfileModel = (t: TFunction) =>
         type: new ModelDataTypeStringRendererMUI(),
         getLabel: () =>
           t(
-            "profile:tabs.account.dialogs.reset-password.fields.new-password-repeat"
+            "profile:tabs.account.dialogs.reset-password.fields.new-password-repeat",
           ),
         customData: null,
         visibility: BackendVisibility,
@@ -146,8 +146,8 @@ export const ProfileModel = (t: TFunction) =>
       undefined,
       {
         singleton: true,
-      }
-    )
+      },
+    ),
   );
 
 export const useProfileModel = () => {

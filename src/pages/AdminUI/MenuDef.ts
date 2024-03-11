@@ -14,8 +14,11 @@ import {
   Person as UsersIcon,
 } from "@mui/icons-material";
 import { CrudSpecialIds } from "components-care/dist/backend-components/CRUD";
-import { hasPermission, usePermissionContext } from "components-care";
-import { useLocation } from "react-router";
+import {
+  hasPermission,
+  usePermissionContext,
+  useLocation,
+} from "components-care";
 
 export interface MyMenuItemDefinition
   extends Omit<IRoutedMenuItemDefinition, "shouldRender"> {
@@ -153,7 +156,7 @@ export const AllMenuItems: MyMenuItemDefinition[] = [
 
 export const checkMenuItemPermission = (
   perms: string[],
-  def: MyMenuItemDefinition
+  def: MyMenuItemDefinition,
 ): boolean => !def.cando || hasPermission(perms, def.cando);
 
 export const useMenuDefinition = (): IRoutedMenuItemDefinition[] => {
@@ -161,7 +164,7 @@ export const useMenuDefinition = (): IRoutedMenuItemDefinition[] => {
   const [perms] = usePermissionContext();
 
   const convMenuDef = (
-    def: MyMenuItemDefinition
+    def: MyMenuItemDefinition,
   ): IRoutedMenuItemDefinition => ({
     ...def,
     shouldRender: checkMenuItemPermission(perms, def),

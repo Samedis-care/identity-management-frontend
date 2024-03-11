@@ -19,6 +19,9 @@ import {
   showInfoDialog,
   sleep,
   useDialogContext,
+  useNavigate,
+  useParams,
+  useLocation,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import Recaptcha from "react-recaptcha";
@@ -32,8 +35,6 @@ import {
 import AccountManager from "../../utils/AccountManager";
 import { Trans, useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router";
 import PolicyViewer from "../../components/PolicyViewer";
 import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import getEmailDomain from "../../utils/getEmailDomain";
@@ -44,9 +45,9 @@ const { REACT_APP_RECAPTCHA_KEY } = process.env;
 
 const isRecaptchaReady = () =>
   typeof window !== "undefined" &&
-  // @ts-ignore
+  // @ts-expect-error global vars
   typeof window.grecaptcha !== "undefined" &&
-  // @ts-ignore
+  // @ts-expect-error global vars
   typeof window.grecaptcha.render === "function";
 
 const WaitForRecaptcha = (props: { children: React.ReactElement }) => {
@@ -57,7 +58,7 @@ const WaitForRecaptcha = (props: { children: React.ReactElement }) => {
   return props.children;
 };
 
-const CreateAccount = (props: AuthPageProps) => {
+const CreateAccount = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ const CreateAccount = (props: AuthPageProps) => {
         [evt.target.name]: evt.target.value,
       }));
     },
-    []
+    [],
   );
   const recaptchaCallback = useCallback((response: string) => {
     setState((prev) => ({ ...prev, captcha: response }));
@@ -102,7 +103,7 @@ const CreateAccount = (props: AuthPageProps) => {
   }, []);
   const handleBack = useCallback(
     () => navigate(preserveUrlParams(`/login/${app}/add-account`, location)),
-    [app, navigate, location]
+    [app, navigate, location],
   );
 
   const showPrivacyDialog = useCallback(() => {
@@ -189,7 +190,7 @@ const CreateAccount = (props: AuthPageProps) => {
           null,
           {
             ...Object.fromEntries(
-              new URLSearchParams(location.search).entries()
+              new URLSearchParams(location.search).entries(),
             ),
             email: state.email,
             email_confirmation: state.email_confirm,
@@ -199,7 +200,7 @@ const CreateAccount = (props: AuthPageProps) => {
             last_name: state.last_name,
             captcha: REACT_APP_RECAPTCHA_KEY ? state.captcha : undefined,
           },
-          AuthMode.Off
+          AuthMode.Off,
         );
 
         // TODO: can we fill this with more info?
@@ -250,7 +251,7 @@ const CreateAccount = (props: AuthPageProps) => {
       app,
       location,
       navigate,
-    ]
+    ],
   );
 
   return (

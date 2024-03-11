@@ -4,9 +4,9 @@ import {
   DataGridLocalStoragePersist,
   hasPermission,
   usePermissionContext,
+  useNavigate,
 } from "components-care";
 import { useDefaultGridProps } from "../../../../components-care/ImCrud";
-import { useNavigate } from "react-router";
 import GridWrapper from "../../../../components-care/GridWrapper";
 import useApp from "../../../../utils/useApp";
 import { useTenantModel } from "../../../../components-care/models/TenantModel";
@@ -22,11 +22,11 @@ const TenantsCrud = () => {
 
   const showEditPage = useCallback(
     (id: string) => navigate(`/apps/${app}/tenants/${id}`),
-    [navigate, app]
+    [navigate, app],
   );
   const handleAddNew = useCallback(
     () => navigate(`/apps/${app}/tenants/new`),
-    [navigate, app]
+    [navigate, app],
   );
 
   return (

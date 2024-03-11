@@ -6,6 +6,8 @@ import {
   DefaultFormPage,
   FormField,
   useFormContextLite,
+  useNavigate,
+  useParams,
 } from "components-care";
 import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
@@ -17,9 +19,7 @@ import ImCrud from "../../../components-care/ImCrud";
 import { useFunctionalityModel } from "../../../components-care/models/FunctionalityModel";
 import { useRoleModel } from "../../../components-care/models/RoleModel";
 import { IDataGridContentSelectRowViewProps } from "components-care/dist/standalone/DataGrid/Content/SelectRowView";
-import { useNavigate } from "react-router";
 import { KeyboardArrowRight as OpenIcon } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
 import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { useTenantModel } from "../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../components/FormPagePaper";
@@ -37,7 +37,7 @@ export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
   const classes = useOpenStyles();
-  const { app } = useParams<{ app?: string }>();
+  const { app } = useParams();
   const navigate = useNavigate();
 
   const handleOpen = useCallback(() => {
@@ -55,7 +55,7 @@ export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
   const classes = useOpenStyles();
-  const { app } = useParams<{ app?: string }>();
+  const { app } = useParams();
   const navigate = useNavigate();
   const { id: userId } = useFormContextLite();
 
@@ -71,12 +71,12 @@ export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
 };
 
 export const OpenFunctionality = (
-  props: IDataGridContentSelectRowViewProps
+  props: IDataGridContentSelectRowViewProps,
 ) => {
   const { id } = props;
   const { t } = useTranslation("common");
   const classes = useOpenStyles();
-  const { app } = useParams<{ app?: string }>();
+  const { app } = useParams();
   const navigate = useNavigate();
 
   const handleOpen = useCallback(() => {
@@ -91,7 +91,7 @@ export const OpenFunctionality = (
 };
 
 const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>
+  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
 ) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
@@ -132,7 +132,7 @@ const UserForm = (
               }}
             >
               {undefined}
-            </ImCrud>
+            </ImCrud>,
           )}
           {tab(
             "roles",
@@ -152,7 +152,7 @@ const UserForm = (
               }}
             >
               {undefined}
-            </ImCrud>
+            </ImCrud>,
           )}
           {tab(
             "permissions",
@@ -172,7 +172,7 @@ const UserForm = (
               }}
             >
               {undefined}
-            </ImCrud>
+            </ImCrud>,
           )}
           {tab(
             "",
@@ -195,7 +195,7 @@ const UserForm = (
               <Grid item xs={6}>
                 <FormField name={"locale"} />
               </Grid>
-            </Grid>
+            </Grid>,
           )}
         </RoutedTabPanelWrapper>
       </FormPagePaper>

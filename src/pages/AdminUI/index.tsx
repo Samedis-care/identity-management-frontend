@@ -3,9 +3,9 @@ import {
   Loader,
   MaterialMenuItem,
   PortalLayout,
+  Route,
   RoutedMenu,
-  SentryRoute,
-  SentryRoutes,
+  Routes,
   throwError,
   usePermissionContext,
 } from "components-care";
@@ -38,32 +38,38 @@ const Portal = () => {
       content={
         <Suspense fallback={<Loader />}>
           <ErrorBoundary>
-            <SentryRoutes>
-              {AllMenuItems.filter((entry) => entry.route && entry.component)
-                .sort((a, b) => (b.route?.length ?? 0) - (a.route?.length ?? 0))
-                .map((entry) => (
-                  <SentryRoute
-                    path={
-                      entry.route
-                        ? entry.route + "/*"
-                        : throwError("missing route")
-                    }
-                    key={entry.route}
-                    element={
-                      checkMenuItemPermission(perms, entry) ? (
-                        entry.component ? (
-                          React.createElement(entry.component)
+            <Routes>
+              {[
+                ...AllMenuItems.filter(
+                  (entry) => entry.route && entry.component,
+                )
+                  .sort(
+                    (a, b) => (b.route?.length ?? 0) - (a.route?.length ?? 0),
+                  )
+                  .map((entry) => (
+                    <Route
+                      path={
+                        entry.route
+                          ? entry.route + "/*"
+                          : throwError("missing route")
+                      }
+                      key={entry.route}
+                      element={
+                        checkMenuItemPermission(perms, entry) ? (
+                          entry.component ? (
+                            React.createElement(entry.component)
+                          ) : (
+                            throwError("logic error")
+                          )
                         ) : (
-                          throwError("logic error")
+                          <Forbidden />
                         )
-                      ) : (
-                        <Forbidden />
-                      )
-                    }
-                  />
-                ))}
-              <SentryRoute path={"*"} element={<NotFound />} />
-            </SentryRoutes>
+                      }
+                    />
+                  )),
+                <Route key={"not-found"} path={"*"} element={<NotFound />} />,
+              ]}
+            </Routes>
           </ErrorBoundary>
         </Suspense>
       }

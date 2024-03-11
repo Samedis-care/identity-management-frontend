@@ -21,7 +21,7 @@ const OrgUnitForm = (
   props: PageProps<
     keyof ReturnType<typeof OrganizationModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   const { t } = useTranslation("ous");
   const orgActorPicker = useActorPickerModel({
@@ -39,7 +39,7 @@ const OrgUnitForm = (
               <Grid item xs={12} key={field}>
                 <FormField name={field} />
               </Grid>
-            )
+            ),
           )}
           {props.values!.actor_type === "group" && (
             <>
@@ -61,7 +61,7 @@ const OrgUnitForm = (
                     pickerProps={{
                       isSelected: (
                         selected: boolean,
-                        record: Record<string, unknown>
+                        record: Record<string, unknown>,
                       ) =>
                         !!(record.already_in_orga_raw as boolean | undefined) ||
                         selected,

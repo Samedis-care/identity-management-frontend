@@ -10,7 +10,7 @@ const EmailBlacklistForm = (
   props: PageProps<
     keyof ReturnType<typeof EmailBlacklistModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   return (
     <DefaultFormPage {...props}>

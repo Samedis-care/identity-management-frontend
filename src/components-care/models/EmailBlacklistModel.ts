@@ -48,7 +48,7 @@ export const EmailBlacklistModel = (t: TFunction) =>
         sortable: true,
       },
     },
-    new BackendConnector("v1/email_blacklist")
+    new BackendConnector("v1/email_blacklist"),
   );
 
 export const useEmailBlacklistModel = () => {

@@ -80,7 +80,7 @@ const AppsList = (props: AppsListProps) => {
   const { data, isLoading, error } = useQuery(
     "my-user-apps",
     async () =>
-      (await new BackendConnector("v1/user/apps").index({ rows: 100 }))[0]
+      (await new BackendConnector("v1/user/apps").index({ rows: 100 }))[0],
   );
 
   const visitApp = useCallback((url: string) => {
@@ -100,7 +100,7 @@ const AppsList = (props: AppsListProps) => {
               queryParams={{}}
               dialogMode
             />
-          </FullFormDialog>
+          </FullFormDialog>,
         );
 
       if (policies.length === 1) {
@@ -134,16 +134,16 @@ const AppsList = (props: AppsListProps) => {
                 </ListItemIcon>
                 <ListItemText
                   primary={t(
-                    "tabs.apps.dialogs.select-document.option." + policy
+                    "tabs.apps.dialogs.select-document.option." + policy,
                   )}
                 />
               </ListItem>
             ))}
           </List>
-        </Dialog>
+        </Dialog>,
       );
     },
-    [classes.policyAccepted, classes.policyDeclined, popDialog, pushDialog, t]
+    [classes.policyAccepted, classes.policyDeclined, popDialog, pushDialog, t],
   );
 
   const removeApp = useCallback(
@@ -159,14 +159,14 @@ const AppsList = (props: AppsListProps) => {
           textButtonYes: t("tabs.apps.dialogs.remove-app-confirm.yes"),
           textButtonNo: t("tabs.apps.dialogs.remove-app-confirm.no"),
           textFieldLabel: t(
-            "tabs.apps.dialogs.remove-app-confirm.text-field-label"
+            "tabs.apps.dialogs.remove-app-confirm.text-field-label",
           ),
           textFieldPlaceholder: t(
-            "tabs.apps.dialogs.remove-app-confirm.text-field-placeholder"
+            "tabs.apps.dialogs.remove-app-confirm.text-field-placeholder",
           ),
           textFieldValidator: (value) => value === confirmEmail,
         });
-      } catch (e) {
+      } catch (_e) {
         // cancelled
         return;
       }
@@ -181,7 +181,7 @@ const AppsList = (props: AppsListProps) => {
         });
       }
     },
-    [confirmEmail, pushDialog, t]
+    [confirmEmail, pushDialog, t],
   );
 
   if (isLoading) return <Loader />;
@@ -217,7 +217,7 @@ const AppsList = (props: AppsListProps) => {
                             openPolicy(
                               app.name,
                               app.required_documents,
-                              app.requires_acceptance
+                              app.requires_acceptance,
                             )
                           }
                           disabled={app.required_documents.length === 0}

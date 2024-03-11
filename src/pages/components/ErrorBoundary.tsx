@@ -2,13 +2,13 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { WithTranslation, withTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
-import { useLocation } from "react-router";
+import { useLocation } from "components-care";
 
 export interface WithLocationProps {
   location: ReturnType<typeof useLocation>;
 }
 function withLocation<T extends WithLocationProps>(
-  Component: React.ComponentType<Omit<T, "location"> & WithLocationProps>
+  Component: React.ComponentType<Omit<T, "location"> & WithLocationProps>,
 ) {
   return (props: Omit<T, "location">) => (
     <Component {...props} location={useLocation()} />
@@ -51,8 +51,8 @@ class ErrorBoundary extends React.PureComponent<
 
   componentDidUpdate(
     prevProps: Readonly<ErrorBoundaryProps>,
-    prevState: Readonly<ErrorBoundaryState>,
-    snapshot?: any
+    _prevState: Readonly<ErrorBoundaryState>,
+    _snapshot?: unknown,
   ) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.setState({
@@ -97,5 +97,5 @@ class ErrorBoundary extends React.PureComponent<
 }
 
 export default withTranslation("common")(
-  withLocation<ErrorBoundaryProps>(ErrorBoundary)
+  withLocation<ErrorBoundaryProps>(ErrorBoundary),
 );

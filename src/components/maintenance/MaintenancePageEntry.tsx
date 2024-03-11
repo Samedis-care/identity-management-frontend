@@ -19,7 +19,7 @@ const MaintenancePageEntry = (props: MaintenancePageEntryProps) => {
   const infoMarkdown = useMemo(
     () =>
       entry.reason_long ? marked(getLocalizedReason(entry.reason_long)) : null,
-    [entry.reason_long]
+    [entry.reason_long],
   );
 
   return (

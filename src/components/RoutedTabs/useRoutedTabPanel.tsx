@@ -1,12 +1,12 @@
-import SentryRoute from "components-care/dist/standalone/SentryRoute";
+import { Route } from "components-care";
 import React from "react";
 
 const useRoutedTabPanel = (): ((
   name: string,
-  children: React.ReactNode
+  children: React.ReactElement,
 ) => React.ReactElement) => {
-  return (name: string, children: React.ReactNode) => (
-    <SentryRoute key={name} path={`${name}/*`} element={children} />
+  return (name: string, children: React.ReactElement) => (
+    <Route key={name} path={`${name}/*`} element={children} />
   );
 };
 

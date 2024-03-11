@@ -9,11 +9,11 @@ const AuthResetPassword = React.lazy(() => import("./Auth/ResetPassword"));
 const AuthConfirmAccount = React.lazy(() => import("./Auth/ConfirmAccount"));
 
 const DocumentViewerPage = React.lazy(
-  () => import("./Standalone/DocumentViewerPage")
+  () => import("./Standalone/DocumentViewerPage"),
 );
 
 const ProfilePageStandalone = React.lazy(
-  () => import("./Profile/ProfilePageStandalone")
+  () => import("./Profile/ProfilePageStandalone"),
 );
 
 export interface BasicRouteDefinition {

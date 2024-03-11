@@ -84,7 +84,7 @@ export const ProfileLoginsModel = (t: TFunction) =>
         sortable: false,
       },
     },
-    new BackendConnector("v1/user/account_logins")
+    new BackendConnector("v1/user/account_logins"),
   );
 
 export const useProfileLoginsModel = () => {

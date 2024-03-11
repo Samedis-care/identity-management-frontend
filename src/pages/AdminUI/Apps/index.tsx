@@ -5,9 +5,9 @@ import {
   DataGridLocalStoragePersist,
   hasPermission,
   usePermissionContext,
+  useNavigate,
 } from "components-care";
 import { useDefaultGridProps } from "../../../components-care/ImCrud";
-import { useNavigate } from "react-router";
 import GridWrapper from "../../../components-care/GridWrapper";
 
 const AppsCrud = () => {
@@ -18,7 +18,7 @@ const AppsCrud = () => {
 
   const showEditPage = useCallback(
     (id: string) => navigate(`/apps/${id}`),
-    [navigate]
+    [navigate],
   );
   const handleAddNew = useCallback(() => navigate(`/apps/new`), [navigate]);
 

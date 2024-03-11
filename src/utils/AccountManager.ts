@@ -35,7 +35,7 @@ class AccountManager {
     const alreadyAccount = allAccounts.find(
       (entry) =>
         entry.id === newAccount.id ||
-        entry.email.toLowerCase() === newAccount.email.toLowerCase()
+        entry.email.toLowerCase() === newAccount.email.toLowerCase(),
     );
     if (alreadyAccount) return alreadyAccount;
     this.setAccounts([...allAccounts, newAccount]);
@@ -47,29 +47,29 @@ class AccountManager {
     const currentAccount = allAccounts.find(
       (entry: Account): boolean =>
         entry.id === updateParams.id ||
-        entry.email.toLowerCase() === updateParams.email?.toLowerCase()
+        entry.email.toLowerCase() === updateParams.email?.toLowerCase(),
     );
     if (!currentAccount) throw new Error("Account not found in database");
     const updatedAccount = { ...currentAccount, ...updateParams };
     this.setAccounts(
       allAccounts.map((entry) =>
-        entry === currentAccount ? updatedAccount : entry
-      )
+        entry === currentAccount ? updatedAccount : entry,
+      ),
     );
     return updatedAccount;
   }
 
   public static find(id: string): Account | undefined {
     return this.getAccounts().find(
-      (entry: Account) => id === entry.id || id === entry.email
+      (entry: Account) => id === entry.id || id === entry.email,
     );
   }
 
   public static forgetAccount(id: string): void {
     this.setAccounts(
       this.getAccounts().filter(
-        (entry) => id !== entry.id && id !== entry.email
-      )
+        (entry) => id !== entry.id && id !== entry.email,
+      ),
     );
   }
 

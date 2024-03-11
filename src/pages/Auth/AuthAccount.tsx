@@ -8,8 +8,7 @@ import {
 import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import AuthPassword from "./components/AuthPassword";
 import AuthTotp from "./components/AuthTotp";
-import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router";
+import { useNavigate, useParams, useLocation } from "components-care";
 import { md5 } from "js-md5";
 import { doOauthSignIn } from "./components/SocialLogins";
 import getEmailDomain from "../../utils/getEmailDomain";

@@ -16,10 +16,9 @@ import { OauthTokenResponse } from "../../api/ident-services/Auth";
 import * as Sentry from "@sentry/react";
 import downloadProfileImage from "../../utils/downloadProfileImage";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router";
+import { useNavigate, useParams, useLocation } from "components-care";
 
-const AccountSelection = (props: AuthPageProps) => {
+const AccountSelection = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ const AccountSelection = (props: AuthPageProps) => {
 
   const onAddNewAccount = useCallback(
     () => navigate(preserveUrlParams(`/login/${app}/add-account`, location)),
-    [app, location, navigate]
+    [app, location, navigate],
   );
   const [, setState] = useAuthPageState();
   useEffect(() => {
@@ -49,12 +48,12 @@ const AccountSelection = (props: AuthPageProps) => {
             null,
             {
               ...Object.fromEntries(
-                new URLSearchParams(location.search).entries()
+                new URLSearchParams(location.search).entries(),
               ),
               grant_type: "refresh_token",
               refresh_token: account.session.refresh,
             },
-            AuthMode.Off
+            AuthMode.Off,
           );
           const image =
             resp.data.attributes.image.small &&
@@ -78,7 +77,7 @@ const AccountSelection = (props: AuthPageProps) => {
           });
           if (!resp.meta.redirect_url) {
             Sentry.captureException(
-              new Error("redirect_url not present in backend response")
+              new Error("redirect_url not present in backend response"),
             );
           }
           sessionStorage.setItem("token", resp.meta.token); // set session here to allow 2FA
@@ -88,7 +87,7 @@ const AccountSelection = (props: AuthPageProps) => {
             remainingFactors: AccountManager.getAuthFactors(resp),
             redirectURL: resp.meta.redirect_url!,
           }));
-        } catch (e) {
+        } catch (_e) {
           // login failure, update account
           account = AccountManager.updateAccount({
             id: account.id,
@@ -113,7 +112,7 @@ const AccountSelection = (props: AuthPageProps) => {
       }));
       navigate(preserveUrlParams(`/login/${app}/authenticate`, location));
     },
-    [setState, app, location, navigate]
+    [setState, app, location, navigate],
   );
   const onForgotAccount = (id: string) => {
     const account = AccountManager.forceFind(id);

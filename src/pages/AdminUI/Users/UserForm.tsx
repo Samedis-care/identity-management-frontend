@@ -9,7 +9,7 @@ import ResetPasswordAdminDialog from "./ResetPasswordAdminDialog";
 import FormPagePaper from "../../../components/FormPagePaper";
 
 const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>
+  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
 ) => {
   const { t } = useTranslation("users");
   const [pushDialog] = useDialogContext();

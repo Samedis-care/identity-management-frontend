@@ -39,7 +39,7 @@ const ResetPasswordDialog = () => {
         [evt.target.name]: evt.target.value,
       }));
     },
-    []
+    [],
   );
   const handleSubmit = useCallback(
     async (evt: React.MouseEvent | React.FormEvent) => {
@@ -48,10 +48,10 @@ const ResetPasswordDialog = () => {
       if (!state.password) {
         showInfoDialog(pushDialog, {
           title: t(
-            "tabs.account.dialogs.reset-password.result.error-password-empty.title"
+            "tabs.account.dialogs.reset-password.result.error-password-empty.title",
           ),
           message: t(
-            "tabs.account.dialogs.reset-password.result.error-password-empty.message"
+            "tabs.account.dialogs.reset-password.result.error-password-empty.message",
           ),
         });
         return;
@@ -59,10 +59,10 @@ const ResetPasswordDialog = () => {
       if (state.password !== state.password_confirm) {
         showInfoDialog(pushDialog, {
           title: t(
-            "tabs.account.dialogs.reset-password.result.error-mismatch.title"
+            "tabs.account.dialogs.reset-password.result.error-mismatch.title",
           ),
           message: t(
-            "tabs.account.dialogs.reset-password.result.error-mismatch.message"
+            "tabs.account.dialogs.reset-password.result.error-mismatch.message",
           ),
         });
         return;
@@ -78,19 +78,19 @@ const ResetPasswordDialog = () => {
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.reset-password.result.success.title"),
           message: t(
-            "tabs.account.dialogs.reset-password.result.success.message"
+            "tabs.account.dialogs.reset-password.result.success.message",
           ),
         });
       } catch (e) {
         showInfoDialog(pushDialog, {
           title: t(
-            "tabs.account.dialogs.reset-password.result.error-backend.title"
+            "tabs.account.dialogs.reset-password.result.error-backend.title",
           ),
           message: (e as Error).message,
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateProfile]
+    [popDialog, pushDialog, state, t, updateProfile],
   );
 
   return (
@@ -108,7 +108,7 @@ const ResetPasswordDialog = () => {
                 onChange={handleChange}
                 type={"password"}
                 label={t(
-                  "tabs.account.dialogs.reset-password.fields.current-password"
+                  "tabs.account.dialogs.reset-password.fields.current-password",
                 )}
                 autoFocus
                 fullWidth
@@ -122,7 +122,7 @@ const ResetPasswordDialog = () => {
                 onChange={handleChange}
                 type={"password"}
                 label={t(
-                  "tabs.account.dialogs.reset-password.fields.new-password"
+                  "tabs.account.dialogs.reset-password.fields.new-password",
                 )}
                 fullWidth
                 variant={"standard"}
@@ -135,7 +135,7 @@ const ResetPasswordDialog = () => {
                 onChange={handleChange}
                 type={"password"}
                 label={t(
-                  "tabs.account.dialogs.reset-password.fields.new-password-repeat"
+                  "tabs.account.dialogs.reset-password.fields.new-password-repeat",
                 )}
                 fullWidth
                 variant={"standard"}

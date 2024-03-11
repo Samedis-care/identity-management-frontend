@@ -85,7 +85,7 @@ const AccountEntry = (props: AccountEntryProps) => {
       evt.stopPropagation();
       if (onClick) onClick(id);
     },
-    [onClick, id]
+    [onClick, id],
   );
 
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);

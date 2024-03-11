@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
-import { Link, useParams } from "react-router-dom";
 import { preserveUrlParams } from "../../../utils/preserveUrlParams";
 import { useTranslation } from "react-i18next";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";
@@ -25,12 +24,14 @@ import {
   FrameworkHistory,
   showInfoDialog,
   useDialogContext,
+  Link,
+  useParams,
+  useLocation,
 } from "components-care";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useLocation } from "react-router";
 import UnverifiedAccountDialog from "./UnverifiedAccountDialog";
 
-const AuthPassword = (props: AuthPageProps) => {
+const AuthPassword = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const { app } = params;
@@ -44,13 +45,13 @@ const AuthPassword = (props: AuthPageProps) => {
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(evt.target.value);
     },
-    []
+    [],
   );
   const changeStaySignedIn = useCallback(
-    (evt: React.ChangeEvent<{}>, checked: boolean) => {
+    (_evt: React.ChangeEvent<Record<string, never>>, checked: boolean) => {
       setStaySignedIn(checked);
     },
-    []
+    [],
   );
   const handleBack = useCallback(() => FrameworkHistory.back(), []);
 
@@ -64,20 +65,20 @@ const AuthPassword = (props: AuthPageProps) => {
           null,
           {
             ...Object.fromEntries(
-              new URLSearchParams(location.search).entries()
+              new URLSearchParams(location.search).entries(),
             ),
             grant_type: "password",
             email: state.activeAccount!.email,
             password,
           },
-          AuthMode.Off
+          AuthMode.Off,
         );
         const image =
           resp.data.attributes.image.small &&
           (await downloadProfileImage(resp.data.attributes.image.small));
         if (!resp.meta.redirect_url) {
           Sentry.captureException(
-            new Error("redirect_url not present in backend response")
+            new Error("redirect_url not present in backend response"),
           );
         }
         const expires = new Date(Date.now() + resp.meta.expires_in * 1000);
@@ -119,9 +120,9 @@ const AuthPassword = (props: AuthPageProps) => {
               email={state.activeAccount!.email}
               app={app!}
               extraParams={Object.fromEntries(
-                new URLSearchParams(location.search).entries()
+                new URLSearchParams(location.search).entries(),
               )}
-            />
+            />,
           );
         } else {
           await showInfoDialog(pushDialog, {
@@ -142,7 +143,7 @@ const AuthPassword = (props: AuthPageProps) => {
       staySignedIn,
       pushDialog,
       t,
-    ]
+    ],
   );
 
   return (

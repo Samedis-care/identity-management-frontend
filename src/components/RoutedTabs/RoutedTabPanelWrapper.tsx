@@ -1,12 +1,13 @@
 import React from "react";
-import { SentryRoutes } from "components-care";
+import { Routes } from "components-care";
+import { RoutesProps } from "components-care/dist/standalone/Routes/Routes";
 
 export interface RoutedTabPanelWrapperProps {
-  children: React.ReactNode;
+  children: RoutesProps["children"];
 }
 
 const RoutedTabPanelWrapper = (props: RoutedTabPanelWrapperProps) => {
-  return <SentryRoutes>{props.children}</SentryRoutes>;
+  return <Routes>{props.children}</Routes>;
 };
 
 export default React.memo(RoutedTabPanelWrapper);

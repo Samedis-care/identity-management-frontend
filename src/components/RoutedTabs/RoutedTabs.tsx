@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { Tabs, TabsProps } from "@mui/material";
-import { useRouteInfo } from "components-care";
-import { useLocation, useNavigate } from "react-router";
+import { useRouteInfo, useLocation, useNavigate } from "components-care";
 
 export interface RoutedTabsProps extends Omit<TabsProps, "value" | "onChange"> {
   children: React.ReactNode;
@@ -10,21 +9,21 @@ export interface RoutedTabsProps extends Omit<TabsProps, "value" | "onChange"> {
 const RoutedTabs = (props: RoutedTabsProps) => {
   const { pathname, search, hash } = useLocation();
   let { url } = useRouteInfo();
-  if (url.endsWith("/")) url = url.substr(0, url.length - 1);
+  if (url.endsWith("/")) url = url.substring(0, url.length - 1);
   const navigate = useNavigate();
   const handleChange = useCallback(
-    (evt: React.ChangeEvent<{}>, value: string) => {
+    (_evt: React.ChangeEvent<Record<string, never>>, value: string) => {
       navigate({
         pathname: url + "/" + value,
         search,
         hash,
       });
     },
-    [navigate, url, search, hash]
+    [navigate, url, search, hash],
   );
   const current =
     pathname
-      .substr(url.length)
+      .substring(url.length)
       .split("/")
       .filter((entry) => entry)[0] ?? "";
   return (

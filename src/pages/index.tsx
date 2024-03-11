@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Loader, SentryRoute, SentryRoutes } from "components-care";
+import { Loader, Route, Routes } from "components-care";
 import { AnonRoutes, AuthRoutes, ExternalAuthenticatedRoutes } from "./Routes";
 import AuthPageLayout from "./Auth/components/AuthPageLayout";
 import AuthProvider from "./components/AuthProvider";
@@ -10,15 +10,15 @@ const AuthPages = () => {
   return (
     <AuthPageLayout>
       <Suspense fallback={<Loader />}>
-        <SentryRoutes>
+        <Routes>
           {AuthRoutes.map((entry) => (
-            <SentryRoute
+            <Route
               key={entry.path}
               path={entry.path}
               element={React.createElement(entry.component)}
             />
           ))}
-        </SentryRoutes>
+        </Routes>
       </Suspense>
     </AuthPageLayout>
   );
@@ -27,33 +27,45 @@ const AuthPages = () => {
 const AuthenticatedRoutes = () => {
   return (
     <AuthProvider>
-      <SentryRoutes>
-        {ExternalAuthenticatedRoutes.map((entry) => (
-          <SentryRoute
-            key={entry.path}
-            path={entry.path + "/*"}
-            element={React.createElement(entry.component)}
-          />
-        ))}
-        <SentryRoute path={"*"} element={<Portal />} />
-      </SentryRoutes>
+      <Routes>
+        {[
+          ...ExternalAuthenticatedRoutes.map((entry) => (
+            <Route
+              key={entry.path}
+              path={entry.path + "/*"}
+              element={React.createElement(entry.component)}
+            />
+          )),
+          <Route key={"portal"} path={"*"} element={<Portal />} />,
+        ]}
+      </Routes>
     </AuthProvider>
   );
 };
 
 const RootPage = () => {
   return (
-    <SentryRoutes>
-      <SentryRoute path={"/login/:app/*"} element={<AuthPages />} />
-      {AnonRoutes.map((entry) => (
-        <SentryRoute
-          key={entry.path}
-          path={entry.path + "/*"}
-          element={React.createElement(entry.component)}
-        />
-      ))}
-      <SentryRoute path={"*"} element={<AuthenticatedRoutes />} />
-    </SentryRoutes>
+    <Routes>
+      {[
+        <Route
+          key={"authentication"}
+          path={"/login/:app/*"}
+          element={<AuthPages />}
+        />,
+        ...AnonRoutes.map((entry) => (
+          <Route
+            key={entry.path}
+            path={entry.path + "/*"}
+            element={React.createElement(entry.component)}
+          />
+        )),
+        <Route
+          key={"authenticated"}
+          path={"*"}
+          element={<AuthenticatedRoutes />}
+        />,
+      ]}
+    </Routes>
   );
 };
 

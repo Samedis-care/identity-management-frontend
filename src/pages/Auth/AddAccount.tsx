@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, IconButton, TextField, Typography } from "@mui/material";
-import { ActionButton } from "components-care";
-import { useNavigate, useParams } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -11,7 +9,12 @@ import {
 } from "./components/AuthPageLayout";
 import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router";
+import {
+  ActionButton,
+  useNavigate,
+  useParams,
+  useLocation,
+} from "components-care";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
 import makeStyles from "@mui/styles/makeStyles";
 
@@ -26,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddAccount = (props: AuthPageProps) => {
+const AddAccount = (_props: AuthPageProps) => {
   const classes = useStyles();
   const params = useParams();
   const location = useLocation();
@@ -46,11 +49,11 @@ const AddAccount = (props: AuthPageProps) => {
     (evt: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(evt.target.value);
     },
-    []
+    [],
   );
   const handleBack = useCallback(
     () => navigate(preserveUrlParams(`/login/${app}`, location)),
-    [app, navigate, location]
+    [app, navigate, location],
   );
   const handleNext = useCallback(
     (evt: React.MouseEvent) => {
@@ -69,13 +72,13 @@ const AddAccount = (props: AuthPageProps) => {
       });
       navigate(preserveUrlParams(`/login/${app}/authenticate`, location));
     },
-    [app, email, setState, location, navigate]
+    [app, email, setState, location, navigate],
   );
   const handleCreate = useCallback(() => {
     navigate(
       preserveUrlParams(`/login/${app}/create-account`, location, {
         emailHint: email,
-      })
+      }),
     );
   }, [app, email, location, navigate]);
 

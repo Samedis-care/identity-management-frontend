@@ -37,7 +37,7 @@ const UnrollTotpDialog = () => {
         otp: stripInvalidTotpChars(evt.target.value),
       }));
     },
-    []
+    [],
   );
   const handleSubmit = useCallback(
     async (evt: React.MouseEvent | React.FormEvent) => {
@@ -51,7 +51,7 @@ const UnrollTotpDialog = () => {
             data: {
               otp_disable: state.otp,
             },
-          }
+          },
         );
         if (result.data.attributes.otp_enabled) {
           throw new Error("TOTP deactivation failed");
@@ -62,14 +62,14 @@ const UnrollTotpDialog = () => {
           message: t("tabs.account.dialogs.unroll-totp.result.success.info"),
         });
         model.invalidateCacheForId("singleton");
-      } catch (e) {
+      } catch (_e) {
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.unroll-totp.result.failure.title"),
           message: t("tabs.account.dialogs.unroll-totp.result.failure.info"),
         });
       }
     },
-    [popDialog, pushDialog, state.otp, t, model]
+    [popDialog, pushDialog, state.otp, t, model],
   );
 
   return (

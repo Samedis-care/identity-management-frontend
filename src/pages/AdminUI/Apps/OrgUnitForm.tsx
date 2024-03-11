@@ -10,7 +10,7 @@ const OrgUnitForm = (
   props: PageProps<
     keyof ReturnType<typeof OrganizationModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   return (
     <DefaultFormPage {...props}>
@@ -21,7 +21,7 @@ const OrgUnitForm = (
               <Grid item xs={12} key={field}>
                 <FormField name={field} />
               </Grid>
-            )
+            ),
           )}
           {props.values!.actor_type === "group" && (
             <Grid item xs={12}>

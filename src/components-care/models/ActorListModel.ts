@@ -14,13 +14,13 @@ import {
   ModelVisibilityGridViewHidden,
   ModelVisibilityView,
   throwError,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import { useMemo } from "react";
-import { useParams } from "react-router-dom";
 
 export const ACTOR_MAPPABLE_TYPES = [
   "user",
@@ -54,7 +54,7 @@ export interface ActorListModelParams {
 
 export const ActorListModel = (
   t: TFunction,
-  { app, tenant, user, role, org }: ActorListModelParams
+  { app, tenant, user, role, org }: ActorListModelParams,
 ) =>
   new Model(
     "actor-list",
@@ -109,7 +109,7 @@ export const ActorListModel = (
           ACTOR_TYPES.map((type) => ({
             value: type,
             getLabel: () => t("actors:enums.actor_type." + type),
-          }))
+          })),
         ),
         getLabel: () => t("actors:fields.actor_type"),
         customData: null,
@@ -186,13 +186,13 @@ export const ActorListModel = (
         ? org
           ? `v1/apps/${app}/tenants/${tenant}/organizations/${org}/mappings`
           : user
-          ? `v1/apps/${app}/tenants/${tenant}/users/${user}/actors`
-          : throwError("Unknown endpoint")
+            ? `v1/apps/${app}/tenants/${tenant}/users/${user}/actors`
+            : throwError("Unknown endpoint")
         : role
-        ? `v1/apps/${app}/roles/${role}/actors`
-        : user
-        ? `v1/apps/${app}/users/${user}/actors`
-        : throwError("No tenant ID supplied or unknown endpoint"),
+          ? `v1/apps/${app}/roles/${role}/actors`
+          : user
+            ? `v1/apps/${app}/users/${user}/actors`
+            : throwError("No tenant ID supplied or unknown endpoint"),
       null,
       undefined,
       undefined,
@@ -201,20 +201,20 @@ export const ActorListModel = (
           role && !tenant
             ? `v1/apps/${app}/roles/${role}/actor_roles`
             : undefined,
-      }
+      },
     ),
-    { app, role, user, tenant, org }
+    { app, role, user, tenant, org },
   );
 
 export const useActorListModel = (
-  params: Omit<ActorListModelParams, "app"> & { app?: string | null }
+  params: Omit<ActorListModelParams, "app"> & { app?: string | null },
 ) => {
   const { t } = useTranslation("actors");
-  const { app, tenant } = useParams<{ app?: string; tenant?: string }>();
+  const { app, tenant } = useParams();
   if (!params.app) params = { ...params, app };
   if (!params.tenant && tenant) params = { ...params, tenant };
   return useMemo(
     () => ActorListModel(t, params as ActorListModelParams),
-    [t, params]
+    [t, params],
   );
 };

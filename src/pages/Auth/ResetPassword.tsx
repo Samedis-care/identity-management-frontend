@@ -4,16 +4,17 @@ import {
   ActionButton,
   showInfoDialog,
   useDialogContext,
+  useNavigate,
+  useParams,
+  useLocation,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { AuthPageProps } from "./components/AuthPageLayout";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
 import { useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router";
 
-const ResetPassword = (props: AuthPageProps) => {
+const ResetPassword = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const { app } = params;
@@ -28,7 +29,7 @@ const ResetPassword = (props: AuthPageProps) => {
   const handleChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) =>
       setState((prev) => ({ ...prev, [evt.target.name]: evt.target.value })),
-    []
+    [],
   );
 
   const resetPassword = useCallback(
@@ -36,7 +37,7 @@ const ResetPassword = (props: AuthPageProps) => {
       evt.preventDefault();
       try {
         const urlParams = Object.fromEntries(
-          new URLSearchParams(location.search).entries()
+          new URLSearchParams(location.search).entries(),
         );
         const resp = await BackendHttpClient.put<{
           meta: {
@@ -55,17 +56,17 @@ const ResetPassword = (props: AuthPageProps) => {
               password_confirmation: state.password_confirm,
             },
           },
-          AuthMode.Off
+          AuthMode.Off,
         );
         await showInfoDialog(pushDialog, {
           title: t("auth.password.reset.success.title"),
           message: resp.meta.msg.message,
         });
         const { invite_token } = Object.fromEntries(
-          new URLSearchParams(location.search).entries()
+          new URLSearchParams(location.search).entries(),
         );
         navigate(
-          `/login/${app}?invite_token=${encodeURIComponent(invite_token ?? "")}`
+          `/login/${app}?invite_token=${encodeURIComponent(invite_token ?? "")}`,
         );
       } catch (e) {
         await showInfoDialog(pushDialog, {
@@ -74,7 +75,7 @@ const ResetPassword = (props: AuthPageProps) => {
         });
       }
     },
-    [navigate, app, location.search, pushDialog, state, t]
+    [navigate, app, location.search, pushDialog, state, t],
   );
 
   return (

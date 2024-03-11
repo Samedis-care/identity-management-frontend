@@ -4,6 +4,7 @@ import {
   MultiSelectorData,
   PageVisibility,
   useFormContextLite,
+  useNavigate,
 } from "components-care";
 import useApp from "../../../../utils/useApp";
 import { useTranslation } from "react-i18next";
@@ -12,7 +13,6 @@ import {
   RoleModelSelectorSort,
   useRoleModel,
 } from "../../../../components-care/models/RoleModel";
-import { useNavigate } from "react-router";
 
 export interface OrganizationRoleSelectorProps {
   organizationId: string | null;
@@ -61,7 +61,7 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
         onClick: () => navigate(`/apps/${app}/roles/${data.id}`),
       })}
       deserializeModel={(
-        data: Record<keyof ReturnType<typeof RoleModel>["fields"], unknown>
+        data: Record<keyof ReturnType<typeof RoleModel>["fields"], unknown>,
       ): Omit<OrganizationRoleData, "value"> => ({
         role_id: data.id as string,
         label: data.title as string,

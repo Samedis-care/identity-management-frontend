@@ -10,12 +10,12 @@ import {
   ModelVisibilityHidden,
   MultiSelectorData,
   throwError,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
-import { useParams } from "react-router-dom";
 import { DataGridSortSetting } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { SupportedLanguages } from "../../i18n";
 
@@ -29,7 +29,7 @@ export interface FunctionalityModelParams {
 
 export const FunctionalityModel = (
   t: TFunction,
-  { app, user, tenant, role, picker }: FunctionalityModelParams
+  { app, user, tenant, role, picker }: FunctionalityModelParams,
 ) =>
   new Model(
     "functionality",
@@ -151,12 +151,12 @@ export const FunctionalityModel = (
           ? `v1/apps/${app}/tenants/${tenant}/users/${user}/functionalities`
           : throwError("invalid config")
         : role
-        ? picker
-          ? `v1/apps/${app}/picker/roles/${role}/functionalities`
-          : `v1/apps/${app}/roles/${role}/functionalities`
-        : user
-        ? `v1/apps/${app}/users/${user}/functionalities`
-        : `v1/apps/${app}/functionalities`
+          ? picker
+            ? `v1/apps/${app}/picker/roles/${role}/functionalities`
+            : `v1/apps/${app}/roles/${role}/functionalities`
+          : user
+            ? `v1/apps/${app}/users/${user}/functionalities`
+            : `v1/apps/${app}/functionalities`,
     ),
     {
       app,
@@ -164,14 +164,14 @@ export const FunctionalityModel = (
       tenant,
       role,
       picker,
-    }
+    },
   );
 
 export const useFunctionalityModel = (
-  params?: Omit<FunctionalityModelParams, "app"> & { app?: string }
+  params?: Omit<FunctionalityModelParams, "app"> & { app?: string },
 ) => {
   const { t } = useTranslation("functionality");
-  let { app, tenant } = useParams<{ app?: string; tenant?: string }>();
+  const { app, tenant } = useParams();
   if (!app) throw new Error("No app specified");
   return FunctionalityModel(t, {
     app,
@@ -181,7 +181,7 @@ export const useFunctionalityModel = (
 };
 
 export const FunctionalityModelToSelectorData = (
-  data: Record<keyof ReturnType<typeof FunctionalityModel>["fields"], unknown>
+  data: Record<keyof ReturnType<typeof FunctionalityModel>["fields"], unknown>,
 ): MultiSelectorData => ({
   value: data.id as string,
   label: `${data.app}/${data.module}.${data.ident}`,

@@ -20,7 +20,7 @@ const GeneralForm = (
   props: PageProps<
     keyof ReturnType<typeof AppAdminModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   const { t } = useTranslation("app-admin");
   const [pushDialog] = useDialogContext();
@@ -37,14 +37,14 @@ const GeneralForm = (
   const handleExport = useCallback(async () => {
     const [app] = await model.getCached(props.id);
     downloadFile(
-      new File([app.import_roles as string], app.name + "_roles.yml")
+      new File([app.import_roles as string], app.name + "_roles.yml"),
     );
     const localeRoles = app.locale_import_roles as Record<string, string>;
     Object.entries(localeRoles).forEach(([lang, value]) =>
-      downloadFile(new File([value], `${app.name}_locale_roles_${lang}.yml`))
+      downloadFile(new File([value], `${app.name}_locale_roles_${lang}.yml`)),
     );
     downloadFile(
-      new File([app.import_candos as string], app.name + "_permissions.yml")
+      new File([app.import_candos as string], app.name + "_permissions.yml"),
     );
     const localePermissions = app.locale_import_candos as Record<
       string,
@@ -52,8 +52,8 @@ const GeneralForm = (
     >;
     Object.entries(localePermissions).forEach(([lang, value]) =>
       downloadFile(
-        new File([value], `${app.name}_locale_permissions_${lang}.yml`)
-      )
+        new File([value], `${app.name}_locale_permissions_${lang}.yml`),
+      ),
     );
   }, [props.id, model, downloadFile]);
 

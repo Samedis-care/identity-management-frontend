@@ -9,7 +9,7 @@ const ContentsForm = (
   props: PageProps<
     keyof ReturnType<typeof ContentModel>["fields"],
     CrudFormProps
-  >
+  >,
 ) => {
   return (
     <DefaultFormPage {...props}>

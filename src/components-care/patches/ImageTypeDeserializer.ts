@@ -12,7 +12,7 @@ interface BackendImageReadType {
 const deserialize = (value: BackendImageReadType) =>
   value == null || typeof value === "string" ? value : value.large;
 
-// @ts-ignore
+// @ts-expect-error unsupported
 ModelDataTypeImages.prototype.deserialize = deserialize;
-// @ts-ignore
+// @ts-expect-error unsupported
 ModelDataTypeImageRenderer.prototype.deserialize = deserialize;

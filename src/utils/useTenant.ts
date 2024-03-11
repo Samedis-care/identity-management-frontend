@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "components-care";
 
 const useTenant = (): string => {
-  const { tenant } = useParams<{ tenant?: string }>();
+  const { tenant } = useParams<"tenant">();
   if (!tenant) throw new Error("No tenant context");
   return tenant;
 };

@@ -39,7 +39,7 @@ const UnverifiedAccountDialog = (props: UnverifiedAccountDialogProps) => {
           user: { email },
           ...extraParams,
         },
-        AuthMode.Off
+        AuthMode.Off,
       );
       await showInfoDialog(pushDialog, {
         title: t("auth.unverified-account-error-dialog.resend.success.title"),

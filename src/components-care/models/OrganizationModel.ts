@@ -15,6 +15,7 @@ import {
   ModelVisibilityGridViewHidden,
   ModelVisibilityView,
   validatePresence,
+  useParams,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -24,15 +25,14 @@ import { useMemo } from "react";
 import useApp from "../../utils/useApp";
 import { ACTOR_TYPES } from "./ActorListModel";
 import { SupportedLanguages } from "../../i18n";
-import { useParams } from "react-router-dom";
 
 export const OrganizationModel = (
   t: TFunction,
   app: string,
   parent?: string | undefined | null,
-  treeView: boolean = false,
+  _treeView: boolean = false,
   possibleTypes?: string[] | undefined | null,
-  tenant?: string | null
+  tenant?: string | null,
 ) =>
   new Model(
     "organization",
@@ -87,7 +87,7 @@ export const OrganizationModel = (
           (possibleTypes ?? ACTOR_TYPES).map((type) => ({
             value: type,
             getLabel: () => t("actors:enums.actor_type." + type),
-          }))
+          })),
         ),
         getLabel: () => t("actors:fields.actor_type"),
         customData: null,
@@ -157,8 +157,8 @@ export const OrganizationModel = (
           ? `v1/apps/${app}/tenants/${tenant}/organizations_tree/${parent}`
           : `v1/apps/${app}/tenants/${tenant}/organizations_tree`
         : parent
-        ? `v1/apps/${app}/organizations_tree/${parent}`
-        : `v1/apps/${app}/organizations_tree`,
+          ? `v1/apps/${app}/organizations_tree/${parent}`
+          : `v1/apps/${app}/organizations_tree`,
       null,
       undefined,
       undefined,
@@ -166,21 +166,21 @@ export const OrganizationModel = (
         overrideRecordBase: tenant
           ? `v1/apps/${app}/tenants/${tenant}/organizations`
           : `v1/apps/${app}/organizations`,
-      }
+      },
     ),
-    { app, parent, tenant }
+    { app, parent, tenant },
   );
 
 export const useOrganizationModel = (
   parent?: string | null | undefined,
   treeView: boolean = false,
-  possibleTypes?: string[] | undefined | null
+  possibleTypes?: string[] | undefined | null,
 ) => {
   const app = useApp();
-  const { tenant } = useParams<{ tenant?: string }>();
+  const { tenant } = useParams();
   const { t } = useTranslation("actors");
   return useMemo(
     () => OrganizationModel(t, app, parent, treeView, possibleTypes, tenant),
-    [t, parent, app, treeView, possibleTypes, tenant]
+    [t, parent, app, treeView, possibleTypes, tenant],
   );
 };

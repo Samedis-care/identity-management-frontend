@@ -42,7 +42,7 @@ const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
         [evt.target.name]: evt.target.value,
       }));
     },
-    []
+    [],
   );
   const handleSubmit = useCallback(
     async (evt: React.MouseEvent | React.FormEvent) => {
@@ -72,7 +72,7 @@ const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateUser, userId]
+    [popDialog, pushDialog, state, t, updateUser, userId],
   );
 
   return (

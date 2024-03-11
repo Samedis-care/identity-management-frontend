@@ -39,16 +39,16 @@ const PolicyViewerContent = (props: PolicyViewerContentProps) => {
   const { isLoading, data, error } = useQuery([props.document], () =>
     BackendHttpClient.get<Policy>(
       `/api/v1/identity-management/content_acceptance/${encodeURI(
-        props.document
+        props.document,
       )}`,
       null,
-      AuthMode.Off
-    )
+      AuthMode.Off,
+    ),
   );
 
   const content = useMemo(
     () => (!data ? null : marked(getPolicyContent(data, i18n.language))),
-    [data, i18n.language]
+    [data, i18n.language],
   );
 
   return (

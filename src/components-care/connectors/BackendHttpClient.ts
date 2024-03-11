@@ -22,13 +22,13 @@ class BackendHttpClient extends RailsApiClient {
     super(
       () => handleAuth(),
       async (
-        response: Response,
+        _response: Response,
         responseData: unknown,
         method: string,
         url: string,
         args: GetParams,
         body: unknown | null,
-        auth: AuthMode
+        auth: AuthMode,
       ): Promise<unknown> => {
         const rsp = responseData as PotentialErrorResponse;
 
@@ -62,7 +62,7 @@ class BackendHttpClient extends RailsApiClient {
         if (error.name === "NetworkError") return;
         if (error.name === "BackendError") return;
         Sentry.captureException(error);
-      }
+      },
     );
   }
 }

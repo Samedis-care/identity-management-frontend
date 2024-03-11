@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "components-care";
 import DocumentViewer from "./DocumentViewer";
-import { useLocation } from "react-router";
 
 const DocumentViewerPage = () => {
   const location = useLocation();

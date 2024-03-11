@@ -4,16 +4,17 @@ import {
   ActionButton,
   showInfoDialog,
   useDialogContext,
+  useNavigate,
+  useParams,
+  useLocation,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { AuthPageProps } from "./components/AuthPageLayout";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
 import { useTranslation } from "react-i18next";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
-import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router";
 
-const ConfirmAccount = (props: AuthPageProps) => {
+const ConfirmAccount = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ConfirmAccount = (props: AuthPageProps) => {
       evt.preventDefault();
       try {
         const { token, invite_token } = Object.fromEntries(
-          new URLSearchParams(location.search).entries()
+          new URLSearchParams(location.search).entries(),
         );
         const resp = await BackendHttpClient.get<{
           data: {
@@ -44,14 +45,14 @@ const ConfirmAccount = (props: AuthPageProps) => {
           {
             invite_token,
           },
-          AuthMode.Off
+          AuthMode.Off,
         );
         await showInfoDialog(pushDialog, {
           title: t("auth.confirm.success.title"),
           message: resp.meta.msg.message,
         });
         navigate(
-          `/login/${app}?invite_token=${encodeURIComponent(invite_token)}`
+          `/login/${app}?invite_token=${encodeURIComponent(invite_token)}`,
         );
       } catch (e) {
         await showInfoDialog(pushDialog, {
@@ -60,7 +61,7 @@ const ConfirmAccount = (props: AuthPageProps) => {
         });
       }
     },
-    [navigate, app, location.search, pushDialog, t]
+    [navigate, app, location.search, pushDialog, t],
   );
 
   return (

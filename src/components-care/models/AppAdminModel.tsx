@@ -29,7 +29,7 @@ import { useCCLocaleSwitcherTranslations } from "components-care/dist/utils/useC
 
 const translateLocale = (t: TFunction, locale: string) =>
   `${t(`locale-switcher:${locale}.language`)} (${t(
-    `locale-switcher:${locale}.country`
+    `locale-switcher:${locale}.country`,
   )})`;
 
 export type AppAdminModelOptions = Partial<{
@@ -40,7 +40,7 @@ export type AppAdminModelOptions = Partial<{
 export const AppAdminModel = (
   t: TFunction,
   ccT: TFunction,
-  options?: AppAdminModelOptions
+  options?: AppAdminModelOptions,
 ) =>
   new Model(
     "app-admin",
@@ -190,7 +190,7 @@ export const AppAdminModel = (
           LOCALE_OPTIONS.map((entry) => ({
             value: entry,
             getLabel: () => translateLocale(ccT, entry),
-          })).sort((a, b) => a.getLabel().localeCompare(b.getLabel()))
+          })).sort((a, b) => a.getLabel().localeCompare(b.getLabel())),
         ),
         getLabel: () => t("app-admin:fields.config.locales"),
         customData: null,
@@ -205,7 +205,7 @@ export const AppAdminModel = (
           (options?.appLocales ?? LOCALE_OPTIONS).map((entry) => ({
             value: entry,
             getLabel: () => translateLocale(ccT, entry),
-          }))
+          })),
         ),
         getLabel: () => t("app-admin:fields.config.default_locale"),
         customData: null,
@@ -284,7 +284,7 @@ export const AppAdminModel = (
         validate: (value: Record<string, string>) => {
           if (!(SupportedLanguages[0] in value && value[SupportedLanguages[0]]))
             return t(
-              "app-admin:validations.config.mailer.footer_html_translations.fallback-missing"
+              "app-admin:validations.config.mailer.footer_html_translations.fallback-missing",
             );
           return null;
         },
@@ -353,9 +353,9 @@ export const AppAdminModel = (
             getLabel: () =>
               t(
                 "app-admin:enums.config.mailer.smtp_settings.authentication." +
-                  value
+                  value,
               ),
-          }))
+          })),
         ),
         getLabel: () =>
           t("app-admin:fields.config.mailer.smtp_settings.authentication"),
@@ -382,7 +382,7 @@ export const AppAdminModel = (
         type: new ModelDataTypeBooleanCheckboxRendererCC(),
         getLabel: () =>
           t(
-            "app-admin:fields.config.mailer.smtp_settings.enable_starttls_auto"
+            "app-admin:fields.config.mailer.smtp_settings.enable_starttls_auto",
           ),
         getDefaultValue: () => true,
         customData: null,
@@ -399,9 +399,9 @@ export const AppAdminModel = (
             getLabel: () =>
               t(
                 "app-admin:enums.config.mailer.smtp_settings.openssl_verify_mode." +
-                  value
+                  value,
               ),
-          }))
+          })),
         ),
         getLabel: () =>
           t("app-admin:fields.config.mailer.smtp_settings.openssl_verify_mode"),
@@ -428,7 +428,7 @@ export const AppAdminModel = (
             endAdornment: (
               <InputAdornment position={"end"}>
                 {t(
-                  "app-admin:fields.config.mailer.smtp_settings.open_timeout_unit"
+                  "app-admin:fields.config.mailer.smtp_settings.open_timeout_unit",
                 )}
               </InputAdornment>
             ),
@@ -449,7 +449,7 @@ export const AppAdminModel = (
             endAdornment: (
               <InputAdornment position={"end"}>
                 {t(
-                  "app-admin:fields.config.mailer.smtp_settings.read_timeout_unit"
+                  "app-admin:fields.config.mailer.smtp_settings.read_timeout_unit",
                 )}
               </InputAdornment>
             ),
@@ -538,7 +538,7 @@ export const AppAdminModel = (
         type: new ModelDataTypeColorRendererCC(),
         getLabel: () =>
           t(
-            "app-admin:fields.config.theme.components_care.ui_kit.action_button.background_color"
+            "app-admin:fields.config.theme.components_care.ui_kit.action_button.background_color",
           ),
         customData: null,
         visibility: {
@@ -567,7 +567,7 @@ export const AppAdminModel = (
         },
       },
     },
-    new BackendConnector("v1/app_admin")
+    new BackendConnector("v1/app_admin"),
   );
 
 export const useAppAdminModel = (options?: AppAdminModelOptions) => {

@@ -31,7 +31,7 @@ export const ContentModel = (t: TFunction, app: string) =>
           ["tos", "privacy", "tos-privacy", "app-info"].map((value) => ({
             value: value,
             getLabel: () => t("content:enums.name." + value),
-          }))
+          })),
         ),
         getLabel: () => t("content:fields.name"),
         customData: null,
@@ -98,7 +98,7 @@ export const ContentModel = (t: TFunction, app: string) =>
       },
     },
     new BackendConnector(`v1/apps/${app}/contents`),
-    { app }
+    { app },
   );
 
 export const useContentModel = (appOverride?: string) => {

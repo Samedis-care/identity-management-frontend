@@ -59,10 +59,10 @@ const EnrollTotpDialog = () => {
           null,
           {
             data: { otp_enable: "true" },
-          }
+          },
         )
       ).data.attributes,
-    []
+    [],
   );
   const downloadFile = useFrontendDownload();
   const { t } = useTranslation("profile");
@@ -76,7 +76,7 @@ const EnrollTotpDialog = () => {
         otp: stripInvalidTotpChars(evt.target.value),
       }));
     },
-    []
+    [],
   );
   const handleSubmit = useCallback(
     async (evt: React.MouseEvent | React.FormEvent) => {
@@ -91,7 +91,7 @@ const EnrollTotpDialog = () => {
             data: {
               otp_enable: state.otp,
             },
-          }
+          },
         );
         if (!result.data.attributes.otp_enabled) {
           throw new Error("TOTP activation failed");
@@ -117,7 +117,7 @@ const EnrollTotpDialog = () => {
           buttons: [
             {
               text: t(
-                "tabs.account.dialogs.enroll-totp.result.success.download"
+                "tabs.account.dialogs.enroll-totp.result.success.download",
               ),
               onClick: () => {
                 downloadFile(
@@ -130,14 +130,14 @@ const EnrollTotpDialog = () => {
                             .map((code) => "- " + code)
                             .join("\n"),
                           HOSTNAME: window.location.hostname,
-                        }
+                        },
                       ),
                     ],
                     t(
                       "tabs.account.dialogs.enroll-totp.result.success.download-filename",
-                      { HOSTNAME: window.location.hostname }
-                    )
-                  )
+                      { HOSTNAME: window.location.hostname },
+                    ),
+                  ),
                 );
               },
               dontClose: true,
@@ -154,14 +154,14 @@ const EnrollTotpDialog = () => {
             },
           ],
         });
-      } catch (e) {
+      } catch (_e) {
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.enroll-totp.result.failure.title"),
           message: t("tabs.account.dialogs.enroll-totp.result.failure.info"),
         });
       }
     },
-    [model, otpEnrollment, state.otp, popDialog, pushDialog, t, downloadFile]
+    [model, otpEnrollment, state.otp, popDialog, pushDialog, t, downloadFile],
   );
 
   return (
@@ -198,7 +198,7 @@ const EnrollTotpDialog = () => {
               <Grid item xs={12}>
                 <Typography>
                   {t(
-                    "tabs.account.dialogs.enroll-totp.explainer-middle-bottom"
+                    "tabs.account.dialogs.enroll-totp.explainer-middle-bottom",
                   )}
                 </Typography>
               </Grid>

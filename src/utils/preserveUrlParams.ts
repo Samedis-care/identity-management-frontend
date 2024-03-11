@@ -3,7 +3,7 @@ import History from "history";
 export const preserveUrlParams = (
   newPathname: string,
   currentLocation: History.Location,
-  addParams?: Record<string, string>
+  addParams?: Record<string, string>,
 ): History.Location => {
   const params = new URLSearchParams(currentLocation.search);
   if (addParams)

@@ -2,9 +2,7 @@ import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import ImCrud from "../../../components-care/ImCrud";
 import { useAppAdminModel } from "../../../components-care/models/AppAdminModel";
 import GeneralForm from "./GeneralForm";
-import { useParams } from "react-router-dom";
-
-export interface GeneralProps {}
+import { useParams } from "components-care";
 
 export interface AppEditFormContextType {
   setLocales: Dispatch<SetStateAction<string[]>>;
@@ -18,10 +16,10 @@ export const useAppEditFormContext = () => {
   return ctx;
 };
 
-const General = (props: GeneralProps) => {
+const General = () => {
   const [locales, setLocales] = useState<string[]>([]);
   const model = useAppAdminModel({ appLocales: locales });
-  const params = useParams<{ app: string }>();
+  const params = useParams<"app">();
 
   return (
     <AppEditFormContext.Provider
