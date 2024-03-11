@@ -43,31 +43,33 @@ const RoleForm = (
           {tab("permissions", <RoleFunctionalitySelector roleId={props.id} />)}
           {tab(
             "actors",
-            props.id ? (
-              <DataGridMassSelect
-                selectedModel={roleActorList}
-                serializeCreate={(id: string) => ({ actor_id: id })}
-                optionsModel={
-                  roleActorPicker as unknown as Model<
-                    ModelFieldName,
-                    PageVisibility,
-                    unknown
-                  >
-                }
-                pickerProps={{
-                  isSelected: (
-                    selected: boolean,
-                    record: Record<string, unknown>,
-                  ) =>
-                    !!(record.already_in_role_raw as boolean | undefined) ||
-                    selected,
-                  canSelectRow: (record: Record<string, unknown>) =>
-                    !record.already_in_role_raw,
-                }}
-              />
-            ) : (
-              t("save-actors")
-            ),
+            <>
+              {props.id ? (
+                <DataGridMassSelect
+                  selectedModel={roleActorList}
+                  serializeCreate={(id: string) => ({ actor_id: id })}
+                  optionsModel={
+                    roleActorPicker as unknown as Model<
+                      ModelFieldName,
+                      PageVisibility,
+                      unknown
+                    >
+                  }
+                  pickerProps={{
+                    isSelected: (
+                      selected: boolean,
+                      record: Record<string, unknown>,
+                    ) =>
+                      !!(record.already_in_role_raw as boolean | undefined) ||
+                      selected,
+                    canSelectRow: (record: Record<string, unknown>) =>
+                      !record.already_in_role_raw,
+                  }}
+                />
+              ) : (
+                t("save-actors")
+              )}
+            </>,
           )}
           {tab(
             "",

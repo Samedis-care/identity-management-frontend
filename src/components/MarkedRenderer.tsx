@@ -1,4 +1,4 @@
-import { marked } from "marked";
+import * as marked from "marked";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
   adaptV4Theme,
@@ -12,12 +12,7 @@ import { getTheme } from "../theme";
 import { Variant } from "@mui/material/styles/createTypography";
 
 const renderer: marked.RendererObject = {
-  heading(
-    _text: string,
-    level: 1 | 2 | 3 | 4 | 5 | 6,
-    raw: string,
-    _slugger: marked.Slugger,
-  ): string {
+  heading(_text: string, level: number, raw: string): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
@@ -26,7 +21,7 @@ const renderer: marked.RendererObject = {
       </StyledEngineProvider>,
     );
   },
-  link(href: string | null, title: string | null, text: string): string {
+  link(href: string, title: string | null | undefined, text: string): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
