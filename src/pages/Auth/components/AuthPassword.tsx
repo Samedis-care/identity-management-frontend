@@ -48,7 +48,7 @@ const AuthPassword = (_props: AuthPageProps) => {
     [],
   );
   const changeStaySignedIn = useCallback(
-    (_evt: React.ChangeEvent<Record<string, never>>, checked: boolean) => {
+    (_evt: React.ChangeEvent<unknown>, checked: boolean) => {
       setStaySignedIn(checked);
     },
     [],

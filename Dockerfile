@@ -1,17 +1,17 @@
 # build environment
-FROM node:20-alpine as build
+FROM node:21-alpine as build
 RUN apk add --no-cache brotli openssl bash grep git openssh-client
 
 WORKDIR /app
 # only copy package.json and package-lock.json to use docker cache for node_modules
 COPY package.json package-lock.json ./
-RUN npx npm@8.1.2 install
+RUN npx npm@10 ci --omit dev
 
 # copy source files and config files and build
 COPY public ./public/
 COPY src ./src/
-COPY tsconfig.json .env ./
-RUN npx npm@8.1.2 run build
+COPY tsconfig.json webpack.config.cjs .env ./
+RUN npx npm@10 run build
 
 # perform static compression (gzip and brotli)
 RUN find build -type f -exec gzip -9k {} + -exec brotli -Zk {} +

@@ -140,7 +140,7 @@ export interface AuthPageState {
   redirectURL?: string;
 }
 
-export type AuthPageProps = Record<string, never>;
+export type AuthPageProps = Record<string, unknown>; // {}
 
 export type AuthPageStateContextType = [
   AuthPageState,

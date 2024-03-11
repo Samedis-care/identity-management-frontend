@@ -19,7 +19,6 @@
     "@types/react": "^17.0.21",
     "@types/react-dom": "^17.0.9",
     "@types/react-recaptcha": "^2.3.4",
-    "@types/xlsx": "^0.0.36",
     "components-care": "github:Samedis-care/react-components#master_dist",
     "http-proxy-middleware": "^2.0.1",
     "i18next": "^20.6.1",
@@ -50,11 +49,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --server-type https",
     "build": "webpack-cli",
-    "build-new-node": "echo NodeJS 18/19 only! && NODE_OPTIONS=--openssl-legacy-provider npm run build",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint-fix": "eslint --fix 'src/**/*.{ts,tsx}'",
-    "update-cc": "npm rm components-care && npm i github:Samedis-care/react-components#master_dist --save --legacy-peer-deps",
-    "prepare": "husky"
+    "lint-fix": "eslint --fix 'src/**/*.{ts,tsx}'"
   },
   "sideEffects": [
     "./src/index.tsx",

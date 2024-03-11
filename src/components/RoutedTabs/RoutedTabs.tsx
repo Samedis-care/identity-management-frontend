@@ -12,7 +12,7 @@ const RoutedTabs = (props: RoutedTabsProps) => {
   if (url.endsWith("/")) url = url.substring(0, url.length - 1);
   const navigate = useNavigate();
   const handleChange = useCallback(
-    (_evt: React.ChangeEvent<Record<string, never>>, value: string) => {
+    (_evt: React.ChangeEvent<unknown>, value: string) => {
       navigate({
         pathname: url + "/" + value,
         search,
