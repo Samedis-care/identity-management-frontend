@@ -1,1 +1,1 @@
-node_modules/.bin/tsc --noEmit -i --tsBuildInfoFile .tscbuildcache
+node_modules/.bin/tsc --noEmit -i --tsBuildInfoFile node_modules/.cache/.tscbuildcache
