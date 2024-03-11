@@ -49,19 +49,14 @@
     "start": "webpack-dev-server --mode development --server-type https",
     "build": "webpack-cli",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint-fix": "eslint --fix 'src/**/*.{ts,tsx}'"
+    "lint-fix": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "prepare": "husky"
   },
   "sideEffects": [
     "./src/index.tsx",
     "./src/i18n.ts",
     "./src/components-care/patches/ImageTypeDeserializer.ts"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "./mktransifex.sh && lint-staged --allow-empty",
-      "pre-push": "tsc --noEmit -i --tsBuildInfoFile .tscbuildcache"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --max-warnings=0 --fix",
     "*.json": "prettier --write"

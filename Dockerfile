@@ -5,7 +5,7 @@ RUN apk add --no-cache brotli openssl bash grep git openssh-client
 WORKDIR /app
 # only copy package.json and package-lock.json to use docker cache for node_modules
 COPY package.json package-lock.json ./
-RUN npx npm@10 ci --omit dev
+RUN npx npm@10 ci
 
 # copy source files and config files and build
 COPY public ./public/
