@@ -1,43 +1,43 @@
 {
-  "fields": {
-    "id": "ID",
-    "parent_id": "Übergeordnete ID",
-    "image": "Bild",
-    "active": "Aktiv",
-    "actor_type": "Typ",
-    "short_name": "Kurzname",
-    "full_name": "Voller Name",
-    "name": "Name",
-    "title": "Titel",
-    "path": "Pfad",
-    "email": "E-Mail",
-    "modules_available": "Verfügbare Module:"
-  },
-  "enums": {
-    "actor_type": {
-      "mapping": "Zuordnung",
-      "container": "Container",
-      "apps": "Apps",
-      "app": "App",
-      "tenants": "Mandanten",
-      "tenant": "Mandant",
-      "group": "Gruppe",
-      "ou": "Organisationseinheit",
-      "position": "Position",
-      "user": "Benutzer",
-      "containertenants": "Mandanten",
-      "organization": "Organisation"
+    "fields": {
+        "id": "ID",
+        "parent_id": "Übergeordnete ID",
+        "image": "Bild",
+        "active": "Aktiv",
+        "actor_type": "Typ",
+        "short_name": "Kurz-Name",
+        "full_name": "Voller Name",
+        "name": "Name",
+        "title": "Titel",
+        "path": "Pfad",
+        "email": "E-Mail",
+        "modules_available": "Verfügbare Module:"
+    },
+    "enums": {
+        "actor_type": {
+            "mapping": "Zuordnung",
+            "container": "Container",
+            "apps": "Apps",
+            "app": "App",
+            "tenants": "Mandanten",
+            "tenant": "Mandant",
+            "group": "Gruppe",
+            "ou": "Organisationseinheit",
+            "position": "Position",
+            "user": "Benutzer",
+            "containertenants": "Mandanten",
+            "organization": "Organisation"
+        }
+    },
+    "tenants": {
+        "confirm-delete": {
+            "delete-multi": "mehrere Mandanten löschen",
+            "title": "Löschen",
+            "explainer": "Möchtest Du diesen Mandanten unwiderruflich löschen? Gib den Text „{{CONFIRM_STR}}“ in das Textfeld unten ein, um die Löschung des besagten Mandanten zu bestätigen.",
+            "explainer-multi": "Möchtest Du diesen Mandanten unwiderruflich löschen? Gib den Text „{{CONFIRM_STR}}“ in das Textfeld unten ein, um das Löschen der ausgewählten Mieter zu bestätigen.",
+            "text-box-label": "Bestätigung",
+            "close": "Schließen",
+            "confirm": "Bestätigen"
+        }
     }
-  },
-  "tenants": {
-    "confirm-delete": {
-      "delete-multi": "mehrere Mandanten löschen",
-      "title": "Löschen",
-      "explainer": "Möchtest Du diesen Mandanten unwiderruflich löschen? Gib den Text „{{CONFIRM_STR}}“ in das Textfeld unten ein, um die Löschung des besagten Mandanten zu bestätigen.",
-      "explainer-multi": "Möchtest Du diesen Mandanten unwiderruflich löschen? Gib den Text „{{CONFIRM_STR}}“ in das Textfeld unten ein, um das Löschen der ausgewählten Mieter zu bestätigen.",
-      "text-box-label": "Bestätigung",
-      "close": "Schließen",
-      "confirm": "Bestätigen"
-    }
-  }
 }
