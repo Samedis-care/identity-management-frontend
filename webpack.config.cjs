@@ -2,6 +2,7 @@ const { resolve } = require("path");
 const { existsSync, readFileSync } = require("fs");
 const { createHash } = require("crypto");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
 const dotEnv = () => {
@@ -78,6 +79,13 @@ module.exports = (env, argv) => {
               },
             }
           : undefined),
+      }),
+      new CopyPlugin({
+        patterns: [
+          {from: "public", to: ".", filter: (name) => {
+            return !/\/public\/index.html$/.test(name)
+          }}
+        ]
       }),
       new webpack.DefinePlugin({
         "process.env": {
