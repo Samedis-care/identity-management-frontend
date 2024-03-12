@@ -50,15 +50,11 @@ void i18n
           store: window.localStorage,
         },
         {
-          loadPath:
-            process.env.NODE_ENV !== "production"
-              ? (lngs: string[], ns: string[]): string => {
-                  // stop i18n debug mode from complaining about not found data (cuz missing symlínks in dev)
-                  const lng = lngs[0].split("-")[0];
-                  const namespace = ns[0];
-                  return `/locales/${lng}/${namespace}.json`;
-                }
-              : undefined,
+          loadPath: (lngs: string[], ns: string[]): string => {
+            const lng = lngs[0].split("-")[0];
+            const namespace = ns[0];
+            return `/locales/${lng}/${namespace}.json`;
+          },
         },
       ],
     },
