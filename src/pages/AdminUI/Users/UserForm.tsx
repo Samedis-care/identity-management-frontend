@@ -41,8 +41,8 @@ const UserForm = (
           <Grid item xs={6}>
             <FormField name={"locale"} />
           </Grid>
-          {props.id && (
-            <Grid item xs={12}>
+          <Grid item xs={12}>
+            {props.id ? (
               <Button
                 onClick={openResetPasswordDialog}
                 variant={"contained"}
@@ -50,8 +50,10 @@ const UserForm = (
               >
                 {t("form.dialogs.reset_pwd.open")}
               </Button>
-            </Grid>
-          )}
+            ) : (
+              <FormField name={"set_password"} />
+            )}
+          </Grid>
         </Grid>
       </FormPagePaper>
     </DefaultFormPage>

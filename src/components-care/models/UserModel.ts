@@ -72,9 +72,11 @@ export const UserModel = (
         customData: null,
         visibility: {
           overview: ModelVisibilityDisabled,
-          create: resetPwd
-            ? ModelVisibilityEditReadOnly
-            : ModelVisibilityDisabled,
+          create: !app
+            ? ModelVisibilityEditRequired
+            : resetPwd
+              ? ModelVisibilityEditReadOnly
+              : ModelVisibilityDisabled,
           edit: resetPwd
             ? ModelVisibilityEditReadOnly
             : ModelVisibilityDisabled,
