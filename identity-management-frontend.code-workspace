@@ -18,6 +18,8 @@
 		"prettier.configPath": ".prettierrc",
 		"eslint.workingDirectories": [
 			"."
-		]
+		],
+		"javascript.preferences.jsxAttributeCompletionStyle": "braces",
+		"typescript.preferences.jsxAttributeCompletionStyle": "braces"
 	}
 }
