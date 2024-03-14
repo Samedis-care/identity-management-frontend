@@ -20,6 +20,7 @@
 			"."
 		],
 		"javascript.preferences.jsxAttributeCompletionStyle": "braces",
-		"typescript.preferences.jsxAttributeCompletionStyle": "braces"
+		"typescript.preferences.jsxAttributeCompletionStyle": "braces",
+		"editor.foldingImportsByDefault": true
 	}
 }
