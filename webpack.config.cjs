@@ -43,9 +43,12 @@ module.exports = (env, argv) => {
             {
               loader: "ts-loader",
               options: {
-                transpileOnly: isDev
-              }
-            }
+                transpileOnly: isDev,
+                compilerOptions: {
+                  noEmit: false,
+                },
+              },
+            },
           ],
           exclude: /node_modules/,
         },
@@ -82,10 +85,14 @@ module.exports = (env, argv) => {
       }),
       new CopyPlugin({
         patterns: [
-          {from: "public", to: ".", filter: (name) => {
-            return !/\/public\/index.html$/.test(name)
-          }}
-        ]
+          {
+            from: "public",
+            to: ".",
+            filter: (name) => {
+              return !/\/public\/index.html$/.test(name);
+            },
+          },
+        ],
       }),
       new webpack.DefinePlugin({
         "process.env": {
@@ -126,7 +133,7 @@ module.exports = (env, argv) => {
       },
     },
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
     },
     output: {
       clean: true,
