@@ -23,12 +23,15 @@ module.exports = (env, argv) => {
   const mode = argv.mode ?? "production";
   const isDev = mode === "development";
   const isProd = mode === "production";
+  env = {
+    ...dotEnv(),
+    ...process.env,
+    NODE_ENV: isDev ? "development" : "production",
+  };
   const appEnv = Object.fromEntries(
-    Object.entries({
-      ...dotEnv(),
-      ...process.env,
-      NODE_ENV: isDev ? "development" : "production",
-    }).filter(([key]) => key === "NODE_ENV" || key.startsWith("REACT_APP_")),
+    Object.entries(env).filter(
+      ([key]) => key === "NODE_ENV" || key.startsWith("REACT_APP_"),
+    ),
   );
 
   return {
@@ -133,6 +136,14 @@ module.exports = (env, argv) => {
       },
     },
     devServer: {
+      proxy: env.BACKEND_PROXY
+        ? [
+            {
+              context: ["/api", "/api-docs"],
+              ...JSON.parse(env.BACKEND_PROXY),
+            },
+          ]
+        : undefined,
       historyApiFallback: true,
     },
     output: {
