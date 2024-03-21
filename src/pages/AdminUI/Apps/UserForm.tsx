@@ -8,13 +8,13 @@ import {
   useFormContextLite,
   useNavigate,
   useParams,
+  RoutedTabs,
+  RoutedTabPanelWrapper,
+  useRoutedTabPanel,
 } from "components-care";
 import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
-import useRoutedTabPanel from "../../../components/RoutedTabs/useRoutedTabPanel";
-import RoutedTabs from "../../../components/RoutedTabs/RoutedTabs";
-import RoutedTabPanelWrapper from "../../../components/RoutedTabs/RoutedTabPanelWrapper";
 import ImCrud from "../../../components-care/ImCrud";
 import { useFunctionalityModel } from "../../../components-care/models/FunctionalityModel";
 import { useRoleModel } from "../../../components-care/models/RoleModel";

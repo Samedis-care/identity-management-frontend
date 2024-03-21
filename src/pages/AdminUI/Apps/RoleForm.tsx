@@ -7,13 +7,13 @@ import {
   Model,
   ModelFieldName,
   PageVisibility,
+  RoutedTabs,
+  RoutedTabPanelWrapper,
+  useRoutedTabPanel,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { RoleModel } from "../../../components-care/models/RoleModel";
 import { useTranslation } from "react-i18next";
-import RoutedTabs from "../../../components/RoutedTabs/RoutedTabs";
-import RoutedTabPanelWrapper from "../../../components/RoutedTabs/RoutedTabPanelWrapper";
-import useRoutedTabPanel from "../../../components/RoutedTabs/useRoutedTabPanel";
 import RoleFunctionalitySelector from "./components/RoleFunctionalitySelector";
 import FormPagePaper from "../../../components/FormPagePaper";
 import DataGridMassSelect from "../../../components/DataGridMassSelect";

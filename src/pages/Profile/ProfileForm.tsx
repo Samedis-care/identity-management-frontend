@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Grid, Paper, Tab, Typography, useTheme } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import RoutedTabs from "../../components/RoutedTabs/RoutedTabs";
-import RoutedTabPanelWrapper from "../../components/RoutedTabs/RoutedTabPanelWrapper";
-import useRoutedTabPanel from "../../components/RoutedTabs/useRoutedTabPanel";
 import {
   ActionButton,
   EditOnlyFormPage,
@@ -14,6 +11,9 @@ import {
   useDialogContext,
   useModelDelete,
   useModelDeleteMultiple,
+  RoutedTabs,
+  RoutedTabPanelWrapper,
+  useRoutedTabPanel,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import {

@@ -1,13 +1,16 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { AppBar, Grid, Tab } from "@mui/material";
-import { DefaultFormPage, FormField } from "components-care";
+import {
+  DefaultFormPage,
+  FormField,
+  RoutedTabs,
+  RoutedTabPanelWrapper,
+  useRoutedTabPanel,
+} from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { FunctionalityModel } from "../../../components-care/models/FunctionalityModel";
 import { useTranslation } from "react-i18next";
-import RoutedTabs from "../../../components/RoutedTabs/RoutedTabs";
-import useRoutedTabPanel from "../../../components/RoutedTabs/useRoutedTabPanel";
-import RoutedTabPanelWrapper from "../../../components/RoutedTabs/RoutedTabPanelWrapper";
 import FunctionalityRoleSelector from "./components/FunctionalityRoleSelector";
 import FormPagePaper from "../../../components/FormPagePaper";
 
