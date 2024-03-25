@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Grid, Paper, Tab, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Paper, Tab, Typography, styled } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {
   ActionButton,
@@ -14,6 +14,7 @@ import {
   RoutedTabs,
   RoutedTabPanelWrapper,
   useRoutedTabPanel,
+  combineColors,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import {
@@ -59,6 +60,17 @@ const useStyles = makeStyles({
   },
 });
 
+const GrayActionButton = styled(ActionButton, {
+  name: "ProfileForm",
+  slot: "GrayActionButton",
+})(({ theme }) => ({
+  backgroundColor: theme.palette.action.disabled,
+  color: theme.palette.getContrastText(theme.palette.action.disabled),
+  "&:hover": {
+    backgroundColor: `rgba(${combineColors(theme.palette.action.disabled, theme.palette.action.hover).join()})`,
+  },
+}));
+
 const ProfileForm = (
   props: PageProps<
     keyof ReturnType<typeof ProfileModel>["fields"],
@@ -68,7 +80,6 @@ const ProfileForm = (
   const { t } = useTranslation("profile");
   const classes = useStyles();
   const tab = useRoutedTabPanel();
-  const theme = useTheme();
   const model = useProfileModel();
   const loginsModel = useProfileLoginsModel();
   const { mutateAsync: deleteSessions } = useModelDeleteMultiple(loginsModel);
@@ -278,18 +289,16 @@ const ProfileForm = (
                       <Grid item xs={12} md={3}>
                         <Grid container spacing={2}>
                           <Grid item xs={12}>
-                            <ActionButton
+                            <GrayActionButton
                               icon={<KeyboardArrowRight />}
-                              backgroundColor={theme.palette.action.disabled}
                               onClick={openResetPasswordDialog}
                             >
                               {t("tabs.account.buttons.reset-password")}
-                            </ActionButton>
+                            </GrayActionButton>
                           </Grid>
                           <Grid item xs={12}>
-                            <ActionButton
+                            <GrayActionButton
                               icon={<KeyboardArrowRight />}
-                              backgroundColor={theme.palette.action.disabled}
                               onClick={
                                 props.values!.otp_enabled
                                   ? unrollMFA
@@ -299,14 +308,14 @@ const ProfileForm = (
                               {props.values!.otp_enabled
                                 ? t("tabs.account.buttons.disable-mfa")
                                 : t("tabs.account.buttons.enable-mfa")}
-                            </ActionButton>
+                            </GrayActionButton>
                           </Grid>
                           <Grid item xs={12} />
                           <Grid item xs={12} />
                           <Grid item xs={12}>
                             <ActionButton
                               icon={<KeyboardArrowRight />}
-                              backgroundColor={theme.palette.error.main}
+                              color={"error"}
                               onClick={deleteUserAccount}
                             >
                               {t("tabs.account.buttons.delete-account")}

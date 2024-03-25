@@ -1,5 +1,5 @@
-import { ThemeOptions } from "@mui/material";
-import { ComponentsCareTheme } from "components-care";
+import { ThemeOptions, createTheme } from "@mui/material";
+import { ComponentsCareTheme, combineColors } from "components-care";
 
 const palette = {
   primary: {
@@ -49,9 +49,6 @@ const cc: ComponentsCareTheme = {
     },
   },
   uiKit: {
-    actionButton: {
-      backgroundColor: palette.secondary.main,
-    },
     formPage: {
       layout: {
         box: {
@@ -61,6 +58,8 @@ const cc: ComponentsCareTheme = {
     },
   },
 };
+
+const defaultTheme = createTheme();
 
 export const getTheme = (_preferDark: boolean): ThemeOptions => ({
   typography: {
@@ -87,6 +86,24 @@ export const getTheme = (_preferDark: boolean): ThemeOptions => ({
       defaultProps: {
         indicatorColor: "secondary",
         textColor: "inherit",
+      },
+    },
+    // CC Start
+    CcActionButton: {
+      styleOverrides: {
+        button: ({ ownerState }) => ({
+          backgroundColor: ownerState.color
+            ? undefined
+            : palette.secondary.main,
+          "&:hover": {
+            backgroundColor: ownerState.color
+              ? undefined
+              : combineColors(
+                  palette.secondary.main,
+                  defaultTheme.palette.action.hover,
+                ),
+          },
+        }),
       },
     },
   },
