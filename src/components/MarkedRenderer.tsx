@@ -1,7 +1,6 @@
 import * as marked from "marked";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
-  adaptV4Theme,
   createTheme,
   Link,
   StyledEngineProvider,
@@ -15,7 +14,7 @@ const renderer: marked.RendererObject = {
   heading(_text: string, level: number, raw: string): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
+        <ThemeProvider theme={createTheme(getTheme(false))}>
           <Typography variant={`h${level}` as Variant}>{raw}</Typography>
         </ThemeProvider>
       </StyledEngineProvider>,
@@ -24,7 +23,7 @@ const renderer: marked.RendererObject = {
   link(href: string, title: string | null | undefined, text: string): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
+        <ThemeProvider theme={createTheme(getTheme(false))}>
           <Link
             href={href ?? undefined}
             title={title ?? undefined}
@@ -38,7 +37,7 @@ const renderer: marked.RendererObject = {
   text(text: string): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={createTheme(adaptV4Theme(getTheme(false)))}>
+        <ThemeProvider theme={createTheme(getTheme(false))}>
           <Typography
             component={"span"}
             dangerouslySetInnerHTML={{ __html: text }}
