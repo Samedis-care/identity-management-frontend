@@ -48,15 +48,6 @@ const cc: ComponentsCareTheme = {
       padding: "15px 0 0 0",
     },
   },
-  uiKit: {
-    formPage: {
-      layout: {
-        box: {
-          padding: 0,
-        },
-      },
-    },
-  },
 };
 
 const defaultTheme = createTheme();
@@ -104,6 +95,13 @@ export const getTheme = (_preferDark: boolean): ThemeOptions => ({
                 ),
           },
         }),
+      },
+    },
+    CcFormPageLayout: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+        },
       },
     },
   },

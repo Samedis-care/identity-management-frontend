@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const useGroupBoxStyles = makeStyles((theme) => ({
-  fieldSetRoot: {
+  root: {
     borderColor: theme.palette.divider,
   },
 }));
