@@ -145,6 +145,16 @@ module.exports = (env, argv) => {
           ]
         : undefined,
       historyApiFallback: true,
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      client: {
+        overlay: {
+          errors: true,
+          warnings: true,
+          runtimeErrors: false,
+        },
+      },
     },
     output: {
       clean: true,
