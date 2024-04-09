@@ -110,6 +110,7 @@ module.exports = (env, argv) => {
     ],
     resolve: {
       extensions: [".tsx", ".ts", ".js", ".mjs"],
+      symlinks: false,
       fallback: {
         crypto: false,
       },
