@@ -17,7 +17,7 @@ import {
   redirectToLogin,
 } from "../../../components/AuthProvider";
 import { useDialogContext } from "components-care/dist/framework/DialogContextProvider";
-import { LanguageSelectorDialog } from "components-care/dist";
+import { LocaleSelectorDialog } from "components-care/dist";
 
 export interface ProfileMenuProps {
   anchorEl: Element | null;
@@ -40,7 +40,7 @@ const ProfileMenu = (props: ProfileMenuProps) => {
   const [pushDialog] = useDialogContext();
 
   const handleOpenLanguageDialog = useCallback(() => {
-    pushDialog(<LanguageSelectorDialog />);
+    pushDialog(<LocaleSelectorDialog />);
     handleClose();
   }, [pushDialog, handleClose]);
 
