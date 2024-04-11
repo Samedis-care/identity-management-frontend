@@ -1,5 +1,12 @@
 import { ThemeOptions, createTheme } from "@mui/material";
 import { ComponentsCareTheme, combineColors } from "components-care";
+import { Theme } from "@mui/material/styles";
+// noinspection ES6UnusedImports
+import {} from "@mui/styles";
+
+declare module "@mui/styles" {
+  interface DefaultTheme extends Theme {}
+}
 
 const palette = {
   primary: {
@@ -14,41 +21,7 @@ const palette = {
   },
 };
 
-const cc: ComponentsCareTheme = {
-  dataGrid: {
-    border: "none",
-    header: {
-      borderWidth: "0 0 0 0",
-      padding: "0 0 15px 0",
-    },
-    content: {
-      row: {
-        cell: {
-          header: {
-            borderWidth: "0 0 1px 0",
-            label: {
-              fontSize: "0.75rem",
-              fontWeight: 500,
-            },
-            resizer: {
-              borderWidth: "0 1px 0 0",
-              style: {
-                top: "2px",
-                height: "calc(100% - 13px)",
-              },
-            },
-          },
-          data: {
-            borderWidth: "0 0 1px 0",
-          },
-        },
-      },
-    },
-    footer: {
-      padding: "15px 0 0 0",
-    },
-  },
-};
+const cc: ComponentsCareTheme = {};
 
 const defaultTheme = createTheme();
 
@@ -101,6 +74,32 @@ export const getTheme = (_preferDark: boolean): ThemeOptions => ({
       styleOverrides: {
         root: {
           padding: 0,
+        },
+      },
+    },
+    CcDataGrid: {
+      styleOverrides: {
+        root: {
+          border: "none",
+        },
+        header: {
+          borderWidth: "0 0 0 0",
+          padding: "0 0 15px 0",
+        },
+        columnHeaderContentWrapper: {
+          fontSize: "0.75rem",
+          fontWeight: 500,
+        },
+        columnHeaderResizer: {
+          borderWidth: "0 1px 0 0",
+          top: "2px",
+          height: "calc(100% - 13px)",
+        },
+        cell: {
+          borderWidth: "0 0 1px 0",
+        },
+        footer: {
+          padding: "15px 0 0 0",
         },
       },
     },
