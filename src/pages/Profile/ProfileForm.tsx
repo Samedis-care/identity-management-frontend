@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Grid, Paper, Tab, Typography, styled } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   ActionButton,
   EditOnlyFormPage,
@@ -38,7 +38,7 @@ import EnrollTotpDialog from "./components/EnrollTotpDialog";
 import UnrollTotpDialog from "./components/UnrollTotpDialog";
 import AccountManager from "../../utils/AccountManager";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     height: "100%",
     flexGrow: 1,
@@ -78,7 +78,7 @@ const ProfileForm = (
   >,
 ) => {
   const { t } = useTranslation("profile");
-  const classes = useStyles();
+  const { classes } = useStyles();
   const tab = useRoutedTabPanel();
   const model = useProfileModel();
   const loginsModel = useProfileLoginsModel();

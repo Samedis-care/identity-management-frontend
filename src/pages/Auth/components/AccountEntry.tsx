@@ -8,7 +8,7 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import * as colors from "@mui/material/colors";
 import AccountAvatar from "./AccountAvatar";
 import { MoreVert as MoreIcon } from "@mui/icons-material";
@@ -24,7 +24,7 @@ export interface AccountEntryProps {
   id: string;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles()((theme: Theme) => ({
   root: {
     borderBottom: "1px solid " + theme.palette.divider,
     cursor: "pointer",
@@ -77,7 +77,7 @@ const nameToAvatarStr = (name: string): string =>
 
 const AccountEntry = (props: AccountEntryProps) => {
   const { name, email, status, onClick, id, avatar, onForgotAccount } = props;
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { t } = useTranslation("auth");
 
   const handleClick = useCallback(

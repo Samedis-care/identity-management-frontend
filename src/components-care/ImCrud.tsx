@@ -10,7 +10,7 @@ import {
   useLocation,
 } from "components-care";
 import { useTheme } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { DataGridProps } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { FilterType } from "components-care/dist/standalone/DataGrid/Content/FilterEntry";
 import Forbidden from "../pages/Forbidden";
@@ -85,16 +85,13 @@ export const useDefaultGridProps = (): Pick<
   );
 };
 
-const useStyles = makeStyles(
-  {
-    form: {
-      minHeight: "100%",
-      display: "flex",
-      flexDirection: "column",
-    },
+const useStyles = makeStyles({ name: "ImCrud" })({
+  form: {
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
-  { name: "ImCrud" },
-);
+});
 
 const ImCrud = <
   KeyT extends ModelFieldName,
@@ -104,7 +101,7 @@ const ImCrud = <
   props: Omit<ImCrudProps<KeyT, VisibilityT, CustomT>, "customCloseHandler">,
 ) => {
   const defaultGridProps = useDefaultGridProps();
-  const classes = useStyles();
+  const { classes } = useStyles();
   const formPropsCached = useMemo<
     CrudProps<KeyT, VisibilityT, CustomT>["formProps"]
   >(

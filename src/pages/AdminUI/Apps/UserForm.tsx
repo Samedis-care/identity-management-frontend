@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { AppBar, Grid, Tab, Tooltip } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   DefaultFormPage,
   FormField,
@@ -24,7 +24,7 @@ import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { useTenantModel } from "../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../components/FormPagePaper";
 
-const useOpenStyles = makeStyles((theme) => ({
+const useOpenStyles = makeStyles()((theme) => ({
   root: {
     cursor: "pointer",
     "&:hover": {
@@ -36,7 +36,7 @@ const useOpenStyles = makeStyles((theme) => ({
 export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const classes = useOpenStyles();
+  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
 export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const classes = useOpenStyles();
+  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
   const { id: userId } = useFormContextLite();
@@ -75,7 +75,7 @@ export const OpenFunctionality = (
 ) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const classes = useOpenStyles();
+  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
 

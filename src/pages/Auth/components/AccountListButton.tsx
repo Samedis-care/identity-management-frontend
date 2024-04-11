@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Unstable_Grid2 as Grid } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import AccountAvatar from "./AccountAvatar";
 
 export interface AddNewAccountProps {
@@ -9,7 +9,7 @@ export interface AddNewAccountProps {
   onClick: React.MouseEventHandler;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     cursor: "pointer",
     "&:hover": {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountListButton = (props: AddNewAccountProps) => {
   const { icon, text, onClick } = props;
-  const classes = useStyles();
+  const { classes } = useStyles();
   return (
     <Grid xs={12} className={classes.root} onClick={onClick}>
       <Grid container spacing={2}>

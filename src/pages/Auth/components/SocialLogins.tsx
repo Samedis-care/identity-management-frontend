@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Grid, IconButton, Typography } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "components-care";
@@ -25,7 +25,7 @@ export const enableSocialLogins = (): boolean =>
   REACT_APP_OAUTH_MICROSOFT === "y" ||
   REACT_APP_OAUTH_APPLE === "y";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   socialLogin: {
     border: "solid 1px #3f51b5",
     padding: 4,
@@ -69,7 +69,7 @@ export const doOauthSignIn = (
 const SocialLogins = (props: SocialLoginsProps) => {
   const { app } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { t } = useTranslation("auth");
   const location = useLocation();
 

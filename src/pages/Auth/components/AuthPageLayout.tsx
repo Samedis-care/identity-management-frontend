@@ -13,12 +13,11 @@ import {
   Grid,
   Link,
   Paper,
-  Theme,
   ThemeOptions,
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   deepAssign,
   GroupBox,
@@ -26,9 +25,9 @@ import {
   Loader,
   showErrorDialog,
   useDialogContext,
-  useParams,
   useLocation,
   useNavigate,
+  useParams,
 } from "components-care";
 import { Account } from "../../../utils/AccountManager";
 import { useQuery } from "react-query";
@@ -42,11 +41,6 @@ import SocialLogins, { enableSocialLogins } from "./SocialLogins";
 import PolicyViewer from "../../../components/PolicyViewer";
 import LangSelector from "./LangSelector";
 
-declare module "@mui/styles/defaultTheme" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
 export interface AuthPageLayoutProps {
   children: NonNullable<React.ReactNode>;
 }
@@ -55,7 +49,7 @@ export interface AuthPageRouteParams {
   app?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     position: "absolute",
     backgroundColor: theme.palette.background.default,
@@ -92,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const useGroupBoxStyles = makeStyles((theme) => ({
+const useGroupBoxStyles = makeStyles()((theme) => ({
   root: {
     borderColor: theme.palette.divider,
   },
@@ -179,8 +173,8 @@ const CurrentProviderConfig: ProviderConfig = {
 };
 
 const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
-  const classes = useStyles();
-  const groupBoxClasses = useGroupBoxStyles();
+  const { classes } = useStyles();
+  const { classes: groupBoxClasses } = useGroupBoxStyles();
   const appInfo = useAuthPageAppInfo();
   const { app } = useParams();
   const { t, i18n } = useTranslation("auth");

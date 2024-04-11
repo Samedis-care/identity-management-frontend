@@ -21,7 +21,7 @@ import {
   Tab,
   Tabs,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
 import {
@@ -32,7 +32,7 @@ import FormPagePaper from "../../../components/FormPagePaper";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     height: "100%",
   },
@@ -54,7 +54,7 @@ export const useOrgUnitTree = (
     >
   >,
 ) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { t } = useTranslation("ous");
   const { app } = useParams();
   const { pathname } = useLocation();

@@ -1,8 +1,8 @@
 import React from "react";
 import ProfilePage from "./ProfilePage";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     height: "100%",
     width: "100%",
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 });
 
 const ProfilePageStandalone = () => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   return (
     <div className={classes.root}>
       <ProfilePage />

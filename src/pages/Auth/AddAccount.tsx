@@ -16,9 +16,9 @@ import {
   useLocation,
 } from "components-care";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   button: {
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddAccount = (_props: AuthPageProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();

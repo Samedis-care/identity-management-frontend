@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { useTranslation } from "react-i18next";
 import { useTenantModel } from "../../../../../components-care/models/TenantModel";
 
@@ -20,7 +20,7 @@ export interface TenantDeleteConfirmDialogProps {
   tenantModel: ReturnType<typeof useTenantModel>;
   onClose: (result: boolean) => void;
 }
-const useTenantDeleteConfirmDialogStyles = makeStyles((theme) => ({
+const useTenantDeleteConfirmDialogStyles = makeStyles()((theme) => ({
   confirmBtn: {
     color: theme.palette.error.main,
   },
@@ -29,7 +29,7 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
   const { id, multiDelete, onClose, tenantModel } = props;
   const { t } = useTranslation("actors");
   const [, popDialog] = useDialogContext();
-  const classes = useTenantDeleteConfirmDialogStyles();
+  const { classes } = useTenantDeleteConfirmDialogStyles();
   const [confirmStr, setConfirmStr] = useState("");
   const { isLoading, data, error } = useModelGet(tenantModel, id);
   const [tenant] = data ?? [];

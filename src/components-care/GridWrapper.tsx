@@ -1,16 +1,16 @@
 import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { GridWrapperProps } from "components-care/dist/backend-components/CRUD";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     height: "100%",
   },
 });
 
 const GridWrapper = (props: GridWrapperProps) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));
   return (

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ProfileMenu from "./ProfileMenu";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   ArrowDropDown as ArrowDropDownIcon,
   ArrowDropUp as ArrowDropUpIcon,
@@ -10,7 +10,7 @@ import {
 import { Hidden, IconButton } from "@mui/material";
 import { useAuthProviderContext } from "../../../components/AuthProvider";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     whiteSpace: "nowrap",
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountActions = () => {
   const { t } = useTranslation("portal");
-  const classes = useStyles();
+  const { classes } = useStyles();
   const authInfo = useAuthProviderContext();
   const [profileMenuAnchor, setProfileMenuAnchor] = useState<Element | null>(
     null,

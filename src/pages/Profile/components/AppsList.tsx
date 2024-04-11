@@ -15,7 +15,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   FullFormDialog,
   Loader,
@@ -39,7 +39,7 @@ export interface AppsListProps {
   confirmEmail: string;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     padding: theme.spacing(2),
     height: "100%",
@@ -74,7 +74,7 @@ interface AppType {
 
 const AppsList = (props: AppsListProps) => {
   const { confirmEmail } = props;
-  const classes = useStyles();
+  const { classes } = useStyles();
   const [pushDialog, popDialog] = useDialogContext();
   const { t } = useTranslation("profile");
   const { data, isLoading, error } = useQuery(

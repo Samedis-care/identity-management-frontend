@@ -1,12 +1,5 @@
-import { ThemeOptions, createTheme } from "@mui/material";
-import { ComponentsCareTheme, combineColors } from "components-care";
-import { Theme } from "@mui/material/styles";
-// noinspection ES6UnusedImports
-import {} from "@mui/styles";
-
-declare module "@mui/styles" {
-  interface DefaultTheme extends Theme {}
-}
+import { createTheme, ThemeOptions } from "@mui/material";
+import { combineColors, ComponentsCareTheme } from "components-care";
 
 const palette = {
   primary: {

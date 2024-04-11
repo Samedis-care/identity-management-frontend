@@ -21,7 +21,7 @@ import {
   Toolbar,
   Tooltip,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { marked } from "marked";
 import { useTranslation } from "react-i18next";
 
@@ -34,7 +34,7 @@ export interface DocumentViewerProps {
   dialogMode?: boolean;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     paddingTop: 8,
   },
@@ -60,7 +60,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     dialogMode,
   } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0.0);

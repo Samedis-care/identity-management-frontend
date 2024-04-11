@@ -8,7 +8,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import {
   copyText,
   Loader,
@@ -28,7 +28,7 @@ export interface EnrollTotpDialogState {
   otp: string;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   qrContainer: {
     "& > svg": {
       width: "100%",
@@ -50,7 +50,7 @@ export type OtpResponse = DataResponse<{
 const EnrollTotpDialog = () => {
   const model = useProfileModel();
   const [pushDialog, popDialog] = useDialogContext();
-  const classes = useStyles();
+  const { classes } = useStyles();
   const otpEnrollment = useAsyncMemo(
     async () =>
       (

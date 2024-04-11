@@ -8,12 +8,12 @@ import {
 } from "components-care";
 import { BackendDataGridProps } from "components-care/dist/backend-components/DataGrid";
 import { Box, Button, Tooltip } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "tss-react/mui";
 import { KeyboardArrowRight as OpenIcon } from "@mui/icons-material";
 import { IDataGridContentSelectRowViewProps } from "components-care/dist/standalone/DataGrid/Content/SelectRowView";
 import { useTranslation } from "react-i18next";
 
-const useOpenStyles = makeStyles((theme) => ({
+const useOpenStyles = makeStyles()((theme) => ({
   root: {
     cursor: "pointer",
     "&:hover": {
@@ -22,7 +22,7 @@ const useOpenStyles = makeStyles((theme) => ({
   },
 }));
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     height: "80vh",
   },
@@ -63,8 +63,8 @@ const DataGridPicker = <
 ) => {
   const { onSelect, onClose, multiple, ...gridProps } = props;
   const { t } = useTranslation("common");
-  const openStyles = useOpenStyles();
-  const classes = useStyles();
+  const { classes: openStyles } = useOpenStyles();
+  const { classes } = useStyles();
 
   const [selected, setSelected] = useState<string[]>([]);
   const handleSelectionChange = useCallback((_: boolean, ids: string[]) => {
