@@ -60,9 +60,12 @@ export const useOrgUnitTree = (
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [tab, setTab] = useState<"edit" | "children">("children");
-  const handleTabChange = useCallback((_evt, newValue: "edit" | "children") => {
-    setTab(newValue);
-  }, []);
+  const handleTabChange = useCallback(
+    (_evt: React.SyntheticEvent, newValue: "edit" | "children") => {
+      setTab(newValue);
+    },
+    [],
+  );
   const [pathPrefix, path] = useMemo(() => {
     const pathPrefix = pathname.substr(0, pathname.indexOf("/ous") + 4);
     const path = pathname

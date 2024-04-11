@@ -194,7 +194,8 @@ const ProfileForm = (
               </Grid>
               <Grid item xs={12}>
                 <Typography variant={"h1"} align={"center"}>
-                  {props.values!.first_name} {props.values!.last_name}
+                  {props.values!.first_name as string}{" "}
+                  {props.values!.last_name as string}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
