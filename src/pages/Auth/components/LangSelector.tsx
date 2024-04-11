@@ -5,10 +5,8 @@ import {
   Menu,
   MenuItem,
   PopoverOrigin,
-  Theme,
+  styled,
 } from "@mui/material";
-import createStyles from "@mui/styles/createStyles";
-import withStyles from "@mui/styles/withStyles";
 import { Translate } from "@mui/icons-material";
 import supportedLanguages from "../../../assets/data/supported-languages.json";
 import localeData from "components-care/dist/assets/data/locale-relevance.json";
@@ -18,13 +16,11 @@ import { useCCLanguagesTranslations } from "components-care/dist/utils/useCCTran
 export interface LangSelectorProps {
   className?: string;
 }
-
-const menuWithBorderStyles = createStyles((theme: Theme) => ({
-  paper: {
+const MenuWithBorder = styled(Menu)(({ theme }) => ({
+  "& .MuiMenu-paper": {
     border: `1px solid ${theme.palette.divider}`,
   },
 }));
-const MenuWithBorder = withStyles(menuWithBorderStyles)(Menu);
 
 const menuAnchorOrigin: PopoverOrigin = {
   vertical: "bottom",
