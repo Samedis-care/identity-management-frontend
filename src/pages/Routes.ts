@@ -7,6 +7,10 @@ const AuthCreateAccount = React.lazy(() => import("./Auth/CreateAccount"));
 const AuthForgotPassword = React.lazy(() => import("./Auth/ForgotPassword"));
 const AuthResetPassword = React.lazy(() => import("./Auth/ResetPassword"));
 const AuthConfirmAccount = React.lazy(() => import("./Auth/ConfirmAccount"));
+const AuthConfirmRecoveryEmail = React.lazy(
+  () => import("./Auth/ConfirmRecoveryEmail"),
+);
+const AuthRecoverAccount = React.lazy(() => import("./Auth/RecoverAccount"));
 
 const DocumentViewerPage = React.lazy(
   () => import("./Standalone/DocumentViewerPage"),
@@ -45,6 +49,14 @@ export const AuthRoutes: BasicRouteDefinition[] = [
   {
     path: "reset-password",
     component: AuthResetPassword,
+  },
+  {
+    path: "confirm-recovery-email",
+    component: AuthConfirmRecoveryEmail,
+  },
+  {
+    path: "recover-account",
+    component: AuthRecoverAccount,
   },
   {
     path: "*",

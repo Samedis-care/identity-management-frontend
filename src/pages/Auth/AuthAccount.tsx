@@ -37,14 +37,14 @@ const AuthAccount = (props: AuthPageProps) => {
 
     setState((prev) => ({
       ...prev,
-      currentFactor: prev.remainingFactors[0],
-      remainingFactors: prev.remainingFactors.slice(1),
+      currentFactor: state.remainingFactors[0],
+      remainingFactors: state.remainingFactors.slice(1),
     }));
   }, [
     setState,
     state.currentFactor,
     state.redirectURL,
-    state.remainingFactors.length,
+    state.remainingFactors,
   ]);
 
   // custom oauth

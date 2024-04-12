@@ -90,6 +90,12 @@ const UserForm = (
                 <FormField name={"email"} />
               </Grid>
               <Grid item xs={6}>
+                <FormField name={"recovery_email"} />
+              </Grid>
+              <Grid item xs={6}>
+                <FormField name={"unconfirmed_recovery_email"} />
+              </Grid>
+              <Grid item xs={6}>
                 <FormField name={"first_name"} />
               </Grid>
               <Grid item xs={6}>

@@ -10,7 +10,10 @@ import {
   ModelVisibilityEditReadOnly,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
+  ModelVisibilityGridViewHidden,
   useParams,
+  validateOptional,
+  validateEmail,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -48,6 +51,31 @@ export const UserModel = (
             ? ModelVisibilityEditReadOnly
             : ModelVisibilityEditRequired,
           edit: app ? ModelVisibilityEditReadOnly : ModelVisibilityEditRequired,
+        },
+        filterable: true,
+        sortable: true,
+      },
+      recovery_email: {
+        type: new ModelDataTypeStringRendererMUI(),
+        getLabel: () => t("users:fields.recovery_email"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityGridViewHidden,
+          create: ModelVisibilityEditReadOnly,
+          edit: ModelVisibilityEditReadOnly,
+        },
+        filterable: true,
+        sortable: true,
+        validate: validateOptional(validateEmail),
+      },
+      unconfirmed_recovery_email: {
+        type: new ModelDataTypeStringRendererMUI(),
+        getLabel: () => t("users:fields.unconfirmed_recovery_email"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityGridViewHidden,
+          create: ModelVisibilityEditReadOnly,
+          edit: ModelVisibilityEditReadOnly,
         },
         filterable: true,
         sortable: true,

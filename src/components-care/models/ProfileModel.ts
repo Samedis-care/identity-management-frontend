@@ -3,8 +3,13 @@ import {
   ModelDataTypeBooleanCheckboxRendererMUI,
   ModelDataTypeImageRenderer,
   ModelDataTypeStringRendererMUI,
+  ModelVisibilityEdit,
+  ModelVisibilityEditReadOnly,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
+  ModelVisibilityGridViewHidden,
+  validateEmail,
+  validateOptional,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -29,6 +34,31 @@ export const ProfileModel = (t: TFunction) =>
           overview: ModelVisibilityGridView,
           create: ModelVisibilityEditRequired,
           edit: ModelVisibilityEditRequired,
+        },
+        filterable: true,
+        sortable: true,
+      },
+      recovery_email: {
+        type: new ModelDataTypeStringRendererMUI(),
+        getLabel: () => t("profile:fields.recovery_email"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityGridViewHidden,
+          create: ModelVisibilityEditReadOnly,
+          edit: ModelVisibilityEdit,
+        },
+        filterable: true,
+        sortable: true,
+        validate: validateOptional(validateEmail),
+      },
+      unconfirmed_recovery_email: {
+        type: new ModelDataTypeStringRendererMUI(),
+        getLabel: () => t("profile:fields.unconfirmed_recovery_email"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityGridViewHidden,
+          create: ModelVisibilityEditReadOnly,
+          edit: ModelVisibilityEditReadOnly,
         },
         filterable: true,
         sortable: true,

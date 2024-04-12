@@ -15,6 +15,8 @@ import {
   RoutedTabPanelWrapper,
   useRoutedTabPanel,
   combineColors,
+  ModelVisibilityEditReadOnly,
+  ModelVisibilityDisabled,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import {
@@ -37,6 +39,7 @@ import {
 import EnrollTotpDialog from "./components/EnrollTotpDialog";
 import UnrollTotpDialog from "./components/UnrollTotpDialog";
 import AccountManager from "../../utils/AccountManager";
+import SetupRecoveryEmailDialog from "./components/SetupRecoveryEmailDialog";
 
 const useStyles = makeStyles()({
   root: {
@@ -102,6 +105,11 @@ const ProfileForm = (
 
   const unrollMFA = useCallback(
     () => pushDialog(<UnrollTotpDialog />),
+    [pushDialog],
+  );
+
+  const setupRecoveryEmail = useCallback(
+    () => pushDialog(<SetupRecoveryEmailDialog />),
     [pushDialog],
   );
 
@@ -282,6 +290,27 @@ const ProfileForm = (
                           <Grid item xs={12}>
                             <FormField name={"email"} />
                           </Grid>
+                          {(props.values!.recovery_email as string | null) && (
+                            <Grid item xs={12}>
+                              <FormField
+                                name={"recovery_email"}
+                                overrides={{
+                                  visibility: {
+                                    overview: ModelVisibilityDisabled,
+                                    edit: ModelVisibilityEditReadOnly,
+                                    create: ModelVisibilityEditReadOnly,
+                                  },
+                                }}
+                              />
+                            </Grid>
+                          )}
+                          {(props.values!.unconfirmed_recovery_email as
+                            | string
+                            | null) && (
+                            <Grid item xs={12}>
+                              <FormField name={"unconfirmed_recovery_email"} />
+                            </Grid>
+                          )}
                           <Grid item xs={12}>
                             <FormField name={"mobile"} />
                           </Grid>
@@ -309,6 +338,20 @@ const ProfileForm = (
                               {props.values!.otp_enabled
                                 ? t("tabs.account.buttons.disable-mfa")
                                 : t("tabs.account.buttons.enable-mfa")}
+                            </GrayActionButton>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <GrayActionButton
+                              icon={<KeyboardArrowRight />}
+                              onClick={setupRecoveryEmail}
+                            >
+                              {props.values!.recovery_email
+                                ? t(
+                                    "tabs.account.buttons.update-recovery-email",
+                                  )
+                                : t(
+                                    "tabs.account.buttons.setup-recovery-email",
+                                  )}
                             </GrayActionButton>
                           </Grid>
                           <Grid item xs={12} />

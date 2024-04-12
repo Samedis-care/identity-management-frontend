@@ -146,6 +146,28 @@ const AuthPassword = (_props: AuthPageProps) => {
     ],
   );
 
+  const recoverAccount = useCallback(async () => {
+    try {
+      const resp = await BackendHttpClient.post<{
+        meta: { msg: { message: string } };
+      }>(
+        `/api/v1/${app}/recovery`,
+        null,
+        { email: state.activeAccount!.email },
+        AuthMode.Off,
+      );
+      await showInfoDialog(pushDialog, {
+        title: t("auth.password.enter.recover-dialog.title"),
+        message: resp.meta.msg.message,
+      });
+    } catch (e) {
+      await showInfoDialog(pushDialog, {
+        title: t("auth.error"),
+        message: (e as Error).message,
+      });
+    }
+  }, [app, pushDialog, state.activeAccount, t]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -182,15 +204,24 @@ const AuthPassword = (_props: AuthPageProps) => {
           variant={"standard"}
         />
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant={"caption"}>
-          <MuiLink
-            component={Link}
-            to={preserveUrlParams(`/login/${app}/forgot-password`, location)}
-          >
-            {t("auth.password.enter.forgot")}
-          </MuiLink>
-        </Typography>
+      <Grid item xs={12} container justifyContent={"space-between"} spacing={2}>
+        <Grid item>
+          <Typography variant={"caption"}>
+            <MuiLink
+              component={Link}
+              to={preserveUrlParams(`/login/${app}/forgot-password`, location)}
+            >
+              {t("auth.password.enter.forgot")}
+            </MuiLink>
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant={"caption"}>
+            <MuiLink component={Link} to={"#"} onClick={recoverAccount}>
+              {t("auth.password.enter.recover")}
+            </MuiLink>
+          </Typography>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <FormControlLabel

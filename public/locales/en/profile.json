@@ -1,168 +1,195 @@
 {
-    "fields": {
-        "id": "ID",
-        "first_name": "First name",
-        "last_name": "Last name",
-        "email": "Email",
-        "mobile": "Mobile number",
-        "image": "Profile picture"
-    },
-    "tabs": {
-        "account": {
-            "title": "Account",
-            "buttons": {
-                "reset-password": "Reset password",
-                "enable-mfa": "Enable MFA",
-                "disable-mfa": "Disable MFA",
-                "delete-account": "Delete account"
-            },
-            "dialogs": {
-                "close-confirm": {
-                    "title": "Close account?",
-                    "message": "Are you sure? All data will be irreversibly lost",
-                    "yes": "Yes",
-                    "no": "No",
-                    "text-field-label": "Your email address",
-                    "text-field-placeholder": "Please enter your email address to confirm"
-                },
-                "close-error": {
-                    "title": "Failed closing account"
-                },
-                "reset-password": {
-                    "title": "Reset password",
-                    "fields": {
-                        "current-password": "Current password",
-                        "new-password": "New password",
-                        "new-password-repeat": "New password (repeat)"
-                    },
-                    "actions": {
-                        "reset": "Reset",
-                        "cancel": "Cancel"
-                    },
-                    "result": {
-                        "success": {
-                            "title": "Password updated",
-                            "message": "Your password has been changed"
-                        },
-                        "error-mismatch": {
-                            "title": "New password mismatches",
-                            "message": "The password does not match the repeated password"
-                        },
-                        "error-backend": {
-                            "title": "Password change error"
-                        },
-                        "error-password-empty": {
-                            "title": "New password is empty",
-                            "message": "Please enter a new password"
-                        }
-                    }
-                },
-                "enroll-totp": {
-                    "title": "Multi Factor Authentication (MFA) Enrollment",
-                    "explainer-top": "Scan below code with your MFA app",
-                    "explainer-middle-top": "or enter below key manually",
-                    "explainer-middle-bottom": "then enter a generated MFA code below",
-                    "explainer-bottom": "Finally click submit to enable MFA",
-                    "secret-key": "Secret key",
-                    "fields": {
-                        "otp": "Code (6 digit one time password)"
-                    },
-                    "actions": {
-                        "submit": "Submit",
-                        "cancel": "Cancel"
-                    },
-                    "result": {
-                        "success": {
-                            "title": "Multi Factor Authentication (MFA) enabled",
-                            "info": "MFA has been successfully enabled. You can find your backup codes below. Please store them at a safe place as you won't be able to recover your account if you lose them. With this codes you can recover your account (e.g. if your app is available anymore)",
-                            "download": "Download",
-                            "download-content": "Your {{HOSTNAME}} MFA backup codes:\n{{BACKUP_CODES}}\nPlease store them safely.\n",
-                            "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
-                            "copy": "Copy to clipboard",
-                            "close": "Close"
-                        },
-                        "failure": {
-                            "title": "MFA not enabled",
-                            "info": "MFA has not been enabled. Did you enter a correct code?"
-                        }
-                    }
-                },
-                "unroll-totp": {
-                    "title": "Disable Multi Factor Authentication (MFA)",
-                    "explainer-top": "Enter a currently valid MFA code",
-                    "explainer-bottom": "Click submit to disable MFA",
-                    "fields": {
-                        "otp": "Code (6 digit one time password)"
-                    },
-                    "actions": {
-                        "submit": "Submit",
-                        "cancel": "Cancel"
-                    },
-                    "result": {
-                        "success": {
-                            "title": "MFA disabled",
-                            "info": "MFA has been successfully disabled."
-                        },
-                        "failure": {
-                            "title": "MFA not disabled",
-                            "info": "MFA has not been disabled. Did you enter a correct code?"
-                        }
-                    }
-                }
-            }
+  "fields": {
+    "id": "ID",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "mobile": "Mobile number",
+    "image": "Profile picture",
+    "recovery_email": "Recovery email",
+    "unconfirmed_recovery_email": "Unconfirmed recovery email"
+  },
+  "tabs": {
+    "account": {
+      "title": "Account",
+      "buttons": {
+        "reset-password": "Reset password",
+        "enable-mfa": "Enable MFA",
+        "disable-mfa": "Disable MFA",
+        "delete-account": "Delete account",
+        "update-recovery-email": "Update recovery email",
+        "setup-recovery-email": "Setup recovery email"
+      },
+      "dialogs": {
+        "close-confirm": {
+          "title": "Close account?",
+          "message": "Are you sure? All data will be irreversibly lost",
+          "yes": "Yes",
+          "no": "No",
+          "text-field-label": "Your email address",
+          "text-field-placeholder": "Please enter your email address to confirm"
         },
-        "apps": {
-            "title": "Apps",
-            "buttons": {
-                "visit": "Visit app",
-                "review-policy": "Review policy",
-                "remove-app": "Remove app"
-            },
-            "dialogs": {
-                "select-document": {
-                    "title": "Select document to view",
-                    "option": {
-                        "tos": "Terms of Service",
-                        "privacy": "Privacy Policy",
-                        "tos-privacy": "Terms of Service & Privacy Policy"
-                    }
-                },
-                "remove-app-confirm": {
-                    "title": "Remove app?",
-                    "message": "Are you sure? All data will be irreversibly lost!",
-                    "yes": "Yes",
-                    "no": "No",
-                    "text-field-label": "Your email address",
-                    "text-field-placeholder": "Please enter your email address to confirm"
-                },
-                "remove-app-error": {
-                    "title": "Failed removing app"
-                }
-            }
+        "close-error": {
+          "title": "Failed closing account"
         },
-        "logins": {
-            "title": "Logins",
-            "buttons": {
-                "delete-all": "Delete all"
+        "reset-password": {
+          "title": "Reset password",
+          "fields": {
+            "current-password": "Current password",
+            "new-password": "New password",
+            "new-password-repeat": "New password (repeat)"
+          },
+          "actions": {
+            "reset": "Reset",
+            "cancel": "Cancel"
+          },
+          "result": {
+            "success": {
+              "title": "Password updated",
+              "message": "Your password has been changed"
             },
-            "fields": {
-                "id": "ID",
-                "location": "Location",
-                "device": "Device",
-                "current": "Current",
-                "app": "App",
-                "created_at": "Timestamp"
+            "error-mismatch": {
+              "title": "New password mismatches",
+              "message": "The password does not match the repeated password"
+            },
+            "error-backend": {
+              "title": "Password change error"
+            },
+            "error-password-empty": {
+              "title": "New password is empty",
+              "message": "Please enter a new password"
             }
+          }
         },
-        "activity": {
-            "title": "Activity",
-            "fields": {
-                "id": "ID",
-                "location": "Location",
-                "device": "Device",
-                "app": "App",
-                "created_at": "Timestamp"
+        "enroll-totp": {
+          "title": "Multi Factor Authentication (MFA) Enrollment",
+          "explainer-top": "Scan below code with your MFA app",
+          "explainer-middle-top": "or enter below key manually",
+          "explainer-middle-bottom": "then enter a generated MFA code below",
+          "explainer-bottom": "Finally click submit to enable MFA",
+          "secret-key": "Secret key",
+          "fields": {
+            "otp": "Code (6 digit one time password)"
+          },
+          "actions": {
+            "submit": "Submit",
+            "cancel": "Cancel"
+          },
+          "result": {
+            "success": {
+              "title": "Multi Factor Authentication (MFA) enabled",
+              "info": "MFA has been successfully enabled. You can find your backup codes below. Please store them at a safe place as you won't be able to recover your account if you lose them. With this codes you can recover your account (e.g. if your app is available anymore)",
+              "download": "Download",
+              "download-content": "Your {{HOSTNAME}} MFA backup codes:\n{{BACKUP_CODES}}\nPlease store them safely.\n",
+              "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
+              "copy": "Copy to clipboard",
+              "close": "Close"
+            },
+            "failure": {
+              "title": "MFA not enabled",
+              "info": "MFA has not been enabled. Did you enter a correct code?"
             }
+          }
+        },
+        "unroll-totp": {
+          "title": "Disable Multi Factor Authentication (MFA)",
+          "explainer-top": "Enter a currently valid MFA code",
+          "explainer-bottom": "Click submit to disable MFA",
+          "fields": {
+            "otp": "Code (6 digit one time password)"
+          },
+          "actions": {
+            "submit": "Submit",
+            "cancel": "Cancel"
+          },
+          "result": {
+            "success": {
+              "title": "MFA disabled",
+              "info": "MFA has been successfully disabled."
+            },
+            "failure": {
+              "title": "MFA not disabled",
+              "info": "MFA has not been disabled. Did you enter a correct code?"
+            }
+          }
+        },
+        "setup-recovery-email": {
+          "actions": {
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "fields": {
+            "recovery_email": "Recovery email"
+          },
+          "result": {
+            "error-backend": {
+              "title": "Failed saving recovery email"
+            },
+            "success": {
+              "message": "Saved your recovery email. Please check your email to validate the recovery email so it can be used.",
+              "title": "Saved recovery email"
+            },
+            "invalid-email": {
+              "title": "Email invalid",
+              "message": "The email you provided is invalid."
+            }
+          },
+          "title": "Setup recovery email"
         }
+      }
+    },
+    "apps": {
+      "title": "Apps",
+      "buttons": {
+        "visit": "Visit app",
+        "review-policy": "Review policy",
+        "remove-app": "Remove app"
+      },
+      "dialogs": {
+        "select-document": {
+          "title": "Select document to view",
+          "option": {
+            "tos": "Terms of Service",
+            "privacy": "Privacy Policy",
+            "tos-privacy": "Terms of Service & Privacy Policy"
+          }
+        },
+        "remove-app-confirm": {
+          "title": "Remove app?",
+          "message": "Are you sure? All data will be irreversibly lost!",
+          "yes": "Yes",
+          "no": "No",
+          "text-field-label": "Your email address",
+          "text-field-placeholder": "Please enter your email address to confirm"
+        },
+        "remove-app-error": {
+          "title": "Failed removing app"
+        }
+      }
+    },
+    "logins": {
+      "title": "Logins",
+      "buttons": {
+        "delete-all": "Delete all"
+      },
+      "fields": {
+        "id": "ID",
+        "location": "Location",
+        "device": "Device",
+        "current": "Current",
+        "app": "App",
+        "created_at": "Timestamp"
+      }
+    },
+    "activity": {
+      "title": "Activity",
+      "fields": {
+        "id": "ID",
+        "location": "Location",
+        "device": "Device",
+        "app": "App",
+        "created_at": "Timestamp"
+      }
     }
+  }
 }

@@ -11,7 +11,9 @@
     "gender": "Gender",
     "active": "Active",
     "invalid_at": "Invalid at",
-    "updated_at": "Updated at"
+    "updated_at": "Updated at",
+    "recovery_email": "Recovery email",
+    "unconfirmed_recovery_email": "Unconfirmed recovery email"
   },
   "enums": {
     "gender": {
