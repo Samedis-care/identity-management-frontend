@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import RootPage from "./pages";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
@@ -25,6 +24,7 @@ import "./components-care/patches/ImageTypeDeserializer";
 import MaintenanceModeProvider from "./utils/MaintenanceMode";
 import ErrorBoundary from "./pages/components/ErrorBoundary";
 import BrowserCompatCheck from "./components/BrowserCompatCheck";
+import { createRoot } from "react-dom/client";
 
 // Sentry
 const sentryEnabled = process.env.REACT_APP_SENTRY_ENABLED === "true";
@@ -85,7 +85,9 @@ setDefaultConnectorAPI(
   },
 );
 
-ReactDOM.render(
+const domRoot = document.getElementById("root")!;
+const root = createRoot(domRoot);
+root.render(
   <React.StrictMode>
     <Framework defaultTheme={getTheme}>
       {IS_DEV && <ReactQueryDevtools position={"bottom-right"} />}
@@ -98,5 +100,4 @@ ReactDOM.render(
       </ErrorBoundary>
     </Framework>
   </React.StrictMode>,
-  document.getElementById("root"),
 );
