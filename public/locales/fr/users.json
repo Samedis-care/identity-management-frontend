@@ -11,7 +11,9 @@
     "gender": "Le genre",
     "active": "Actif",
     "invalid_at": "Invalide à",
-    "updated_at": "Mis à jour à"
+    "updated_at": "Mis à jour à",
+    "recovery_email": "E-mail de secours",
+    "unconfirmed_recovery_email": "E-mail de récupération non confirmé"
   },
   "enums": {
     "gender": {
