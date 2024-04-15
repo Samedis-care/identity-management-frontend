@@ -5,7 +5,9 @@
     "last_name": "Nom de famille",
     "email": "E-mail",
     "mobile": "Numéro de portable",
-    "image": "Image de profil"
+    "image": "Image de profil",
+    "unconfirmed_recovery_email": "E-mail de récupération non confirmé",
+    "recovery_email": "E-mail de secours"
   },
   "tabs": {
     "account": {
@@ -14,7 +16,9 @@
         "reset-password": "Réinitialiser le mot de passe",
         "enable-mfa": "Activer MFA",
         "disable-mfa": "Désactiver MFA",
-        "delete-account": "Supprimer le compte"
+        "delete-account": "Supprimer le compte",
+        "update-recovery-email": "Mettre à jour l'e-mail de récupération",
+        "setup-recovery-email": "E-mail de récupération de configuration"
       },
       "dialogs": {
         "close-confirm": {
@@ -108,6 +112,29 @@
               "info": "MFA n'a pas été désactivé. Avez-vous entré un code correct ?"
             }
           }
+        },
+        "setup-recovery-email": {
+          "actions": {
+            "save": "Sauvegarder",
+            "cancel": "Annuler"
+          },
+          "fields": {
+            "recovery_email": "E-mail de secours"
+          },
+          "result": {
+            "success": {
+              "title": "E-mail de récupération enregistré",
+              "message": "Vous avez enregistré votre e-mail de récupération. Veuillez vérifier votre courrier électronique pour valider l'e-mail de récupération afin qu'il puisse être utilisé."
+            },
+            "invalid-email": {
+              "title": "E-mail invalide",
+              "message": "L'e-mail que vous avez fourni n'est pas valide."
+            },
+            "error-backend": {
+              "title": "Échec de l'enregistrement de l'e-mail de récupération"
+            }
+          },
+          "title": "E-mail de récupération de configuration"
         }
       }
     },
