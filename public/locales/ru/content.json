@@ -1,7 +1,7 @@
 {
   "fields": {
-    "id": "Я БЫ",
-    "name": "Имя",
+    "id": "ID",
+    "name": "Название",
     "version": "Версия",
     "active": "Активный",
     "acceptance_required": "Требуется принятие",
