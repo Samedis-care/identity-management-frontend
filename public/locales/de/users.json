@@ -11,7 +11,9 @@
     "gender": "Geschlecht",
     "active": "Aktiv",
     "invalid_at": "Ungültig seit",
-    "updated_at": "Aktualisiert am"
+    "updated_at": "Aktualisiert am",
+    "recovery_email": "E-Mail zur Konto Wiederherstellung",
+    "unconfirmed_recovery_email": "Unbestätigte Wiederherstellungs-E-Mail"
   },
   "enums": {
     "gender": {
