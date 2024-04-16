@@ -1,7 +1,7 @@
 {
   "fields": {
-    "id": "Я БЫ",
-    "name": "Имя",
+    "id": "ID",
+    "name": "Название",
     "short_name": "Короткое имя",
     "full_name": "ФИО",
     "import_roles": "Роли",
