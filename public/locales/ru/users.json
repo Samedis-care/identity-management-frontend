@@ -1,8 +1,8 @@
 {
   "fields": {
-    "id": "Я БЫ",
+    "id": "ID",
     "actor_id": "Идентификатор актера",
-    "email": "Счет",
+    "email": "Учетная запись",
     "username": "Имя пользователя",
     "set_password": "Установка пароля",
     "first_name": "Имя",
@@ -11,7 +11,9 @@
     "gender": "Пол",
     "active": "Активный",
     "invalid_at": "Недействительно в",
-    "updated_at": "Обновлено в"
+    "updated_at": "Обновлено в",
+    "recovery_email": "Email для восстановления",
+    "unconfirmed_recovery_email": "Неподтвержденный email для восстановления"
   },
   "enums": {
     "gender": {
