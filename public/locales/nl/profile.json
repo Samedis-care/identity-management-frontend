@@ -5,7 +5,9 @@
     "last_name": "Achternaam",
     "email": "E-mail",
     "mobile": "Mobiel nummer",
-    "image": "Profielfoto"
+    "image": "Profielfoto",
+    "recovery_email": "Herstelmailadres",
+    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd"
   },
   "tabs": {
     "account": {
