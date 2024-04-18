@@ -11,7 +11,9 @@
     "gender": "Geslacht",
     "active": "Actief",
     "invalid_at": "Ongeldig om",
-    "updated_at": "Bijgewerkt op"
+    "updated_at": "Bijgewerkt op",
+    "recovery_email": "Herstelmailadres",
+    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd"
   },
   "enums": {
     "gender": {
