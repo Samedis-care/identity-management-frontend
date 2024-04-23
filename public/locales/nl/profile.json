@@ -16,7 +16,9 @@
         "reset-password": "Wachtwoord resetten",
         "enable-mfa": "MFA inschakelen",
         "disable-mfa": "MFA uitschakelen",
-        "delete-account": "Verwijder account"
+        "delete-account": "Verwijder account",
+        "update-recovery-email": "Herstel-e-mailadres updaten",
+        "setup-recovery-email": "Herstel-e-mailadres instellen"
       },
       "dialogs": {
         "close-confirm": {
@@ -110,6 +112,29 @@
               "info": "MFA is niet uitgeschakeld. Heb je een juiste code ingevoerd?"
             }
           }
+        },
+        "setup-recovery-email": {
+          "actions": {
+            "cancel": "Annuleren",
+            "save": "Opslaan"
+          },
+          "result": {
+            "success": {
+              "message": "Je herstel-e-mailadres is opgeslagen. Controleer uw e-mail om de herstel-e-mail te valideren, zodat deze kan worden gebruikt.",
+              "title": "Herstel-e-mailadres opgeslagen"
+            },
+            "invalid-email": {
+              "message": "Het door jou opgegeven e-mailadres is ongeldig.",
+              "title": "E-mail ongeldig"
+            },
+            "error-backend": {
+              "title": "Kan herstel-e-mailadres niet opslaan"
+            }
+          },
+          "fields": {
+            "recovery_email": "Herstelmailadres"
+          },
+          "title": "Herstel-e-mailadres instellen"
         }
       }
     },
