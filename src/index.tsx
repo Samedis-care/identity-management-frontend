@@ -1,9 +1,9 @@
 import React from "react";
 import RootPage from "./pages";
 import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
 import {
   ApiConnector,
+  componentsCareBrowserTracingIntegration,
   ComponentsCareI18n,
   Framework,
   ModelFieldName,
@@ -31,12 +31,7 @@ const sentryEnabled = process.env.REACT_APP_SENTRY_ENABLED === "true";
 Sentry.init({
   dsn: sentryEnabled ? process.env.REACT_APP_SENTRY_DSN : undefined,
   tunnel: "/api/error-reporting",
-  integrations: [
-    new Integrations.BrowserTracing({
-      //routingInstrumentation: reactRouterV6Instrumentation(), // TODO
-      tracingOrigins: [/^\//],
-    }),
-  ],
+  integrations: [componentsCareBrowserTracingIntegration()],
   // performance trace sample rate
   tracesSampleRate: parseFloat(
     process.env.REACT_APP_SENTRY_SAMPLE_RATE ?? "0.0",
