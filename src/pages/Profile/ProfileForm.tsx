@@ -40,6 +40,7 @@ import EnrollTotpDialog from "./components/EnrollTotpDialog";
 import UnrollTotpDialog from "./components/UnrollTotpDialog";
 import AccountManager from "../../utils/AccountManager";
 import SetupRecoveryEmailDialog from "./components/SetupRecoveryEmailDialog";
+import ChangeEmailDialog from "./components/ChangeEmailDialog";
 
 const useStyles = makeStyles()({
   root: {
@@ -110,6 +111,11 @@ const ProfileForm = (
 
   const setupRecoveryEmail = useCallback(
     () => pushDialog(<SetupRecoveryEmailDialog />),
+    [pushDialog],
+  );
+
+  const changeEmail = useCallback(
+    () => pushDialog(<ChangeEmailDialog />),
     [pushDialog],
   );
 
@@ -288,8 +294,24 @@ const ProfileForm = (
                             <FormField name={"first_name"} />
                           </Grid>
                           <Grid item xs={12}>
-                            <FormField name={"email"} />
+                            <FormField
+                              name={"email"}
+                              overrides={{
+                                visibility: {
+                                  overview: ModelVisibilityDisabled,
+                                  edit: ModelVisibilityEditReadOnly,
+                                  create: ModelVisibilityEditReadOnly,
+                                },
+                              }}
+                            />
                           </Grid>
+                          {(props.values!.unconfirmed_email as
+                            | string
+                            | null) && (
+                            <Grid item xs={12}>
+                              <FormField name={"unconfirmed_email"} />
+                            </Grid>
+                          )}
                           {(props.values!.recovery_email as string | null) && (
                             <Grid item xs={12}>
                               <FormField
@@ -338,6 +360,14 @@ const ProfileForm = (
                               {props.values!.otp_enabled
                                 ? t("tabs.account.buttons.disable-mfa")
                                 : t("tabs.account.buttons.enable-mfa")}
+                            </GrayActionButton>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <GrayActionButton
+                              icon={<KeyboardArrowRight />}
+                              onClick={changeEmail}
+                            >
+                              {t("tabs.account.buttons.update-email")}
                             </GrayActionButton>
                           </Grid>
                           <Grid item xs={12}>

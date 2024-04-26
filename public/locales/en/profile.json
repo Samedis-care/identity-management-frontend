@@ -7,7 +7,8 @@
     "mobile": "Mobile number",
     "image": "Profile picture",
     "recovery_email": "Recovery email",
-    "unconfirmed_recovery_email": "Unconfirmed recovery email"
+    "unconfirmed_recovery_email": "Unconfirmed recovery email",
+    "unconfirmed_email": "Unconfirmed email"
   },
   "tabs": {
     "account": {
@@ -18,7 +19,8 @@
         "disable-mfa": "Disable MFA",
         "delete-account": "Delete account",
         "update-recovery-email": "Update recovery email",
-        "setup-recovery-email": "Setup recovery email"
+        "setup-recovery-email": "Setup recovery email",
+        "update-email": "Change email"
       },
       "dialogs": {
         "close-confirm": {
@@ -135,6 +137,29 @@
             }
           },
           "title": "Setup recovery email"
+        },
+        "change-email": {
+          "actions": {
+            "cancel": "Cancel",
+            "save": "Save"
+          },
+          "fields": {
+            "email": "Email"
+          },
+          "result": {
+            "error-backend": {
+              "title": "Failed saving email"
+            },
+            "success": {
+              "message": "Please check your email to validate the new email so it can be used.",
+              "title": "Saved email"
+            },
+            "invalid-email": {
+              "title": "Email invalid",
+              "message": "The email you provided is invalid."
+            }
+          },
+          "title": "Change email"
         }
       }
     },

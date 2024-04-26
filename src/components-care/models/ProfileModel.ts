@@ -38,6 +38,18 @@ export const ProfileModel = (t: TFunction) =>
         filterable: true,
         sortable: true,
       },
+      unconfirmed_email: {
+        type: new ModelDataTypeStringRendererMUI(),
+        getLabel: () => t("profile:fields.unconfirmed_email"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityGridViewHidden,
+          create: ModelVisibilityEditReadOnly,
+          edit: ModelVisibilityEditReadOnly,
+        },
+        filterable: true,
+        sortable: true,
+      },
       recovery_email: {
         type: new ModelDataTypeStringRendererMUI(),
         getLabel: () => t("profile:fields.recovery_email"),
