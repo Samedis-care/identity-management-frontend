@@ -7,7 +7,8 @@
     "mobile": "Mobilnummer",
     "image": "Profilbild",
     "unconfirmed_recovery_email": "Unbestätigte Wiederherstellungs-E-Mail",
-    "recovery_email": "E-Mail zur Konto Wiederherstellung"
+    "recovery_email": "E-Mail zur Konto Wiederherstellung",
+    "unconfirmed_email": "Unbestätigte E-Mail"
   },
   "tabs": {
     "account": {
@@ -18,7 +19,8 @@
         "disable-mfa": "MFA deaktivieren",
         "delete-account": "Konto löschen",
         "update-recovery-email": "E-Mail zur Konto Wiederherstellung aktualisieren",
-        "setup-recovery-email": "Konto Wiederherstellungs-E-Mail einrichten"
+        "setup-recovery-email": "Konto Wiederherstellungs-E-Mail einrichten",
+        "update-email": "E-Mail Adresse ändern"
       },
       "dialogs": {
         "close-confirm": {
@@ -135,6 +137,29 @@
             }
           },
           "title": "Konto Wiederherstellungs-E-Mail einrichten"
+        },
+        "change-email": {
+          "result": {
+            "success": {
+              "message": "Bitte Deine E-Mails, um die neue E-Mail zu bestätigen, damit sie verwendet werden kann.",
+              "title": "Gespeicherte E-Mail"
+            },
+            "error-backend": {
+              "title": "E-Mail konnte nicht gespeichert werden"
+            },
+            "invalid-email": {
+              "title": "E-Mail ungültig",
+              "message": "Die angegebene E-Mail-Adresse ist ungültig."
+            }
+          },
+          "actions": {
+            "save": "Speichern",
+            "cancel": "Abbrechen"
+          },
+          "fields": {
+            "email": "E-Mail"
+          },
+          "title": "E-Mail Adresse ändern"
         }
       }
     },

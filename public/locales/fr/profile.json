@@ -7,7 +7,8 @@
     "mobile": "Numéro de portable",
     "image": "Image de profil",
     "unconfirmed_recovery_email": "E-mail de récupération non confirmé",
-    "recovery_email": "E-mail de secours"
+    "recovery_email": "E-mail de secours",
+    "unconfirmed_email": "E-mail non confirmé"
   },
   "tabs": {
     "account": {
@@ -18,7 +19,8 @@
         "disable-mfa": "Désactiver MFA",
         "delete-account": "Supprimer le compte",
         "update-recovery-email": "Mettre à jour l'e-mail de récupération",
-        "setup-recovery-email": "E-mail de récupération de configuration"
+        "setup-recovery-email": "E-mail de récupération de configuration",
+        "update-email": "Changer l'e-mail"
       },
       "dialogs": {
         "close-confirm": {
@@ -135,6 +137,29 @@
             }
           },
           "title": "E-mail de récupération de configuration"
+        },
+        "change-email": {
+          "actions": {
+            "save": "Sauvegarder",
+            "cancel": "Avorter"
+          },
+          "fields": {
+            "email": "E-mail"
+          },
+          "result": {
+            "error-backend": {
+              "title": "Échec de l'enregistrement de l'e-mail"
+            },
+            "success": {
+              "title": "E-mail enregistré",
+              "message": "Veuillez vérifier votre courrier électronique pour valider le nouvel e-mail afin qu'il puisse être utilisé."
+            },
+            "invalid-email": {
+              "title": "E-mail invalide",
+              "message": "L'e-mail que vous avez fourni n'est pas valide."
+            }
+          },
+          "title": "Changer l'e-mail"
         }
       }
     },

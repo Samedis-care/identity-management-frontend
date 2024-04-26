@@ -7,7 +7,8 @@
     "mobile": "Mobiel nummer",
     "image": "Profielfoto",
     "recovery_email": "Herstelmailadres",
-    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd"
+    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd",
+    "unconfirmed_email": "Onbevestigde e-mail"
   },
   "tabs": {
     "account": {
@@ -18,7 +19,8 @@
         "disable-mfa": "MFA uitschakelen",
         "delete-account": "Verwijder account",
         "update-recovery-email": "Herstel-e-mailadres updaten",
-        "setup-recovery-email": "Herstel-e-mailadres instellen"
+        "setup-recovery-email": "Herstel-e-mailadres instellen",
+        "update-email": "Wijzig e-mailadres"
       },
       "dialogs": {
         "close-confirm": {
@@ -135,6 +137,29 @@
             "recovery_email": "Herstelmailadres"
           },
           "title": "Herstel-e-mailadres instellen"
+        },
+        "change-email": {
+          "actions": {
+            "save": "Opslaan",
+            "cancel": "Annuleren"
+          },
+          "fields": {
+            "email": "Email"
+          },
+          "result": {
+            "error-backend": {
+              "title": "Kan e-mail niet opslaan"
+            },
+            "success": {
+              "title": "Opgeslagen e-mail",
+              "message": "Controleer uw e-mail om de nieuwe e-mail te valideren, zodat deze kan worden gebruikt."
+            },
+            "invalid-email": {
+              "title": "E-mail ongeldig",
+              "message": "Het door jou opgegeven e-mailadres is ongeldig."
+            }
+          },
+          "title": "Wijzig e-mailadres"
         }
       }
     },

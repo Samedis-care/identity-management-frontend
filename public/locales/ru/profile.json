@@ -3,11 +3,12 @@
     "id": "ID",
     "first_name": "Имя",
     "last_name": "Фамилия",
-    "email": "Адрес электронной почты",
+    "email": "Электронная почта",
     "mobile": "Номер мобильного телефона",
     "image": "Изображение профиля",
     "unconfirmed_recovery_email": "Неподтвержденный email для восстановления",
-    "recovery_email": "Email для восстановления"
+    "recovery_email": "Email для восстановления",
+    "unconfirmed_email": "Неподтвержденный адрес электронной почты"
   },
   "tabs": {
     "account": {
@@ -18,7 +19,8 @@
         "disable-mfa": "Отключить многофакторную идентификацию",
         "delete-account": "Удалить аккаунт",
         "update-recovery-email": "Обновить email для восстановления",
-        "setup-recovery-email": "Настройка email для восстановления"
+        "setup-recovery-email": "Настройка email для восстановления",
+        "update-email": "Изменить e-mail"
       },
       "dialogs": {
         "close-confirm": {
@@ -116,7 +118,7 @@
         "setup-recovery-email": {
           "actions": {
             "save": "Сохранить",
-            "cancel": "Отменить"
+            "cancel": "Отмена"
           },
           "result": {
             "error-backend": {
@@ -134,6 +136,29 @@
           "title": "Настройка email дял восстановления",
           "fields": {
             "recovery_email": "Email для восстановления"
+          }
+        },
+        "change-email": {
+          "actions": {
+            "save": "Сохранить",
+            "cancel": "Отмена"
+          },
+          "result": {
+            "error-backend": {
+              "title": "Не удалось сохранить электронную почту"
+            },
+            "success": {
+              "title": "Сохраненный адрес электронной почты",
+              "message": "Пожалуйста, проверьте свою электронную почту, чтобы подтвердить новый адрес электронной почты и его можно будет использовать."
+            },
+            "invalid-email": {
+              "title": "Email недействителен",
+              "message": "Указанный вами адрес электронной почты недействителен."
+            }
+          },
+          "title": "Изменить e-mail",
+          "fields": {
+            "email": "Электронная почта"
           }
         }
       }
