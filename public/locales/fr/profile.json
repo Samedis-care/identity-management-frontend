@@ -141,7 +141,7 @@
         "change-email": {
           "actions": {
             "save": "Sauvegarder",
-            "cancel": "Avorter"
+            "cancel": "Annuler"
           },
           "fields": {
             "email": "E-mail"
