@@ -360,7 +360,7 @@ const AuthProvider = (props: AuthProviderProps) => {
   useEffect(() => {
     if (!ctx) {
       // not authenticated
-      Sentry.configureScope((scope) => scope.setUser(null));
+      Sentry.setUser(null);
       setPerms([]);
     } else {
       Sentry.setUser({
