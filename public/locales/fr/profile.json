@@ -151,7 +151,7 @@
               "title": "Échec de l'enregistrement de l'e-mail"
             },
             "success": {
-              "title": "E-mail enregistré",
+              "title": "Mettre a jour l'adresse email",
               "message": "Veuillez vérifier votre courrier électronique pour valider le nouvel e-mail afin qu'il puisse être utilisé."
             },
             "invalid-email": {
