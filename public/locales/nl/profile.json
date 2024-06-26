@@ -151,7 +151,7 @@
               "title": "Kan e-mail niet opslaan"
             },
             "success": {
-              "title": "Opgeslagen e-mail",
+              "title": "Update emailadres",
               "message": "Controleer uw e-mail om de nieuwe e-mail te valideren, zodat deze kan worden gebruikt."
             },
             "invalid-email": {
