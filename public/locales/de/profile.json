@@ -141,8 +141,8 @@
         "change-email": {
           "result": {
             "success": {
-              "message": "Bitte Deine E-Mails, um die neue E-Mail zu bestätigen, damit sie verwendet werden kann.",
-              "title": "Gespeicherte E-Mail"
+              "message": "Bitte prüfe Deine E-Mail-Posteingang, um die neue E-Mail zu bestätigen, damit diese verwendet werden kann.",
+              "title": "E-Mail Adressen aktualisieren"
             },
             "error-backend": {
               "title": "E-Mail konnte nicht gespeichert werden"
