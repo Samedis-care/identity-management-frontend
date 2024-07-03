@@ -32,6 +32,7 @@ const ConfirmRecoveryEmail = (_props: AuthPageProps) => {
             msg: {
               message: string;
             };
+            redirect_url: string;
           };
         }>(
           `/api/v1/${app}/users/recovery_confirmation/${token}`,
@@ -42,6 +43,7 @@ const ConfirmRecoveryEmail = (_props: AuthPageProps) => {
           title: t("auth.confirm-recovery-email.success.title"),
           message: resp.meta.msg.message,
         });
+        window.location.href = resp.meta.redirect_url;
       } catch (e) {
         await showInfoDialog(pushDialog, {
           title: t("auth.confirm-recovery-email.error.title"),

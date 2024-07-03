@@ -8,6 +8,7 @@ import {
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
   ModelVisibilityGridViewHidden,
+  useLocation,
   validateEmail,
   validateOptional,
 } from "components-care";
@@ -15,8 +16,14 @@ import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
+import { useMemo } from "react";
 
-export const ProfileModel = (t: TFunction) =>
+export interface ProfileModelParams {
+  t: TFunction;
+  app: string;
+}
+
+export const ProfileModel = ({ t, app }: ProfileModelParams) =>
   new Model(
     "my-user",
     {
@@ -181,18 +188,18 @@ export const ProfileModel = (t: TFunction) =>
       },
        */
     },
-    new BackendConnector(
-      "v1/identity-management/user",
-      undefined,
-      undefined,
-      undefined,
-      {
-        singleton: true,
-      },
-    ),
+    new BackendConnector(`v1/${app}/user`, undefined, undefined, undefined, {
+      singleton: true,
+    }),
   );
 
 export const useProfileModel = () => {
   const { t } = useTranslation("profile");
-  return ProfileModel(t);
+  const { search } = useLocation();
+  const query = new URLSearchParams(search);
+  const app = query.get("app");
+  return useMemo(
+    () => ProfileModel({ app: app ?? "identity-management", t }),
+    [app, t],
+  );
 };
