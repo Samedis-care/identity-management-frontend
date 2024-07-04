@@ -141,7 +141,7 @@
         "change-email": {
           "result": {
             "success": {
-              "message": "Bitte prüfe Deine E-Mail-Posteingang, um die neue E-Mail zu bestätigen, damit diese verwendet werden kann.",
+              "message": "Bitte prüfe Deinen E-Mail-Posteingang, um die neue E-Mail zu bestätigen, damit diese verwendet werden kann.",
               "title": "E-Mail Adressen aktualisieren"
             },
             "error-backend": {
