@@ -130,7 +130,7 @@ const CreateAccount = (_props: AuthPageProps) => {
     async (evt: React.MouseEvent) => {
       evt.preventDefault();
 
-      if (state.email !== state.email_confirm) {
+      if (state.email.toLowerCase() !== state.email_confirm.toLowerCase()) {
         await showInfoDialog(pushDialog, {
           title: t("create.validations.email-mismatch.title"),
           message: t("create.validations.email-mismatch.message"),
