@@ -31,7 +31,9 @@ const getPolicyContent = (policy: Policy, lang: string) => {
   lang = lang.split("-")[0];
   const { content_translations } = policy.data.attributes;
   if (lang in content_translations) return content_translations[lang];
-  return content_translations["en"];
+  if ("en" in content_translations) return content_translations["en"];
+  console.warn("Policy not available in english", policy);
+  return Object.values(content_translations)[0] as string | undefined; // any language
 };
 
 const PolicyViewerContent = (props: PolicyViewerContentProps) => {
@@ -46,10 +48,11 @@ const PolicyViewerContent = (props: PolicyViewerContentProps) => {
     ),
   );
 
-  const content = useMemo(
-    () => (!data ? null : marked(getPolicyContent(data, i18n.language))),
-    [data, i18n.language],
-  );
+  const content = useMemo(() => {
+    if (!data) return null;
+    const policy = getPolicyContent(data, i18n.language);
+    return policy ? marked(policy) : null;
+  }, [data, i18n.language]);
 
   return (
     <>
