@@ -103,8 +103,9 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     const lang = i18n.language.split("-")[0];
     const content =
       contentData.content_translations[lang] ??
-      contentData.content_translations["en"];
-    return marked(content);
+      contentData.content_translations["en"] ??
+      Object.values(contentData.content_translations)[0];
+    return content ? marked(content) : null;
   }, [contentData, i18n.language]);
 
   const accept = useCallback(async () => {

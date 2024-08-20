@@ -16,11 +16,12 @@ const MaintenancePageEntry = (props: MaintenancePageEntryProps) => {
   const { i18n, t } = useTranslation("common");
   const { entry, type } = props;
 
-  const infoMarkdown = useMemo(
-    () =>
-      entry.reason_long ? marked(getLocalizedReason(entry.reason_long)) : null,
-    [entry.reason_long],
-  );
+  const infoMarkdown = useMemo(() => {
+    if (!entry.reason_long) return null;
+    const reason = getLocalizedReason(entry.reason_long);
+    if (!reason) return null;
+    return marked(reason);
+  }, [entry.reason_long]);
 
   return (
     <Grid item xs={12}>
