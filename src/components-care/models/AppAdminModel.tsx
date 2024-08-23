@@ -534,6 +534,16 @@ export const AppAdminModel = (
           edit: ModelVisibilityEdit,
         },
       },
+      "config.theme.background.advanced": {
+        type: new ModelDataTypeStringRendererCC(),
+        getLabel: () => t("app-admin:fields.config.theme.background.advanced"),
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityDisabled,
+          create: ModelVisibilityEdit,
+          edit: ModelVisibilityEdit,
+        },
+      },
       "config.theme.components_care.ui_kit.action_button.background_color": {
         type: new ModelDataTypeColorRendererCC(),
         getLabel: () =>

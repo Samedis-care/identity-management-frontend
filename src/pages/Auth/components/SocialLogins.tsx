@@ -29,7 +29,6 @@ const useStyles = makeStyles()((theme) => ({
   socialLogin: {
     border: "solid 1px #3f51b5",
     padding: 4,
-    margin: 8,
     color: theme.palette.primary.main,
     width: 40,
     height: 40,
@@ -115,15 +114,16 @@ const SocialLogins = (props: SocialLoginsProps) => {
           xs={12}
           container
           alignItems={"center"}
-          justifyContent={"space-between"}
+          justifyContent={"flex-start"}
+          spacing={2}
         >
           <Grid item xs={12}>
             <Typography variant={"h1"} component={"h2"}>
               {t("add.connect")}
             </Typography>
           </Grid>
-          <Grid item>
-            {REACT_APP_OAUTH_FACEBOOK === "y" && (
+          {REACT_APP_OAUTH_FACEBOOK === "y" && (
+            <Grid item>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userFacebookSignIn}
@@ -131,8 +131,10 @@ const SocialLogins = (props: SocialLoginsProps) => {
               >
                 <Facebook />
               </IconButton>
-            )}
-            {REACT_APP_OAUTH_GOOGLE === "y" && (
+            </Grid>
+          )}
+          {REACT_APP_OAUTH_GOOGLE === "y" && (
+            <Grid item>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userGoogleSignIn}
@@ -140,8 +142,10 @@ const SocialLogins = (props: SocialLoginsProps) => {
               >
                 <Google />
               </IconButton>
-            )}
-            {REACT_APP_OAUTH_MICROSOFT === "y" && (
+            </Grid>
+          )}
+          {REACT_APP_OAUTH_MICROSOFT === "y" && (
+            <Grid item>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userMicrosoftSignIn}
@@ -149,8 +153,10 @@ const SocialLogins = (props: SocialLoginsProps) => {
               >
                 <Microsoft />
               </IconButton>
-            )}
-            {REACT_APP_OAUTH_TWITTER === "y" && (
+            </Grid>
+          )}
+          {REACT_APP_OAUTH_TWITTER === "y" && (
+            <Grid item>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userTwitterSignIn}
@@ -158,8 +164,10 @@ const SocialLogins = (props: SocialLoginsProps) => {
               >
                 <Twitter />
               </IconButton>
-            )}
-            {REACT_APP_OAUTH_APPLE === "y" && (
+            </Grid>
+          )}
+          {REACT_APP_OAUTH_APPLE === "y" && (
+            <Grid item>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userAppleSignIn}
@@ -167,8 +175,8 @@ const SocialLogins = (props: SocialLoginsProps) => {
               >
                 <Apple />
               </IconButton>
-            )}
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       )}
     </>

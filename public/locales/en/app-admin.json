@@ -48,7 +48,8 @@
           "dark": "Secondary-Dark-Color"
         },
         "background": {
-          "default": "Background color"
+          "default": "Background color",
+          "advanced": "Background (CSS-Property)"
         },
         "components_care": {
           "ui_kit": {

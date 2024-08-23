@@ -20,7 +20,6 @@ import {
 import { makeStyles } from "tss-react/mui";
 import {
   deepAssign,
-  GroupBox,
   isPlainObject,
   Loader,
   showErrorDialog,
@@ -52,7 +51,10 @@ export interface AuthPageRouteParams {
 const useStyles = makeStyles()((theme) => ({
   root: {
     position: "absolute",
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.advanced
+      ? undefined
+      : theme.palette.background.default,
+    background: theme.palette.background.advanced || undefined,
     width: "100%",
     minHeight: "100%",
   },
@@ -79,16 +81,11 @@ const useStyles = makeStyles()((theme) => ({
     width: "100%",
     height: "100%",
     objectFit: "contain",
+    paddingBottom: theme.spacing(2),
   },
   langSelector: {
     left: "50%",
     transform: "translateX(-50%)",
-  },
-}));
-
-const useGroupBoxStyles = makeStyles()((theme) => ({
-  root: {
-    borderColor: theme.palette.divider,
   },
 }));
 
@@ -174,7 +171,6 @@ const CurrentProviderConfig: ProviderConfig = {
 
 const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
   const { classes } = useStyles();
-  const { classes: groupBoxClasses } = useGroupBoxStyles();
   const appInfo = useAuthPageAppInfo();
   const { app } = useParams();
   const { t, i18n } = useTranslation("auth");
@@ -239,25 +235,23 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 container
                 direction={"column"}
                 alignItems={"center"}
-                justifyContent={"space-evenly"}
+                justifyContent={"flex-start"}
                 alignContent={"stretch"}
                 className={classes.container}
                 spacing={4}
                 wrap={"nowrap"}
               >
-                <Grid item xs>
-                  {appInfo.image.medium && (
-                    <img
-                      src={appInfo.image.medium}
-                      alt={appInfo.full_name}
-                      className={classes.appIcon}
-                    />
-                  )}
-                </Grid>
                 <Grid item>
                   <LangSelector className={classes.langSelector} />
                   <Paper>
                     <Box p={4}>
+                      {appInfo.image.medium && (
+                        <img
+                          src={appInfo.image.medium}
+                          alt={appInfo.full_name}
+                          className={classes.appIcon}
+                        />
+                      )}
                       <AuthPageStateContext.Provider value={statePack}>
                         {props.children}
                       </AuthPageStateContext.Provider>
@@ -266,27 +260,27 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 </Grid>
                 {enableSocialLogins() && statePack[0].showSocialLogins && (
                   <Grid item className={classes.appInfo}>
-                    <Box py={2}>
-                      <Paper>
-                        <Box p={4}>
-                          <SocialLogins app={app ?? "undefined"} />
-                        </Box>
-                      </Paper>
-                    </Box>
+                    <Paper>
+                      <Box p={4}>
+                        <SocialLogins app={app ?? "undefined"} />
+                      </Box>
+                    </Paper>
                   </Grid>
                 )}
                 {appText && (
                   <Grid item className={classes.appInfo}>
-                    <Box py={2}>
-                      <GroupBox label={"App Info"} classes={groupBoxClasses}>
+                    <Paper>
+                      <Box p={4}>
+                        <Typography variant={"h4"}>
+                          {t("app-info.title")}
+                        </Typography>
                         <div
                           dangerouslySetInnerHTML={{ __html: marked(appText) }}
                         />
-                      </GroupBox>
-                    </Box>
+                      </Box>
+                    </Paper>
                   </Grid>
                 )}
-                <Grid item xs />
               </Grid>
             </Box>
           </Container>

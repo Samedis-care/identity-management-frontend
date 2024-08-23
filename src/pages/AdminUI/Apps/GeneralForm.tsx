@@ -98,6 +98,7 @@ const GeneralForm = (
             "config.theme.secondary.light",
             "config.theme.secondary.dark",
             "config.theme.background.default",
+            "config.theme.background.advanced",
             "config.theme.components_care.ui_kit.action_button.background_color",
             "config.theme.mode",
           ].map((field) => (

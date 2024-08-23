@@ -1,6 +1,12 @@
 import { createTheme, ThemeOptions } from "@mui/material";
 import { combineColors, ComponentsCareTheme } from "components-care";
 
+declare module "@mui/material/styles/createPalette" {
+  interface TypeBackground {
+    advanced?: string | null; // background CSS property
+  }
+}
+
 const palette = {
   primary: {
     main: "#425159",
