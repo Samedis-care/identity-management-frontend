@@ -382,7 +382,7 @@ class BackendConnector<
 
   getQueryParameters() {
     return isObjectEmpty(this.includedRelations)
-      ? this.additionalQueryParameters ?? null
+      ? (this.additionalQueryParameters ?? null)
       : {
           ...this.additionalQueryParameters,
           include: uniqueArray(
