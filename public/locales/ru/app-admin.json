@@ -48,7 +48,8 @@
           "dark": "Вторичный темный цвет"
         },
         "background": {
-          "default": "Фоновый цвет"
+          "default": "Фоновый цвет",
+          "advanced": "Background (CSS-Property)"
         },
         "components_care": {
           "ui_kit": {
