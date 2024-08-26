@@ -16,11 +16,11 @@ import {
   ThemeOptions,
   ThemeProvider,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
   deepAssign,
-  isPlainObject,
   Loader,
   showErrorDialog,
   useDialogContext,
@@ -342,6 +342,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
 
 const AuthPageLayout = (props: AuthPageLayoutProps) => {
   const { app } = useParams<"app">();
+  const theme = useTheme();
   const { data } = useQuery(["app-info", app], () => {
     return BackendHttpClient.get<AppInfoResponse>(
       `/api/v1/app/info/${app}`,
@@ -354,31 +355,36 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
 
   const { components_care: componentsCare, ...palette } =
     data.data.attributes.config.theme;
-  // this uses snake_case in backend, but we need camelCase
-  const remapKeys = (obj: Record<string, unknown>): Record<string, unknown> =>
-    Object.fromEntries(
-      Object.entries(obj).map(([k, v]) => [
-        k
-          .toLowerCase()
-          .replace(/([-_][a-z])/g, (group) =>
-            group.toUpperCase().replace("-", "").replace("_", ""),
-          ),
-        isPlainObject(v) ? remapKeys(v) : v,
-      ]),
-    );
 
   const inner = {
     palette: palette,
-    componentsCare: componentsCare ? remapKeys(componentsCare) : undefined,
-  } as ThemeOptions as Record<string, unknown>;
-  if (!componentsCare) delete inner["componentsCare"];
+    components: {
+      CcActionButton: {
+        styleOverrides: {
+          button: {
+            ...(componentsCare?.ui_kit?.action_button?.background_color && {
+              backgroundColor:
+                componentsCare.ui_kit.action_button.background_color,
+              color: theme.palette.getContrastText(
+                componentsCare.ui_kit.action_button.background_color,
+              ),
+            }),
+          },
+        },
+      },
+    },
+  } as ThemeOptions;
 
   return (
     <AuthPageAppInfoContext.Provider value={data.data.attributes}>
       <ThemeProvider
         theme={(outer) =>
           createTheme(
-            deepAssign({}, outer as unknown as Record<string, unknown>, inner),
+            deepAssign(
+              {},
+              outer as unknown as Record<string, unknown>,
+              inner as Record<string, unknown>,
+            ),
           )
         }
       >

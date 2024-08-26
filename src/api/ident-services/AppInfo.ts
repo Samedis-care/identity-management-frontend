@@ -18,7 +18,13 @@ export interface AppInfo {
       reply_to: string;
     };
     theme: Partial<ThemeOptions["palette"]> & {
-      components_care: Record<string, unknown>; // Partial<ComponentsCareTheme> but with snake_case keys instead of camelCase
+      components_care?: {
+        ui_kit?: {
+          action_button?: {
+            background_color?: string;
+          };
+        };
+      };
     };
   };
   contents: {

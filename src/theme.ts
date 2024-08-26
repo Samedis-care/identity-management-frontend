@@ -1,5 +1,5 @@
 import { createTheme, ThemeOptions } from "@mui/material";
-import { combineColors, ComponentsCareTheme } from "components-care";
+import { combineColors } from "components-care";
 
 declare module "@mui/material/styles/createPalette" {
   interface TypeBackground {
@@ -19,8 +19,6 @@ const palette = {
     paper: "#FFF",
   },
 };
-
-const cc: ComponentsCareTheme = {};
 
 const defaultTheme = createTheme();
 
@@ -103,5 +101,4 @@ export const getTheme = (_preferDark: boolean): ThemeOptions => ({
       },
     },
   },
-  componentsCare: cc,
 });
