@@ -48,7 +48,8 @@
           "dark": "Secundaire-donkere kleur"
         },
         "background": {
-          "default": "Achtergrond kleur"
+          "default": "Achtergrond kleur",
+          "advanced": "Background (CSS-Property)"
         },
         "components_care": {
           "ui_kit": {

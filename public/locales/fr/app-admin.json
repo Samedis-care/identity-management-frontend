@@ -48,7 +48,8 @@
           "dark": "Couleur sombre secondaire"
         },
         "background": {
-          "default": "Couleur de l'arrière plan"
+          "default": "Couleur de l'arrière plan",
+          "advanced": "Background (CSS-Property)"
         },
         "components_care": {
           "ui_kit": {
