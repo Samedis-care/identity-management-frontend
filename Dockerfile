@@ -1,5 +1,5 @@
 # build environment
-FROM node:21-alpine as build
+FROM node:21-alpine AS build
 RUN apk add --no-cache brotli openssl bash grep git openssh-client
 
 WORKDIR /app
