@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 export interface AccountEntryProps {
   name: string;
   email: string;
-  status: "signed-in" | "signed-out";
+  status: string;
   onClick?: (id: string) => void;
   onForgotAccount: (id: string) => void;
   avatar?: string | null;

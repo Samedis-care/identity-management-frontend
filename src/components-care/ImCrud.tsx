@@ -70,11 +70,20 @@ export const useDefaultGridProps = (): Pick<
       isFilterSupported: (
         dataType: ModelFilterType,
         filterType: FilterType,
+        field: string,
       ): boolean => {
+        if (field === "id") {
+          return filterType === "equals" || filterType === "notEqual";
+        }
         if (dataType === "date") {
           if (filterType === "lessThanOrEqual") return false;
           if (filterType === "greaterThanOrEqual") return false;
+        } else if (dataType === "combined-string") {
+          return filterType === "contains" || filterType === "notContains";
         }
+        // matches not implemented by backend, nor wanted for UX reasons
+        if (filterType === "matches" || filterType === "notMatches")
+          return false;
         return true;
       },
       overrideCustomData: location.search
