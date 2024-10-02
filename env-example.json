@@ -1,0 +1,15 @@
+{
+  "REACT_APP_PROVIDER_LEGAL_NAME": "your legal name",
+  "REACT_APP_PROVIDER_LOGO_URL": "your company logo",
+  "REACT_APP_PROVIDER_IMPRINT_URL": "link to your imprint",
+  "REACT_APP_OAUTH_FACEBOOK": "y/n - oauth login options, set to 'y' (yes) or 'n' no",
+  "REACT_APP_OAUTH_TWITTER": "y",
+  "REACT_APP_OAUTH_GOOGLE": "n",
+  "REACT_APP_OAUTH_MICROSOFT": "y/n",
+  "REACT_APP_OAUTH_APPLE": "y/n",
+  "REACT_APP_RECAPTCHA_KEY": "optional recaptcha key",
+  "REACT_APP_SENTRY_DSN": "optional sentry DSN, for more info see https://docs.sentry.io/platforms/javascript/#configure",
+  "REACT_APP_SENTRY_ENABLED": "false/true",
+  "REACT_APP_SENTRY_SAMPLE_RATE": "1.0-0.0",
+  "REACT_APP_SENTRY_ENV": "production"
+}

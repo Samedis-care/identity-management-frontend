@@ -6,12 +6,13 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import supportedLanguages from "./assets/data/supported-languages.json";
 import { MultiLanguageInputSupportedLanguages } from "components-care/dist/standalone/UIKit/InputControls/MultiLanguageInput";
+import { SentryRelease } from "./constants";
 
 export const SupportedLanguages =
   supportedLanguages as MultiLanguageInputSupportedLanguages[];
 
 const isDev = process.env.NODE_ENV !== "production";
-let release: string | null = process.env.REACT_APP_SENTRY_RELEASE ?? null;
+let release: string | null = SentryRelease ?? null;
 if (!release || release === "dev" || isDev) {
   release = null;
 }

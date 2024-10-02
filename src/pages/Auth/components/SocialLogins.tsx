@@ -5,25 +5,20 @@ import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "components-care";
 import i18n from "../../../i18n";
+import {
+  OauthApple,
+  OauthFacebook,
+  OauthGoogle,
+  OauthMicrosoft,
+  OauthTwitter,
+} from "../../../constants";
 
 export interface SocialLoginsProps {
   app: string;
 }
 
-const {
-  REACT_APP_OAUTH_FACEBOOK,
-  REACT_APP_OAUTH_TWITTER,
-  REACT_APP_OAUTH_GOOGLE,
-  REACT_APP_OAUTH_MICROSOFT,
-  REACT_APP_OAUTH_APPLE,
-} = process.env;
-
 export const enableSocialLogins = (): boolean =>
-  REACT_APP_OAUTH_FACEBOOK === "y" ||
-  REACT_APP_OAUTH_TWITTER === "y" ||
-  REACT_APP_OAUTH_GOOGLE === "y" ||
-  REACT_APP_OAUTH_MICROSOFT === "y" ||
-  REACT_APP_OAUTH_APPLE === "y";
+  OauthFacebook || OauthTwitter || OauthGoogle || OauthMicrosoft || OauthApple;
 
 const useStyles = makeStyles()((theme) => ({
   socialLogin: {
@@ -122,7 +117,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
               {t("add.connect")}
             </Typography>
           </Grid>
-          {REACT_APP_OAUTH_FACEBOOK === "y" && (
+          {OauthFacebook && (
             <Grid item>
               <IconButton
                 className={classes.socialLogin}
@@ -133,7 +128,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
               </IconButton>
             </Grid>
           )}
-          {REACT_APP_OAUTH_GOOGLE === "y" && (
+          {OauthGoogle && (
             <Grid item>
               <IconButton
                 className={classes.socialLogin}
@@ -144,7 +139,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
               </IconButton>
             </Grid>
           )}
-          {REACT_APP_OAUTH_MICROSOFT === "y" && (
+          {OauthMicrosoft && (
             <Grid item>
               <IconButton
                 className={classes.socialLogin}
@@ -155,7 +150,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
               </IconButton>
             </Grid>
           )}
-          {REACT_APP_OAUTH_TWITTER === "y" && (
+          {OauthTwitter && (
             <Grid item>
               <IconButton
                 className={classes.socialLogin}
@@ -166,7 +161,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
               </IconButton>
             </Grid>
           )}
-          {REACT_APP_OAUTH_APPLE === "y" && (
+          {OauthApple && (
             <Grid item>
               <IconButton
                 className={classes.socialLogin}

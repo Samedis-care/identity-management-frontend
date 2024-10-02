@@ -39,6 +39,11 @@ import { marked } from "marked";
 import SocialLogins, { enableSocialLogins } from "./SocialLogins";
 import PolicyViewer from "../../../components/PolicyViewer";
 import LangSelector from "./LangSelector";
+import {
+  ProviderImprintUrl,
+  ProviderLegalName,
+  ProviderLogoUrl,
+} from "../../../constants";
 
 export interface AuthPageLayoutProps {
   children: NonNullable<React.ReactNode>;
@@ -160,11 +165,10 @@ export interface ProviderConfig {
 
 const CurrentProviderConfig: ProviderConfig = {
   legalName:
-    process.env.REACT_APP_PROVIDER_LEGAL_NAME ??
-    "REACT_APP_PROVIDER_LEGAL_NAME not configured!",
-  logo: process.env.REACT_APP_PROVIDER_LOGO_URL || null,
+    ProviderLegalName ?? "REACT_APP_PROVIDER_LEGAL_NAME not configured!",
+  logo: ProviderLogoUrl || null,
   imprintUrl:
-    process.env.REACT_APP_PROVIDER_IMPRINT_URL ??
+    ProviderImprintUrl ??
     // eslint-disable-next-line no-script-url
     "javascript:alert('REACT_APP_PROVIDER_IMPRINT_URL not configured!')",
 };

@@ -17,7 +17,14 @@ import { getTheme } from "./theme";
 import MarkedRenderer from "./components/MarkedRenderer";
 import { marked } from "marked";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { IS_DEV } from "./constants";
+import {
+  IS_DEV,
+  SentryDsn,
+  SentryEnabled,
+  SentryEnv,
+  SentryRelease,
+  SentrySamplingRate,
+} from "./constants";
 import BackendConnector from "./components-care/connectors/BackendConnector";
 import BackendHttpClient from "./components-care/connectors/BackendHttpClient";
 import "./components-care/patches/ImageTypeDeserializer";
@@ -27,19 +34,15 @@ import BrowserCompatCheck from "./components/BrowserCompatCheck";
 import { createRoot } from "react-dom/client";
 
 // Sentry
-const sentryEnabled = process.env.REACT_APP_SENTRY_ENABLED === "true";
 Sentry.init({
-  dsn: sentryEnabled ? process.env.REACT_APP_SENTRY_DSN : undefined,
+  dsn: SentryEnabled ? SentryDsn : undefined,
   tunnel: "/api/error-reporting",
   integrations: [componentsCareBrowserTracingIntegration()],
   // performance trace sample rate
-  tracesSampleRate: parseFloat(
-    process.env.REACT_APP_SENTRY_SAMPLE_RATE ?? "0.0",
-  ),
-  enabled: sentryEnabled,
-  environment: process.env.REACT_APP_SENTRY_ENV,
-  release:
-    "identity-management-frontend@" + process.env.REACT_APP_SENTRY_RELEASE,
+  tracesSampleRate: SentrySamplingRate,
+  enabled: SentryEnabled,
+  environment: SentryEnv,
+  release: "identity-management-frontend@" + SentryRelease,
   beforeSend: (data, hint) => {
     if (hint?.originalException instanceof Error) {
       switch (hint.originalException.name) {

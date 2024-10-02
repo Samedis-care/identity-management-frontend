@@ -29,9 +29,7 @@ module.exports = (env, argv) => {
     NODE_ENV: isDev ? "development" : "production",
   };
   const appEnv = Object.fromEntries(
-    Object.entries(env).filter(
-      ([key]) => key === "NODE_ENV" || key.startsWith("REACT_APP_"),
-    ),
+    Object.entries(env).filter(([key]) => key === "NODE_ENV"),
   );
 
   return {

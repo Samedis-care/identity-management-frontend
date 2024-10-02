@@ -2,15 +2,22 @@
 
 ## Configuration
 
-Configuration is done via the environment file `.env`. To get started copy `.env.example` to `.env` and modify `.env`.
-You can define custom nginx options in `deploy/security-custom.conf`. For example use `add_header` commands to set HSTS and CSP headers.
+Configuration is done via the runtime environment file `public/env.json` and the development config file `.env`. To get started copy `.env.example` to `.env` and modify `.env` if needed. Then copy `env-example.json` to `public/env.json` and modify that as well.
 
 ## Build / Dev Setup
 
 ### Docker
 
-1. Optionally put an SSL key (`key.pem`) and certificate (`cert.pem`) in `deploy/ssl`. These are used to enable HTTP/2 on the docker container. If you don't provide them self-signed certificates will be created for the docker container
-2. Build the docker container using `docker build --pull`
+Build the docker container using `git rev-parse HEAD > public/version.txt && docker build --pull` or use the pre-built container images on GitHub. The `env.json` and `security-custom.conf` files are not included in the docker build, you must supply them at runtime!
+
+Container mounts for configuration:
+- `/usr/share/nginx/html/env.json`: Configuration file for the webapp, see `env-example.json`
+- `/etc/nginx/server.conf`: Configuration file for the nginx server block, this is provided by default, you can configure HTTPS here if needed.
+- `/etc/nginx/security-custom.conf`: You can define custom security headers here. For example use the `add_header` commands to set HTTP Strict Transport Security (HSTS) and Content Security Policy (CSP) headers.
+
+If you want to change the container nginx configuration you can supply your own `server.conf` and `security-custom.conf`, you just need to mount them in the container.
+
+To run the container locally you can use `docker run --rm -p <host-port>:80 -v </host-system/absolute/path/to/env.json>:/usr/share/nginx/html/env.json:ro container-image`
 
 ### Local
 
