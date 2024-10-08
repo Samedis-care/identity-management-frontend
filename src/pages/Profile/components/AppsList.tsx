@@ -4,7 +4,7 @@ import {
   DialogTitle,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Paper,
@@ -115,8 +115,7 @@ const AppsList = (props: AppsListProps) => {
           </DialogTitle>
           <List>
             {policies.map((policy) => (
-              <ListItem
-                button
+              <ListItemButton
                 onClick={() => {
                   popDialog();
                   openPolicy(policy);
@@ -137,7 +136,7 @@ const AppsList = (props: AppsListProps) => {
                     "tabs.apps.dialogs.select-document.option." + policy,
                   )}
                 />
-              </ListItem>
+              </ListItemButton>
             ))}
           </List>
         </Dialog>,
