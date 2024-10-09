@@ -132,7 +132,7 @@ const AccountSelection = (_props: AuthPageProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid size={{ xs: 12 }}>
+      <Grid size={12}>
         <Typography variant={"h1"}>{t("select.title")}</Typography>
       </Grid>
       {AccountManager.getAccounts().map((account) => (

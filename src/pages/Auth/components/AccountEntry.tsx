@@ -103,7 +103,7 @@ const AccountEntry = (props: AccountEntryProps) => {
 
   return (
     <>
-      <Grid size={{ xs: 12 }} className={classes.root} onClick={handleClick}>
+      <Grid size={12} className={classes.root} onClick={handleClick}>
         <Grid container spacing={2} wrap={"nowrap"}>
           <Grid>
             <AccountAvatar
@@ -113,7 +113,7 @@ const AccountEntry = (props: AccountEntryProps) => {
               {nameToAvatarStr(name)}
             </AccountAvatar>
           </Grid>
-          <Grid size={{ xs: "grow" }}>
+          <Grid size={"grow"}>
             <Tooltip title={email}>
               <Typography noWrap className={classes.name}>
                 {name}
