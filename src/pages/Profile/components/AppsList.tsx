@@ -24,7 +24,7 @@ import {
   showInputDialog,
   useDialogContext,
 } from "components-care";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import BackendConnector from "../../../components-care/connectors/BackendConnector";
 import { useTranslation } from "react-i18next";
 import {
@@ -77,11 +77,11 @@ const AppsList = (props: AppsListProps) => {
   const { classes } = useStyles();
   const [pushDialog, popDialog] = useDialogContext();
   const { t } = useTranslation("profile");
-  const { data, isLoading, error } = useQuery(
-    "my-user-apps",
-    async () =>
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["my-user-apps"],
+    queryFn: async () =>
       (await new BackendConnector("v1/user/apps").index({ rows: 100 }))[0],
-  );
+  });
 
   const visitApp = useCallback((url: string) => {
     window.open(url, "_blank");
@@ -171,7 +171,7 @@ const AppsList = (props: AppsListProps) => {
       }
       try {
         await BackendHttpClient.delete(`/api/v1/user/quits/${id}`, null);
-        await ModelDataStore.invalidateQueries("my-user-apps");
+        await ModelDataStore.invalidateQueries({ queryKey: ["my-user-apps"] });
       } catch (err) {
         console.error("Fail removing app", err);
         showErrorDialog(pushDialog, {

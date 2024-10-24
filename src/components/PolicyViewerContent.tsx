@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Typography } from "@mui/material";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import BackendHttpClient from "../components-care/connectors/BackendHttpClient";
 import { marked } from "marked";
 import { PolicyViewerProps } from "./PolicyViewer";
@@ -38,15 +38,17 @@ const getPolicyContent = (policy: Policy, lang: string) => {
 
 const PolicyViewerContent = (props: PolicyViewerContentProps) => {
   const { i18n } = useTranslation();
-  const { isLoading, data, error } = useQuery([props.document], () =>
-    BackendHttpClient.get<Policy>(
-      `/api/v1/identity-management/content_acceptance/${encodeURI(
-        props.document,
-      )}`,
-      null,
-      AuthMode.Off,
-    ),
-  );
+  const { isLoading, data, error } = useQuery({
+    queryKey: [props.document],
+    queryFn: () =>
+      BackendHttpClient.get<Policy>(
+        `/api/v1/identity-management/content_acceptance/${encodeURI(
+          props.document,
+        )}`,
+        null,
+        AuthMode.Off,
+      ),
+  });
 
   const content = useMemo(() => {
     if (!data) return null;

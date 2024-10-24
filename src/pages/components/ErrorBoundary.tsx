@@ -10,9 +10,9 @@ export interface WithLocationProps {
 function withLocation<T extends WithLocationProps>(
   Component: React.ComponentType<Omit<T, "location"> & WithLocationProps>,
 ) {
-  return (props: Omit<T, "location">) => (
-    <Component {...props} location={useLocation()} />
-  );
+  return function WithLocationHOC(props: Omit<T, "location">) {
+    return <Component {...props} location={useLocation()} />;
+  };
 }
 
 export interface ErrorBoundaryProps extends WithTranslation, WithLocationProps {

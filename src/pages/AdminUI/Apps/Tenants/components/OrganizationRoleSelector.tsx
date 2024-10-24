@@ -1,6 +1,6 @@
-import { FormCrudMultiSelect } from "components-care/dist";
 import React from "react";
 import {
+  FormCrudMultiSelect,
   MultiSelectorData,
   PageVisibility,
   useFormContextLite,

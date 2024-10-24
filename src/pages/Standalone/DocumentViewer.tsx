@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import BackendHttpClient from "../../components-care/connectors/BackendHttpClient";
 import { getSession } from "../components/AuthProvider";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
@@ -85,9 +85,9 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentScroll, scrollRef.current]);
 
-  const { data: contentData } = useQuery(
-    ["content-acceptance", app, name],
-    async () => {
+  const { data: contentData } = useQuery({
+    queryKey: ["content-acceptance", app, name],
+    queryFn: async () => {
       return (
         await BackendHttpClient.get<ContentDataResponse>(
           `/api/v1/${app}/content_acceptance/${name}`,
@@ -96,7 +96,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
         )
       ).data.attributes;
     },
-  );
+  });
 
   const markdown = useMemo(() => {
     if (!contentData) return null;

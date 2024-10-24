@@ -1,3 +1,4 @@
+import React from "react";
 import * as marked from "marked";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
