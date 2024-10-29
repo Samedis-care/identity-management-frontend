@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Typography, Unstable_Grid2 as Grid } from "@mui/material";
+import { Typography, Grid2 as Grid } from "@mui/material";
 import AccountEntry from "./components/AccountEntry";
 import AccountListButton from "./components/AccountListButton";
 import { Add as AddIcon } from "@mui/icons-material";
@@ -132,7 +132,7 @@ const AccountSelection = (_props: AuthPageProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid xs={12}>
+      <Grid size={12}>
         <Typography variant={"h1"}>{t("select.title")}</Typography>
       </Grid>
       {AccountManager.getAccounts().map((account) => (

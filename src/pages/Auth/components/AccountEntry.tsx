@@ -6,7 +6,7 @@ import {
   Theme,
   Tooltip,
   Typography,
-  Unstable_Grid2 as Grid,
+  Grid2 as Grid,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import * as colors from "@mui/material/colors";
@@ -64,6 +64,7 @@ const nameToColor = (name: string): string => {
   for (let i = 0; i < name.length && i < 3; ++i) {
     color += name.charCodeAt(i);
   }
+  // eslint-disable-next-line import/namespace
   const colorHue = colors[hues[color % hues.length] as keyof typeof colors];
   return colorHue[500 as keyof typeof colorHue];
 };
@@ -103,7 +104,7 @@ const AccountEntry = (props: AccountEntryProps) => {
 
   return (
     <>
-      <Grid xs={12} className={classes.root} onClick={handleClick}>
+      <Grid size={12} className={classes.root} onClick={handleClick}>
         <Grid container spacing={2} wrap={"nowrap"}>
           <Grid>
             <AccountAvatar
@@ -113,7 +114,7 @@ const AccountEntry = (props: AccountEntryProps) => {
               {nameToAvatarStr(name)}
             </AccountAvatar>
           </Grid>
-          <Grid xs>
+          <Grid size={"grow"}>
             <Tooltip title={email}>
               <Typography noWrap className={classes.name}>
                 {name}

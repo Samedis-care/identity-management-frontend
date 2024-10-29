@@ -1,3 +1,4 @@
+import React from "react";
 import * as marked from "marked";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -11,16 +12,20 @@ import { getTheme } from "../theme";
 import { Variant } from "@mui/material/styles/createTypography";
 
 const renderer: marked.RendererObject = {
-  heading(_text: string, level: number, raw: string): string {
+  heading({ depth: level, tokens }: marked.Tokens.Heading): string {
+    const text = this.parser.parseInline(tokens);
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(getTheme(false))}>
-          <Typography variant={`h${level}` as Variant}>{raw}</Typography>
+          <Typography
+            variant={`h${level}` as Variant}
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
         </ThemeProvider>
       </StyledEngineProvider>,
     );
   },
-  link(href: string, title: string | null | undefined, text: string): string {
+  link({ href, title, text }: marked.Tokens.Link): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(getTheme(false))}>
@@ -34,7 +39,9 @@ const renderer: marked.RendererObject = {
       </StyledEngineProvider>,
     );
   },
-  text(text: string): string {
+  text({
+    text,
+  }: marked.Tokens.Text | marked.Tokens.Escape | marked.Tokens.Tag): string {
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(getTheme(false))}>

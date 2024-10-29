@@ -6,9 +6,12 @@ import React, {
   useState,
 } from "react";
 import supportedLanguages from "../assets/data/supported-languages.json";
-import { deepEqual, PermissionContext } from "components-care";
+import {
+  deepEqual,
+  PermissionContext,
+  usePermissionContext,
+} from "components-care";
 import { useTranslation } from "react-i18next";
-import { usePermissionContext } from "components-care/dist";
 import i18n from "../i18n";
 import MaintenancePage from "../components/maintenance/MaintenancePage";
 

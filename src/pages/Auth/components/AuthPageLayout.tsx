@@ -29,7 +29,7 @@ import {
   useParams,
 } from "components-care";
 import { Account } from "../../../utils/AccountManager";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";
 import { AppInfo, AppInfoResponse } from "../../../api/ident-services/AppInfo";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
@@ -169,7 +169,6 @@ const CurrentProviderConfig: ProviderConfig = {
   logo: ProviderLogoUrl || null,
   imprintUrl:
     ProviderImprintUrl ??
-    // eslint-disable-next-line no-script-url
     "javascript:alert('REACT_APP_PROVIDER_IMPRINT_URL not configured!')",
 };
 
@@ -193,23 +192,26 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
     void showErrorDialog(pushDialog, failureMessage);
   }, [location, navigate, pushDialog]);
 
-  const { data: appText } = useQuery(["app-info", appInfo.id], async () => {
-    const contentRecord = appInfo.contents.find(
-      (entry) => entry.name === "app-info",
-    );
-    if (!contentRecord) return "";
+  const { data: appText } = useQuery({
+    queryKey: ["app-info", appInfo.id],
+    queryFn: async () => {
+      const contentRecord = appInfo.contents.find(
+        (entry) => entry.name === "app-info",
+      );
+      if (!contentRecord) return "";
 
-    const resp = await BackendHttpClient.get<ContentDataResponse>(
-      contentRecord.url,
-      null,
-      AuthMode.Off,
-    );
+      const resp = await BackendHttpClient.get<ContentDataResponse>(
+        contentRecord.url,
+        null,
+        AuthMode.Off,
+      );
 
-    const contents = resp.data.attributes.content_translations;
+      const contents = resp.data.attributes.content_translations;
 
-    return (
-      contents[i18n.language.split("-")[0]] ?? contents["en"] // fallback lang
-    );
+      return (
+        contents[i18n.language.split("-")[0]] ?? contents["en"] // fallback lang
+      );
+    },
   });
 
   const showPrivacyDialog = useCallback(() => {
@@ -347,12 +349,15 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
 const AuthPageLayout = (props: AuthPageLayoutProps) => {
   const { app } = useParams<"app">();
   const theme = useTheme();
-  const { data } = useQuery(["app-info", app], () => {
-    return BackendHttpClient.get<AppInfoResponse>(
-      `/api/v1/app/info/${app}`,
-      null,
-      AuthMode.Off,
-    );
+  const { data } = useQuery({
+    queryKey: ["app-info", app],
+    queryFn: () => {
+      return BackendHttpClient.get<AppInfoResponse>(
+        `/api/v1/app/info/${app}`,
+        null,
+        AuthMode.Off,
+      );
+    },
   });
 
   if (!data) return <Loader />;

@@ -16,7 +16,6 @@ import "@fontsource/roboto";
 import { getTheme } from "./theme";
 import MarkedRenderer from "./components/MarkedRenderer";
 import { marked } from "marked";
-import { ReactQueryDevtools } from "react-query/devtools";
 import {
   IS_DEV,
   SentryDsn,
@@ -25,6 +24,7 @@ import {
   SentryRelease,
   SentrySamplingRate,
 } from "./constants";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import BackendConnector from "./components-care/connectors/BackendConnector";
 import BackendHttpClient from "./components-care/connectors/BackendHttpClient";
 import "./components-care/patches/ImageTypeDeserializer";
@@ -88,7 +88,7 @@ const root = createRoot(domRoot);
 root.render(
   <React.StrictMode>
     <Framework defaultTheme={getTheme}>
-      {IS_DEV && <ReactQueryDevtools position={"bottom-right"} />}
+      {IS_DEV && <ReactQueryDevtools buttonPosition={"bottom-right"} />}
       <ErrorBoundary>
         <BrowserCompatCheck>
           <MaintenanceModeProvider>

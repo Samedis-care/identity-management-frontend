@@ -4,7 +4,7 @@ import { CenteredTypography } from "components-care";
 const NotFound = () => {
   return (
     <CenteredTypography>
-      ERROR 404: The page you're looking for is no longer here.
+      {"ERROR 404: The page you're looking for is no longer here."}
     </CenteredTypography>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Unstable_Grid2 as Grid } from "@mui/material";
+import { Typography, Grid2 as Grid } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import AccountAvatar from "./AccountAvatar";
 
@@ -25,12 +25,12 @@ const AccountListButton = (props: AddNewAccountProps) => {
   const { icon, text, onClick } = props;
   const { classes } = useStyles();
   return (
-    <Grid xs={12} className={classes.root} onClick={onClick}>
+    <Grid size={12} className={classes.root} onClick={onClick}>
       <Grid container spacing={2}>
         <Grid>
           <AccountAvatar>{icon}</AccountAvatar>
         </Grid>
-        <Grid xs>
+        <Grid size={"grow"}>
           <Typography className={classes.label}>{text}</Typography>
         </Grid>
       </Grid>
