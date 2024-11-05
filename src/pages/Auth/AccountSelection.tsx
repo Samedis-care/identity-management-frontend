@@ -135,23 +135,31 @@ const AccountSelection = (_props: AuthPageProps) => {
       <Grid size={12}>
         <Typography variant={"h1"}>{t("select.title")}</Typography>
       </Grid>
-      {AccountManager.getAccounts().map((account) => (
-        <AccountEntry
-          id={account.id ?? account.email}
-          name={account.name ?? account.email}
-          email={account.email}
-          avatar={account.avatar}
-          status={t(account.session ? "select.signed-in" : "select.signed-out")}
-          key={account.id ?? account.email}
-          onClick={onSelectAccount}
-          onForgotAccount={onForgotAccount}
-        />
-      ))}
-      <AccountListButton
-        icon={<AddIcon />}
-        text={AccountManager.isEmpty() ? t("select.first") : t("select.other")}
-        onClick={onAddNewAccount}
-      />
+      <Grid size={12}>
+        <Grid container>
+          {AccountManager.getAccounts().map((account) => (
+            <AccountEntry
+              id={account.id ?? account.email}
+              name={account.name ?? account.email}
+              email={account.email}
+              avatar={account.avatar}
+              status={t(
+                account.session ? "select.signed-in" : "select.signed-out",
+              )}
+              key={account.id ?? account.email}
+              onClick={onSelectAccount}
+              onForgotAccount={onForgotAccount}
+            />
+          ))}
+          <AccountListButton
+            icon={<AddIcon />}
+            text={
+              AccountManager.isEmpty() ? t("select.first") : t("select.other")
+            }
+            onClick={onAddNewAccount}
+          />
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

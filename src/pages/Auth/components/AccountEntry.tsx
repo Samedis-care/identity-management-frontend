@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography,
   Grid2 as Grid,
+  Divider,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import * as colors from "@mui/material/colors";
@@ -26,7 +27,7 @@ export interface AccountEntryProps {
 
 const useStyles = makeStyles()((theme: Theme) => ({
   root: {
-    borderBottom: "1px solid " + theme.palette.divider,
+    padding: theme.spacing(1),
     cursor: "pointer",
     "&:hover": {
       backgroundColor: theme.palette.action.hover,
@@ -104,37 +105,48 @@ const AccountEntry = (props: AccountEntryProps) => {
 
   return (
     <>
-      <Grid size={12} className={classes.root} onClick={handleClick}>
-        <Grid container spacing={2} wrap={"nowrap"}>
-          <Grid>
-            <AccountAvatar
-              style={{ backgroundColor: nameToColor(name) }}
-              src={avatar ?? undefined}
-            >
-              {nameToAvatarStr(name)}
-            </AccountAvatar>
-          </Grid>
-          <Grid size={"grow"}>
-            <Tooltip title={email}>
-              <Typography noWrap className={classes.name}>
-                {name}
-              </Typography>
-            </Tooltip>
-            <Typography variant={"caption"} className={classes.statusLabel}>
-              {status}
-            </Typography>
-          </Grid>
-          <Grid>
-            <IconButton onClick={openMenu} size="large">
-              <MoreIcon />
-            </IconButton>
-          </Grid>
+      <Grid
+        size={12}
+        className={classes.root}
+        onClick={handleClick}
+        container
+        spacing={2}
+        wrap={"nowrap"}
+      >
+        <Grid>
+          <AccountAvatar
+            style={{ backgroundColor: nameToColor(name) }}
+            src={avatar ?? undefined}
+          >
+            {nameToAvatarStr(name)}
+          </AccountAvatar>
         </Grid>
+        <Grid size={"grow"}>
+          <Tooltip title={email}>
+            <Typography noWrap className={classes.name}>
+              {name}
+            </Typography>
+          </Tooltip>
+          <Typography variant={"caption"} className={classes.statusLabel}>
+            {status}
+          </Typography>
+        </Grid>
+        <Grid>
+          <IconButton onClick={openMenu} size="large">
+            <MoreIcon />
+          </IconButton>
+        </Grid>
+        <Menu
+          open={menuAnchor != null}
+          anchorEl={menuAnchor}
+          onClose={closeMenu}
+        >
+          <MenuItem onClick={forgetAccount}>{t("select.forget")}</MenuItem>
+        </Menu>
       </Grid>
-
-      <Menu open={menuAnchor != null} anchorEl={menuAnchor} onClose={closeMenu}>
-        <MenuItem onClick={forgetAccount}>{t("select.forget")}</MenuItem>
-      </Menu>
+      <Grid size={12}>
+        <Divider />
+      </Grid>
     </>
   );
 };
