@@ -224,7 +224,7 @@ const AuthProvider = (props: AuthProviderProps) => {
           .forEach(([k, v]) => {
             if (!v) return;
             sessionStorage.setItem(k, v);
-            Cookies.set(k, v);
+            Cookies.set(k, v, { sameSite: "strict", secure: true });
             if (rememberMe) localStorage.setItem(k, v);
           });
 

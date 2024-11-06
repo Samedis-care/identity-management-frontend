@@ -22,7 +22,7 @@ class CookieStorageBase implements Storage {
   }
 
   setItem(key: string, value: string): void {
-    Cookies.set(key, value);
+    Cookies.set(key, value, { sameSite: "strict", secure: true });
   }
 }
 
