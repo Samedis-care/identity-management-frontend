@@ -25,4 +25,5 @@ RUN chown -R nginx:nginx /usr/share/nginx/html/
 
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY deploy/security*.conf /etc/nginx/
+COPY deploy/ssl/* /etc/nginx/ssl/
 COPY deploy/server.conf /etc/nginx/
