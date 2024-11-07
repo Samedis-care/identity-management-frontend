@@ -19,9 +19,9 @@ import {
   showInfoDialog,
   sleep,
   useDialogContext,
+  useLocation,
   useNavigate,
   useParams,
-  useLocation,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import Recaptcha from "react-recaptcha";
@@ -40,8 +40,7 @@ import { preserveUrlParams } from "../../utils/preserveUrlParams";
 import getEmailDomain from "../../utils/getEmailDomain";
 import { md5 } from "js-md5";
 import { doOauthSignIn } from "./components/SocialLogins";
-
-const { REACT_APP_RECAPTCHA_KEY } = process.env;
+import { RecaptchaKey } from "../../constants";
 
 const isRecaptchaReady = () =>
   typeof window !== "undefined" &&
@@ -112,7 +111,7 @@ const CreateAccount = (_props: AuthPageProps) => {
 
   // load recaptcha script dynamically
   useEffect(() => {
-    if (!REACT_APP_RECAPTCHA_KEY) return;
+    if (!RecaptchaKey) return;
     const recaptcha = document.createElement("script");
     recaptcha.src = "https://www.google.com/recaptcha/api.js";
     recaptcha.async = true;
@@ -174,7 +173,7 @@ const CreateAccount = (_props: AuthPageProps) => {
         return;
       }
 
-      if (REACT_APP_RECAPTCHA_KEY && !state.captcha) {
+      if (RecaptchaKey && !state.captcha) {
         await showInfoDialog(pushDialog, {
           title: t("create.validations.captcha.title"),
           message: t("create.validations.captcha.message"),
@@ -198,7 +197,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             password_confirmation: state.password_confirm,
             first_name: state.first_name,
             last_name: state.last_name,
-            captcha: REACT_APP_RECAPTCHA_KEY ? state.captcha : undefined,
+            captcha: RecaptchaKey ? state.captcha : undefined,
           },
           AuthMode.Off,
         );
@@ -333,12 +332,12 @@ const CreateAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        {REACT_APP_RECAPTCHA_KEY && (
+        {RecaptchaKey && (
           <Grid item xs={12}>
             <Suspense fallback={<Loader />}>
               <WaitForRecaptcha>
                 <Recaptcha
-                  sitekey={REACT_APP_RECAPTCHA_KEY}
+                  sitekey={RecaptchaKey}
                   ref={(e) => (captcha.current = e)}
                   theme={theme.palette.mode}
                   verifyCallback={recaptchaCallback}
