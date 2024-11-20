@@ -339,25 +339,27 @@ const CreateAccount = (_props: AuthPageProps) => {
             autoComplete={"new-password"}
             variant={"standard"}
           />
-          <PasswordBar
-            password={state.password}
-            userInputs={[
-              state.email,
-              state.first_name,
-              state.last_name,
-              app ?? "identity-management",
-              "ident.services",
-            ]}
-            scoreWords={[
-              t("create.validations.password.sec1"),
-              t("create.validations.password.sec2"),
-              t("create.validations.password.sec3"),
-              t("create.validations.password.sec4"),
-              t("create.validations.password.sec5"),
-            ]}
-            shortScoreWord={t("create.validations.password.short")}
-            onChangeScore={handlePasswordScoreChange}
-          />
+          <Suspense>
+            <PasswordBar
+              password={state.password}
+              userInputs={[
+                state.email,
+                state.first_name,
+                state.last_name,
+                app ?? "identity-management",
+                "ident.services",
+              ]}
+              scoreWords={[
+                t("create.validations.password.sec1"),
+                t("create.validations.password.sec2"),
+                t("create.validations.password.sec3"),
+                t("create.validations.password.sec4"),
+                t("create.validations.password.sec5"),
+              ]}
+              shortScoreWord={t("create.validations.password.short")}
+              onChangeScore={handlePasswordScoreChange}
+            />
+          </Suspense>
         </Grid>
         <Grid item xs={12}>
           <TextField
