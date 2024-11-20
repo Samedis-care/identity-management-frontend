@@ -60,6 +60,8 @@ const WaitForRecaptcha = (props: { children: React.ReactElement }) => {
   return props.children;
 };
 
+const minPwLen = 8;
+
 const CreateAccount = (_props: AuthPageProps) => {
   const params = useParams();
   const location = useLocation();
@@ -356,7 +358,10 @@ const CreateAccount = (_props: AuthPageProps) => {
                 t("create.validations.password.sec4"),
                 t("create.validations.password.sec5"),
               ]}
-              shortScoreWord={t("create.validations.password.short")}
+              shortScoreWord={t("create.validations.password.short", {
+                MIN_LEN: minPwLen,
+              })}
+              minLength={minPwLen}
               onChangeScore={handlePasswordScoreChange}
             />
           </Suspense>
