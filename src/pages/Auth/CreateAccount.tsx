@@ -41,6 +41,9 @@ import getEmailDomain from "../../utils/getEmailDomain";
 import { md5 } from "js-md5";
 import { doOauthSignIn } from "./components/SocialLogins";
 import { RecaptchaKey } from "../../constants";
+import { PasswordFeedback } from "react-password-strength-bar";
+
+const PasswordBar = React.lazy(() => import("react-password-strength-bar"));
 
 const isRecaptchaReady = () =>
   typeof window !== "undefined" &&
@@ -73,6 +76,7 @@ const CreateAccount = (_props: AuthPageProps) => {
     last_name: queryParams.get("lastNameHint") ?? "",
     password: "",
     password_confirm: "",
+    passwordScore: 0,
     captcha: "",
   });
   const theme = useTheme();
@@ -103,6 +107,13 @@ const CreateAccount = (_props: AuthPageProps) => {
   const handleBack = useCallback(
     () => navigate(preserveUrlParams(`/login/${app}/add-account`, location)),
     [app, navigate, location],
+  );
+
+  const handlePasswordScoreChange = useCallback(
+    (score: number, _feedback: PasswordFeedback) => {
+      setState((prev) => ({ ...prev, passwordScore: score }));
+    },
+    [],
   );
 
   const showPrivacyDialog = useCallback(() => {
@@ -162,6 +173,14 @@ const CreateAccount = (_props: AuthPageProps) => {
           session: null,
         });
         doOauthSignIn(emailDomain, app, location, state.email);
+        return;
+      }
+
+      if (state.passwordScore < 2) {
+        await showInfoDialog(pushDialog, {
+          title: t("create.validations.password-weak.title"),
+          message: t("create.validations.password-weak.message"),
+        });
         return;
       }
 
@@ -239,6 +258,7 @@ const CreateAccount = (_props: AuthPageProps) => {
     [
       state.email,
       state.email_confirm,
+      state.passwordScore,
       state.password,
       state.password_confirm,
       state.captcha,
@@ -318,6 +338,25 @@ const CreateAccount = (_props: AuthPageProps) => {
             type={"password"}
             autoComplete={"new-password"}
             variant={"standard"}
+          />
+          <PasswordBar
+            password={state.password}
+            userInputs={[
+              state.email,
+              state.first_name,
+              state.last_name,
+              app ?? "identity-management",
+              "ident.services",
+            ]}
+            scoreWords={[
+              t("create.validations.password.sec1"),
+              t("create.validations.password.sec2"),
+              t("create.validations.password.sec3"),
+              t("create.validations.password.sec4"),
+              t("create.validations.password.sec5"),
+            ]}
+            shortScoreWord={t("create.validations.password.short")}
+            onChangeScore={handlePasswordScoreChange}
           />
         </Grid>
         <Grid item xs={12}>
