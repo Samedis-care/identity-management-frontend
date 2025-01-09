@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from "react";
 import {
+  Divider,
+  Grid2 as Grid,
   IconButton,
   Menu,
   MenuItem,
   Theme,
   Tooltip,
   Typography,
-  Grid2 as Grid,
-  Divider,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import * as colors from "@mui/material/colors";
@@ -98,10 +98,14 @@ const AccountEntry = (props: AccountEntryProps) => {
   const closeMenu = useCallback(() => {
     setMenuAnchor(null);
   }, []);
-  const forgetAccount = useCallback(() => {
-    setMenuAnchor(null);
-    onForgotAccount(id);
-  }, [onForgotAccount, id]);
+  const forgetAccount = useCallback(
+    (evt: React.MouseEvent) => {
+      evt.stopPropagation();
+      setMenuAnchor(null);
+      onForgotAccount(id);
+    },
+    [onForgotAccount, id],
+  );
 
   return (
     <>
