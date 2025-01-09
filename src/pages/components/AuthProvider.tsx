@@ -14,6 +14,7 @@ import {
 } from "components-care";
 import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
+import { FrameworkHistory } from "components-care/dist/framework/History";
 
 export const ANONYMOUS_USER_ID = "anonymous";
 
@@ -146,12 +147,14 @@ export const redirectToLogin = (includeRedirectURl = true) => {
     : window.location.origin;
 
   const loginFail = redirectUrl.includes("/login/identity-management");
-  if (loginFail) Sentry.captureException(new Error("Login redirects to login"));
+  if (loginFail) return; // async code execution can trigger this code to run even after the login redirect has happened
 
-  // this should unload the page and stop JS execution, this way we don't get a redirect to login page twice due to delayed code execution
-  window.location.href = `/login/identity-management?redirect_host=${encodeURIComponent(redirectUrl)}`;
-
-  if (loginFail) throw new Error("Login timeout, please try again");
+  // can'T unload the page because there may be beforeunload callbacks active due to this happening during POST/PUT requests
+  FrameworkHistory.push({
+    pathname: "/login/identity-management",
+    search: `redirect_host=${encodeURIComponent(redirectUrl)}`,
+    // key: Math.random().toString(),
+  });
 };
 
 export const isSessionValid = (): boolean => {
