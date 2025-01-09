@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
+  CenteredTypography,
   deepAssign,
   Loader,
   showErrorDialog,
@@ -349,7 +350,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
 const AuthPageLayout = (props: AuthPageLayoutProps) => {
   const { app } = useParams<"app">();
   const theme = useTheme();
-  const { data } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["app-info", app],
     queryFn: () => {
       return BackendHttpClient.get<AppInfoResponse>(
@@ -360,6 +361,12 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
     },
   });
 
+  if (error)
+    return (
+      <CenteredTypography variant={"h1"} color={"error"}>
+        {error.message}
+      </CenteredTypography>
+    );
   if (!data) return <Loader />;
 
   const { components_care: componentsCare, ...palette } =
