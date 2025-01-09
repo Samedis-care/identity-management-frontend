@@ -5,13 +5,12 @@ import AuthMode from "components-care/dist/backend-integration/Connector/AuthMod
 import { GetCurrentUserResponse } from "../../api/ident-services/CurrentUser";
 import {
   BackendError,
-  FrameworkHistory,
   Loader,
   showInfoDialog,
   useDialogContext,
-  usePermissionContext,
   useLocation,
   useNavigate,
+  usePermissionContext,
 } from "components-care";
 import * as Sentry from "@sentry/react";
 import { useTranslation } from "react-i18next";
@@ -147,12 +146,10 @@ export const redirectToLogin = (includeRedirectURl = true) => {
     : window.location.origin;
 
   const loginFail = redirectUrl.includes("/login/identity-management");
+  if (loginFail) Sentry.captureException(new Error("Login redirects to login"));
 
-  FrameworkHistory.push({
-    pathname: "/login/identity-management",
-    search: `redirect_host=${encodeURIComponent(redirectUrl)}`,
-    // key: Math.random().toString(),
-  });
+  // this should unload the page and stop JS execution, this way we don't get a redirect to login page twice due to delayed code execution
+  window.location.href = `/login/identity-management?redirect_host=${encodeURIComponent(redirectUrl)}`;
 
   if (loginFail) throw new Error("Login timeout, please try again");
 };
