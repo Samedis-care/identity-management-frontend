@@ -113,7 +113,7 @@ export const destroySession = async () => {
   const errors: string[] = [];
   const search = parseUrlParams();
   ["token", "token_expire", "refresh_token"].forEach((key) => {
-    Cookies.remove(key);
+    Cookies.remove(key, { sameSite: "strict", secure: true });
     if (Cookies.get(key)) errors.push(`cookie ${key}`);
     delete localStorage[key];
     if (localStorage.getItem(key)) errors.push(`localStorage ${key}`);

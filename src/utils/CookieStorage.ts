@@ -18,7 +18,7 @@ class CookieStorageBase implements Storage {
   }
 
   removeItem(key: string): void {
-    Cookies.remove(key);
+    Cookies.remove(key, { sameSite: "strict", secure: true });
   }
 
   setItem(key: string, value: string): void {
