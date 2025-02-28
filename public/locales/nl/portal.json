@@ -1,7 +1,7 @@
 {
   "header": {
     "account": {
-      "hello": "Hallo ",
+      "hello": "Hallo",
       "menu": {
         "language": "Taal",
         "logout": "Uitloggen"
