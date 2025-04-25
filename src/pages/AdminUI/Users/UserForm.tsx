@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid2 as Grid } from "@mui/material";
 import { DefaultFormPage, FormField, useDialogContext } from "components-care";
 import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
@@ -23,31 +23,31 @@ const UserForm = (
     <DefaultFormPage {...props}>
       <FormPagePaper>
         <Grid container spacing={2}>
-          <Grid item xs={2}>
+          <Grid size={2}>
             <FormField name={"active"} />
           </Grid>
-          <Grid item xs={10}>
+          <Grid size={10}>
             <FormField name={"email"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"recovery_email"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"unconfirmed_recovery_email"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"first_name"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"last_name"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"gender"} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={6}>
             <FormField name={"locale"} />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             {props.id ? (
               <Button
                 onClick={openResetPasswordDialog}

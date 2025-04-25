@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
   TextField,
   Typography,
 } from "@mui/material";
@@ -60,12 +60,12 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
       <DialogContent>
         <Grid container spacing={2}>
           {isLoading && (
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Loader />
             </Grid>
           )}
           {error && (
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Typography color={"error"}>
                 {(error as Error).message}
               </Typography>
@@ -73,7 +73,7 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
           )}
           {tenant && (
             <>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t(
                     multiDelete
@@ -83,7 +83,7 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
                   )}
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <TextField
                   label={t("tenants.confirm-delete.text-box-label")}
                   placeholder={expectedConfirmStr}

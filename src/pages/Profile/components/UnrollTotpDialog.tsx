@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
   Typography,
 } from "@mui/material";
 import {
@@ -78,12 +78,12 @@ const UnrollTotpDialog = () => {
         <DialogTitle>{t("tabs.account.dialogs.unroll-totp.title")}</DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Typography>
                 {t("tabs.account.dialogs.unroll-totp.explainer-top")}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextFieldWithHelp
                 value={state.otp}
                 name={"otp"}
@@ -94,7 +94,7 @@ const UnrollTotpDialog = () => {
                 variant={"standard"}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Typography>
                 {t("tabs.account.dialogs.unroll-totp.explainer-bottom")}
               </Typography>

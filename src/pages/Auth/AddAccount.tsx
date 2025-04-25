@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Grid2 as Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -85,7 +90,7 @@ const AddAccount = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h1"}>
             <IconButton onClick={handleBack} size="large">
               <ArrowBack />
@@ -93,7 +98,7 @@ const AddAccount = (_props: AuthPageProps) => {
             {t("add.title")}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label={t("add.email")}
             name={"email"}
@@ -105,15 +110,13 @@ const AddAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
-          {t("add.mailhint")}
-        </Grid>
-        <Grid item xs={6}>
+        <Grid size={12}>{t("add.mailhint")}</Grid>
+        <Grid size={6}>
           <ActionButton className={classes.button} onClick={handleCreate}>
             {t("add.new")}
           </ActionButton>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <ActionButton
             type={"submit"}
             onClick={handleNext}

@@ -3,7 +3,7 @@ import {
   getLocalizedReason,
   MaintenanceEntry,
 } from "../../utils/MaintenanceMode";
-import { Grid, Typography } from "@mui/material";
+import { Grid2 as Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { marked } from "marked";
 
@@ -24,21 +24,21 @@ const MaintenancePageEntry = (props: MaintenancePageEntryProps) => {
   }, [entry.reason_long]);
 
   return (
-    <Grid item xs={12}>
+    <Grid size={12}>
       <Grid container spacing={0}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"body2"}>
             {getLocalizedReason(entry.reason)}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"body2"}>
             {t("maintenance.entry.start", {
               TIMESTAMP: entry.start.toLocaleString(i18n.language),
             })}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"body2"}>
             {t("maintenance.entry.end", {
               TIMESTAMP: entry.end
@@ -48,14 +48,14 @@ const MaintenancePageEntry = (props: MaintenancePageEntryProps) => {
           </Typography>
         </Grid>
         {type !== "current" && (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Typography variant={"body2"}>
               {t("maintenance.explainer.planned." + entry.type)}
             </Typography>
           </Grid>
         )}
         {infoMarkdown && (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <div dangerouslySetInnerHTML={{ __html: infoMarkdown }} />
           </Grid>
         )}

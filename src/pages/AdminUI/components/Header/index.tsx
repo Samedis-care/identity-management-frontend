@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid2 as Grid, Typography } from "@mui/material";
 import AccountActions from "./AccountActions";
 import AppIndicator from "./AppIndicator";
 import TenantIndicator from "./TenantIndicator";
@@ -12,8 +12,9 @@ const Header = () => {
       justifyContent={"space-between"}
       alignItems={"center"}
       alignContent={"stretch"}
+      size={"grow"}
     >
-      <Grid item>
+      <Grid>
         <Grid
           container
           spacing={2}
@@ -21,20 +22,20 @@ const Header = () => {
           alignContent={"stretch"}
           alignItems={"center"}
         >
-          <Grid item>
+          <Grid>
             <Typography variant={"h2"} component={"h1"}>
               Identity Management
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid>
             <AppIndicator />
           </Grid>
-          <Grid item>
+          <Grid>
             <TenantIndicator />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid>
         <AccountActions />
       </Grid>
     </Grid>

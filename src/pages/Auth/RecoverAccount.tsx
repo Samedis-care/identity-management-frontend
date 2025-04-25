@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid2 as Grid, TextField, Typography } from "@mui/material";
 import {
   ActionButton,
   showErrorDialog,
@@ -103,15 +103,13 @@ const RecoverAccount = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h1"}>
             {t("auth.recover_account.title")}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          {t("auth.recover_account.info")}
-        </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>{t("auth.recover_account.info")}</Grid>
+        <Grid size={12}>
           <TextField
             onChange={handleChange}
             value={state.email}
@@ -125,7 +123,7 @@ const RecoverAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             onChange={handleChange}
             value={state.recovery_email}
@@ -140,7 +138,7 @@ const RecoverAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <ActionButton
             icon={<KeyboardArrowRight />}
             type={"submit"}

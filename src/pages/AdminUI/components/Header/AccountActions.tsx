@@ -7,7 +7,7 @@ import {
   ArrowDropUp as ArrowDropUpIcon,
   Person as AccountIcon,
 } from "@mui/icons-material";
-import { Hidden, IconButton } from "@mui/material";
+import { IconButton, useMediaQuery } from "@mui/material";
 import { useAuthProviderContext } from "../../../components/AuthProvider";
 
 const useStyles = makeStyles()((theme) => ({
@@ -44,9 +44,11 @@ const AccountActions = () => {
     [setProfileMenuAnchor],
   );
 
+  const mdDown = useMediaQuery((theme) => theme.breakpoints.down("md"));
+
   return (
     <>
-      <Hidden mdDown implementation={"js"}>
+      {!mdDown ? (
         <div onClick={openProfileMenu} className={classes.root}>
           {t("header.account.hello")}{" "}
           <span className={classes.name}>
@@ -64,12 +66,11 @@ const AccountActions = () => {
             />
           )}
         </div>
-      </Hidden>
-      <Hidden mdUp implementation={"js"}>
+      ) : (
         <IconButton onClick={openProfileMenu} size="large">
           <AccountIcon />
         </IconButton>
-      </Hidden>
+      )}
       <ProfileMenu
         anchorEl={profileMenuAnchor}
         handleClose={closeProfileMenu}

@@ -1,6 +1,6 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid2 as Grid } from "@mui/material";
 import { EditOnlyFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { AppAdminModel } from "../../../../components-care/models/AppAdminModel";
@@ -16,7 +16,7 @@ const SeedsUploadForm = (
       <Box p={2}>
         <Grid container spacing={2}>
           {["import_roles", "import_candos"].map((field) => (
-            <Grid item xs={12} key={field}>
+            <Grid key={field} size={12}>
               <FormField name={field} />
             </Grid>
           ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid2 as Grid, Typography } from "@mui/material";
 import { WithTranslation, withTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 import { useLocation } from "components-care";
@@ -83,7 +83,7 @@ class ErrorBoundary extends React.PureComponent<
           alignItems={"center"}
           style={{ height: "100%" }}
         >
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Typography variant={"h1"} align={"center"}>
               {t("errors.js.title")}
             </Typography>

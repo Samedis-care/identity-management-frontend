@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid2 as Grid, TextField, Typography } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";
@@ -54,10 +54,10 @@ const AuthTotp = (_props: AuthPageProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Typography variant={"h1"}>{t("auth.totp.enter.title")}</Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <TextField
           label={t("add.email")}
           name={"email"}
@@ -69,7 +69,7 @@ const AuthTotp = (_props: AuthPageProps) => {
           variant={"standard"}
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <TextField
           label={t("auth.totp.enter.totp")}
           name={"totp"}
@@ -80,7 +80,7 @@ const AuthTotp = (_props: AuthPageProps) => {
           onChange={handleOtpChange}
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <ActionButton
           icon={<KeyboardArrowRight />}
           type={"submit"}

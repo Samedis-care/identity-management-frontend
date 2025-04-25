@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid2 as Grid } from "@mui/material";
 import {
   EditOnlyFormPage,
   FormField,
@@ -102,18 +102,28 @@ const GeneralForm = (
             "config.theme.components_care.ui_kit.action_button.background_color",
             "config.theme.mode",
           ].map((field) => (
-            <Grid item xs={12} key={field}>
+            <Grid key={field} size={12}>
               <FormField name={field} />
             </Grid>
           ))}
           {props.id && (
             <>
-              <Grid item xs={12} md={6}>
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 6,
+                }}
+              >
                 <Button onClick={handleExport} fullWidth variant={"contained"}>
                   {t("form.export-roles-permissions")}
                 </Button>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 6,
+                }}
+              >
                 <Button onClick={handleImport} fullWidth variant={"contained"}>
                   {t("form.import-roles-permissions")}
                 </Button>

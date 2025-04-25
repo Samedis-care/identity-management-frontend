@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
 } from "@mui/material";
 import {
   showInfoDialog,
@@ -101,7 +101,7 @@ const ResetPasswordDialog = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextFieldWithHelp
                 value={state.current_password}
                 name={"current_password"}
@@ -115,7 +115,7 @@ const ResetPasswordDialog = () => {
                 variant={"standard"}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextFieldWithHelp
                 value={state.password}
                 name={"password"}
@@ -128,7 +128,7 @@ const ResetPasswordDialog = () => {
                 variant={"standard"}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextFieldWithHelp
                 value={state.password_confirm}
                 name={"password_confirm"}

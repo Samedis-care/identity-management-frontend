@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid2 as Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import * as Sentry from "@sentry/react";
 
 export interface BrowserCompatCheckProps {
@@ -28,12 +34,12 @@ const BrowserCompatCheck = (props: BrowserCompatCheckProps) => {
           <Paper>
             <Box p={2}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography variant={"h1"}>
                     {t("browser-compat.title")}
                   </Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <ul>
                     {errors.map((err, idx) => (
                       <li key={idx.toString(16)}>
@@ -42,9 +48,7 @@ const BrowserCompatCheck = (props: BrowserCompatCheckProps) => {
                     ))}
                   </ul>
                 </Grid>
-                <Grid item xs={12}>
-                  {t("browser-compat.info")}
-                </Grid>
+                <Grid size={12}>{t("browser-compat.info")}</Grid>
               </Grid>
             </Box>
           </Paper>

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid2 as Grid, TextField, Typography } from "@mui/material";
 import {
   ActionButton,
   showInfoDialog,
@@ -81,12 +81,12 @@ const ResetPassword = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h1"}>
             {t("auth.password.reset.title")}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             name={"password"}
             onChange={handleChange}
@@ -107,7 +107,7 @@ const ResetPassword = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <ActionButton
             icon={<KeyboardArrowRight />}
             type={"submit"}

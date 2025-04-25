@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Grid2 as Grid, IconButton, Typography } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
@@ -105,20 +105,19 @@ const SocialLogins = (props: SocialLoginsProps) => {
     <>
       {enableSocialLogins() && (
         <Grid
-          item
-          xs={12}
           container
           alignItems={"center"}
           justifyContent={"flex-start"}
           spacing={2}
+          size={12}
         >
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Typography variant={"h1"} component={"h2"}>
               {t("add.connect")}
             </Typography>
           </Grid>
           {OauthFacebook && (
-            <Grid item>
+            <Grid>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userFacebookSignIn}
@@ -129,7 +128,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
             </Grid>
           )}
           {OauthGoogle && (
-            <Grid item>
+            <Grid>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userGoogleSignIn}
@@ -140,7 +139,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
             </Grid>
           )}
           {OauthMicrosoft && (
-            <Grid item>
+            <Grid>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userMicrosoftSignIn}
@@ -151,7 +150,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
             </Grid>
           )}
           {OauthTwitter && (
-            <Grid item>
+            <Grid>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userTwitterSignIn}
@@ -162,7 +161,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
             </Grid>
           )}
           {OauthApple && (
-            <Grid item>
+            <Grid>
               <IconButton
                 className={classes.socialLogin}
                 onClick={userAppleSignIn}

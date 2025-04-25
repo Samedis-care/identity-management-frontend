@@ -1,6 +1,6 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { AppBar, Grid, Tab } from "@mui/material";
+import { AppBar, Grid2 as Grid, Tab } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,
@@ -46,7 +46,7 @@ const FunctionalityForm = (
                 "module",
                 "ident",
               ].map((field) => (
-                <Grid item xs={12} key={field}>
+                <Grid key={field} size={12}>
                   <FormField name={field} />
                 </Grid>
               ))}

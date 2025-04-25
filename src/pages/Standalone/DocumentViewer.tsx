@@ -15,7 +15,7 @@ import {
   Box,
   Button,
   Container,
-  Grid,
+  Grid2 as Grid,
   LinearProgress,
   Paper,
   Toolbar,
@@ -126,7 +126,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
   return (
     <Container className={classes.root}>
       <Grid container direction={"column"} wrap={"nowrap"}>
-        <Grid item xs>
+        <Grid size="grow">
           <Paper
             onScroll={contentScroll}
             ref={scrollRef}
@@ -141,22 +141,22 @@ const DocumentViewer = (props: DocumentViewerProps) => {
             </Box>
           </Paper>
         </Grid>
-        <Grid item>
+        <Grid>
           <LinearProgress
             variant={"determinate"}
             value={scrollProgress * 100}
           />
         </Grid>
         {getSession() && !dialogMode && (
-          <Grid item>
+          <Grid>
             <Toolbar>
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid size={6}>
                   <Button onClick={decline} variant="contained" fullWidth>
                     {t("decline-agreement")}
                   </Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={6}>
                   <Tooltip
                     title={t("read-to-accept") ?? ""}
                     disableFocusListener={!hasToScroll}

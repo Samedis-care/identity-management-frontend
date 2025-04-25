@@ -11,5 +11,5 @@ export const isRegularTotp = (totp: string) => {
 };
 
 export const stripInvalidTotpChars = (totp: string): string => {
-  return totp.replaceAll(/[^A-F0-9]/g, "").substr(0, 8);
+  return totp.replaceAll(/[^A-F0-9]/g, "").substring(0, 8);
 };

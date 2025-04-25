@@ -16,7 +16,7 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
-  Grid,
+  Grid2 as Grid,
   Link as MuiLink,
   Tab,
   Tabs,
@@ -67,9 +67,9 @@ export const useOrgUnitTree = (
     [],
   );
   const [pathPrefix, path] = useMemo(() => {
-    const pathPrefix = pathname.substr(0, pathname.indexOf("/ous") + 4);
+    const pathPrefix = pathname.substring(0, pathname.indexOf("/ous") + 4);
     const path = pathname
-      .substr(pathPrefix.length)
+      .substring(pathPrefix.length)
       .split("/")
       .filter((entry) => entry);
     return [pathPrefix, path];
@@ -136,7 +136,7 @@ export const useOrgUnitTree = (
         wrap={"nowrap"}
         className={classes.root}
       >
-        <Grid item>
+        <Grid>
           <FormPagePaper>
             <Breadcrumbs>
               <MuiLink key={"root"} to={pathPrefix} component={Link}>
@@ -155,10 +155,10 @@ export const useOrgUnitTree = (
             </Breadcrumbs>
           </FormPagePaper>
         </Grid>
-        <Grid item xs>
+        <Grid size="grow">
           <GridWrapper>
             <Grid container direction={"column"} className={classes.content}>
-              <Grid item>
+              <Grid>
                 <AppBar position={"static"}>
                   <Tabs value={tab} onChange={handleTabChange}>
                     <Tab
@@ -174,7 +174,7 @@ export const useOrgUnitTree = (
                   </Tabs>
                 </AppBar>
               </Grid>
-              <Grid item xs>
+              <Grid size="grow">
                 {tab === "edit" && (
                   <Form
                     id={currentRecord ? (currentRecord.id as string) : null}

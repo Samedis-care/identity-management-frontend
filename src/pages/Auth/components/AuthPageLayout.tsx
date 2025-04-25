@@ -10,7 +10,7 @@ import {
   Box,
   Container,
   createTheme,
-  Grid,
+  Grid2 as Grid,
   Link,
   Paper,
   ThemeOptions,
@@ -210,7 +210,8 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
       const contents = resp.data.attributes.content_translations;
 
       return (
-        contents[i18n.language.split("-")[0]] ?? contents["en"] // fallback lang
+        // fallback lang
+        contents[i18n.language.split("-")[0]] ?? contents["en"]
       );
     },
   });
@@ -235,7 +236,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
         wrap={"nowrap"}
         className={classes.gridContainer}
       >
-        <Grid item xs>
+        <Grid size="grow">
           <Container maxWidth={"xs"} className={classes.container}>
             <Box my={4}>
               <Grid
@@ -248,7 +249,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 spacing={4}
                 wrap={"nowrap"}
               >
-                <Grid item>
+                <Grid>
                   <LangSelector className={classes.langSelector} />
                   <Paper>
                     <Box p={4}>
@@ -266,7 +267,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                   </Paper>
                 </Grid>
                 {enableSocialLogins() && statePack[0].showSocialLogins && (
-                  <Grid item className={classes.appInfo}>
+                  <Grid className={classes.appInfo}>
                     <Paper>
                       <Box p={4}>
                         <SocialLogins app={app ?? "undefined"} />
@@ -275,7 +276,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                   </Grid>
                 )}
                 {appText && (
-                  <Grid item className={classes.appInfo}>
+                  <Grid className={classes.appInfo}>
                     <Paper>
                       <Box p={4}>
                         <Typography variant={"h4"}>
@@ -292,11 +293,11 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
             </Box>
           </Container>
         </Grid>
-        <Grid item className={classes.footer}>
+        <Grid className={classes.footer}>
           <Container maxWidth={"xs"}>
             <Box py={2}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography>
                     <Trans
                       t={t}
@@ -318,8 +319,8 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                     />
                   </Typography>
                 </Grid>
-                <Grid item xs={12} container spacing={2}>
-                  <Grid item xs={6}>
+                <Grid container spacing={2} size={12}>
+                  <Grid size={6}>
                     {CurrentProviderConfig.logo && (
                       <img
                         src={CurrentProviderConfig.logo}
@@ -330,7 +331,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                       />
                     )}
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid size={6}>
                     <Typography align={"right"}>
                       <Link onClick={showPrivacyDialog} href={"#"}>
                         {t("footer.privacy")}

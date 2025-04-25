@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid2 as Grid, Typography } from "@mui/material";
 import {
   ActionButton,
   showInfoDialog,
@@ -57,15 +57,13 @@ const ConfirmRecoveryEmail = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h2"}>
             {t("auth.confirm-recovery-email.title")}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          {t("auth.confirm-recovery-email.info")}
-        </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>{t("auth.confirm-recovery-email.info")}</Grid>
+        <Grid size={12}>
           <ActionButton
             icon={<KeyboardArrowRight />}
             type={"submit"}

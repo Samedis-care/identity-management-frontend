@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import {
   Checkbox,
   FormControlLabel,
-  Grid,
+  Grid2 as Grid,
   IconButton,
   Link as MuiLink,
   TextField,
@@ -170,7 +170,7 @@ const AuthPassword = (_props: AuthPageProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Typography variant={"h1"}>
           <IconButton onClick={handleBack} size="large">
             <ArrowBack />
@@ -178,7 +178,7 @@ const AuthPassword = (_props: AuthPageProps) => {
           {t("auth.password.enter.title")}
         </Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <TextField
           label={t("add.email")}
           name={"email"}
@@ -191,7 +191,7 @@ const AuthPassword = (_props: AuthPageProps) => {
           variant={"standard"}
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <TextField
           label={t("auth.password.enter.password")}
           name={"password"}
@@ -204,8 +204,8 @@ const AuthPassword = (_props: AuthPageProps) => {
           variant={"standard"}
         />
       </Grid>
-      <Grid item xs={12} container justifyContent={"space-between"} spacing={2}>
-        <Grid item>
+      <Grid container justifyContent={"space-between"} spacing={2} size={12}>
+        <Grid>
           <Typography variant={"caption"}>
             <MuiLink
               component={Link}
@@ -215,7 +215,7 @@ const AuthPassword = (_props: AuthPageProps) => {
             </MuiLink>
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography variant={"caption"}>
             <MuiLink component={Link} to={"#"} onClick={recoverAccount}>
               {t("auth.password.enter.recover")}
@@ -223,14 +223,14 @@ const AuthPassword = (_props: AuthPageProps) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <FormControlLabel
           control={<Checkbox checked={staySignedIn} />}
           label={t("auth.password.enter.keep-session")}
           onChange={changeStaySignedIn}
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <ActionButton
           icon={<KeyboardArrowRight />}
           type={"submit"}

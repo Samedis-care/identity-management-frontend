@@ -1,5 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Grid2 as Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import {
   ActionButton,
   FrameworkHistory,
@@ -84,7 +89,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h1"}>
             {!AccountManager.isEmpty() && (
               <IconButton onClick={handleBack} size="large">
@@ -95,7 +100,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
           </Typography>
         </Grid>
         {state.activeAccount ? (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Typography>
               {t("auth.password.forgot.info", {
                 EMAIL: state.activeAccount.email,
@@ -104,10 +109,8 @@ const ForgotPassword = (_props: AuthPageProps) => {
           </Grid>
         ) : (
           <>
-            <Grid item xs={12}>
-              {t("auth.password.forgot.info-no-mail")}
-            </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>{t("auth.password.forgot.info-no-mail")}</Grid>
+            <Grid size={12}>
               <TextField
                 onChange={handleEmailChange}
                 value={email}
@@ -123,7 +126,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
             </Grid>
           </>
         )}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <ActionButton
             icon={<KeyboardArrowRight />}
             type={"submit"}

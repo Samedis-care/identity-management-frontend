@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultFormPage, FormField, PageProps } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import { ContentModel } from "../../../components-care/models/ContentModel";
 import FormPagePaper from "../../../components/FormPagePaper";
 
@@ -22,7 +22,7 @@ const ContentsForm = (
             "acceptance_required",
             "content_translations",
           ].map((field) => (
-            <Grid item xs={12} key={field}>
+            <Grid key={field} size={12}>
               <FormField name={field} />
             </Grid>
           ))}

@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
 } from "@mui/material";
 import {
   showInfoDialog,
@@ -87,7 +87,7 @@ const SetupRecoveryEmailDialog = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextFieldWithHelp
                 value={state.recovery_email}
                 name={"recovery_email"}

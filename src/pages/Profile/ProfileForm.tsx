@@ -1,5 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Grid, Paper, Tab, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Grid2 as Grid,
+  Paper,
+  Tab,
+  Typography,
+  styled,
+} from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
   ActionButton,
@@ -189,30 +196,29 @@ const ProfileForm = (
       className={classes.root}
       wrap={"nowrap"}
     >
-      <Grid item>
+      <Grid>
         <Paper className={classes.paper}>
           <Box pt={2}>
             <Grid container>
               <Grid
-                item
-                xs={12}
                 container
                 alignItems={"center"}
                 justifyContent={"center"}
+                size={12}
               >
-                <Grid item>
+                <Grid>
                   <div className={classes.profile_picture}>
                     <ProfilePicture />
                   </div>
                 </Grid>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography variant={"h1"} align={"center"}>
                   {props.values!.first_name as string}{" "}
                   {props.values!.last_name as string}
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <RoutedTabs centered>
                   <Tab value={""} label={t("tabs.account.title")} />
                   <Tab value={"apps"} label={t("tabs.apps.title")} />
@@ -224,7 +230,7 @@ const ProfileForm = (
           </Box>
         </Paper>
       </Grid>
-      <Grid item xs container direction={"column"}>
+      <Grid container direction={"column"} size="grow">
         <Box p={2} className={classes.flexGrowContainer}>
           <Paper className={classes.flexGrowContainer}>
             <RoutedTabPanelWrapper>
@@ -285,15 +291,20 @@ const ProfileForm = (
                       spacing={2}
                       justifyContent={"space-between"}
                     >
-                      <Grid item xs={12} md={6}>
+                      <Grid
+                        size={{
+                          xs: 12,
+                          md: 6,
+                        }}
+                      >
                         <Grid container spacing={2}>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <FormField name={"last_name"} />
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <FormField name={"first_name"} />
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <FormField
                               name={"email"}
                               overrides={{
@@ -308,12 +319,12 @@ const ProfileForm = (
                           {(props.values!.unconfirmed_email as
                             | string
                             | null) && (
-                            <Grid item xs={12}>
+                            <Grid size={12}>
                               <FormField name={"unconfirmed_email"} />
                             </Grid>
                           )}
                           {(props.values!.recovery_email as string | null) && (
-                            <Grid item xs={12}>
+                            <Grid size={12}>
                               <FormField
                                 name={"recovery_email"}
                                 overrides={{
@@ -329,18 +340,23 @@ const ProfileForm = (
                           {(props.values!.unconfirmed_recovery_email as
                             | string
                             | null) && (
-                            <Grid item xs={12}>
+                            <Grid size={12}>
                               <FormField name={"unconfirmed_recovery_email"} />
                             </Grid>
                           )}
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <FormField name={"mobile"} />
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item xs={12} md={3}>
+                      <Grid
+                        size={{
+                          xs: 12,
+                          md: 3,
+                        }}
+                      >
                         <Grid container spacing={2}>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <GrayActionButton
                               icon={<KeyboardArrowRight />}
                               onClick={openResetPasswordDialog}
@@ -348,7 +364,7 @@ const ProfileForm = (
                               {t("tabs.account.buttons.reset-password")}
                             </GrayActionButton>
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <GrayActionButton
                               icon={<KeyboardArrowRight />}
                               onClick={
@@ -362,7 +378,7 @@ const ProfileForm = (
                                 : t("tabs.account.buttons.enable-mfa")}
                             </GrayActionButton>
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <GrayActionButton
                               icon={<KeyboardArrowRight />}
                               onClick={changeEmail}
@@ -370,7 +386,7 @@ const ProfileForm = (
                               {t("tabs.account.buttons.update-email")}
                             </GrayActionButton>
                           </Grid>
-                          <Grid item xs={12}>
+                          <Grid size={12}>
                             <GrayActionButton
                               icon={<KeyboardArrowRight />}
                               onClick={setupRecoveryEmail}
@@ -384,9 +400,9 @@ const ProfileForm = (
                                   )}
                             </GrayActionButton>
                           </Grid>
-                          <Grid item xs={12} />
-                          <Grid item xs={12} />
-                          <Grid item xs={12}>
+                          <Grid size={12} />
+                          <Grid size={12} />
+                          <Grid size={12}>
                             <ActionButton
                               icon={<KeyboardArrowRight />}
                               color={"error"}

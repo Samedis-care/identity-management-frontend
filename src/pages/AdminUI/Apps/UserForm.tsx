@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { AppBar, Grid, Tab, Tooltip } from "@mui/material";
+import { AppBar, Grid2 as Grid, Tab, Tooltip } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
   DefaultFormPage,
@@ -177,28 +177,28 @@ const UserForm = (
           {tab(
             "",
             <Grid container spacing={2}>
-              <Grid item xs={2}>
+              <Grid size={2}>
                 <FormField name={"active"} />
               </Grid>
-              <Grid item xs={10}>
+              <Grid size={10}>
                 <FormField name={"email"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"recovery_email"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"unconfirmed_recovery_email"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"first_name"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"last_name"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"gender"} />
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <FormField name={"locale"} />
               </Grid>
             </Grid>,

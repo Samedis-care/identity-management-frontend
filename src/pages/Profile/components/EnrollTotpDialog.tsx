@@ -5,7 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
+  Grid2 as Grid,
   Typography,
 } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
@@ -102,13 +102,20 @@ const EnrollTotpDialog = () => {
           title: t("tabs.account.dialogs.enroll-totp.result.success.title"),
           message: (
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t("tabs.account.dialogs.enroll-totp.result.success.info")}
                 </Typography>
               </Grid>
               {otpEnrollment.otp_backup_codes.map((entry) => (
-                <Grid item xs={6} md={3} xl={2} key={entry}>
+                <Grid
+                  key={entry}
+                  size={{
+                    xs: 6,
+                    md: 3,
+                    xl: 2,
+                  }}
+                >
                   <Typography>{entry}</Typography>
                 </Grid>
               ))}
@@ -171,38 +178,37 @@ const EnrollTotpDialog = () => {
         <DialogContent>
           {otpEnrollment ? (
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t("tabs.account.dialogs.enroll-totp.explainer-top")}
                 </Typography>
               </Grid>
               <Grid
-                item
-                xs={12}
                 dangerouslySetInnerHTML={{
                   __html: otpEnrollment.otp_provisioning_qr_code,
                 }}
                 className={classes.qrContainer}
+                size={12}
               />
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t("tabs.account.dialogs.enroll-totp.explainer-middle-top")}
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t("tabs.account.dialogs.enroll-totp.secret-key")}:{" "}
                   {otpEnrollment.otp_secret_key}
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t(
                     "tabs.account.dialogs.enroll-totp.explainer-middle-bottom",
                   )}
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <TextFieldWithHelp
                   value={state.otp}
                   name={"otp"}
@@ -213,7 +219,7 @@ const EnrollTotpDialog = () => {
                   variant={"standard"}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>
                   {t("tabs.account.dialogs.enroll-totp.explainer-bottom")}
                 </Typography>

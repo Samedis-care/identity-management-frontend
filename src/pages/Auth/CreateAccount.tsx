@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import {
-  Grid,
+  Grid2 as Grid,
   IconButton,
   Link,
   TextField,
@@ -278,7 +278,7 @@ const CreateAccount = (_props: AuthPageProps) => {
   return (
     <form>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography variant={"h1"}>
             <IconButton onClick={handleBack} size="large">
               <ArrowBack />
@@ -286,7 +286,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             {t("create.title")}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label={t("create.email")}
             name={"email"}
@@ -297,7 +297,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label={t("create.email_confirm")}
             name={"email_confirm"}
@@ -308,7 +308,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <TextField
             label={t("create.first_name")}
             name={"first_name"}
@@ -319,7 +319,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <TextField
             label={t("create.last_name")}
             name={"last_name"}
@@ -330,7 +330,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             variant={"standard"}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label={t("create.password")}
             name={"password"}
@@ -366,7 +366,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             />
           </Suspense>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             label={t("create.password_confirm")}
             name={"password_confirm"}
@@ -379,7 +379,7 @@ const CreateAccount = (_props: AuthPageProps) => {
           />
         </Grid>
         {RecaptchaKey && (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Suspense fallback={<Loader />}>
               <WaitForRecaptcha>
                 <Recaptcha
@@ -393,7 +393,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             </Suspense>
           </Grid>
         )}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Typography>
             <Trans
               t={t}
@@ -404,7 +404,7 @@ const CreateAccount = (_props: AuthPageProps) => {
             />
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <ActionButton
             icon={<KeyboardArrowRight />}
             type={"submit"}

@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultFormPage, FormField, PageProps } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import OrganizationRoleSelector from "./components/OrganizationRoleSelector";
 import { OrganizationModel } from "../../../components-care/models/OrganizationModel";
 import FormPagePaper from "../../../components/FormPagePaper";
@@ -18,13 +18,13 @@ const OrgUnitForm = (
         <Grid container spacing={2}>
           {["image", "active", "name", "title_translations", "actor_type"].map(
             (field) => (
-              <Grid item xs={12} key={field}>
+              <Grid key={field} size={12}>
                 <FormField name={field} />
               </Grid>
             ),
           )}
           {props.values!.actor_type === "group" && (
-            <Grid item xs={12}>
+            <Grid size={12}>
               <OrganizationRoleSelector organizationId={props.id} />
             </Grid>
           )}
