@@ -384,7 +384,7 @@ const CreateAccount = (_props: AuthPageProps) => {
               <WaitForRecaptcha>
                 <Recaptcha
                   sitekey={RecaptchaKey}
-                  ref={(e) => (captcha.current = e)}
+                  ref={captcha}
                   theme={theme.palette.mode}
                   verifyCallback={recaptchaCallback}
                   expiredCallback={recaptchaExpireCallback}
