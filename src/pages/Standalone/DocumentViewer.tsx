@@ -15,7 +15,7 @@ import {
   Box,
   Button,
   Container,
-  Grid2 as Grid,
+  Grid,
   LinearProgress,
   Paper,
   Toolbar,

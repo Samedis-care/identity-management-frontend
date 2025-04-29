@@ -1,12 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Box,
-  Grid2 as Grid,
-  Paper,
-  Tab,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Box, Grid, Paper, Tab, Typography, styled } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
   ActionButton,

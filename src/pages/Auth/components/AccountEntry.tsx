@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import {
   Divider,
-  Grid2 as Grid,
+  Grid,
   IconButton,
   Menu,
   MenuItem,
@@ -65,7 +65,6 @@ const nameToColor = (name: string): string => {
   for (let i = 0; i < name.length && i < 3; ++i) {
     color += name.charCodeAt(i);
   }
-  // eslint-disable-next-line import/namespace
   const colorHue = colors[hues[color % hues.length] as keyof typeof colors];
   return colorHue[500 as keyof typeof colorHue];
 };

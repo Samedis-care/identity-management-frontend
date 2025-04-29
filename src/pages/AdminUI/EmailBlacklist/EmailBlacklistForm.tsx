@@ -1,6 +1,6 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Grid2 as Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { DefaultFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { EmailBlacklistModel } from "../../../components-care/models/EmailBlacklistModel";

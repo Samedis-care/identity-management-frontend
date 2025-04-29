@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Divider, Grid2 as Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import {
   MaintenanceType,
   useMaintenanceInfo,

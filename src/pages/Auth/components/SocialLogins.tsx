@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Grid2 as Grid, IconButton, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";

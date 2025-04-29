@@ -1,6 +1,6 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Box, Grid2 as Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { EditOnlyFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { AppAdminModel } from "../../../../components-care/models/AppAdminModel";

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Button, Grid2 as Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import {
   EditOnlyFormPage,
   FormField,

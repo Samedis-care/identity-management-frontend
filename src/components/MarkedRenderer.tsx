@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { getTheme } from "../theme";
-import { Variant } from "@mui/material/styles/createTypography";
+import { TypographyVariant } from "@mui/material/styles";
 
 const renderer: marked.RendererObject = {
   heading({ depth: level, tokens }: marked.Tokens.Heading): string {
@@ -18,7 +18,7 @@ const renderer: marked.RendererObject = {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(getTheme(false))}>
           <Typography
-            variant={`h${level}` as Variant}
+            variant={`h${level}` as TypographyVariant}
             dangerouslySetInnerHTML={{ __html: text }}
           />
         </ThemeProvider>

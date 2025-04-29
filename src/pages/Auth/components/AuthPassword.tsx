@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import {
   Checkbox,
   FormControlLabel,
-  Grid2 as Grid,
+  Grid,
   IconButton,
   Link as MuiLink,
   TextField,

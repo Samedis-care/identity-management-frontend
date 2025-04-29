@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid2 as Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import AccountAvatar from "./AccountAvatar";
 

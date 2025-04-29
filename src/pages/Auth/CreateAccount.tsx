@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import {
-  Grid2 as Grid,
+  Grid,
   IconButton,
   Link,
   TextField,

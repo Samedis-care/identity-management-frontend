@@ -1,9 +1,4 @@
-import {
-  Checkbox,
-  FormControlLabel,
-  Grid2 as Grid,
-  Typography,
-} from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import { useFormContext } from "components-care";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";

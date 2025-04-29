@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { AppBar, Grid2 as Grid, Tab, Tooltip } from "@mui/material";
+import { AppBar, Grid, Tab, Tooltip } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 import {
   DefaultFormPage,

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { Button, Grid2 as Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { DefaultFormPage, FormField, useDialogContext } from "components-care";
 import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";

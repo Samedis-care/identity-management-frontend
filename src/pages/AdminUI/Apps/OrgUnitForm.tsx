@@ -1,7 +1,7 @@
 import React from "react";
 import { DefaultFormPage, FormField, PageProps } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { Grid2 as Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import OrganizationRoleSelector from "./components/OrganizationRoleSelector";
 import { OrganizationModel } from "../../../components-care/models/OrganizationModel";
 import FormPagePaper from "../../../components/FormPagePaper";

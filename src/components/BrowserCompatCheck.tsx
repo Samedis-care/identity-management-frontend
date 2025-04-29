@@ -1,12 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Box,
-  Container,
-  Grid2 as Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 import * as Sentry from "@sentry/react";
 
 export interface BrowserCompatCheckProps {

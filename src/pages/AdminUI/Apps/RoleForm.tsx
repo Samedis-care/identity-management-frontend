@@ -1,6 +1,6 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { AppBar, Grid2 as Grid, Tab } from "@mui/material";
+import { AppBar, Grid, Tab } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,

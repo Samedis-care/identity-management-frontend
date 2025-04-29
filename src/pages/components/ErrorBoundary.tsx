@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid2 as Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { WithTranslation, withTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 import { useLocation } from "components-care";

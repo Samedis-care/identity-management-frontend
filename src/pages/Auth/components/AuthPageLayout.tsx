@@ -10,7 +10,7 @@ import {
   Box,
   Container,
   createTheme,
-  Grid2 as Grid,
+  Grid,
   Link,
   Paper,
   ThemeOptions,

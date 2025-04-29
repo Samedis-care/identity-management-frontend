@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid2 as Grid, TextField, Typography } from "@mui/material";
+import { Grid, TextField, Typography } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";

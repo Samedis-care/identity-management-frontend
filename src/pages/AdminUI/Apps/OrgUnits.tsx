@@ -16,7 +16,7 @@ import {
   AppBar,
   Box,
   Breadcrumbs,
-  Grid2 as Grid,
+  Grid,
   Link as MuiLink,
   Tab,
   Tabs,

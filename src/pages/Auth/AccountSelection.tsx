@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Typography, Grid2 as Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import AccountEntry from "./components/AccountEntry";
 import AccountListButton from "./components/AccountListButton";
 import { Add as AddIcon } from "@mui/icons-material";
