@@ -152,7 +152,7 @@
             },
             "success": {
               "message": "Please check your email to validate the new email so it can be used.",
-              "title": "Update e-mail address"
+              "title": "Update email address"
             },
             "invalid-email": {
               "title": "Email invalid",
