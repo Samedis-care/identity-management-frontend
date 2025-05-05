@@ -34,7 +34,7 @@
           "read_timeout": "SMTP: Connection read timeout",
           "read_timeout_unit": "seconds"
         },
-        "support_email": "Support E-Mail"
+        "support_email": "Support email"
       },
       "theme": {
         "primary": {
