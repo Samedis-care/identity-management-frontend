@@ -12,7 +12,7 @@
     "active": "Aktiv",
     "invalid_at": "Ungültig seit",
     "updated_at": "Aktualisiert am",
-    "recovery_email": "E-Mail zur Konto Wiederherstellung",
+    "recovery_email": "E-Mail zur Kontowiederherstellung",
     "unconfirmed_recovery_email": "Unbestätigte Wiederherstellungs-E-Mail"
   },
   "enums": {
