@@ -7,7 +7,7 @@
     "mobile": "Mobilnummer",
     "image": "Profilbild",
     "unconfirmed_recovery_email": "Unbestätigte Wiederherstellungs-E-Mail",
-    "recovery_email": "E-Mail zur Konto Wiederherstellung",
+    "recovery_email": "E-Mail zur Kontowiederherstellung",
     "unconfirmed_email": "Unbestätigte E-Mail"
   },
   "tabs": {
@@ -18,8 +18,8 @@
         "enable-mfa": "MFA aktivieren",
         "disable-mfa": "MFA deaktivieren",
         "delete-account": "Konto löschen",
-        "update-recovery-email": "E-Mail zur Konto Wiederherstellung aktualisieren",
-        "setup-recovery-email": "Konto Wiederherstellungs-E-Mail einrichten",
+        "update-recovery-email": "E-Mail zur Kontowiederherstellung aktualisieren",
+        "setup-recovery-email": "E-Mail zur Kontowiederherstellung einrichten",
         "update-email": "E-Mail Adresse ändern"
       },
       "dialogs": {
@@ -121,22 +121,22 @@
             "cancel": "Abbrechen"
           },
           "fields": {
-            "recovery_email": "E-Mail zur Konto Wiederherstellung"
+            "recovery_email": "E-Mail zur Kontowiederherstellung"
           },
           "result": {
             "success": {
-              "title": "Gespeicherte Konto Wiederherstellungs-E-Mail",
-              "message": "Deine Konto Wiederherstellungs-E-Mail wurde gespeichert. Bitte überprüfe Deine E-Mails, um die Wiederherstellungs-E-Mail zu bestätigen, damit diese verwendet werden kann."
+              "title": "Gespeicherte E-Mail zur Kontowiederherstellung",
+              "message": "Deine E-Mail zur Kontowiederherstellung wurde gespeichert. Bitte überprüfe Deine E-Mails, um die Wiederherstellungs-E-Mail zu bestätigen, damit diese verwendet werden kann."
             },
             "invalid-email": {
               "title": "E-Mail ungültig",
               "message": "Die angegebene E-Mail-Adresse ist ungültig."
             },
             "error-backend": {
-              "title": "Fehler beim Speichern der Konto Wiederherstellungs-E-Mail"
+              "title": "Fehler beim Speichern der E-Mail zur Kontowiederherstellung"
             }
           },
-          "title": "Konto Wiederherstellungs-E-Mail einrichten"
+          "title": "E-Mail zur Kontowiederherstellung einrichten"
         },
         "change-email": {
           "result": {
