@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { getTheme } from "../theme";
 import { TypographyVariant } from "@mui/material/styles";
+import { Tokens } from "marked";
 
 const renderer: marked.RendererObject = {
   heading({ depth: level, tokens }: marked.Tokens.Heading): string {
@@ -39,14 +40,13 @@ const renderer: marked.RendererObject = {
       </StyledEngineProvider>,
     );
   },
-  text({
-    text,
-  }: marked.Tokens.Text | marked.Tokens.Escape | marked.Tokens.Tag): string {
+  paragraph({ tokens }: Tokens.Paragraph): string {
+    const text = this.parser.parseInline(tokens);
     return renderToStaticMarkup(
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={createTheme(getTheme(false))}>
           <Typography
-            component={"span"}
+            component={"p"}
             dangerouslySetInnerHTML={{ __html: text }}
           />
         </ThemeProvider>
