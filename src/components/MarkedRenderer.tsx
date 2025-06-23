@@ -21,6 +21,7 @@ const renderer: marked.RendererObject = {
           <Typography
             variant={`h${level}` as TypographyVariant}
             dangerouslySetInnerHTML={{ __html: text }}
+            margin={"unset"}
           />
         </ThemeProvider>
       </StyledEngineProvider>,
@@ -48,6 +49,7 @@ const renderer: marked.RendererObject = {
           <Typography
             component={"p"}
             dangerouslySetInnerHTML={{ __html: text }}
+            margin={"unset"}
           />
         </ThemeProvider>
       </StyledEngineProvider>,
