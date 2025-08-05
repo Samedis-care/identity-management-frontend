@@ -27,6 +27,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
   const [email, setEmail] = useState(queryParams.get("emailHint") ?? "");
   const handleBack = useCallback(() => FrameworkHistory.back(), []);
   const [pushDialog] = useDialogContext();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleEmailChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +68,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
           },
           AuthMode.Off,
         );
+        setSuccessMessage(resp.meta.msg.message);
         await showInfoDialog(pushDialog, {
           title: t("auth.password.forgot.success.title"),
           message: resp.meta.msg.message,
@@ -91,10 +93,16 @@ const ForgotPassword = (_props: AuthPageProps) => {
                 <ArrowBack />
               </IconButton>
             )}
-            {t("auth.password.forgot.title")}
+            {successMessage
+              ? t("auth.password.forgot.success.title")
+              : t("auth.password.forgot.title")}
           </Typography>
         </Grid>
-        {state.activeAccount ? (
+        {successMessage ? (
+          <Grid size={12}>
+            <Typography>{successMessage}</Typography>
+          </Grid>
+        ) : state.activeAccount ? (
           <Grid size={12}>
             <Typography>
               {t("auth.password.forgot.info", {
@@ -121,16 +129,18 @@ const ForgotPassword = (_props: AuthPageProps) => {
             </Grid>
           </>
         )}
-        <Grid size={12}>
-          <ActionButton
-            icon={<KeyboardArrowRight />}
-            type={"submit"}
-            autoFocus={!!state.activeAccount}
-            onClick={resetPassword}
-          >
-            {t("auth.password.forgot.send")}
-          </ActionButton>
-        </Grid>
+        {!successMessage && (
+          <Grid size={12}>
+            <ActionButton
+              icon={<KeyboardArrowRight />}
+              type={"submit"}
+              autoFocus={!!state.activeAccount}
+              onClick={resetPassword}
+            >
+              {t("auth.password.forgot.send")}
+            </ActionButton>
+          </Grid>
+        )}
       </Grid>
     </form>
   );
