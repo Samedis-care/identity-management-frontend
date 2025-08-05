@@ -39,6 +39,15 @@
 			"json"
 		],
 		"i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
-		"i18n-ally.namespace": true
+		"i18n-ally.namespace": true,
+		"terminal.integrated.env.linux": {
+			"PATH": "${env:PATH}:${workspaceFolder}/node_modules/.bin"
+		},
+		"terminal.integrated.env.osx": {
+			"PATH": "${env:PATH}:${workspaceFolder}/node_modules/.bin"
+		},
+		"terminal.integrated.env.windows": {
+			"PATH": "${env:PATH};${workspaceFolder}/node_modules/.bin"
+		}
 	}
 }
