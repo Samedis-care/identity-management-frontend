@@ -15,10 +15,14 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import { DataGridSortSetting } from "components-care/dist/standalone/DataGrid/DataGrid";
-import { SupportedLanguages } from "../../i18n";
+import { MultiLanguageInputSupportedLanguages } from "components-care/dist/standalone/UIKit/InputControls/MultiLanguageInput";
+import useApp from "../../utils/useApp";
+import useAppLanguages from "../../utils/useAppLanguages";
+import { useMemo } from "react";
 
 export interface RoleModelParams {
   app: string;
+  supportedLanguages: MultiLanguageInputSupportedLanguages[];
   user?: string | null;
   tenant?: string | null;
   functionality?: string | null;
@@ -27,7 +31,14 @@ export interface RoleModelParams {
 
 export const RoleModel = (
   t: TFunction,
-  { app, user, tenant, functionality, picker }: RoleModelParams,
+  {
+    app,
+    supportedLanguages,
+    user,
+    tenant,
+    functionality,
+    picker,
+  }: RoleModelParams,
 ) =>
   new Model(
     "role",
@@ -52,7 +63,7 @@ export const RoleModel = (
       },
       title_translations: {
         type: new ModelDataTypeLocalizedStringRenderer({
-          enabledLanguages: SupportedLanguages,
+          enabledLanguages: supportedLanguages,
         }),
         getLabel: () => t("roles:fields.title"),
         customData: null,
@@ -81,7 +92,7 @@ export const RoleModel = (
       description_translations: {
         type: new ModelDataTypeLocalizedStringRenderer({
           multiline: true,
-          enabledLanguages: SupportedLanguages,
+          enabledLanguages: supportedLanguages,
         }),
         getLabel: () => t("roles:fields.description"),
         customData: null,
@@ -129,13 +140,15 @@ export const RoleModel = (
     },
   );
 
-export const useRoleModel = (
-  params?: Omit<RoleModelParams, "app"> & { app?: string },
-) => {
+export const useRoleModel = (params?: Partial<RoleModelParams>) => {
   const { t } = useTranslation(["roles", "functionality", "roles"]);
-  const { app, tenant } = useParams();
-  if (!app) throw new Error("No app specified");
-  return RoleModel(t, { app, tenant, ...params });
+  const app = useApp();
+  const { tenant } = useParams();
+  const supportedLanguages = useAppLanguages(params?.app ?? app);
+  return useMemo(
+    () => RoleModel(t, { app, tenant, supportedLanguages, ...params }),
+    [app, params, supportedLanguages, t, tenant],
+  );
 };
 
 export const RoleModelSelectorSort: DataGridSortSetting[] = [

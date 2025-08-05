@@ -24,28 +24,35 @@ import { BackendVisibility } from "./Visibilities";
 import { useMemo } from "react";
 import useApp from "../../utils/useApp";
 import { ACTOR_TYPES } from "./ActorListModel";
-import { SupportedLanguages } from "../../i18n";
+import { MultiLanguageInputSupportedLanguages } from "components-care/dist/standalone/UIKit/InputControls/MultiLanguageInput";
+import useAppLanguages from "../../utils/useAppLanguages";
 
-export const OrganizationModel = (
-  t: TFunction,
-  app: string,
-  parent?: string | undefined | null,
-  _treeView: boolean = false,
-  possibleTypes?: string[] | undefined | null,
-  tenant?: string | null,
-) =>
+export interface OrganizationModelParams {
+  t: TFunction;
+  appId: string;
+  supportedLanguages: MultiLanguageInputSupportedLanguages[];
+  parentId?: string | undefined | null;
+  /**
+   * @default false
+   */
+  treeView?: boolean;
+  possibleTypes?: string[] | undefined | null;
+  tenantId?: string | null;
+}
+
+export const OrganizationModel = (params: OrganizationModelParams) =>
   new Model(
     "organization",
     {
       id: {
         type: new ModelDataTypeStringRendererMUI(),
-        getLabel: () => t("actors:fields.id"),
+        getLabel: () => params.t("actors:fields.id"),
         customData: null,
         visibility: BackendVisibility,
       },
       parent_id: {
         type: new ModelDataTypeStringRendererMUI(),
-        getLabel: () => t("actors:fields.parent_id"),
+        getLabel: () => params.t("actors:fields.parent_id"),
         customData: null,
         visibility: BackendVisibility,
       },
@@ -63,7 +70,7 @@ export const OrganizationModel = (
       },
       image: {
         type: new ModelDataTypeImageRenderer(),
-        getLabel: () => t("actors:fields.image"),
+        getLabel: () => params.t("actors:fields.image"),
         customData: null,
         visibility: {
           overview: ModelVisibilityDisabled,
@@ -73,7 +80,7 @@ export const OrganizationModel = (
       },
       active: {
         type: new ModelDataTypeBooleanCheckboxRendererMUI(),
-        getLabel: () => t("actors:fields.active"),
+        getLabel: () => params.t("actors:fields.active"),
         customData: null,
         visibility: {
           overview: ModelVisibilityGridViewHidden,
@@ -84,12 +91,12 @@ export const OrganizationModel = (
       },
       actor_type: {
         type: new ModelDataTypeEnumSelectRendererMUI(
-          (possibleTypes ?? ACTOR_TYPES).map((type) => ({
+          (params.possibleTypes ?? ACTOR_TYPES).map((type) => ({
             value: type,
-            getLabel: () => t("actors:enums.actor_type." + type),
+            getLabel: () => params.t("actors:enums.actor_type." + type),
           })),
         ),
-        getLabel: () => t("actors:fields.actor_type"),
+        getLabel: () => params.t("actors:fields.actor_type"),
         customData: null,
         visibility: {
           overview: ModelVisibilityGridView,
@@ -100,7 +107,7 @@ export const OrganizationModel = (
       },
       name: {
         type: new ModelDataTypeStringRendererMUI(),
-        getLabel: () => t("actors:fields.name"),
+        getLabel: () => params.t("actors:fields.name"),
         customData: null,
         visibility: {
           // only path is a bit too long in tenant overview, so we enable title by default
@@ -113,7 +120,7 @@ export const OrganizationModel = (
       },
       title: {
         type: new ModelDataTypeStringRendererMUI(),
-        getLabel: () => t("actors:fields.title"),
+        getLabel: () => params.t("actors:fields.title"),
         customData: null,
         visibility: {
           // only path is a bit too long in tenant overview, so we enable title by default
@@ -126,9 +133,9 @@ export const OrganizationModel = (
       },
       title_translations: {
         type: new ModelDataTypeLocalizedStringRenderer({
-          enabledLanguages: SupportedLanguages,
+          enabledLanguages: params.supportedLanguages,
         }),
-        getLabel: () => t("actors:fields.title"),
+        getLabel: () => params.t("actors:fields.title"),
         customData: null,
         visibility: {
           overview: ModelVisibilityDisabled,
@@ -140,7 +147,7 @@ export const OrganizationModel = (
       },
       path: {
         type: new ModelDataTypeStringRendererMUI(),
-        getLabel: () => t("actors:fields.path"),
+        getLabel: () => params.t("actors:fields.path"),
         customData: null,
         visibility: {
           overview: ModelVisibilityGridView,
@@ -152,23 +159,23 @@ export const OrganizationModel = (
       },
     },
     new BackendConnector(
-      tenant
-        ? parent
-          ? `v1/apps/${app}/tenants/${tenant}/organizations_tree/${parent}`
-          : `v1/apps/${app}/tenants/${tenant}/organizations_tree`
-        : parent
-          ? `v1/apps/${app}/organizations_tree/${parent}`
-          : `v1/apps/${app}/organizations_tree`,
+      params.tenantId
+        ? params.parentId
+          ? `v1/apps/${params.appId}/tenants/${params.tenantId}/organizations_tree/${params.parentId}`
+          : `v1/apps/${params.appId}/tenants/${params.tenantId}/organizations_tree`
+        : params.parentId
+          ? `v1/apps/${params.appId}/organizations_tree/${params.parentId}`
+          : `v1/apps/${params.appId}/organizations_tree`,
       null,
       undefined,
       undefined,
       {
-        overrideRecordBase: tenant
-          ? `v1/apps/${app}/tenants/${tenant}/organizations`
-          : `v1/apps/${app}/organizations`,
+        overrideRecordBase: params.tenantId
+          ? `v1/apps/${params.appId}/tenants/${params.tenantId}/organizations`
+          : `v1/apps/${params.appId}/organizations`,
       },
     ),
-    { app, parent, tenant },
+    { app: params.appId, parent: params.parentId, tenant: params.tenantId },
   );
 
 export const useOrganizationModel = (
@@ -179,8 +186,18 @@ export const useOrganizationModel = (
   const app = useApp();
   const { tenant } = useParams();
   const { t } = useTranslation("actors");
+  const supportedLanguages = useAppLanguages(app);
   return useMemo(
-    () => OrganizationModel(t, app, parent, treeView, possibleTypes, tenant),
-    [t, parent, app, treeView, possibleTypes, tenant],
+    () =>
+      OrganizationModel({
+        t,
+        appId: app,
+        supportedLanguages,
+        parentId: parent,
+        treeView,
+        possibleTypes,
+        tenantId: tenant,
+      }),
+    [t, app, supportedLanguages, parent, treeView, possibleTypes, tenant],
   );
 };

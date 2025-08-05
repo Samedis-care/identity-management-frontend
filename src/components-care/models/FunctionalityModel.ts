@@ -17,20 +17,30 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import { DataGridSortSetting } from "components-care/dist/standalone/DataGrid/DataGrid";
-import { SupportedLanguages } from "../../i18n";
+import { MultiLanguageInputSupportedLanguages } from "components-care/dist/standalone/UIKit/InputControls/MultiLanguageInput";
+import useAppLanguages from "../../utils/useAppLanguages";
+import useApp from "../../utils/useApp";
+import { useMemo } from "react";
 
 export interface FunctionalityModelParams {
+  t: TFunction;
   app: string;
   user?: string | null;
   tenant?: string | null;
   role?: string | null;
   picker?: boolean;
+  supportedLanguages: MultiLanguageInputSupportedLanguages[];
 }
 
-export const FunctionalityModel = (
-  t: TFunction,
-  { app, user, tenant, role, picker }: FunctionalityModelParams,
-) =>
+export const FunctionalityModel = ({
+  t,
+  app,
+  user,
+  tenant,
+  role,
+  picker,
+  supportedLanguages,
+}: FunctionalityModelParams) =>
   new Model(
     "functionality",
     {
@@ -54,7 +64,7 @@ export const FunctionalityModel = (
       },
       title_translations: {
         type: new ModelDataTypeLocalizedStringRenderer({
-          enabledLanguages: SupportedLanguages,
+          enabledLanguages: supportedLanguages,
         }),
         getLabel: () => t("functionality:fields.title"),
         customData: null,
@@ -81,7 +91,7 @@ export const FunctionalityModel = (
       description_translations: {
         type: new ModelDataTypeLocalizedStringRenderer({
           multiline: true,
-          enabledLanguages: SupportedLanguages,
+          enabledLanguages: supportedLanguages,
         }),
         getLabel: () => t("functionality:fields.description"),
         customData: null,
@@ -168,16 +178,23 @@ export const FunctionalityModel = (
   );
 
 export const useFunctionalityModel = (
-  params?: Omit<FunctionalityModelParams, "app"> & { app?: string },
+  params?: Partial<FunctionalityModelParams>,
 ) => {
   const { t } = useTranslation("functionality");
-  const { app, tenant } = useParams();
-  if (!app) throw new Error("No app specified");
-  return FunctionalityModel(t, {
-    app,
-    tenant,
-    ...params,
-  });
+  const app = useApp();
+  const { tenant } = useParams();
+  const supportedLanguages = useAppLanguages(params?.app ?? app);
+  return useMemo(
+    () =>
+      FunctionalityModel({
+        t,
+        app,
+        tenant,
+        supportedLanguages,
+        ...params,
+      }),
+    [app, params, supportedLanguages, t, tenant],
+  );
 };
 
 export const FunctionalityModelToSelectorData = (
