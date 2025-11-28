@@ -16,15 +16,15 @@ export interface DataGridMultiSelectCRUDProps<
   VisibilityT extends PageVisibility,
   CustomT,
 > extends Omit<
-    BackendDataGridProps<KeyT, VisibilityT, CustomT>,
-    | "model"
-    | "disableSelection"
-    | "customSelectionControl"
-    | "onSelectionChange"
-    | "selection"
-    | "enableDelete"
-    | "disableExport"
-  > {
+  BackendDataGridProps<KeyT, VisibilityT, CustomT>,
+  | "model"
+  | "disableSelection"
+  | "customSelectionControl"
+  | "onSelectionChange"
+  | "selection"
+  | "enableDelete"
+  | "disableExport"
+> {
   selectedModel: Model<KeyT, VisibilityT, CustomT>;
   serializeCreate: (id: string) => Record<string, unknown>;
   optionsModel: Model<ModelFieldName, PageVisibility, unknown>;

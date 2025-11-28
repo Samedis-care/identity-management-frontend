@@ -20,8 +20,10 @@ import {
   useLocation,
 } from "components-care";
 
-export interface MyMenuItemDefinition
-  extends Omit<IRoutedMenuItemDefinition, "shouldRender"> {
+export interface MyMenuItemDefinition extends Omit<
+  IRoutedMenuItemDefinition,
+  "shouldRender"
+> {
   cando: string | null;
   isBack?: boolean;
   component?: React.ComponentType;

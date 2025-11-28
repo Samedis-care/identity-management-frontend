@@ -27,7 +27,9 @@ export interface DataGridMultiSelectCRUDProps<
   KeyT extends ModelFieldName,
   VisibilityT extends PageVisibility,
   CustomT,
-> extends UseLazyCrudConnectorParams<KeyT, VisibilityT, CustomT>,
+>
+  extends
+    UseLazyCrudConnectorParams<KeyT, VisibilityT, CustomT>,
     Omit<
       DataGridProps,
       | "columns"

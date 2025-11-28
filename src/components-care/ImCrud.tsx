@@ -28,9 +28,9 @@ export interface ImCrudProps<
   VisibilityT extends PageVisibility,
   CustomT,
 > extends Omit<
-    CrudProps<KeyT, VisibilityT, CustomT>,
-    "formProps" | "gridProps" | "forbiddenPage"
-  > {
+  CrudProps<KeyT, VisibilityT, CustomT>,
+  "formProps" | "gridProps" | "forbiddenPage"
+> {
   /**
    * Custom form props
    */
