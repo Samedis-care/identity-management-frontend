@@ -39,7 +39,7 @@ const AccountSelection = (_props: AuthPageProps) => {
 
   const [, setRefreshToken] = useState("");
   const onSelectAccount = useCallback(
-    async (id: string) => {
+    async (id: string, removeEmailHint?: boolean) => {
       let account = AccountManager.forceFind(id);
       if (account.session?.refresh) {
         try {
@@ -110,11 +110,26 @@ const AccountSelection = (_props: AuthPageProps) => {
         activeAccount: account,
         currentFactor: undefined,
       }));
-      navigate(preserveUrlParams(`/login/${app}/authenticate`, location));
+      if (removeEmailHint) {
+        navigate(
+          preserveUrlParams(location.pathname, location, undefined, [
+            "emailHint",
+          ]),
+          { replace: true },
+        );
+      }
+      navigate(
+        preserveUrlParams(
+          `/login/${app}/authenticate`,
+          location,
+          undefined,
+          removeEmailHint ? ["emailHint"] : undefined,
+        ),
+      );
     },
     [setState, app, location, navigate],
   );
-  const onForgotAccount = (id: string) => {
+  const onForgotAccount = useCallback((id: string) => {
     const account = AccountManager.forceFind(id);
     if (account.session) {
       if (account.session.token) {
@@ -128,7 +143,16 @@ const AccountSelection = (_props: AuthPageProps) => {
     }
     AccountManager.forgetAccount(id);
     setRefreshToken(id);
-  };
+  }, []);
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const email = queryParams.get("emailHint");
+    if (!email) return;
+    const account = AccountManager.find(email);
+    if (!account) return;
+    onSelectAccount(account.id ?? account.email, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Grid container spacing={2}>

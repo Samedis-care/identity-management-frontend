@@ -37,7 +37,9 @@ const AddAccount = (_props: AuthPageProps) => {
   const { app } = params;
   if (!app) throw new Error("App not set");
   const { t } = useTranslation("auth");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(
+    new URLSearchParams(location.search).get("emailHint") ?? "",
+  );
   const [, setState] = useAuthPageState();
   useEffect(() => {
     setState((prev) => ({ ...prev, showSocialLogins: true }));
