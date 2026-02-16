@@ -124,6 +124,14 @@ const AuthPassword = (_props: AuthPageProps) => {
               )}
             />,
           );
+        } else if (
+          err.name === "BackendError" &&
+          (err as BackendError).code === "account_locked"
+        ) {
+          await showInfoDialog(pushDialog, {
+            title: t("auth.error-locked"),
+            message: err.message,
+          });
         } else {
           await showInfoDialog(pushDialog, {
             title: t("auth.error"),
