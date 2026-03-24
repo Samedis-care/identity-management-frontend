@@ -105,7 +105,8 @@ module.exports = (env, argv) => {
           ),
         },
       }),
-    ],
+      isDev && new webpack.HotModuleReplacementPlugin(),
+    ].filter(Boolean),
     resolve: {
       extensions: [".tsx", ".ts", ".js", ".mjs"],
       symlinks: false,
