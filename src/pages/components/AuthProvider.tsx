@@ -333,7 +333,9 @@ const AuthProvider = (props: AuthProviderProps) => {
         } catch (e) {
           const isInvalidToken =
             (e as Error).name === "BackendError" &&
-            (e as BackendError).code === "token_invalid";
+            ["token_invalid", "otp_required"].includes(
+              (e as BackendError).code as string,
+            );
           console.error(e);
           if (!props.optional && !isInvalidToken) {
             await showInfoDialog(pushDialog, {

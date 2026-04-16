@@ -40,6 +40,7 @@ class BackendHttpClient extends RailsApiClient {
             error === "invalid_token" ||
             error === "token_invalid" ||
             error === "token_expired" ||
+            error === "otp_required" ||
             error === "otp_too_many_tries"
           ) {
             if (auth === AuthMode.Off) {
