@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
@@ -15,7 +16,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import {
   FullFormDialog,
   Loader,
@@ -39,24 +39,20 @@ export interface AppsListProps {
   confirmEmail: string;
 }
 
-const useStyles = makeStyles()((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-    height: "100%",
-    overflow: "auto",
-  },
-  tableButtons: {
-    textAlign: "right",
-  },
-  policyDeclined: {
-    color: theme.palette.error.main,
-  },
-  policyAccepted: {
-    color: theme.palette.success.main,
-  },
-  policyNotPresent: {
-    color: theme.palette.action.disabled,
-  },
+const RootPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  height: "100%",
+  overflow: "auto",
+}));
+
+const TableButtonsCell = styled(TableCell)({
+  textAlign: "right",
+});
+
+const StyledPolicyIcon = styled(PolicyIcon)(({ theme }) => ({
+  "&.declined": { color: theme.palette.error.main },
+  "&.accepted": { color: theme.palette.success.main },
+  "&.notPresent": { color: theme.palette.action.disabled },
 }));
 
 interface AppType {
@@ -74,7 +70,6 @@ interface AppType {
 
 const AppsList = (props: AppsListProps) => {
   const { confirmEmail } = props;
-  const { classes } = useStyles();
   const [pushDialog, popDialog] = useDialogContext();
   const { t } = useTranslation("profile");
   const { data, isLoading, error } = useQuery({
@@ -123,11 +118,11 @@ const AppsList = (props: AppsListProps) => {
                 key={policy}
               >
                 <ListItemIcon>
-                  <PolicyIcon
+                  <StyledPolicyIcon
                     className={
                       notAcceptedPolicies.includes(policy)
-                        ? classes.policyDeclined
-                        : classes.policyAccepted
+                        ? "declined"
+                        : "accepted"
                     }
                   />
                 </ListItemIcon>
@@ -142,7 +137,7 @@ const AppsList = (props: AppsListProps) => {
         </Dialog>,
       );
     },
-    [classes.policyAccepted, classes.policyDeclined, popDialog, pushDialog, t],
+    [popDialog, pushDialog, t],
   );
 
   const removeApp = useCallback(
@@ -187,7 +182,7 @@ const AppsList = (props: AppsListProps) => {
   if (error) return <span>{(error as Error).message}</span>;
 
   return (
-    <Paper className={classes.root}>
+    <RootPaper>
       <Table>
         <TableBody>
           {data &&
@@ -201,7 +196,7 @@ const AppsList = (props: AppsListProps) => {
                         <img src={app.image.small} alt={app.name} />
                       </Tooltip>
                     </TableCell>
-                    <TableCell className={classes.tableButtons}>
+                    <TableButtonsCell>
                       <Tooltip title={t("tabs.apps.buttons.visit")!}>
                         <IconButton
                           onClick={() => visitApp(app.url)}
@@ -222,13 +217,13 @@ const AppsList = (props: AppsListProps) => {
                           disabled={app.required_documents.length === 0}
                           size="large"
                         >
-                          <PolicyIcon
+                          <StyledPolicyIcon
                             className={
                               app.required_documents.length > 0
                                 ? app.requires_acceptance.length > 0
-                                  ? classes.policyDeclined
-                                  : classes.policyAccepted
-                                : classes.policyNotPresent
+                                  ? "declined"
+                                  : "accepted"
+                                : "notPresent"
                             }
                           />
                         </IconButton>
@@ -241,13 +236,13 @@ const AppsList = (props: AppsListProps) => {
                           <DeleteIcon color={"error"} />
                         </IconButton>
                       </Tooltip>
-                    </TableCell>
+                    </TableButtonsCell>
                   </TableRow>
                 );
               })}
         </TableBody>
       </Table>
-    </Paper>
+    </RootPaper>
   );
 };
 

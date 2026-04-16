@@ -20,8 +20,8 @@ import {
   Link as MuiLink,
   Tab,
   Tabs,
+  styled,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
 import {
@@ -32,13 +32,12 @@ import FormPagePaper from "../../../components/FormPagePaper";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 
-const useStyles = makeStyles()({
-  root: {
-    height: "100%",
-  },
-  content: {
-    height: "100%",
-  },
+const OrgUnitRoot = styled(Box)({
+  height: "100%",
+});
+
+const FullHeightGrid = styled(Grid)({
+  height: "100%",
 });
 
 const APP_ACTOR: Record<string, unknown> = {
@@ -54,7 +53,6 @@ export const useOrgUnitTree = (
     >
   >,
 ) => {
-  const { classes } = useStyles();
   const { t } = useTranslation("ous");
   const { app } = useParams();
   const { pathname } = useLocation();
@@ -128,13 +126,12 @@ export const useOrgUnitTree = (
   );
   if (currentRecord == null || parentRecord == null) return <Loader />;
   return (
-    <Box p={2} className={classes.root}>
-      <Grid
+    <OrgUnitRoot p={2}>
+      <FullHeightGrid
         container
         spacing={2}
         direction={"column"}
         wrap={"nowrap"}
-        className={classes.root}
       >
         <Grid>
           <FormPagePaper>
@@ -157,7 +154,7 @@ export const useOrgUnitTree = (
         </Grid>
         <Grid size="grow">
           <GridWrapper>
-            <Grid container direction={"column"} className={classes.content}>
+            <FullHeightGrid container direction={"column"}>
               <Grid>
                 <AppBar position={"static"}>
                   <Tabs value={tab} onChange={handleTabChange}>
@@ -214,11 +211,11 @@ export const useOrgUnitTree = (
                   />
                 )}
               </Grid>
-            </Grid>
+            </FullHeightGrid>
           </GridWrapper>
         </Grid>
-      </Grid>
-    </Box>
+      </FullHeightGrid>
+    </OrgUnitRoot>
   );
 };
 

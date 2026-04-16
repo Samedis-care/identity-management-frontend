@@ -6,9 +6,9 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
+  styled,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import {
   copyText,
   Loader,
@@ -28,13 +28,11 @@ export interface EnrollTotpDialogState {
   otp: string;
 }
 
-const useStyles = makeStyles()({
-  qrContainer: {
-    "& > svg": {
-      width: "100%",
-      height: "auto",
-      maxHeight: 256,
-    },
+const QrContainer = styled(Grid)({
+  "& > svg": {
+    width: "100%",
+    height: "auto",
+    maxHeight: 256,
   },
 });
 
@@ -50,7 +48,6 @@ export type OtpResponse = DataResponse<{
 const EnrollTotpDialog = () => {
   const model = useProfileModel();
   const [pushDialog, popDialog] = useDialogContext();
-  const { classes } = useStyles();
   const otpEnrollment = useAsyncMemo(
     async () =>
       (
@@ -183,11 +180,10 @@ const EnrollTotpDialog = () => {
                   {t("tabs.account.dialogs.enroll-totp.explainer-top")}
                 </Typography>
               </Grid>
-              <Grid
+              <QrContainer
                 dangerouslySetInnerHTML={{
                   __html: otpEnrollment.otp_provisioning_qr_code,
                 }}
-                className={classes.qrContainer}
                 size={12}
               />
               <Grid size={12}>

@@ -2,21 +2,18 @@ import React from "react";
 import { useAppIdFromPath } from "../../MenuDef";
 import { useAppAdminModel } from "../../../../components-care/models/AppAdminModel";
 import { useModelGet } from "components-care";
-import { makeStyles } from "tss-react/mui";
+import { styled } from "@mui/material";
 
-const useStyles = makeStyles()({
-  root: {
-    whiteSpace: "nowrap",
-  },
+const Root = styled("div")({
+  whiteSpace: "nowrap",
 });
 
 const AppIndicator = () => {
   const app = useAppIdFromPath();
   const appModel = useAppAdminModel();
-  const { classes } = useStyles();
   const { isLoading, data, error } = useModelGet(appModel, app);
   if (isLoading || error || data == null) return <></>;
-  return <div className={classes.root}>{data[0].short_name as string}</div>;
+  return <Root>{data[0].short_name as string}</Root>;
 };
 
 export default React.memo(AppIndicator);

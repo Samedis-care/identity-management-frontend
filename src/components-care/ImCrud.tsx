@@ -9,8 +9,7 @@ import {
   PageVisibility,
   useLocation,
 } from "components-care";
-import { useTheme } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { styled, useTheme } from "@mui/material";
 import { DataGridProps } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { FilterType } from "components-care/dist/standalone/DataGrid/Content/FilterEntry";
 import Forbidden from "../pages/Forbidden";
@@ -94,8 +93,10 @@ export const useDefaultGridProps = (): Pick<
   );
 };
 
-const useStyles = makeStyles({ name: "ImCrud" })({
-  form: {
+const FORM_CLASS_NAME = "ImCrud-form";
+
+const StyledRoot = styled("div")({
+  [`& .${FORM_CLASS_NAME}`]: {
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
@@ -110,16 +111,15 @@ const ImCrud = <
   props: Omit<ImCrudProps<KeyT, VisibilityT, CustomT>, "customCloseHandler">,
 ) => {
   const defaultGridProps = useDefaultGridProps();
-  const { classes } = useStyles();
   const formPropsCached = useMemo<
     CrudProps<KeyT, VisibilityT, CustomT>["formProps"]
   >(
     () => ({
-      formClass: classes.form,
+      formClass: FORM_CLASS_NAME,
       ...props.formProps,
       errorComponent: DefaultErrorComponent,
     }),
-    [props.formProps, classes.form],
+    [props.formProps],
   );
   const gridPropsCached = useMemo<
     CrudProps<KeyT, VisibilityT, CustomT>["gridProps"]
@@ -132,17 +132,19 @@ const ImCrud = <
   );
   const { disableGridWrapper, ...otherProps } = props;
   return (
-    <DataGridLocalStoragePersist
-      storageKey={"datagrid-persist-" + props.model.modelId}
-    >
-      <CRUD
-        {...otherProps}
-        formProps={formPropsCached}
-        gridProps={gridPropsCached}
-        gridWrapper={GridWrapper}
-        forbiddenPage={Forbidden}
-      />
-    </DataGridLocalStoragePersist>
+    <StyledRoot>
+      <DataGridLocalStoragePersist
+        storageKey={"datagrid-persist-" + props.model.modelId}
+      >
+        <CRUD
+          {...otherProps}
+          formProps={formPropsCached}
+          gridProps={gridPropsCached}
+          gridWrapper={GridWrapper}
+          forbiddenPage={Forbidden}
+        />
+      </DataGridLocalStoragePersist>
+    </StyledRoot>
   );
 };
 

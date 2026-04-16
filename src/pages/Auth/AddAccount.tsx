@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
+import { Grid, IconButton, styled, TextField, Typography } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -16,21 +16,17 @@ import {
   useLocation,
 } from "components-care";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
-import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles()((theme) => ({
-  button: {
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.primary.main,
-    "&:hover": {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.getContrastText(theme.palette.primary.main),
-    },
+const StyledActionButton = styled(ActionButton)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.primary.main,
+  "&:hover": {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
   },
 }));
 
 const AddAccount = (_props: AuthPageProps) => {
-  const { classes } = useStyles();
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -109,9 +105,9 @@ const AddAccount = (_props: AuthPageProps) => {
         </Grid>
         <Grid size={12}>{t("add.mailhint")}</Grid>
         <Grid size={6}>
-          <ActionButton className={classes.button} onClick={handleCreate}>
+          <StyledActionButton onClick={handleCreate}>
             {t("add.new")}
-          </ActionButton>
+          </StyledActionButton>
         </Grid>
         <Grid size={6}>
           <ActionButton

@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
-import { Grid, IconButton, Typography } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { Grid, IconButton, styled, Typography } from "@mui/material";
 import { Apple, Facebook, Google, Microsoft, Twitter } from "mdi-material-ui";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "components-care";
@@ -20,14 +19,12 @@ export interface SocialLoginsProps {
 export const enableSocialLogins = (): boolean =>
   OauthFacebook || OauthTwitter || OauthGoogle || OauthMicrosoft || OauthApple;
 
-const useStyles = makeStyles()((theme) => ({
-  socialLogin: {
-    border: "solid 1px #3f51b5",
-    padding: 4,
-    color: theme.palette.primary.main,
-    width: 40,
-    height: 40,
-  },
+const SocialLoginButton = styled(IconButton)(({ theme }) => ({
+  border: "solid 1px #3f51b5",
+  padding: 4,
+  color: theme.palette.primary.main,
+  width: 40,
+  height: 40,
 }));
 
 export const doOauthSignIn = (
@@ -63,7 +60,6 @@ export const doOauthSignIn = (
 const SocialLogins = (props: SocialLoginsProps) => {
   const { app } = props;
 
-  const { classes } = useStyles();
   const { t } = useTranslation("auth");
   const location = useLocation();
 
@@ -118,57 +114,37 @@ const SocialLogins = (props: SocialLoginsProps) => {
           </Grid>
           {OauthFacebook && (
             <Grid>
-              <IconButton
-                className={classes.socialLogin}
-                onClick={userFacebookSignIn}
-                size="large"
-              >
+              <SocialLoginButton onClick={userFacebookSignIn} size="large">
                 <Facebook />
-              </IconButton>
+              </SocialLoginButton>
             </Grid>
           )}
           {OauthGoogle && (
             <Grid>
-              <IconButton
-                className={classes.socialLogin}
-                onClick={userGoogleSignIn}
-                size="large"
-              >
+              <SocialLoginButton onClick={userGoogleSignIn} size="large">
                 <Google />
-              </IconButton>
+              </SocialLoginButton>
             </Grid>
           )}
           {OauthMicrosoft && (
             <Grid>
-              <IconButton
-                className={classes.socialLogin}
-                onClick={userMicrosoftSignIn}
-                size="large"
-              >
+              <SocialLoginButton onClick={userMicrosoftSignIn} size="large">
                 <Microsoft />
-              </IconButton>
+              </SocialLoginButton>
             </Grid>
           )}
           {OauthTwitter && (
             <Grid>
-              <IconButton
-                className={classes.socialLogin}
-                onClick={userTwitterSignIn}
-                size="large"
-              >
+              <SocialLoginButton onClick={userTwitterSignIn} size="large">
                 <Twitter />
-              </IconButton>
+              </SocialLoginButton>
             </Grid>
           )}
           {OauthApple && (
             <Grid>
-              <IconButton
-                className={classes.socialLogin}
-                onClick={userAppleSignIn}
-                size="large"
-              >
+              <SocialLoginButton onClick={userAppleSignIn} size="large">
                 <Apple />
-              </IconButton>
+              </SocialLoginButton>
             </Grid>
           )}
         </Grid>

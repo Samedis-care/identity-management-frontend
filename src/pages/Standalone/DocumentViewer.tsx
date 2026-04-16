@@ -18,10 +18,10 @@ import {
   Grid,
   LinearProgress,
   Paper,
+  styled,
   Toolbar,
   Tooltip,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import { marked } from "marked";
 import { useTranslation } from "react-i18next";
 
@@ -34,17 +34,15 @@ export interface DocumentViewerProps {
   dialogMode?: boolean;
 }
 
-const useStyles = makeStyles()({
-  root: {
-    paddingTop: 8,
-  },
-  contentContainer: {
-    maxHeight: "calc(100vh - 64px - 16px)", // 100 vh - toolbar height - padding
-    overflow: "auto",
-  },
-  contentContainerDialog: {
+const RootContainer = styled(Container)({
+  paddingTop: 8,
+});
+
+const ContentContainer = styled(Paper)({
+  overflow: "auto",
+  maxHeight: "calc(100vh - 64px - 16px)", // 100 vh - toolbar height - padding
+  "&.dialogMode": {
     maxHeight: "calc(100vh - 16px - 80px)", // 100 vh - padding - 80px (dialog)
-    overflow: "auto",
   },
 });
 
@@ -59,8 +57,6 @@ const DocumentViewer = (props: DocumentViewerProps) => {
     queryParams,
     dialogMode,
   } = props;
-
-  const { classes } = useStyles();
 
   const [scrolledToEnd, setScrolledToEnd] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0.0);
@@ -124,22 +120,18 @@ const DocumentViewer = (props: DocumentViewerProps) => {
   const hasToScroll = !contentData.acceptance_given && !scrolledToEnd;
 
   return (
-    <Container className={classes.root}>
+    <RootContainer>
       <Grid container direction={"column"} wrap={"nowrap"}>
         <Grid size="grow">
-          <Paper
+          <ContentContainer
             onScroll={contentScroll}
             ref={scrollRef}
-            className={
-              dialogMode
-                ? classes.contentContainerDialog
-                : classes.contentContainer
-            }
+            className={dialogMode ? "dialogMode" : undefined}
           >
             <Box p={2}>
               <article dangerouslySetInnerHTML={{ __html: markdown }} />
             </Box>
-          </Paper>
+          </ContentContainer>
         </Grid>
         <Grid>
           <LinearProgress
@@ -182,7 +174,7 @@ const DocumentViewer = (props: DocumentViewerProps) => {
           </Grid>
         )}
       </Grid>
-    </Container>
+    </RootContainer>
   );
 };
 

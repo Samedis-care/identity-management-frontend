@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
-import { AppBar, Grid, Tab, Tooltip } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { AppBar, Grid, Tab, Tooltip, styled } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,
@@ -24,19 +23,16 @@ import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { useTenantModel } from "../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../components/FormPagePaper";
 
-const useOpenStyles = makeStyles()((theme) => ({
-  root: {
-    cursor: "pointer",
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
+const StyledOpenIcon = styled(OpenIcon)(({ theme }) => ({
+  cursor: "pointer",
+  "&:hover": {
+    color: theme.palette.primary.main,
   },
 }));
 
 export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
 
@@ -46,7 +42,7 @@ export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <OpenIcon classes={classes} onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} />
     </Tooltip>
   );
 };
@@ -54,7 +50,6 @@ export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
 export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
   const { id: userId } = useFormContextLite();
@@ -65,7 +60,7 @@ export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <OpenIcon classes={classes} onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} />
     </Tooltip>
   );
 };
@@ -75,7 +70,6 @@ export const OpenFunctionality = (
 ) => {
   const { id } = props;
   const { t } = useTranslation("common");
-  const { classes } = useOpenStyles();
   const { app } = useParams();
   const navigate = useNavigate();
 
@@ -85,7 +79,7 @@ export const OpenFunctionality = (
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <OpenIcon classes={classes} onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} />
     </Tooltip>
   );
 };

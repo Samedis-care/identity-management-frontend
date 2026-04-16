@@ -1,32 +1,27 @@
 import React from "react";
-import { Box, Paper } from "@mui/material";
-
-import { makeStyles } from "tss-react/mui";
+import { Box, Paper, styled } from "@mui/material";
 
 export interface FormPagePaperProps {
   noOuterPadding?: boolean;
   children: React.ReactNode;
 }
 
-const useStyles = makeStyles()({
-  flexGrowContainer: {
-    display: "flex",
-    flexGrow: 1,
-    flexDirection: "column",
-  },
-});
+const flexGrowStyles = {
+  display: "flex",
+  flexGrow: 1,
+  flexDirection: "column",
+} as const;
+
+const FlexGrowBox = styled(Box)(flexGrowStyles);
+const StyledPaper = styled(Paper)(flexGrowStyles);
 
 const FormPagePaper = (props: FormPagePaperProps) => {
-  const { classes } = useStyles();
-
   return (
-    <Box p={props.noOuterPadding ? 0 : 2} className={classes.flexGrowContainer}>
-      <Paper className={classes.flexGrowContainer}>
-        <Box p={2} className={classes.flexGrowContainer}>
-          {props.children}
-        </Box>
-      </Paper>
-    </Box>
+    <FlexGrowBox p={props.noOuterPadding ? 0 : 2}>
+      <StyledPaper>
+        <FlexGrowBox p={2}>{props.children}</FlexGrowBox>
+      </StyledPaper>
+    </FlexGrowBox>
   );
 };
 

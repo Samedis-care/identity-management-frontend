@@ -7,28 +7,24 @@ import {
   PageVisibility,
 } from "components-care";
 import { BackendDataGridProps } from "components-care/dist/backend-components/DataGrid";
-import { Box, Button, Tooltip } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { Box, Button, styled, Tooltip } from "@mui/material";
 import { KeyboardArrowRight as OpenIcon } from "@mui/icons-material";
 import { IDataGridContentSelectRowViewProps } from "components-care/dist/standalone/DataGrid/Content/SelectRowView";
 import { useTranslation } from "react-i18next";
 
-const useOpenStyles = makeStyles()((theme) => ({
-  root: {
-    cursor: "pointer",
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
+const StyledOpenIcon = styled(OpenIcon)(({ theme }) => ({
+  cursor: "pointer",
+  "&:hover": {
+    color: theme.palette.primary.main,
   },
 }));
 
-const useStyles = makeStyles()({
-  root: {
-    height: "80vh",
-  },
-  gridContainer: {
-    height: "calc(80vh - 64px)",
-  },
+const Root = styled("div")({
+  height: "80vh",
+});
+
+const GridContainer = styled("div")({
+  height: "calc(80vh - 64px)",
 });
 
 export type DataGridPickerProps<
@@ -63,8 +59,6 @@ const DataGridPicker = <
 ) => {
   const { onSelect, onClose, multiple, ...gridProps } = props;
   const { t } = useTranslation("common");
-  const { classes: openStyles } = useOpenStyles();
-  const { classes } = useStyles();
 
   const [selected, setSelected] = useState<string[]>([]);
   const handleSelectionChange = useCallback((_: boolean, ids: string[]) => {
@@ -77,18 +71,18 @@ const DataGridPicker = <
 
   return (
     <FormDialog onClose={onClose}>
-      <div className={classes.root}>
+      <Root>
         <DataGridNoPersist>
           {multiple ? (
             <>
-              <div className={classes.gridContainer}>
+              <GridContainer>
                 <BackendDataGrid
                   {...gridProps}
                   disableFooter
                   disableExport
                   onSelectionChange={handleSelectionChange}
                 />
-              </div>
+              </GridContainer>
               <Box p={2}>
                 <Button onClick={handleDone} variant={"contained"}>
                   Add
@@ -106,8 +100,7 @@ const DataGridPicker = <
               ) => {
                 return (
                   <Tooltip title={t("data-grid.pick") ?? ""}>
-                    <OpenIcon
-                      classes={openStyles}
+                    <StyledOpenIcon
                       onClick={() => {
                         (onSelect as (id: string) => void)(props.id);
                         onClose();
@@ -119,7 +112,7 @@ const DataGridPicker = <
             />
           )}
         </DataGridNoPersist>
-      </div>
+      </Root>
     </FormDialog>
   );
 };

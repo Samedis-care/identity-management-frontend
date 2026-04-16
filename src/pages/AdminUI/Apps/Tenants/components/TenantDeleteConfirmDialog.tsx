@@ -9,8 +9,8 @@ import {
   Grid,
   TextField,
   Typography,
+  styled,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import { useTranslation } from "react-i18next";
 import { useTenantModel } from "../../../../../components-care/models/TenantModel";
 
@@ -20,16 +20,13 @@ export interface TenantDeleteConfirmDialogProps {
   tenantModel: ReturnType<typeof useTenantModel>;
   onClose: (result: boolean) => void;
 }
-const useTenantDeleteConfirmDialogStyles = makeStyles()((theme) => ({
-  confirmBtn: {
-    color: theme.palette.error.main,
-  },
+const ConfirmButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.error.main,
 }));
 const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
   const { id, multiDelete, onClose, tenantModel } = props;
   const { t } = useTranslation("actors");
   const [, popDialog] = useDialogContext();
-  const { classes } = useTenantDeleteConfirmDialogStyles();
   const [confirmStr, setConfirmStr] = useState("");
   const { isLoading, data, error } = useModelGet(tenantModel, id);
   const [tenant] = data ?? [];
@@ -102,13 +99,12 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
         <Button onClick={handleClose}>
           {t("tenants.confirm-delete.close")}
         </Button>
-        <Button
+        <ConfirmButton
           onClick={handleConfirm}
           disabled={expectedConfirmStr !== confirmStr}
-          className={classes.confirmBtn}
         >
           {t("tenants.confirm-delete.confirm")}
-        </Button>
+        </ConfirmButton>
       </DialogActions>
     </Dialog>
   );

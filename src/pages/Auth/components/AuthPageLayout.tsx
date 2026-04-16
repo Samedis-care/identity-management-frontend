@@ -13,12 +13,12 @@ import {
   Grid,
   Link,
   Paper,
+  styled,
   ThemeOptions,
   ThemeProvider,
   Typography,
   useTheme,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import {
   CenteredTypography,
   deepAssign,
@@ -54,46 +54,55 @@ export interface AuthPageRouteParams {
   app?: string;
 }
 
-const useStyles = makeStyles()((theme) => ({
-  root: {
-    position: "absolute",
-    backgroundColor: theme.palette.background.advanced
-      ? undefined
-      : theme.palette.background.default,
-    background: theme.palette.background.advanced || undefined,
-    width: "100%",
-    minHeight: "100%",
-  },
-  gridContainer: {
-    minHeight: "100vh",
-  },
-  container: {
-    height: "100%",
-  },
-  appInfo: {
-    width: "100%",
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    width: "100%",
-  },
-  companyLogo: {
-    maxWidth: "100%",
-    width: "auto",
-    height: "1.5rem",
-    objectFit: "contain",
-  },
-  appIcon: {
-    width: "100%",
-    height: "100%",
-    objectFit: "contain",
-    paddingBottom: theme.spacing(2),
-  },
-  langSelector: {
-    left: "50%",
-    transform: "translateX(-50%)",
-  },
+const Root = styled("div")(({ theme }) => ({
+  position: "absolute",
+  backgroundColor: theme.palette.background.advanced
+    ? undefined
+    : theme.palette.background.default,
+  background: theme.palette.background.advanced || undefined,
+  width: "100%",
+  minHeight: "100%",
 }));
+
+const GridContainer = styled(Grid)({
+  minHeight: "100vh",
+});
+
+const StyledContainer = styled(Container)({
+  height: "100%",
+});
+
+const ContainerGrid = styled(Grid)({
+  height: "100%",
+});
+
+const AppInfoGrid = styled(Grid)({
+  width: "100%",
+});
+
+const FooterGrid = styled(Grid)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  width: "100%",
+}));
+
+const CompanyLogo = styled("img")({
+  maxWidth: "100%",
+  width: "auto",
+  height: "1.5rem",
+  objectFit: "contain",
+});
+
+const AppIcon = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+  paddingBottom: theme.spacing(2),
+}));
+
+const StyledLangSelector = styled(LangSelector)({
+  left: "50%",
+  transform: "translateX(-50%)",
+});
 
 export enum AuthFactorType {
   /**
@@ -174,7 +183,6 @@ const CurrentProviderConfig: ProviderConfig = {
 };
 
 const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
-  const { classes } = useStyles();
   const appInfo = useAuthPageAppInfo();
   const { app } = useParams();
   const { t, i18n } = useTranslation("auth");
@@ -226,38 +234,35 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
   });
 
   return (
-    <div className={classes.root}>
-      <Grid
+    <Root>
+      <GridContainer
         container
         direction={"column"}
         alignItems={"center"}
         justifyContent={"space-between"}
         alignContent={"stretch"}
         wrap={"nowrap"}
-        className={classes.gridContainer}
       >
         <Grid size="grow">
-          <Container maxWidth={"xs"} className={classes.container}>
+          <StyledContainer maxWidth={"xs"}>
             <Box my={4}>
-              <Grid
+              <ContainerGrid
                 container
                 direction={"column"}
                 alignItems={"center"}
                 justifyContent={"flex-start"}
                 alignContent={"stretch"}
-                className={classes.container}
                 spacing={4}
                 wrap={"nowrap"}
               >
                 <Grid>
-                  <LangSelector className={classes.langSelector} />
+                  <StyledLangSelector />
                   <Paper>
                     <Box p={4}>
                       {appInfo.image.medium && (
-                        <img
+                        <AppIcon
                           src={appInfo.image.medium}
                           alt={appInfo.full_name}
-                          className={classes.appIcon}
                         />
                       )}
                       <AuthPageStateContext.Provider value={statePack}>
@@ -267,16 +272,16 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                   </Paper>
                 </Grid>
                 {enableSocialLogins() && statePack[0].showSocialLogins && (
-                  <Grid className={classes.appInfo}>
+                  <AppInfoGrid>
                     <Paper>
                       <Box p={4}>
                         <SocialLogins app={app ?? "undefined"} />
                       </Box>
                     </Paper>
-                  </Grid>
+                  </AppInfoGrid>
                 )}
                 {appText && (
-                  <Grid className={classes.appInfo}>
+                  <AppInfoGrid>
                     <Paper>
                       <Box p={4}>
                         <Typography variant={"h4"}>
@@ -287,13 +292,13 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                         />
                       </Box>
                     </Paper>
-                  </Grid>
+                  </AppInfoGrid>
                 )}
-              </Grid>
+              </ContainerGrid>
             </Box>
-          </Container>
+          </StyledContainer>
         </Grid>
-        <Grid className={classes.footer}>
+        <FooterGrid>
           <Container maxWidth={"xs"}>
             <Box py={2}>
               <Grid container spacing={2}>
@@ -322,12 +327,11 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 <Grid container spacing={2} size={12}>
                   <Grid size={6}>
                     {CurrentProviderConfig.logo && (
-                      <img
+                      <CompanyLogo
                         src={CurrentProviderConfig.logo}
                         alt={t("footer.logo-alt", {
                           PROVIDER: CurrentProviderConfig.legalName,
                         })}
-                        className={classes.companyLogo}
                       />
                     )}
                   </Grid>
@@ -342,9 +346,9 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
               </Grid>
             </Box>
           </Container>
-        </Grid>
-      </Grid>
-    </div>
+        </FooterGrid>
+      </GridContainer>
+    </Root>
   );
 };
 

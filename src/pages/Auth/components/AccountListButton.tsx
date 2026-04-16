@@ -1,6 +1,5 @@
 import React from "react";
-import { Typography, Grid } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
+import { Typography, Grid, styled } from "@mui/material";
 import AccountAvatar from "./AccountAvatar";
 
 export interface AddNewAccountProps {
@@ -9,37 +8,29 @@ export interface AddNewAccountProps {
   onClick: React.MouseEventHandler;
 }
 
-const useStyles = makeStyles()((theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-  label: {
-    lineHeight: "36px",
+const RootGrid = styled(Grid)(({ theme }) => ({
+  padding: theme.spacing(1),
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
   },
 }));
 
+const LabelTypography = styled(Typography)({
+  lineHeight: "36px",
+});
+
 const AccountListButton = (props: AddNewAccountProps) => {
   const { icon, text, onClick } = props;
-  const { classes } = useStyles();
   return (
-    <Grid
-      size={12}
-      className={classes.root}
-      onClick={onClick}
-      container
-      spacing={2}
-    >
+    <RootGrid size={12} onClick={onClick} container spacing={2}>
       <Grid>
         <AccountAvatar>{icon}</AccountAvatar>
       </Grid>
       <Grid size={"grow"}>
-        <Typography className={classes.label}>{text}</Typography>
+        <LabelTypography>{text}</LabelTypography>
       </Grid>
-    </Grid>
+    </RootGrid>
   );
 };
 

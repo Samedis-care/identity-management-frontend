@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Grid, Paper, Tab, Typography, styled } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import {
   ActionButton,
   EditOnlyFormPage,
@@ -42,26 +41,34 @@ import AccountManager from "../../utils/AccountManager";
 import SetupRecoveryEmailDialog from "./components/SetupRecoveryEmailDialog";
 import ChangeEmailDialog from "./components/ChangeEmailDialog";
 
-const useStyles = makeStyles()({
-  root: {
-    height: "100%",
-    flexGrow: 1,
-  },
-  paper: {
-    borderRadius: 0,
-  },
-  profile_picture: {
-    height: 128,
-    width: 128,
-  },
-  content: {
-    height: "100%",
-  },
-  flexGrowContainer: {
-    display: "flex",
-    flexGrow: 1,
-    flexDirection: "column",
-  },
+const ProfileRoot = styled(Grid)({
+  height: "100%",
+  flexGrow: 1,
+});
+
+const FlatPaper = styled(Paper)({
+  borderRadius: 0,
+});
+
+const ProfilePictureWrapper = styled("div")({
+  height: 128,
+  width: 128,
+});
+
+const ContentBox = styled(Box)({
+  height: "100%",
+});
+
+const FlexGrowContainer = styled(Box)({
+  display: "flex",
+  flexGrow: 1,
+  flexDirection: "column",
+});
+
+const FlexGrowPaper = styled(Paper)({
+  display: "flex",
+  flexGrow: 1,
+  flexDirection: "column",
 });
 
 const GrayActionButton = styled(ActionButton, {
@@ -82,7 +89,6 @@ const ProfileForm = (
   >,
 ) => {
   const { t } = useTranslation("profile");
-  const { classes } = useStyles();
   const tab = useRoutedTabPanel();
   const model = useProfileModel();
   const loginsModel = useProfileLoginsModel();
@@ -183,14 +189,9 @@ const ProfileForm = (
   }, [deleteRequested, props.dirty]);
 
   return (
-    <Grid
-      container
-      direction={"column"}
-      className={classes.root}
-      wrap={"nowrap"}
-    >
+    <ProfileRoot container direction={"column"} wrap={"nowrap"}>
       <Grid>
-        <Paper className={classes.paper}>
+        <FlatPaper>
           <Box pt={2}>
             <Grid container>
               <Grid
@@ -200,9 +201,9 @@ const ProfileForm = (
                 size={12}
               >
                 <Grid>
-                  <div className={classes.profile_picture}>
+                  <ProfilePictureWrapper>
                     <ProfilePicture />
-                  </div>
+                  </ProfilePictureWrapper>
                 </Grid>
               </Grid>
               <Grid size={12}>
@@ -221,17 +222,17 @@ const ProfileForm = (
               </Grid>
             </Grid>
           </Box>
-        </Paper>
+        </FlatPaper>
       </Grid>
       <Grid container direction={"column"} size="grow">
-        <Box p={2} className={classes.flexGrowContainer}>
-          <Paper className={classes.flexGrowContainer}>
+        <FlexGrowContainer p={2}>
+          <FlexGrowPaper>
             <RoutedTabPanelWrapper>
               {tab(
                 "apps",
-                <Box p={2} className={classes.content}>
+                <ContentBox p={2}>
                   <AppsList confirmEmail={email} />
-                </Box>,
+                </ContentBox>,
               )}
               {tab(
                 "logins",
@@ -277,7 +278,7 @@ const ProfileForm = (
               {tab(
                 "",
 
-                <Box p={2} className={classes.content}>
+                <ContentBox p={2}>
                   <EditOnlyFormPage {...props} customProps={undefined}>
                     <Grid
                       container
@@ -408,13 +409,13 @@ const ProfileForm = (
                       </Grid>
                     </Grid>
                   </EditOnlyFormPage>
-                </Box>,
+                </ContentBox>,
               )}
             </RoutedTabPanelWrapper>
-          </Paper>
-        </Box>
+          </FlexGrowPaper>
+        </FlexGrowContainer>
       </Grid>
-    </Grid>
+    </ProfileRoot>
   );
 };
 

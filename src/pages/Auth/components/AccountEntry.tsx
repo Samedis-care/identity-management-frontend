@@ -5,11 +5,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Theme,
+  styled,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "tss-react/mui";
 import * as colors from "@mui/material/colors";
 import AccountAvatar from "./AccountAvatar";
 import { MoreVert as MoreIcon } from "@mui/icons-material";
@@ -25,21 +24,21 @@ export interface AccountEntryProps {
   id: string;
 }
 
-const useStyles = makeStyles()((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-  statusLabel: {
-    color: theme.palette.text.disabled,
-  },
-  name: {
-    maxWidth: 200,
+const RootGrid = styled(Grid)(({ theme }) => ({
+  padding: theme.spacing(1),
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
   },
 }));
+
+const StatusLabel = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.disabled,
+}));
+
+const NameTypography = styled(Typography)({
+  maxWidth: 200,
+});
 
 const hues = [
   "red",
@@ -78,7 +77,6 @@ const nameToAvatarStr = (name: string): string =>
 
 const AccountEntry = (props: AccountEntryProps) => {
   const { name, email, status, onClick, id, avatar, onForgotAccount } = props;
-  const { classes } = useStyles();
   const { t } = useTranslation("auth");
 
   const handleClick = useCallback(
@@ -108,9 +106,8 @@ const AccountEntry = (props: AccountEntryProps) => {
 
   return (
     <>
-      <Grid
+      <RootGrid
         size={12}
-        className={classes.root}
         onClick={handleClick}
         container
         spacing={2}
@@ -126,13 +123,9 @@ const AccountEntry = (props: AccountEntryProps) => {
         </Grid>
         <Grid size={"grow"}>
           <Tooltip title={email}>
-            <Typography noWrap className={classes.name}>
-              {name}
-            </Typography>
+            <NameTypography noWrap>{name}</NameTypography>
           </Tooltip>
-          <Typography variant={"caption"} className={classes.statusLabel}>
-            {status}
-          </Typography>
+          <StatusLabel variant={"caption"}>{status}</StatusLabel>
         </Grid>
         <Grid>
           <IconButton onClick={openMenu} size="large">
@@ -146,7 +139,7 @@ const AccountEntry = (props: AccountEntryProps) => {
         >
           <MenuItem onClick={forgetAccount}>{t("select.forget")}</MenuItem>
         </Menu>
-      </Grid>
+      </RootGrid>
       <Grid size={12}>
         <Divider />
       </Grid>
