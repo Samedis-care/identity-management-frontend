@@ -48,6 +48,27 @@ module.exports = (env, argv) => {
                 compilerOptions: {
                   noEmit: false,
                 },
+                // ts-loader passes containingSourceFile.impliedNodeFormat to resolveModuleName,
+                // which for .d.ts files in CJS packages (no "type":"module") is CommonJS.
+                // With moduleResolution:"bundler" + CommonJS impliedNodeFormat, TypeScript uses
+                // the "require" exports condition, resolving @mui/material to index.d.ts (CJS chain)
+                // instead of index.d.mts (ESM chain). This causes duplicate type identities for the
+                // same MUI types, which tsc --noEmit avoids by never passing impliedNodeFormat.
+                // Fix: always resolve without impliedNodeFormat so bundler mode uses import condition.
+                resolveModuleName: (
+                  moduleName,
+                  containingFile,
+                  compilerOptions,
+                  moduleResolutionHost,
+                  tsResolveModuleName,
+                ) => {
+                  return tsResolveModuleName(
+                    moduleName,
+                    containingFile,
+                    compilerOptions,
+                    moduleResolutionHost,
+                  );
+                },
               },
             },
           ],
