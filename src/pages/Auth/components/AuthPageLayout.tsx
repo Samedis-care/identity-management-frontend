@@ -237,28 +237,32 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
     <Root>
       <GridContainer
         container
-        direction={"column"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        alignContent={"stretch"}
-        wrap={"nowrap"}
+        sx={{
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          alignContent: "stretch",
+          flexWrap: "nowrap",
+        }}
       >
         <Grid size="grow">
           <StyledContainer maxWidth={"xs"}>
-            <Box my={4}>
+            <Box sx={{ my: 4 }}>
               <ContainerGrid
                 container
-                direction={"column"}
-                alignItems={"center"}
-                justifyContent={"flex-start"}
-                alignContent={"stretch"}
                 spacing={4}
-                wrap={"nowrap"}
+                sx={{
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  alignContent: "stretch",
+                  flexWrap: "nowrap",
+                }}
               >
                 <Grid>
                   <StyledLangSelector />
                   <Paper>
-                    <Box p={4}>
+                    <Box sx={{ p: 4 }}>
                       {appInfo.image.medium && (
                         <AppIcon
                           src={appInfo.image.medium}
@@ -274,7 +278,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 {enableSocialLogins() && statePack[0].showSocialLogins && (
                   <AppInfoGrid>
                     <Paper>
-                      <Box p={4}>
+                      <Box sx={{ p: 4 }}>
                         <SocialLogins app={app ?? "undefined"} />
                       </Box>
                     </Paper>
@@ -283,7 +287,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
                 {appText && (
                   <AppInfoGrid>
                     <Paper>
-                      <Box p={4}>
+                      <Box sx={{ p: 4 }}>
                         <Typography variant={"h4"}>
                           {t("app-info.title")}
                         </Typography>
@@ -300,7 +304,7 @@ const AuthPageLayoutInner = (props: AuthPageLayoutProps) => {
         </Grid>
         <FooterGrid>
           <Container maxWidth={"xs"}>
-            <Box py={2}>
+            <Box sx={{ py: 2 }}>
               <Grid container spacing={2}>
                 <Grid size={12}>
                   <Typography>

@@ -189,15 +189,14 @@ const ProfileForm = (
   }, [deleteRequested, props.dirty]);
 
   return (
-    <ProfileRoot container direction={"column"} wrap={"nowrap"}>
+    <ProfileRoot container sx={{ flexDirection: "column", flexWrap: "nowrap" }}>
       <Grid>
         <FlatPaper>
-          <Box pt={2}>
+          <Box sx={{ pt: 2 }}>
             <Grid container>
               <Grid
                 container
-                alignItems={"center"}
-                justifyContent={"center"}
+                sx={{ alignItems: "center", justifyContent: "center" }}
                 size={12}
               >
                 <Grid>
@@ -224,13 +223,13 @@ const ProfileForm = (
           </Box>
         </FlatPaper>
       </Grid>
-      <Grid container direction={"column"} size="grow">
-        <FlexGrowContainer p={2}>
+      <Grid container sx={{ flexDirection: "column" }} size="grow">
+        <FlexGrowContainer sx={{ p: 2 }}>
           <FlexGrowPaper>
             <RoutedTabPanelWrapper>
               {tab(
                 "apps",
-                <ContentBox p={2}>
+                <ContentBox sx={{ p: 2 }}>
                   <AppsList confirmEmail={email} />
                 </ContentBox>,
               )}
@@ -278,12 +277,12 @@ const ProfileForm = (
               {tab(
                 "",
 
-                <ContentBox p={2}>
+                <ContentBox sx={{ p: 2 }}>
                   <EditOnlyFormPage {...props} customProps={undefined}>
                     <Grid
                       container
                       spacing={2}
-                      justifyContent={"space-between"}
+                      sx={{ justifyContent: "space-between" }}
                     >
                       <Grid
                         size={{

@@ -17,7 +17,7 @@ const MaintenancePage = (props: MaintenancePageProps) => {
   const maintenanceInfo = useMaintenanceInfo();
 
   return (
-    <Box p={dialog ? 0 : 2}>
+    <Box sx={{ p: dialog ? 0 : 2 }}>
       <Grid container spacing={0}>
         {maintenanceInfo.current && (
           <>
@@ -43,7 +43,7 @@ const MaintenancePage = (props: MaintenancePageProps) => {
               type={"current"}
             />
             <Grid size={12}>
-              <Box pt={2} />
+              <Box sx={{ pt: 2 }} />
             </Grid>
           </>
         )}
@@ -58,7 +58,7 @@ const MaintenancePage = (props: MaintenancePageProps) => {
           <>
             {i !== 0 && (
               <Grid size={12}>
-                <Box py={1}>
+                <Box sx={{ py: 1 }}>
                   <Divider />
                 </Box>
               </Grid>

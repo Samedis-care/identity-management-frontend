@@ -83,7 +83,7 @@ const DataGridPicker = <
                   onSelectionChange={handleSelectionChange}
                 />
               </GridContainer>
-              <Box p={2}>
+              <Box sx={{ p: 2 }}>
                 <Button onClick={handleDone} variant={"contained"}>
                   Add
                 </Button>

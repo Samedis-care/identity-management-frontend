@@ -102,8 +102,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
       {enableSocialLogins() && (
         <Grid
           container
-          alignItems={"center"}
-          justifyContent={"flex-start"}
+          sx={{ alignItems: "center", justifyContent: "flex-start" }}
           spacing={2}
           size={12}
         >

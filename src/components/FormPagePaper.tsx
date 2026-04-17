@@ -17,9 +17,9 @@ const StyledPaper = styled(Paper)(flexGrowStyles);
 
 const FormPagePaper = (props: FormPagePaperProps) => {
   return (
-    <FlexGrowBox p={props.noOuterPadding ? 0 : 2}>
+    <FlexGrowBox sx={{ p: props.noOuterPadding ? 0 : 2 }}>
       <StyledPaper>
-        <FlexGrowBox p={2}>{props.children}</FlexGrowBox>
+        <FlexGrowBox sx={{ p: 2 }}>{props.children}</FlexGrowBox>
       </StyledPaper>
     </FlexGrowBox>
   );

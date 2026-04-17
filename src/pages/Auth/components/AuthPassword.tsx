@@ -212,7 +212,12 @@ const AuthPassword = (_props: AuthPageProps) => {
           variant={"standard"}
         />
       </Grid>
-      <Grid container justifyContent={"space-between"} spacing={2} size={12}>
+      <Grid
+        container
+        sx={{ justifyContent: "space-between" }}
+        spacing={2}
+        size={12}
+      >
         <Grid>
           <Typography variant={"caption"}>
             <MuiLink

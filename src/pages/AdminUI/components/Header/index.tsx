@@ -9,18 +9,22 @@ const Header = () => {
     <Grid
       container
       spacing={2}
-      justifyContent={"space-between"}
-      alignItems={"center"}
-      alignContent={"stretch"}
+      sx={{
+        justifyContent: "space-between",
+        alignItems: "center",
+        alignContent: "stretch",
+      }}
       size={"grow"}
     >
       <Grid>
         <Grid
           container
           spacing={2}
-          justifyContent={"flex-start"}
-          alignContent={"stretch"}
-          alignItems={"center"}
+          sx={{
+            justifyContent: "flex-start",
+            alignContent: "stretch",
+            alignItems: "center",
+          }}
         >
           <Grid>
             <Typography variant={"h2"} component={"h1"}>

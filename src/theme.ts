@@ -1,7 +1,7 @@
 import { createTheme, ThemeOptions } from "@mui/material";
 import { combineColors } from "components-care";
 
-declare module "@mui/material/styles/createPalette" {
+declare module "@mui/material/styles" {
   interface TypeBackground {
     advanced?: string | null; // background CSS property
   }

@@ -425,14 +425,16 @@ export const AppAdminModel = (
       },
       "config.mailer.smtp_settings.open_timeout": {
         type: new ModelDataTypeIntegerRendererCC({
-          InputProps: {
-            endAdornment: (
-              <InputAdornment position={"end"}>
-                {t(
-                  "app-admin:fields.config.mailer.smtp_settings.open_timeout_unit",
-                )}
-              </InputAdornment>
-            ),
+          slotProps: {
+            input: {
+              endAdornment: (
+                <InputAdornment position={"end"}>
+                  {t(
+                    "app-admin:fields.config.mailer.smtp_settings.open_timeout_unit",
+                  )}
+                </InputAdornment>
+              ),
+            },
           },
         }),
         getLabel: () =>
@@ -446,14 +448,16 @@ export const AppAdminModel = (
       },
       "config.mailer.smtp_settings.read_timeout": {
         type: new ModelDataTypeIntegerRendererCC({
-          InputProps: {
-            endAdornment: (
-              <InputAdornment position={"end"}>
-                {t(
-                  "app-admin:fields.config.mailer.smtp_settings.read_timeout_unit",
-                )}
-              </InputAdornment>
-            ),
+          slotProps: {
+            input: {
+              endAdornment: (
+                <InputAdornment position={"end"}>
+                  {t(
+                    "app-admin:fields.config.mailer.smtp_settings.read_timeout_unit",
+                  )}
+                </InputAdornment>
+              ),
+            },
           },
         }),
         getLabel: () =>

@@ -24,9 +24,9 @@ const BrowserCompatCheck = (props: BrowserCompatCheckProps) => {
   if (errors.length > 0) {
     return (
       <Container maxWidth={"md"}>
-        <Box p={2}>
+        <Box sx={{ p: 2 }}>
           <Paper>
-            <Box p={2}>
+            <Box sx={{ p: 2 }}>
               <Grid container spacing={2}>
                 <Grid size={12}>
                   <Typography variant={"h1"}>

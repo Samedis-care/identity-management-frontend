@@ -78,10 +78,11 @@ class ErrorBoundary extends React.PureComponent<
       return (
         <Grid
           container
-          direction={"row"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          style={{ height: "100%" }}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
         >
           <Grid size={12}>
             <Typography variant={"h1"} align={"center"}>

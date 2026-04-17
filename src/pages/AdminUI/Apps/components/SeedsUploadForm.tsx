@@ -13,7 +13,7 @@ const SeedsUploadForm = (
 ) => {
   return (
     <EditOnlyFormPage {...props} customProps={undefined}>
-      <Box p={2}>
+      <Box sx={{ p: 2 }}>
         <Grid container spacing={2}>
           {["import_roles", "import_candos"].map((field) => (
             <Grid key={field} size={12}>

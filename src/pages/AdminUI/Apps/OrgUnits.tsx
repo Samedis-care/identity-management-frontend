@@ -126,12 +126,11 @@ export const useOrgUnitTree = (
   );
   if (currentRecord == null || parentRecord == null) return <Loader />;
   return (
-    <OrgUnitRoot p={2}>
+    <OrgUnitRoot sx={{ p: 2 }}>
       <FullHeightGrid
         container
         spacing={2}
-        direction={"column"}
-        wrap={"nowrap"}
+        sx={{ flexDirection: "column", flexWrap: "nowrap" }}
       >
         <Grid>
           <FormPagePaper>
@@ -154,7 +153,7 @@ export const useOrgUnitTree = (
         </Grid>
         <Grid size="grow">
           <GridWrapper>
-            <FullHeightGrid container direction={"column"}>
+            <FullHeightGrid container sx={{ flexDirection: "column" }}>
               <Grid>
                 <AppBar position={"static"}>
                   <Tabs value={tab} onChange={handleTabChange}>

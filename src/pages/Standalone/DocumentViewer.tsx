@@ -121,14 +121,14 @@ const DocumentViewer = (props: DocumentViewerProps) => {
 
   return (
     <RootContainer>
-      <Grid container direction={"column"} wrap={"nowrap"}>
+      <Grid container sx={{ flexDirection: "column", flexWrap: "nowrap" }}>
         <Grid size="grow">
           <ContentContainer
             onScroll={contentScroll}
             ref={scrollRef}
             className={dialogMode ? "dialogMode" : undefined}
           >
-            <Box p={2}>
+            <Box sx={{ p: 2 }}>
               <article dangerouslySetInnerHTML={{ __html: markdown }} />
             </Box>
           </ContentContainer>

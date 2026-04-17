@@ -9,7 +9,7 @@ const Root = styled(Box)({
 const GridWrapper = (props: GridWrapperProps) => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));
-  return <Root p={isXs ? 0 : 2}>{props.children}</Root>;
+  return <Root sx={{ p: isXs ? 0 : 2 }}>{props.children}</Root>;
 };
 
 export default GridWrapper;
