@@ -95,6 +95,7 @@ const ResetPassword = (_props: AuthPageProps) => {
             label={t("auth.password.reset.password")}
             autoFocus={true}
             fullWidth
+            autoComplete={"new-password"}
             variant={"standard"}
           />
           <TextField
@@ -104,6 +105,7 @@ const ResetPassword = (_props: AuthPageProps) => {
             type={"password"}
             label={t("auth.password.reset.password_confirm")}
             fullWidth
+            autoComplete={"new-password"}
             variant={"standard"}
           />
         </Grid>

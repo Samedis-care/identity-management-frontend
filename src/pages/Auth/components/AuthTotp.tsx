@@ -66,6 +66,7 @@ const AuthTotp = (_props: AuthPageProps) => {
           autoFocus
           value={state.activeAccount?.email ?? ""}
           disabled
+          autoComplete={"username"}
           variant={"standard"}
         />
       </Grid>
@@ -76,6 +77,8 @@ const AuthTotp = (_props: AuthPageProps) => {
           fullWidth
           autoFocus
           variant={"standard"}
+          autoComplete={"one-time-code"}
+          inputMode={"numeric"}
           value={otp}
           onChange={handleOtpChange}
         />

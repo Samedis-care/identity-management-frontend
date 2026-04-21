@@ -195,7 +195,7 @@ const AuthPassword = (_props: AuthPageProps) => {
           autoFocus
           value={state.activeAccount?.email ?? ""}
           disabled
-          autoComplete={"email"}
+          autoComplete={"username"}
           variant={"standard"}
         />
       </Grid>
@@ -208,7 +208,7 @@ const AuthPassword = (_props: AuthPageProps) => {
           autoFocus
           value={password}
           onChange={handlePasswordChange}
-          autoComplete={"password"}
+          autoComplete={"current-password"}
           variant={"standard"}
         />
       </Grid>
