@@ -71,7 +71,7 @@ const AuthAccount = (props: AuthPageProps) => {
     throw new Error("Unsupported current factor");
   }, [props, state.currentFactor]);
 
-  return <form>{renderForm()}</form>;
+  return <>{renderForm()}</>;
 };
 
 export default React.memo(AuthAccount);

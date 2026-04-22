@@ -56,7 +56,7 @@ const AuthPassword = (_props: AuthPageProps) => {
   const handleBack = useCallback(() => FrameworkHistory.back(), []);
 
   const handleNext = useCallback(
-    async (evt: React.MouseEvent) => {
+    async (evt: React.SyntheticEvent) => {
       evt.preventDefault();
       try {
         setBusy(true);
@@ -177,83 +177,88 @@ const AuthPassword = (_props: AuthPageProps) => {
   }, [app, pushDialog, state.activeAccount, t]);
 
   return (
-    <Grid container spacing={2}>
-      <Grid size={12}>
-        <Typography variant={"h1"}>
-          <IconButton onClick={handleBack} size="large">
-            <ArrowBack />
-          </IconButton>
-          {t("auth.password.enter.title")}
-        </Typography>
-      </Grid>
-      <Grid size={12}>
-        <TextField
-          label={t("add.email")}
-          name={"email"}
-          type={"text"}
-          fullWidth
-          autoFocus
-          value={state.activeAccount?.email ?? ""}
-          disabled
-          autoComplete={"username"}
-          variant={"standard"}
-        />
-      </Grid>
-      <Grid size={12}>
-        <TextField
-          label={t("auth.password.enter.password")}
-          name={"password"}
-          type={"password"}
-          fullWidth
-          autoFocus
-          value={password}
-          onChange={handlePasswordChange}
-          autoComplete={"current-password"}
-          variant={"standard"}
-        />
-      </Grid>
-      <Grid
-        container
-        sx={{ justifyContent: "space-between" }}
-        spacing={2}
-        size={12}
-      >
-        <Grid>
-          <Typography variant={"caption"}>
-            <MuiLink
-              component={Link}
-              to={preserveUrlParams(`/login/${app}/forgot-password`, location)}
-            >
-              {t("auth.password.enter.forgot")}
-            </MuiLink>
+    <form onSubmit={handleNext}>
+      <Grid container spacing={2}>
+        <Grid size={12}>
+          <Typography variant={"h1"}>
+            <IconButton onClick={handleBack} size="large">
+              <ArrowBack />
+            </IconButton>
+            {t("auth.password.enter.title")}
           </Typography>
         </Grid>
-        <Grid>
-          <Typography variant={"caption"}>
-            <MuiLink component={Link} to={"#"} onClick={recoverAccount}>
-              {t("auth.password.enter.recover")}
-            </MuiLink>
-          </Typography>
+        <Grid size={12}>
+          <TextField
+            label={t("add.email")}
+            name={"email"}
+            type={"text"}
+            fullWidth
+            autoFocus
+            value={state.activeAccount?.email ?? ""}
+            disabled
+            autoComplete={"username"}
+            variant={"standard"}
+          />
         </Grid>
-      </Grid>
-      <Grid size={12}>
-        <FormControlLabel
-          control={<Checkbox checked={staySignedIn} />}
-          label={t("auth.password.enter.keep-session")}
-          onChange={changeStaySignedIn}
-        />
-      </Grid>
-      <Grid size={12}>
-        <ActionButton
-          icon={<KeyboardArrowRight />}
-          type={"submit"}
-          onClick={handleNext}
-          disabled={busy}
+        <Grid size={12}>
+          <TextField
+            label={t("auth.password.enter.password")}
+            name={"password"}
+            type={"password"}
+            fullWidth
+            autoFocus
+            value={password}
+            onChange={handlePasswordChange}
+            autoComplete={"current-password"}
+            variant={"standard"}
+          />
+        </Grid>
+        <Grid
+          container
+          sx={{ justifyContent: "space-between" }}
+          spacing={2}
+          size={12}
         >
-          {t("auth.password.enter.next")}
-        </ActionButton>
+          <Grid>
+            <Typography variant={"caption"}>
+              <MuiLink
+                component={Link}
+                to={preserveUrlParams(
+                  `/login/${app}/forgot-password`,
+                  location,
+                )}
+              >
+                {t("auth.password.enter.forgot")}
+              </MuiLink>
+            </Typography>
+          </Grid>
+          <Grid>
+            <Typography variant={"caption"}>
+              <MuiLink component={Link} to={"#"} onClick={recoverAccount}>
+                {t("auth.password.enter.recover")}
+              </MuiLink>
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid size={12}>
+          <FormControlLabel
+            control={<Checkbox checked={staySignedIn} />}
+            label={t("auth.password.enter.keep-session")}
+            onChange={changeStaySignedIn}
+          />
+        </Grid>
+        <Grid size={12}>
+          <ActionButton
+            icon={<KeyboardArrowRight />}
+            type={"submit"}
+            onClick={handleNext}
+            disabled={busy}
+          >
+            {t("auth.password.enter.next")}
+          </ActionButton>
+        </Grid>
       </Grid>
-    </Grid>
+    </form>
   );
 };
 

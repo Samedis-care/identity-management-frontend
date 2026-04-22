@@ -26,7 +26,7 @@ const AuthTotp = (_props: AuthPageProps) => {
   );
 
   const handleNext = useCallback(
-    async (evt: React.MouseEvent) => {
+    async (evt: React.SyntheticEvent) => {
       evt.preventDefault();
       try {
         setBusy(true);
@@ -53,47 +53,49 @@ const AuthTotp = (_props: AuthPageProps) => {
   );
 
   return (
-    <Grid container spacing={2}>
-      <Grid size={12}>
-        <Typography variant={"h1"}>{t("auth.totp.enter.title")}</Typography>
+    <form onSubmit={handleNext}>
+      <Grid container spacing={2}>
+        <Grid size={12}>
+          <Typography variant={"h1"}>{t("auth.totp.enter.title")}</Typography>
+        </Grid>
+        <Grid size={12}>
+          <TextField
+            label={t("add.email")}
+            name={"email"}
+            type={"text"}
+            fullWidth
+            autoFocus
+            value={state.activeAccount?.email ?? ""}
+            disabled
+            autoComplete={"username"}
+            variant={"standard"}
+          />
+        </Grid>
+        <Grid size={12}>
+          <TextField
+            label={t("auth.totp.enter.totp")}
+            name={"totp"}
+            fullWidth
+            autoFocus
+            variant={"standard"}
+            autoComplete={"one-time-code"}
+            inputMode={"numeric"}
+            value={otp}
+            onChange={handleOtpChange}
+          />
+        </Grid>
+        <Grid size={12}>
+          <ActionButton
+            icon={<KeyboardArrowRight />}
+            type={"submit"}
+            onClick={handleNext}
+            disabled={!isValidTotp(otp) || busy}
+          >
+            {t("auth.password.enter.next")}
+          </ActionButton>
+        </Grid>
       </Grid>
-      <Grid size={12}>
-        <TextField
-          label={t("add.email")}
-          name={"email"}
-          type={"text"}
-          fullWidth
-          autoFocus
-          value={state.activeAccount?.email ?? ""}
-          disabled
-          autoComplete={"username"}
-          variant={"standard"}
-        />
-      </Grid>
-      <Grid size={12}>
-        <TextField
-          label={t("auth.totp.enter.totp")}
-          name={"totp"}
-          fullWidth
-          autoFocus
-          variant={"standard"}
-          autoComplete={"one-time-code"}
-          inputMode={"numeric"}
-          value={otp}
-          onChange={handleOtpChange}
-        />
-      </Grid>
-      <Grid size={12}>
-        <ActionButton
-          icon={<KeyboardArrowRight />}
-          type={"submit"}
-          onClick={handleNext}
-          disabled={!isValidTotp(otp) || busy}
-        >
-          {t("auth.password.enter.next")}
-        </ActionButton>
-      </Grid>
-    </Grid>
+    </form>
   );
 };
 
