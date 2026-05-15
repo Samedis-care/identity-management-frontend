@@ -31,9 +31,6 @@
       "last 1 safari version"
     ]
   },
-  "pnpm": {
-    "onlyBuiltDependencies": []
-  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -94,7 +91,7 @@
   },
   "engines": {
     "node": ">=22",
-    "pnpm": "^10"
+    "pnpm": "^11"
   },
   "devEngines": {
     "packageManager": {
