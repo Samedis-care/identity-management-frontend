@@ -4,6 +4,7 @@
 /node_modules
 /src/node_modules
 /.pnp
+/.pnpm-store
 .pnp.js
 
 # testing
