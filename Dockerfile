@@ -1,17 +1,18 @@
 # build environment
 FROM --platform=$BUILDPLATFORM node:22-alpine AS build
 RUN apk add --no-cache brotli openssl bash grep git openssh-client moreutils
+RUN npm install -g pnpm@10
 
 WORKDIR /app
-# only copy package.json and package-lock.json to use docker cache for node_modules
-COPY package.json package-lock.json ./
-RUN npm ci
+# only copy manifest + lockfile to use docker cache for node_modules
+COPY package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm install --frozen-lockfile
 
 # copy source files and config files and build
 COPY public ./public/
 COPY src ./src/
 COPY tsconfig.json webpack.config.cjs ./
-RUN npm run build
+RUN pnpm run build
 
 # perform static compression (gzip and brotli)
 RUN find build -type f -print0 | xargs -0 -P `nproc` -n 1 gzip -9k && \ 

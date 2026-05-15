@@ -24,15 +24,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v6
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Setup Node.js environment
         uses: actions/setup-node@v6
         with:
-          # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
           node-version: 24
-          cache: 'npm'
+          cache: pnpm
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
       - name: Linting Code
-        run: npm run lint
+        run: pnpm run lint
       - name: Building Frontend
-        run: npm run build
+        run: pnpm run build

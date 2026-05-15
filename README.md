@@ -21,8 +21,8 @@ To run the container locally you can use `docker run --rm -p <host-port>:80 -v <
 
 ### Local
 
-1. Install the dependencies by running `npm ci` (or if it fails `npm i`).
-2. To build the app for production use run `npm run build`. For an example nginx configuration to serve the files see `deploy/nginx.conf`. To run the development server instead run `npm start`.
+1. Install the dependencies by running `pnpm install --frozen-lockfile` (or `pnpm install` if the lockfile is outdated).
+2. To build the app for production use run `pnpm run build`. For an example nginx configuration to serve the files see `deploy/nginx.conf`. To run the development server instead run `pnpm start`.
 
 ## Deployment
 
