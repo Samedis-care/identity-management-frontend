@@ -97,6 +97,8 @@ const FORM_CLASS_NAME = "ImCrud-form";
 
 const StyledRoot = styled("div")({
   flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
   [`& .${FORM_CLASS_NAME}`]: {
     minHeight: "100%",
     display: "flex",
