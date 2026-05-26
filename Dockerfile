@@ -5,7 +5,7 @@ RUN npm install -g pnpm@11
 
 WORKDIR /app
 # only copy manifest + lockfile to use docker cache for node_modules
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .pnpm-lock.json ./
 RUN pnpm install --frozen-lockfile
 
 # copy source files and config files and build
