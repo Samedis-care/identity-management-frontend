@@ -23,4 +23,5 @@ nodeLinker: hoisted
 allowBuilds:
   # Previously had no builds allowed (pnpm.onlyBuiltDependencies: []).
   # eslint-import-resolver-typescript transitive — falls back to JS resolver.
+  core-js-pure: false
   unrs-resolver: false
