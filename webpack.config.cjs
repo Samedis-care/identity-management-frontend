@@ -75,6 +75,16 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
         },
         {
+          // MUI v9 ships .mjs files with extensionless imports (e.g.
+          // "react-transition-group/TransitionGroupContext"). Webpack's strict
+          // ESM resolution rejects these because the dependency has no "exports"
+          // map. Disabling fullySpecified lets webpack resolve them.
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /\.css$/,
           use: ["style-loader", "css-loader"],
         },
