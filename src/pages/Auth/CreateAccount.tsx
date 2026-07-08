@@ -159,7 +159,6 @@ const CreateAccount = (_props: AuthPageProps) => {
       }
 
       const emailDomain = getEmailDomain(state.email);
-      console.log(emailDomain, md5(emailDomain), appInfo.auth_provider_hints);
       if (appInfo.auth_provider_hints.includes(md5(emailDomain))) {
         // email has custom auth provider
         if (!app) throw new Error("app null");
