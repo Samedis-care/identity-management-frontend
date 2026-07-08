@@ -16,6 +16,8 @@ import "@fontsource/roboto";
 import { getTheme } from "./theme";
 import MarkedRenderer from "./components/MarkedRenderer";
 import { marked } from "marked";
+import DOMPurify from "dompurify";
+import { sanitizeHtml } from "./utils/sanitize";
 import {
   IS_DEV,
   SentryDsn,
@@ -56,8 +58,25 @@ Sentry.init({
   },
 });
 
-// Marked
-marked.use({ renderer: MarkedRenderer });
+// DOMPurify — reverse-tabnabbing hardening: any sanitized link that opens a
+// new context must not leak window.opener. Registered once here at bootstrap
+// (this entry module is in package.json "sideEffects") so every anchor passing
+// through sanitizeHtml/sanitizeSvg is covered before the first render.
+DOMPurify.addHook("afterSanitizeAttributes", (node) => {
+  if (node.tagName === "A" && node.hasAttribute("target")) {
+    node.setAttribute("rel", "noopener noreferrer");
+  }
+});
+
+// Marked — sanitize all rendered HTML as defense-in-depth XSS hardening.
+// postprocess runs on the final HTML (after MarkedRenderer), so every
+// marked() sink is covered from one place.
+marked.use({
+  renderer: MarkedRenderer,
+  hooks: {
+    postprocess: (html) => sanitizeHtml(html),
+  },
+});
 
 // Dev Exports
 if (IS_DEV) {

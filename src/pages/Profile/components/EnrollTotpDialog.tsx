@@ -23,6 +23,7 @@ import BackendHttpClient from "../../../components-care/connectors/BackendHttpCl
 import { DataResponse } from "../../../api/ident-services/Common";
 import { isRegularTotp, stripInvalidTotpChars } from "../../../utils/totpUtils";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
+import { sanitizeSvg } from "../../../utils/sanitize";
 
 export interface EnrollTotpDialogState {
   otp: string;
@@ -182,7 +183,7 @@ const EnrollTotpDialog = () => {
               </Grid>
               <QrContainer
                 dangerouslySetInnerHTML={{
-                  __html: otpEnrollment.otp_provisioning_qr_code,
+                  __html: sanitizeSvg(otpEnrollment.otp_provisioning_qr_code),
                 }}
                 size={12}
               />
