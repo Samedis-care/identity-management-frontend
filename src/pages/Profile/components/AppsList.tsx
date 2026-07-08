@@ -79,7 +79,7 @@ const AppsList = (props: AppsListProps) => {
   });
 
   const visitApp = useCallback((url: string) => {
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   }, []);
 
   const openPolicy = useCallback(

@@ -36,6 +36,7 @@ const renderer: marked.RendererObject = {
             title={title ?? undefined}
             dangerouslySetInnerHTML={{ __html: text }}
             target={"_blank"}
+            rel={"noopener noreferrer"}
           />
         </ThemeProvider>
       </StyledEngineProvider>,
