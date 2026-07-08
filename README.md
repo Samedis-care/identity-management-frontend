@@ -19,6 +19,21 @@ If you want to change the container nginx configuration you can supply your own 
 
 To run the container locally you can use `docker run --rm -p <host-port>:80 -v </host-system/absolute/path/to/env.json>:/usr/share/nginx/html/env.json:ro container-image`
 
+### Security headers & TLS (supply these per deployment)
+
+The image intentionally ships **without a Content-Security-Policy, HSTS, or TLS**. These cannot be predefined because they depend on the deployment — internal vs. public, which object-storage host serves profile images, and whether TLS is terminated at an edge/reverse proxy or in the container. For any production deployment you **must** supply them:
+
+- **Security headers (CSP, HSTS)** — mount `/etc/nginx/security-custom.conf`. The bundled `security.conf` already sets `X-Frame-Options`, `X-Content-Type-Options` and `Referrer-Policy`; add CSP and HSTS here. Starting point (replace `<OBJECT_STORAGE_HOST>` with the host that serves profile images; keep the reCAPTCHA entries only if reCAPTCHA is enabled):
+
+  ```nginx
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; connect-src 'self' <OBJECT_STORAGE_HOST>; img-src 'self' data: <OBJECT_STORAGE_HOST>; frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'";
+  add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+  ```
+
+  `style-src 'unsafe-inline'` is required by MUI/emotion. Do **not** add `'unsafe-inline'`/`'unsafe-eval'` to `script-src` — the production bundle needs neither.
+
+- **TLS** — the container listens on plain HTTP `:80` only. Terminate TLS at your reverse proxy/edge (recommended) or configure HTTPS in `server.conf`, enforce an HTTP→HTTPS redirect, and keep HSTS enabled.
+
 ### Local
 
 1. Install the dependencies by running `pnpm install --frozen-lockfile` (or `pnpm install` if the lockfile is outdated).
