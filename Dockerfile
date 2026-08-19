@@ -1,7 +1,7 @@
 # build environment
 FROM --platform=$BUILDPLATFORM node:22-alpine AS build
 RUN apk add --no-cache brotli openssl bash grep git openssh-client moreutils
-RUN npm install -g pnpm@11.3
+RUN npm install -g pnpm@11
 
 WORKDIR /app
 # only copy manifest + lockfile to use docker cache for node_modules
