@@ -223,7 +223,11 @@ const ProfileForm = (
           </Box>
         </FlatPaper>
       </Grid>
-      <Grid container sx={{ flexDirection: "column" }} size="grow">
+      <Grid
+        container
+        sx={{ flexDirection: "column", flexWrap: "nowrap" }}
+        size="grow"
+      >
         <FlexGrowContainer sx={{ p: 2 }}>
           <FlexGrowPaper>
             <RoutedTabPanelWrapper>
@@ -310,8 +314,7 @@ const ProfileForm = (
                             />
                           </Grid>
                           {(props.values!.unconfirmed_email as
-                            | string
-                            | null) && (
+                            string | null) && (
                             <Grid size={12}>
                               <FormField name={"unconfirmed_email"} />
                             </Grid>
@@ -331,8 +334,7 @@ const ProfileForm = (
                             </Grid>
                           )}
                           {(props.values!.unconfirmed_recovery_email as
-                            | string
-                            | null) && (
+                            string | null) && (
                             <Grid size={12}>
                               <FormField name={"unconfirmed_recovery_email"} />
                             </Grid>
