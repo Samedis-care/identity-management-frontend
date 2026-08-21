@@ -38,3 +38,7 @@ yarn-error.log*
 # user config
 .devcontainer
 .claude
+
+# testing
+/.playwright
+/.playwright-cli
