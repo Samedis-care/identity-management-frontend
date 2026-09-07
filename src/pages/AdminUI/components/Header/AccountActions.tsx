@@ -65,7 +65,11 @@ const AccountActions = () => {
           )}
         </Root>
       ) : (
-        <IconButton onClick={openProfileMenu} size="large">
+        <IconButton
+          onClick={openProfileMenu}
+          size="large"
+          aria-label={t("header.account.open-menu")}
+        >
           <AccountIcon />
         </IconButton>
       )}

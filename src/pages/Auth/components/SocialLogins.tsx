@@ -109,35 +109,55 @@ const SocialLogins = (props: SocialLoginsProps) => {
           </Grid>
           {OauthFacebook && (
             <Grid>
-              <SocialLoginButton onClick={userFacebookSignIn} size="large">
+              <SocialLoginButton
+                onClick={userFacebookSignIn}
+                size="large"
+                aria-label={t("a11y.social-login", { PROVIDER: "Facebook" })}
+              >
                 <Facebook />
               </SocialLoginButton>
             </Grid>
           )}
           {OauthGoogle && (
             <Grid>
-              <SocialLoginButton onClick={userGoogleSignIn} size="large">
+              <SocialLoginButton
+                onClick={userGoogleSignIn}
+                size="large"
+                aria-label={t("a11y.social-login", { PROVIDER: "Google" })}
+              >
                 <Google />
               </SocialLoginButton>
             </Grid>
           )}
           {OauthMicrosoft && (
             <Grid>
-              <SocialLoginButton onClick={userMicrosoftSignIn} size="large">
+              <SocialLoginButton
+                onClick={userMicrosoftSignIn}
+                size="large"
+                aria-label={t("a11y.social-login", { PROVIDER: "Microsoft" })}
+              >
                 <Microsoft />
               </SocialLoginButton>
             </Grid>
           )}
           {OauthTwitter && (
             <Grid>
-              <SocialLoginButton onClick={userTwitterSignIn} size="large">
+              <SocialLoginButton
+                onClick={userTwitterSignIn}
+                size="large"
+                aria-label={t("a11y.social-login", { PROVIDER: "Twitter" })}
+              >
                 <Twitter />
               </SocialLoginButton>
             </Grid>
           )}
           {OauthApple && (
             <Grid>
-              <SocialLoginButton onClick={userAppleSignIn} size="large">
+              <SocialLoginButton
+                onClick={userAppleSignIn}
+                size="large"
+                aria-label={t("a11y.social-login", { PROVIDER: "Apple" })}
+              >
                 <Apple />
               </SocialLoginButton>
             </Grid>

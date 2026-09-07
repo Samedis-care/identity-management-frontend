@@ -201,6 +201,7 @@ const AppsList = (props: AppsListProps) => {
                         <IconButton
                           onClick={() => visitApp(app.url)}
                           size="large"
+                          aria-label={t("tabs.apps.buttons.visit")}
                         >
                           <VisitAppIcon color={"primary"} />
                         </IconButton>
@@ -216,6 +217,7 @@ const AppsList = (props: AppsListProps) => {
                           }
                           disabled={app.required_documents.length === 0}
                           size="large"
+                          aria-label={t("tabs.apps.buttons.review-policy")}
                         >
                           <StyledPolicyIcon
                             className={
@@ -232,6 +234,7 @@ const AppsList = (props: AppsListProps) => {
                         <IconButton
                           onClick={() => removeApp(app.id)}
                           size="large"
+                          aria-label={t("tabs.apps.buttons.remove-app")}
                         >
                           <DeleteIcon color={"error"} />
                         </IconButton>

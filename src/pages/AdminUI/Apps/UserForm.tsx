@@ -42,7 +42,7 @@ export const OpenRole = (props: IDataGridContentSelectRowViewProps) => {
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <StyledOpenIcon onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} aria-label={t("data-grid.open")} />
     </Tooltip>
   );
 };
@@ -60,7 +60,7 @@ export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <StyledOpenIcon onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} aria-label={t("data-grid.open")} />
     </Tooltip>
   );
 };
@@ -79,7 +79,7 @@ export const OpenFunctionality = (
 
   return (
     <Tooltip title={t("data-grid.open") ?? ""}>
-      <StyledOpenIcon onClick={handleOpen} />
+      <StyledOpenIcon onClick={handleOpen} aria-label={t("data-grid.open")} />
     </Tooltip>
   );
 };

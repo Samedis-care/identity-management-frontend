@@ -12,6 +12,7 @@ import supportedLanguages from "../../../assets/data/supported-languages.json";
 import localeData from "components-care/dist/assets/data/locale-relevance.json";
 import { ComponentsCareI18n, sortByLocaleRelevance } from "components-care";
 import { useCCLanguagesTranslations } from "components-care/dist/utils/useCCTranslations";
+import { useTranslation } from "react-i18next";
 
 export interface LangSelectorProps {
   className?: string;
@@ -48,6 +49,7 @@ const LangSelector = (props: LangSelectorProps) => {
   const { className } = props;
   const [langMenuAnchor, setLangMenuAnchor] = useState<Element | null>(null);
   const { t } = useCCLanguagesTranslations();
+  const { t: authT } = useTranslation("auth");
 
   const onChangeLanguage = React.useCallback(
     (evt: React.MouseEvent<HTMLLIElement>) => {
@@ -71,7 +73,12 @@ const LangSelector = (props: LangSelectorProps) => {
 
   return (
     <>
-      <IconButton onClick={handleFlagClick} className={className} size="large">
+      <IconButton
+        onClick={handleFlagClick}
+        className={className}
+        size="large"
+        aria-label={authT("a11y.language")}
+      >
         <Translate />
       </IconButton>
       <MenuWithBorder

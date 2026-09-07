@@ -181,7 +181,11 @@ const AuthPassword = (_props: AuthPageProps) => {
       <Grid container spacing={2}>
         <Grid size={12}>
           <Typography variant={"h1"}>
-            <IconButton onClick={handleBack} size="large">
+            <IconButton
+              onClick={handleBack}
+              size="large"
+              aria-label={t("a11y.back")}
+            >
               <ArrowBack />
             </IconButton>
             {t("auth.password.enter.title")}

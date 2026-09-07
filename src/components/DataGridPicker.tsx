@@ -101,6 +101,7 @@ const DataGridPicker = <
                 return (
                   <Tooltip title={t("data-grid.pick") ?? ""}>
                     <StyledOpenIcon
+                      aria-label={t("data-grid.pick")}
                       onClick={() => {
                         (onSelect as (id: string) => void)(props.id);
                         onClose();

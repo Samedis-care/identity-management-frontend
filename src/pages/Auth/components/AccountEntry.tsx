@@ -128,7 +128,11 @@ const AccountEntry = (props: AccountEntryProps) => {
           <StatusLabel variant={"caption"}>{status}</StatusLabel>
         </Grid>
         <Grid>
-          <IconButton onClick={openMenu} size="large">
+          <IconButton
+            onClick={openMenu}
+            size="large"
+            aria-label={t("a11y.account-options")}
+          >
             <MoreIcon />
           </IconButton>
         </Grid>

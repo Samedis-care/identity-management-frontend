@@ -2,6 +2,7 @@
   "header": {
     "account": {
       "hello": "Hallo",
+      "open-menu": "Accountmenu openen",
       "menu": {
         "language": "Taal",
         "logout": "Uitloggen"

@@ -2,6 +2,7 @@
   "header": {
     "account": {
       "hello": "Hello",
+      "open-menu": "Open account menu",
       "menu": {
         "language": "Language",
         "logout": "Logout"

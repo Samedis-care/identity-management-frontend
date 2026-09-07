@@ -89,7 +89,11 @@ const ForgotPassword = (_props: AuthPageProps) => {
         <Grid size={12}>
           <Typography variant={"h1"}>
             {!AccountManager.isEmpty() && (
-              <IconButton onClick={handleBack} size="large">
+              <IconButton
+                onClick={handleBack}
+                size="large"
+                aria-label={t("a11y.back")}
+              >
                 <ArrowBack />
               </IconButton>
             )}
