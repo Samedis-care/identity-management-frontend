@@ -66,11 +66,7 @@ const SocialLogins = (props: SocialLoginsProps) => {
   const doThirdPartySignIn = useCallback(
     (
       type:
-        | "facebook"
-        | "twitter"
-        | "google_oauth2"
-        | "microsoft_graph"
-        | "apple",
+        "facebook" | "twitter" | "google_oauth2" | "microsoft_graph" | "apple",
     ) => {
       doOauthSignIn(type, app, location, null);
     },
