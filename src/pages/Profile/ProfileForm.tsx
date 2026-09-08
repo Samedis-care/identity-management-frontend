@@ -5,6 +5,7 @@ import {
   EditOnlyFormPage,
   FormField,
   PageProps,
+  showConfirmDialog,
   showErrorDialog,
   showInputDialog,
   useDialogContext,
@@ -40,6 +41,10 @@ import UnrollTotpDialog from "./components/UnrollTotpDialog";
 import AccountManager from "../../utils/AccountManager";
 import SetupRecoveryEmailDialog from "./components/SetupRecoveryEmailDialog";
 import ChangeEmailDialog from "./components/ChangeEmailDialog";
+import useCCTranslations from "components-care/dist/utils/useCCTranslations";
+
+/** how many login ids to put into one DELETE request URL */
+const DELETE_BATCH_SIZE = 50;
 
 const ProfileRoot = styled(Grid)({
   height: "100%",
@@ -89,6 +94,7 @@ const ProfileForm = (
   >,
 ) => {
   const { t } = useTranslation("profile");
+  const { t: ccT } = useCCTranslations();
   const tab = useRoutedTabPanel();
   const model = useProfileModel();
   const loginsModel = useProfileLoginsModel();
@@ -162,10 +168,51 @@ const ProfileForm = (
         .filter((session) => !(session.current as boolean))
         .map((session) => session.id as string);
       if (sessionsToDelete.length === 0) return;
-      await deleteSessions(sessionsToDelete);
+      // the ids travel in the request URL, and the list now also holds every
+      // logged-out-but-remembered session, which nothing purges - so it can
+      // grow long enough to blow the proxy's URL limit if sent in one go
+      for (let n = 0; n < sessionsToDelete.length; n += DELETE_BATCH_SIZE) {
+        await deleteSessions(sessionsToDelete.slice(n, n + DELETE_BATCH_SIZE));
+      }
     }
     throw new Error("Delete all sessions failed (too many iterations)");
   }, [deleteSessions, loginsModel]);
+
+  // the grid has no per-row guard, so the user can select the session they are
+  // sitting in; warn before that logs them out rather than blocking it
+  const confirmDeleteSessions = useCallback(
+    async (invert: boolean, ids: string[]) => {
+      const [sessions] = await loginsModel.index({ page: 1, rows: 100 });
+      const currentId = sessions.find((session) => session.current as boolean)
+        ?.id as string | undefined;
+      const deletesCurrent = !!currentId && ids.includes(currentId) !== invert;
+      const message = ccT(
+        "backend-components.data-grid.delete.confirm-dialog." +
+          (invert ? "messageInverted" : "message"),
+        { NUM: ids.length },
+      );
+      await showConfirmDialog(pushDialog, {
+        title: ccT("backend-components.data-grid.delete.confirm-dialog.title"),
+        message: deletesCurrent ? (
+          <>
+            {message}
+            <Typography color={"error"} sx={{ mt: 1 }}>
+              {t("tabs.logins.dialogs.delete-current.message")}
+            </Typography>
+          </>
+        ) : (
+          message
+        ),
+        textButtonYes: ccT(
+          "backend-components.data-grid.delete.confirm-dialog.buttons.yes",
+        ),
+        textButtonNo: ccT(
+          "backend-components.data-grid.delete.confirm-dialog.buttons.no",
+        ),
+      });
+    },
+    [ccT, loginsModel, pushDialog, t],
+  );
 
   useEffect(() => {
     const profileId = props.id; // should be "singleton" always
@@ -239,28 +286,36 @@ const ProfileForm = (
               )}
               {tab(
                 "logins",
-                <ImCrud
-                  model={loginsModel}
-                  key={"logins"}
-                  gridProps={{
-                    additionalNewButtons: [
-                      {
-                        icon: <KeyboardArrowRight />,
-                        label: t("tabs.logins.buttons.delete-all") ?? "",
-                        onClick: deleteAllSessions,
-                      },
-                    ],
-                  }}
-                  disableGridWrapper
-                  disableRouting
-                  readPermission={null}
-                  editPermission={false}
-                  newPermission={false}
-                  exportPermission={false}
-                  deletePermission={null}
-                >
-                  {undefined}
-                </ImCrud>,
+                <FlexGrowContainer>
+                  <Box sx={{ px: 2, pt: 2 }}>
+                    <Typography variant={"body2"} color={"textSecondary"}>
+                      {t("tabs.logins.info")}
+                    </Typography>
+                  </Box>
+                  <ImCrud
+                    model={loginsModel}
+                    key={"logins"}
+                    gridProps={{
+                      additionalNewButtons: [
+                        {
+                          icon: <KeyboardArrowRight />,
+                          label: t("tabs.logins.buttons.delete-all") ?? "",
+                          onClick: deleteAllSessions,
+                        },
+                      ],
+                      customDeleteConfirm: confirmDeleteSessions,
+                    }}
+                    disableGridWrapper
+                    disableRouting
+                    readPermission={null}
+                    editPermission={false}
+                    newPermission={false}
+                    exportPermission={false}
+                    deletePermission={null}
+                  >
+                    {undefined}
+                  </ImCrud>
+                </FlexGrowContainer>,
               )}
               {tab(
                 "activity",

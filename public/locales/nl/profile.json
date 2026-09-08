@@ -194,16 +194,27 @@
     },
     "logins": {
       "title": "Logins",
+      "info": "Vermeldingen met “Afgemeld” zijn geen actieve sessies: het apparaat is afgemeld, maar onthoudt dit account nog steeds en kan opnieuw inloggen zonder wachtwoord of tweefactorauthenticatie. Verwijder een vermelding om deze in te trekken.",
       "buttons": {
         "delete-all": "Verwijder alles"
       },
       "fields": {
         "id": "ID",
+        "active": "Status",
         "location": "Plaats",
         "device": "Apparaat",
         "current": "Huidig",
         "app": "App",
         "created_at": "Tijdstempel"
+      },
+      "status": {
+        "active": "Actief",
+        "logged-out": "Afgemeld"
+      },
+      "dialogs": {
+        "delete-current": {
+          "message": "Hieronder valt ook de sessie die u nu gebruikt. Als u deze verwijdert, wordt u direct afgemeld."
+        }
       }
     },
     "activity": {

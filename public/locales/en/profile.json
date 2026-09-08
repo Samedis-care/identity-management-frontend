@@ -194,16 +194,27 @@
     },
     "logins": {
       "title": "Logins",
+      "info": "“Logged out” entries are not active sessions: that device is signed out, but it still remembers this account and can sign back in without password or two-factor authentication. Delete an entry to revoke it.",
       "buttons": {
         "delete-all": "Delete all"
       },
       "fields": {
         "id": "ID",
+        "active": "Status",
         "location": "Location",
         "device": "Device",
         "current": "Current",
         "app": "App",
         "created_at": "Timestamp"
+      },
+      "status": {
+        "active": "Active",
+        "logged-out": "Logged out"
+      },
+      "dialogs": {
+        "delete-current": {
+          "message": "This includes the session you are using right now. Deleting it signs you out immediately."
+        }
       }
     },
     "activity": {

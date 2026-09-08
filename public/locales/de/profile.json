@@ -194,16 +194,27 @@
     },
     "logins": {
       "title": "Anmeldungen",
+      "info": "Einträge mit „Abgemeldet“ sind keine aktiven Sitzungen: Das Gerät ist abgemeldet, merkt sich dieses Konto aber weiterhin und kann sich ohne Passwort und Zwei-Faktor-Authentifizierung erneut anmelden. Löschen Sie einen Eintrag, um ihn zu widerrufen.",
       "buttons": {
         "delete-all": "Alle löschen"
       },
       "fields": {
         "id": "ID",
+        "active": "Status",
         "location": "Standort",
         "device": "Gerät",
         "current": "Aktuell",
         "app": "App",
         "created_at": "Zeitstempel"
+      },
+      "status": {
+        "active": "Aktiv",
+        "logged-out": "Abgemeldet"
+      },
+      "dialogs": {
+        "delete-current": {
+          "message": "Darin enthalten ist die Sitzung, die Sie gerade verwenden. Wenn Sie sie löschen, werden Sie sofort abgemeldet."
+        }
       }
     },
     "activity": {

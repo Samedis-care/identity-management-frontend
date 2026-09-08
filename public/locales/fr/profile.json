@@ -194,16 +194,27 @@
     },
     "logins": {
       "title": "Connexions",
+      "info": "Les entrées « Déconnectée » ne sont pas des sessions actives : l’appareil est déconnecté, mais il mémorise toujours ce compte et peut se reconnecter sans mot de passe ni authentification à deux facteurs. Supprimez une entrée pour la révoquer.",
       "buttons": {
         "delete-all": "Supprimer tout"
       },
       "fields": {
         "id": "IDENTIFIANT",
+        "active": "Statut",
         "location": "Emplacement",
         "device": "Dispositif",
         "current": "Courant",
         "app": "Application",
         "created_at": "Horodatage"
+      },
+      "status": {
+        "active": "Active",
+        "logged-out": "Déconnectée"
+      },
+      "dialogs": {
+        "delete-current": {
+          "message": "Cela inclut la session que vous utilisez actuellement. La supprimer vous déconnectera immédiatement."
+        }
       }
     },
     "activity": {
