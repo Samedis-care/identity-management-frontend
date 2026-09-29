@@ -1,4 +1,4 @@
-import { BackendError, RailsApiClient } from "components-care";
+import { BackendError, RailsApiClient, RequestOptions } from "components-care";
 import { GetParams } from "components-care/dist/backend-integration/Connector/JsonApiClient";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
 import {
@@ -29,6 +29,7 @@ class BackendHttpClient extends RailsApiClient {
         args: GetParams,
         body: unknown | null,
         auth: AuthMode,
+        options: RequestOptions,
       ): Promise<unknown> => {
         const rsp = responseData as PotentialErrorResponse;
 
@@ -49,7 +50,7 @@ class BackendHttpClient extends RailsApiClient {
             if (auth !== AuthMode.Try) {
               await destroySession();
               // retry
-              return this.request(method, url, args, body, auth);
+              return this.request(method, url, args, body, auth, options);
             }
           }
           throw new BackendError(message || error || "Invalid response", error);

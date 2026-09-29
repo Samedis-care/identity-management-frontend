@@ -505,13 +505,17 @@ class BackendConnector<
     data: Record<ModelFieldName, unknown>,
     model?: Model<KeyT, VisibilityT, CustomT>,
   ): Promise<ModelGetResponse<KeyT>> {
-    // remove not updated images
+    // remove not updated images: a picked image is a Blob, or a data URI
     if (model) {
       for (const keyRaw in data) {
         if (!Object.prototype.hasOwnProperty.call(data, keyRaw)) continue;
         const key = keyRaw as KeyT;
         if (model.fields[key]?.type instanceof ModelDataTypeImageRenderer) {
-          if (data[key] && !(data[key] as string).startsWith("data:")) {
+          const value = data[key];
+          const picked =
+            value instanceof Blob ||
+            (typeof value === "string" && value.startsWith("data:"));
+          if (value && !picked) {
             delete data[key];
           }
         }
