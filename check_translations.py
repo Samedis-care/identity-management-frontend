@@ -5,6 +5,45 @@ import sys
 
 SRC_LNG = "en"
 TAG_REGEX = re.compile(r"{{(.*?)}}")
+# i18next plural suffixes. Weblate (i18next v4 format) writes exactly these
+# forms for every plural key of a language: translate-toolkit's plural_tags,
+# which are CLDR's minus the categories only fractions use, so Russian has no
+# _other. It writes a form the file lacks as "", which i18next renders as an
+# empty string, and reads a form it doesn't expect as a duplicate string. So a
+# locale carries exactly its own forms, whatever forms English has.
+PLURAL_FORMS = {
+    "en": ("one", "other"),
+    "de": ("one", "other"),
+    "fr": ("one", "many", "other"),
+    "nl": ("one", "other"),
+    "ru": ("one", "few", "many"),
+}
+PLURAL_SUFFIXES = ("zero", "one", "two", "few", "many", "other")
+PLURAL_REGEX = re.compile(r"_(" + "|".join(PLURAL_SUFFIXES) + r")$")
+
+
+def plural_stem(key: str):
+    """`key` without its plural suffix, if it is a plural form — otherwise None."""
+    if not PLURAL_REGEX.search(key):
+        return None
+    return PLURAL_REGEX.sub("", key)
+
+
+def expected_keys(src_keys, lang: str):
+    """The keys `lang` must have, each mapped to the source key its template tags must match."""
+    expected = {}
+    for key in src_keys:
+        stem = plural_stem(key)
+        if stem is None:
+            expected[key] = key
+            continue
+        for form in PLURAL_FORMS[lang]:
+            plural_key = f"{stem}_{form}"
+            if plural_key in src_keys:
+                expected[plural_key] = plural_key
+            elif plural_key not in expected:
+                expected[plural_key] = f"{stem}_other" if f"{stem}_other" in src_keys else key
+    return expected
 
 
 def json_to_keys(data):
@@ -68,19 +107,20 @@ def validate_namespace(base_dir: str, lang: str, namespace: str):
     src_keys.sort()
     dst_keys = json_to_keys(dst_data)
     dst_keys.sort()
-    if src_keys != dst_keys:
-        missing_keys = [k for k in src_keys if k not in dst_keys]
-        additional_keys = [k for k in dst_keys if k not in src_keys]
+    expected = expected_keys(src_keys, lang)
+    missing_keys = [k for k in expected if k not in dst_keys]
+    additional_keys = [k for k in dst_keys if k not in expected]
+    if len(missing_keys) > 0 or len(additional_keys) > 0:
         error_parts = [f"Lang {lang}, Namespace {namespace}"]
         if len(missing_keys) > 0:
             error_parts.append(f"Missing keys: {', '.join(missing_keys)}")
         if len(additional_keys) > 0:
             error_parts.append(f"Additional keys: {', '.join(additional_keys)}")
         errors.append('; '.join(error_parts))
-    for key in src_keys:
+    for key, src_key in expected.items():
         if key not in dst_keys:
             continue
-        src_value = get_key_value(src_data, key)
+        src_value = get_key_value(src_data, src_key)
         dst_value = get_key_value(dst_data, key)
         src_tags = extract_template_tags(src_value)
         src_tags.sort()
@@ -99,6 +139,9 @@ def main():
     namespaces = os.listdir(os.path.join(base_dir, SRC_LNG))
     namespaces.sort()
     for lang in langs:
+        if lang not in PLURAL_FORMS:
+            errors.append(f"Language {lang} has no entry in PLURAL_FORMS")
+            continue
         for namespace in namespaces:
             errors += validate_namespace(base_dir, lang, namespace)
         lang_namespaces = os.listdir(os.path.join(base_dir, lang))
