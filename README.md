@@ -26,7 +26,7 @@ The image intentionally ships **without a Content-Security-Policy, HSTS, or TLS*
 - **Security headers (CSP, HSTS)** — mount `/etc/nginx/security-custom.conf`. The bundled `security.conf` already sets `X-Frame-Options`, `X-Content-Type-Options` and `Referrer-Policy`; add CSP and HSTS here. Starting point (replace `<OBJECT_STORAGE_HOST>` with the host that serves profile images; keep the reCAPTCHA entries only if reCAPTCHA is enabled):
 
   ```nginx
-  add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; connect-src 'self' <OBJECT_STORAGE_HOST>; img-src 'self' data: <OBJECT_STORAGE_HOST>; frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'";
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; connect-src 'self' <OBJECT_STORAGE_HOST>; img-src 'self' data: blob: <OBJECT_STORAGE_HOST>; frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self'; form-action 'self'";
   add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
   ```
 
