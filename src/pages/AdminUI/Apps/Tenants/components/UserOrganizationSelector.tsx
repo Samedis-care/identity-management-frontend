@@ -1,5 +1,4 @@
 import React from "react";
-import { Model, ModelFieldName, PageVisibility } from "components-care";
 import { useActorPickerModel } from "../../../../../components-care/models/ActorPickerModel";
 import useTenant from "../../../../../utils/useTenant";
 import { useTranslation } from "react-i18next";
@@ -36,9 +35,7 @@ const UserOrganizationSelector = (props: UserOrganizationSelectorProps) => {
     <DataGridMassSelect
       selectedModel={actorList}
       serializeCreate={serializeCreate}
-      optionsModel={
-        actorPicker as unknown as Model<ModelFieldName, PageVisibility, unknown>
-      }
+      optionsModel={actorPicker}
       pickerProps={pickerProps}
     />
   ) : (

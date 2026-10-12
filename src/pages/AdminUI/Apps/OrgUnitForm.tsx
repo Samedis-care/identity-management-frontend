@@ -3,14 +3,11 @@ import { DefaultFormPage, FormField, PageProps } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { Grid } from "@mui/material";
 import OrganizationRoleSelector from "./components/OrganizationRoleSelector";
-import { OrganizationModel } from "../../../components-care/models/OrganizationModel";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { OrganizationModelType } from "../../../components-care/models/OrganizationModel";
 
 const OrgUnitForm = (
-  props: PageProps<
-    keyof ReturnType<typeof OrganizationModel>["fields"],
-    CrudFormProps
-  >,
+  props: PageProps<OrganizationModelType, CrudFormProps>,
 ) => {
   return (
     <DefaultFormPage {...props}>

@@ -40,16 +40,19 @@ export const ProfileLoginsModel = (t: TFunction) =>
         visibility: BackendVisibility,
       },
       active: {
-        type: new LoginStatusType([
-          {
-            value: LOGIN_STATUS_ACTIVE,
-            getLabel: () => t("profile:tabs.logins.status.active"),
-          },
-          {
-            value: LOGIN_STATUS_LOGGED_OUT,
-            getLabel: () => t("profile:tabs.logins.status.logged-out"),
-          },
-        ]),
+        type: new LoginStatusType(
+          [
+            {
+              value: LOGIN_STATUS_ACTIVE,
+              getLabel: () => t("profile:tabs.logins.status.active"),
+            },
+            {
+              value: LOGIN_STATUS_LOGGED_OUT,
+              getLabel: () => t("profile:tabs.logins.status.logged-out"),
+            },
+          ],
+          LOGIN_STATUS_ACTIVE,
+        ),
         getLabel: () => t("profile:tabs.logins.fields.active"),
         customData: null,
         visibility: {
@@ -123,6 +126,8 @@ export const ProfileLoginsModel = (t: TFunction) =>
     },
     new BackendConnector("v1/user/account_logins"),
   );
+
+export type ProfileLoginsModelType = ReturnType<typeof ProfileLoginsModel>;
 
 export const useProfileLoginsModel = () => {
   const { t } = useTranslation("profile");

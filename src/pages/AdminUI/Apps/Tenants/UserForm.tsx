@@ -8,7 +8,6 @@ import {
   RoutedTabPanelWrapper,
   useRoutedTabPanel,
 } from "components-care";
-import { UserModel } from "../../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../../../components-care/ImCrud";
@@ -17,10 +16,9 @@ import { useRoleModel } from "../../../../components-care/models/RoleModel";
 import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { OpenFunctionality, OpenRole } from "../UserForm";
 import FormPagePaper from "../../../../components/FormPagePaper";
+import type { UserModelType } from "../../../../components-care/models/UserModel";
 
-const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
-) => {
+const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
 

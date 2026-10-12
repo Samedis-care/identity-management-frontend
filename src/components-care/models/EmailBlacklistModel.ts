@@ -51,6 +51,8 @@ export const EmailBlacklistModel = (t: TFunction) =>
     new BackendConnector("v1/email_blacklist"),
   );
 
+export type EmailBlacklistModelType = ReturnType<typeof EmailBlacklistModel>;
+
 export const useEmailBlacklistModel = () => {
   const { t } = useTranslation("email-blacklist");
   return EmailBlacklistModel(t);

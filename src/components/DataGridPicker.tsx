@@ -3,8 +3,7 @@ import {
   BackendDataGrid,
   DataGridNoPersist,
   FullFormDialog as FormDialog,
-  ModelFieldName,
-  PageVisibility,
+  ModelUnknown,
 } from "components-care";
 import { BackendDataGridProps } from "components-care/dist/backend-components/DataGrid";
 import { Box, Button, styled, Tooltip } from "@mui/material";
@@ -27,12 +26,8 @@ const GridContainer = styled("div")({
   height: "calc(80vh - 64px)",
 });
 
-export type DataGridPickerProps<
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
-> = Omit<
-  BackendDataGridProps<KeyT, VisibilityT, CustomT>,
+export type DataGridPickerProps<M extends ModelUnknown> = Omit<
+  BackendDataGridProps<M>,
   | "disableSelection"
   | "disableFooter"
   | "customSelectionControl"
@@ -50,12 +45,8 @@ export type DataGridPickerProps<
       }
   ) & { onClose: () => void };
 
-const DataGridPicker = <
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
->(
-  props: DataGridPickerProps<KeyT, VisibilityT, CustomT>,
+const DataGridPicker = <M extends ModelUnknown>(
+  props: DataGridPickerProps<M>,
 ) => {
   const { onSelect, onClose, multiple, ...gridProps } = props;
   const { t } = useTranslation("common");
@@ -103,7 +94,7 @@ const DataGridPicker = <
                     <StyledOpenIcon
                       aria-label={t("data-grid.pick")}
                       onClick={() => {
-                        (onSelect as (id: string) => void)(props.id);
+                        onSelect(props.id);
                         onClose();
                       }}
                     />

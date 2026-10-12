@@ -72,6 +72,8 @@ export const ProfileActivityModel = (t: TFunction) =>
     new BackendConnector("v1/user/account_activity"),
   );
 
+export type ProfileActivityModelType = ReturnType<typeof ProfileActivityModel>;
+
 export const useProfileActivityModel = () => {
   const { t } = useTranslation("profile");
   return ProfileActivityModel(t);

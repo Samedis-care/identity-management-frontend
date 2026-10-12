@@ -1,5 +1,4 @@
 import React from "react";
-import { Model, ModelFieldName, PageVisibility } from "components-care";
 import { useActorPickerModel } from "../../../../components-care/models/ActorPickerModel";
 import DataGridMassSelect from "../../../../components/DataGridMassSelect";
 import { useActorListModel } from "../../../../components-care/models/ActorListModel";
@@ -30,9 +29,7 @@ const UserOrganizationSelector = (props: UserOrganizationSelectorProps) => {
     <DataGridMassSelect
       selectedModel={actorList}
       serializeCreate={serializeCreate}
-      optionsModel={
-        actorPicker as unknown as Model<ModelFieldName, PageVisibility, unknown>
-      }
+      optionsModel={actorPicker}
       pickerProps={pickerProps}
     />
   ) : (

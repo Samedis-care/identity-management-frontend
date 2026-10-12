@@ -207,6 +207,7 @@ export const AppAdminModel = (
             value: entry,
             getLabel: () => translateLocale(ccT, entry),
           })),
+          "de-DE",
         ),
         getLabel: () => t("app-admin:fields.config.default_locale"),
         customData: null,
@@ -357,6 +358,7 @@ export const AppAdminModel = (
                   value,
               ),
           })),
+          "",
         ),
         getLabel: () =>
           t("app-admin:fields.config.mailer.smtp_settings.authentication"),
@@ -403,6 +405,7 @@ export const AppAdminModel = (
                   value,
               ),
           })),
+          "",
         ),
         getLabel: () =>
           t("app-admin:fields.config.mailer.smtp_settings.openssl_verify_mode"),
@@ -563,16 +566,19 @@ export const AppAdminModel = (
         },
       },
       "config.theme.mode": {
-        type: new ModelDataTypeEnumSelectRendererMUI([
-          {
-            value: "light",
-            getLabel: () => t("app-admin:enums.config.theme.mode.light"),
-          },
-          {
-            value: "dark",
-            getLabel: () => t("app-admin:enums.config.theme.mode.dark"),
-          },
-        ]),
+        type: new ModelDataTypeEnumSelectRendererMUI(
+          [
+            {
+              value: "light",
+              getLabel: () => t("app-admin:enums.config.theme.mode.light"),
+            },
+            {
+              value: "dark",
+              getLabel: () => t("app-admin:enums.config.theme.mode.dark"),
+            },
+          ],
+          "light",
+        ),
         getLabel: () => t("app-admin:fields.config.theme.mode"),
         customData: null,
         visibility: {
@@ -584,6 +590,8 @@ export const AppAdminModel = (
     },
     new BackendConnector("v1/app_admin"),
   );
+
+export type AppAdminModelType = ReturnType<typeof AppAdminModel>;
 
 export const useAppAdminModel = (options?: AppAdminModelOptions) => {
   const { t } = useTranslation(["app-admin"]);

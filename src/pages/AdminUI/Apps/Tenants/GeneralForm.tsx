@@ -3,16 +3,11 @@ import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { Grid } from "@mui/material";
 import { EditOnlyFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { TenantModel } from "../../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../../components/FormPagePaper";
 import ModuleSelector from "./components/ModuleSelector";
+import type { TenantModelType } from "../../../../components-care/models/TenantModel";
 
-const GeneralForm = (
-  props: PageProps<
-    keyof ReturnType<typeof TenantModel>["fields"],
-    CrudFormProps
-  >,
-) => {
+const GeneralForm = (props: PageProps<TenantModelType, CrudFormProps>) => {
   return (
     <EditOnlyFormPage {...props} customProps={undefined}>
       <FormPagePaper>

@@ -9,23 +9,18 @@ import {
   useFrontendDownload,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { AppAdminModel } from "../../../components-care/models/AppAdminModel";
 import { useTranslation } from "react-i18next";
 import SeedsUploadDialog from "./components/SeedsUploadDialog";
 import FormPagePaper from "../../../components/FormPagePaper";
 import { useAppEditFormContext } from "./General";
 import { AppInfo } from "../../../api/ident-services/AppInfo";
+import type { AppAdminModelType } from "../../../components-care/models/AppAdminModel";
 
-const GeneralForm = (
-  props: PageProps<
-    keyof ReturnType<typeof AppAdminModel>["fields"],
-    CrudFormProps
-  >,
-) => {
+const GeneralForm = (props: PageProps<AppAdminModelType, CrudFormProps>) => {
   const { t } = useTranslation("app-admin");
   const [pushDialog] = useDialogContext();
   const downloadFile = useFrontendDownload();
-  const { model } = useFormContextLite();
+  const { model } = useFormContextLite<AppAdminModelType>();
   const { setLocales } = useAppEditFormContext();
   const config = props.values!.config as AppInfo["config"];
 
@@ -36,16 +31,12 @@ const GeneralForm = (
 
   const handleExport = useCallback(async () => {
     const [app] = await model.getCached(props.id);
-    downloadFile(
-      new File([app.import_roles as string], app.name + "_roles.yml"),
-    );
+    downloadFile(new File([app.import_roles], app.name + "_roles.yml"));
     const localeRoles = app.locale_import_roles as Record<string, string>;
     Object.entries(localeRoles).forEach(([lang, value]) =>
       downloadFile(new File([value], `${app.name}_locale_roles_${lang}.yml`)),
     );
-    downloadFile(
-      new File([app.import_candos as string], app.name + "_permissions.yml"),
-    );
+    downloadFile(new File([app.import_candos], app.name + "_permissions.yml"));
     const localePermissions = app.locale_import_candos as Record<
       string,
       string

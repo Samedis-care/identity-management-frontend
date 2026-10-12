@@ -40,6 +40,7 @@ export const ContentModel = (params: ContentModelParams) =>
             value: value,
             getLabel: () => params.t("content:enums.name." + value),
           })),
+          "",
         ),
         getLabel: () => params.t("content:fields.name"),
         customData: null,
@@ -108,6 +109,8 @@ export const ContentModel = (params: ContentModelParams) =>
     new BackendConnector(`v1/apps/${params.appId}/contents`),
     { app: params.appId },
   );
+
+export type ContentModelType = ReturnType<typeof ContentModel>;
 
 export const useContentModel = (params?: ContentModelParams) => {
   const { t } = useTranslation("content");

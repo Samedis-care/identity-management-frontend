@@ -2,6 +2,7 @@ import {
   Model,
   ModelDataTypeBooleanCheckboxRendererMUI,
   ModelDataTypeStringRendererMUI,
+  ModelRecord,
   ModelVisibilityDisabledReadOnly,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
@@ -148,6 +149,8 @@ export const ActorPickerModel = (
     },
   );
 
+export type ActorPickerModelType = ReturnType<typeof ActorPickerModel>;
+
 export const useActorPickerModel = (
   params: Omit<ActorPickerModelParams, "app"> & { app?: string | null },
 ) => {
@@ -160,10 +163,10 @@ export const useActorPickerModel = (
 };
 
 export const ActorPickerModelToSelectorData = (
-  data: Record<keyof ReturnType<typeof ActorPickerModel>["fields"], unknown>,
+  data: ModelRecord<ActorPickerModelType>,
 ): MultiSelectorData => ({
-  value: data.id as string,
-  label: data.path as string,
+  value: data.id,
+  label: data.path,
 });
 
 export const ActorPickerModelSelectorSort: DataGridSortSetting[] = [

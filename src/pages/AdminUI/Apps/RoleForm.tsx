@@ -4,25 +4,20 @@ import { AppBar, Grid, Tab } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,
-  Model,
-  ModelFieldName,
-  PageVisibility,
-  RoutedTabs,
   RoutedTabPanelWrapper,
+  RoutedTabs,
   useRoutedTabPanel,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { RoleModel } from "../../../components-care/models/RoleModel";
 import { useTranslation } from "react-i18next";
 import RoleFunctionalitySelector from "./components/RoleFunctionalitySelector";
 import FormPagePaper from "../../../components/FormPagePaper";
 import DataGridMassSelect from "../../../components/DataGridMassSelect";
 import { useActorPickerModel } from "../../../components-care/models/ActorPickerModel";
 import { useActorListModel } from "../../../components-care/models/ActorListModel";
+import type { RoleModelType } from "../../../components-care/models/RoleModel";
 
-const RoleForm = (
-  props: PageProps<keyof ReturnType<typeof RoleModel>["fields"], CrudFormProps>,
-) => {
+const RoleForm = (props: PageProps<RoleModelType, CrudFormProps>) => {
   const { t } = useTranslation("roles");
   const tab = useRoutedTabPanel();
 
@@ -48,13 +43,7 @@ const RoleForm = (
                 <DataGridMassSelect
                   selectedModel={roleActorList}
                   serializeCreate={(id: string) => ({ actor_id: id })}
-                  optionsModel={
-                    roleActorPicker as unknown as Model<
-                      ModelFieldName,
-                      PageVisibility,
-                      unknown
-                    >
-                  }
+                  optionsModel={roleActorPicker}
                   pickerProps={{
                     isSelected: (
                       selected: boolean,

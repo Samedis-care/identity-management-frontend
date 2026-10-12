@@ -95,6 +95,7 @@ export const OrganizationModel = (params: OrganizationModelParams) =>
             value: type,
             getLabel: () => params.t("actors:enums.actor_type." + type),
           })),
+          "",
         ),
         getLabel: () => params.t("actors:fields.actor_type"),
         customData: null,
@@ -177,6 +178,8 @@ export const OrganizationModel = (params: OrganizationModelParams) =>
     ),
     { app: params.appId, parent: params.parentId, tenant: params.tenantId },
   );
+
+export type OrganizationModelType = ReturnType<typeof OrganizationModel>;
 
 export const useOrganizationModel = (
   parent?: string | null | undefined,

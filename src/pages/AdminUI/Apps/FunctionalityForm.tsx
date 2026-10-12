@@ -9,16 +9,13 @@ import {
   useRoutedTabPanel,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { FunctionalityModel } from "../../../components-care/models/FunctionalityModel";
 import { useTranslation } from "react-i18next";
 import FunctionalityRoleSelector from "./components/FunctionalityRoleSelector";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { FunctionalityModelType } from "../../../components-care/models/FunctionalityModel";
 
 const FunctionalityForm = (
-  props: PageProps<
-    keyof ReturnType<typeof FunctionalityModel>["fields"],
-    CrudFormProps
-  >,
+  props: PageProps<FunctionalityModelType, CrudFormProps>,
 ) => {
   const { t } = useTranslation("functionality");
   const tab = useRoutedTabPanel();

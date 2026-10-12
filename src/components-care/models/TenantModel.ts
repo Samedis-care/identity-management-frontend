@@ -3,6 +3,7 @@ import {
   ModelDataTypeImageRenderer,
   ModelDataTypeStringArrayBackendRenderer,
   ModelDataTypeStringRendererMUI,
+  ModelRecord,
   ModelVisibilityDisabled,
   ModelVisibilityDisabledReadOnly,
   ModelVisibilityEdit,
@@ -109,6 +110,8 @@ export const TenantModel = (t: TFunction, app: string, user?: string | null) =>
     },
   );
 
+export type TenantModelType = ReturnType<typeof TenantModel>;
+
 export const useTenantModel = (
   appOverride?: string | null,
   user?: string | null,
@@ -121,10 +124,10 @@ export const useTenantModel = (
 };
 
 export const TenantModelToSelectorData = (
-  data: Record<keyof ReturnType<typeof TenantModel>["fields"], unknown>,
+  data: ModelRecord<TenantModelType>,
 ): MultiSelectorData => ({
-  value: data.id as string,
-  label: data.path as string,
+  value: data.id,
+  label: data.path,
 });
 
 export const TenantModelSelectorSort: DataGridSortSetting[] = [

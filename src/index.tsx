@@ -6,8 +6,6 @@ import {
   componentsCareBrowserTracingIntegration,
   ComponentsCareI18n,
   Framework,
-  ModelFieldName,
-  PageVisibility,
   setDefaultConnectorAPI,
 } from "components-care";
 import i18n from "./i18n";
@@ -93,14 +91,9 @@ ComponentsCareI18n.on("languageChanged", (language) => {
 });
 
 // Components-Care Backend Config
-setDefaultConnectorAPI(
-  (
-    endpoint,
-    extraParams,
-  ): ApiConnector<ModelFieldName, PageVisibility, unknown> => {
-    return new BackendConnector(endpoint, "data", {}, extraParams);
-  },
-);
+setDefaultConnectorAPI((endpoint, extraParams): ApiConnector => {
+  return new BackendConnector(endpoint, "data", {}, extraParams);
+});
 
 const domRoot = document.getElementById("root")!;
 const root = createRoot(domRoot);

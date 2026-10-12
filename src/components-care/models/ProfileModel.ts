@@ -193,6 +193,8 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
     }),
   );
 
+export type ProfileModelType = ReturnType<typeof ProfileModel>;
+
 export const useProfileModel = () => {
   const { t } = useTranslation("profile");
   const { search } = useLocation();

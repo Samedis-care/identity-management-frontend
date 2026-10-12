@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Connector,
-  ConnectorIndex2Params,
   DataGrid,
   DataGridNoPersist,
   filterSortPaginate,
   Loader,
-  Model,
-  ModelFieldName,
-  PageVisibility,
+  ModelUnknown,
   renderDataGridRecordUsingModel,
 } from "components-care";
 import {
@@ -23,13 +20,9 @@ import useLazyCrudConnector, {
 } from "components-care/dist/backend-components/Form/useLazyCrudConnector";
 import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
 
-export interface DataGridMultiSelectCRUDProps<
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
->
+export interface DataGridMultiSelectCRUDProps<M extends ModelUnknown>
   extends
-    UseLazyCrudConnectorParams<KeyT, VisibilityT, CustomT>,
+    UseLazyCrudConnectorParams,
     Omit<
       DataGridProps,
       | "columns"
@@ -40,24 +33,17 @@ export interface DataGridMultiSelectCRUDProps<
       | "onSelectionChange"
       | "selection"
     > {
-  model: Model<KeyT, VisibilityT, CustomT>;
+  model: M;
   readOnly?: boolean;
   getIdOfRecord: (record: Record<string, unknown>) => string;
   serializeCreate: (id: string) => Record<string, unknown>;
 }
 
-const DataGridMultiSelectCRUD = <
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
->(
-  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>,
+const DataGridMultiSelectCRUD = <M extends ModelUnknown>(
+  props: DataGridMultiSelectCRUDProps<M>,
 ) => {
   // This is a CRUD version of BackendDataGridMultiSelect from Components-Care
   const [lazyCrudParams, otherProps] = extractLazyCrudConnectorParams<
-    KeyT,
-    VisibilityT,
-    CustomT,
     undefined,
     typeof props
   >(props);
@@ -189,7 +175,7 @@ const DataGridMultiSelectCRUD = <
             },
             offset: Math.max(requestedOffset, 0),
             rows: Math.max(requestedOffset + params.rows, 0),
-          } as ConnectorIndex2Params);
+          });
           return {
             rowsTotal:
               (dataMeta.filteredRows != null
@@ -199,9 +185,9 @@ const DataGridMultiSelectCRUD = <
               dataMeta.filteredRows != null
                 ? relationshipRecordFilteredCount + dataMeta.totalRows
                 : undefined,
-            rows: relationshipRecordsFiltered
-              .concat(dataRecords as DataGridRowData[])
-              .map(renderDataGridRecordUsingModel(model, refreshGrid)),
+            rows: [...relationshipRecordsFiltered, ...dataRecords].map(
+              renderDataGridRecordUsingModel(model, refreshGrid),
+            ),
           };
         }}
       />

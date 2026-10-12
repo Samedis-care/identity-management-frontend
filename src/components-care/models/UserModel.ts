@@ -144,6 +144,7 @@ export const UserModel = (
             value: e.toString(),
             getLabel: () => t("users:enums.gender." + e),
           })),
+          "",
           true,
           (e) => e,
           true,
@@ -163,6 +164,7 @@ export const UserModel = (
             getLabel: () =>
               t("users:enums.locales." + (locale || "unspecified")),
           })),
+          "",
         ),
         getLabel: () => t("users:fields.locale"),
         customData: null,
@@ -212,6 +214,8 @@ export const UserModel = (
     ),
     { app, tenant },
   );
+
+export type UserModelType = ReturnType<typeof UserModel>;
 
 export const useUserModel = (
   appOverride?: string,

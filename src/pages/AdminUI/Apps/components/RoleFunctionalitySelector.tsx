@@ -1,5 +1,4 @@
 import React from "react";
-import { Model, ModelFieldName, PageVisibility } from "components-care";
 import { useFunctionalityModel } from "../../../../components-care/models/FunctionalityModel";
 import DataGridMassSelect from "../../../../components/DataGridMassSelect";
 import { useTranslation } from "react-i18next";
@@ -29,9 +28,7 @@ const RoleFunctionalitySelector = (props: RoleFunctionalitySelectorProps) => {
     <DataGridMassSelect
       selectedModel={listModel}
       serializeCreate={serializeCreate}
-      optionsModel={
-        pickerModel as unknown as Model<ModelFieldName, PageVisibility, unknown>
-      }
+      optionsModel={pickerModel}
       pickerProps={pickerProps}
     />
   ) : (

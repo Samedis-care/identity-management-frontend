@@ -140,6 +140,8 @@ export const RoleModel = (
     },
   );
 
+export type RoleModelType = ReturnType<typeof RoleModel>;
+
 export const useRoleModel = (params?: Partial<RoleModelParams>) => {
   const { t } = useTranslation(["roles", "functionality", "roles"]);
   const app = useApp();

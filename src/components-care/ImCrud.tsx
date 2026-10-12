@@ -4,9 +4,8 @@ import {
   CRUD,
   DataGridLocalStoragePersist,
   DefaultErrorComponent,
-  ModelFieldName,
   ModelFilterType,
-  PageVisibility,
+  ModelUnknown,
   useLocation,
 } from "components-care";
 import { styled, useTheme } from "@mui/material";
@@ -17,30 +16,24 @@ import GridWrapper from "./GridWrapper";
 
 export type CrudPageProps = PropsWithChildren<
   Pick<
-    CrudProps<ModelFieldName, PageVisibility, unknown>,
+    // none of these depend on the model
+    CrudProps<ModelUnknown>,
     "disableRouting" | "initialView" | "disableBackgroundGrid"
   >
 >;
 
-export interface ImCrudProps<
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
-> extends Omit<
-  CrudProps<KeyT, VisibilityT, CustomT>,
+export interface ImCrudProps<M extends ModelUnknown> extends Omit<
+  CrudProps<M>,
   "formProps" | "gridProps" | "forbiddenPage"
 > {
   /**
    * Custom form props
    */
-  formProps?: Omit<
-    CrudProps<KeyT, VisibilityT, CustomT>["formProps"],
-    "errorComponent"
-  >;
+  formProps?: Omit<CrudProps<M>["formProps"], "errorComponent">;
   /**
    * Custom data grid props
    */
-  gridProps?: CrudProps<KeyT, VisibilityT, CustomT>["gridProps"];
+  gridProps?: CrudProps<M>["gridProps"];
   /**
    * Disable grid padding
    */
@@ -106,17 +99,11 @@ const StyledRoot = styled("div")({
   },
 });
 
-const ImCrud = <
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
->(
-  props: Omit<ImCrudProps<KeyT, VisibilityT, CustomT>, "customCloseHandler">,
+const ImCrud = <M extends ModelUnknown>(
+  props: Omit<ImCrudProps<M>, "customCloseHandler">,
 ) => {
   const defaultGridProps = useDefaultGridProps();
-  const formPropsCached = useMemo<
-    CrudProps<KeyT, VisibilityT, CustomT>["formProps"]
-  >(
+  const formPropsCached = useMemo<CrudProps<M>["formProps"]>(
     () => ({
       formClass: FORM_CLASS_NAME,
       ...props.formProps,
@@ -124,9 +111,7 @@ const ImCrud = <
     }),
     [props.formProps],
   );
-  const gridPropsCached = useMemo<
-    CrudProps<KeyT, VisibilityT, CustomT>["gridProps"]
-  >(
+  const gridPropsCached = useMemo<CrudProps<M>["gridProps"]>(
     () => ({
       ...defaultGridProps,
       ...props.gridProps,

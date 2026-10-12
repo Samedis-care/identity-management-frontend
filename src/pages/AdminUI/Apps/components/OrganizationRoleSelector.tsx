@@ -1,18 +1,19 @@
 import React from "react";
 import {
   FormCrudMultiSelect,
+  ModelRecord,
   MultiSelectorData,
-  PageVisibility,
   useFormContextLite,
   useNavigate,
 } from "components-care";
 import useApp from "../../../../utils/useApp";
 import { useTranslation } from "react-i18next";
 import {
-  RoleModel,
   RoleModelSelectorSort,
   useRoleModel,
 } from "../../../../components-care/models/RoleModel";
+import type { OrganizationModelType } from "../../../../components-care/models/OrganizationModel";
+import type { RoleModelType } from "../../../../components-care/models/RoleModel";
 
 export interface OrganizationRoleSelectorProps {
   organizationId: string | null;
@@ -29,16 +30,11 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
   const model = useRoleModel();
   const app = useApp();
   const { t } = useTranslation("ous");
-  const { readOnly } = useFormContextLite();
+  const { readOnly } = useFormContextLite<OrganizationModelType>();
   const navigate = useNavigate();
 
   return (
-    <FormCrudMultiSelect<
-      keyof ReturnType<typeof RoleModel>["fields"],
-      PageVisibility,
-      null,
-      OrganizationRoleData
-    >
+    <FormCrudMultiSelect<RoleModelType, OrganizationRoleData>
       field={"functionalities"}
       getEndpoint={(id: string) =>
         `v1/apps/${app}/organizations/${id}/actor_roles`
@@ -61,10 +57,10 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
         onClick: () => navigate(`/apps/${app}/roles/${data.id}`),
       })}
       deserializeModel={(
-        data: Record<keyof ReturnType<typeof RoleModel>["fields"], unknown>,
+        data: ModelRecord<RoleModelType>,
       ): Omit<OrganizationRoleData, "value"> => ({
-        role_id: data.id as string,
-        label: data.title as string,
+        role_id: data.id,
+        label: data.title,
         onClick: () => navigate(`/apps/${app}/roles/${data.id}`),
       })}
       getIdOfData={(data) => data.role_id}

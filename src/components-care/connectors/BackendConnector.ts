@@ -4,12 +4,11 @@ import {
   deepAssign,
   dotsToObject,
   isObjectEmpty,
-  Model,
   ModelDataTypeImageRenderer,
   ModelFieldName,
   ModelFilterType,
   ModelGetResponse,
-  PageVisibility,
+  ModelUnknown,
   ResponseMeta,
   uniqueArray,
 } from "components-care";
@@ -100,12 +99,7 @@ interface BackendSort {
   direction: "ASC" | "DESC";
 }
 
-class BackendConnector<
-  KeyT extends ModelFieldName,
-  RelationsKeyT extends string,
-  VisibilityT extends PageVisibility,
-  CustomT,
-> extends ApiConnector<KeyT, VisibilityT, CustomT> {
+class BackendConnector<RelationsKeyT extends string> extends ApiConnector {
   private apiBase: string;
   includedRelations: IncludedRelations<RelationsKeyT>;
   includedRelationsReverse: IncludedRelationsReverse<RelationsKeyT>;
@@ -249,7 +243,7 @@ class BackendConnector<
     gridFilter: IDataGridFieldFilter,
     additionalFilters: DataGridAdditionalFilters,
     extraParams?: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>,
+    model?: ModelUnknown,
     columns?: IDataGridColumnDef[],
     pageIsOffset?: boolean,
   ): Record<string, unknown> {
@@ -300,8 +294,8 @@ class BackendConnector<
 
   async index(
     params: Partial<IDataGridLoadDataParameters> | undefined,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<[Record<KeyT, unknown>[], ResponseMeta, unknown?]> {
+    model?: ModelUnknown,
+  ): Promise<[Record<string, unknown>[], ResponseMeta, unknown?]> {
     // load reasonable defaults if nothing is set
     if (!params) params = {};
     if (!params.page) params.page = 1;
@@ -327,7 +321,7 @@ class BackendConnector<
 
   public async index2(
     params: ConnectorIndex2Params,
-    model?: Model<KeyT, VisibilityT, CustomT>,
+    model?: ModelUnknown,
   ): Promise<[Record<string, unknown>[], ResponseMeta, unknown?]> {
     // load reasonable defaults if nothing is set
     if (!params.sort) params.sort = [];
@@ -353,8 +347,8 @@ class BackendConnector<
 
   private async indexCommon(
     indexParams: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<[Record<KeyT, unknown>[], ResponseMeta, unknown?]> {
+    model?: ModelUnknown,
+  ): Promise<[Record<string, unknown>[], ResponseMeta, unknown?]> {
     if (this.additionalOptions.singleton)
       throw new Error("Backend connector in singleton mode, index disabled");
 
@@ -395,9 +389,9 @@ class BackendConnector<
 
   async processDataResponse(
     resp: DataResponse,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<ModelGetResponse<KeyT>> {
-    const included: ModelGetResponseRelations<KeyT> = {};
+    model?: ModelUnknown,
+  ): Promise<ModelGetResponse<ModelUnknown>> {
+    const included: ModelGetResponseRelations<ModelUnknown> = {};
     if (resp.included) {
       resp.included.forEach((entry) => {
         const data = Object.assign(
@@ -409,15 +403,15 @@ class BackendConnector<
         const listOfFields = this.includedRelationsReverse[entry.type] ?? [];
         listOfFields.forEach((field) => {
           if (field in included) {
-            included[field as unknown as KeyT]!.push(data);
+            included[field]!.push(data);
           } else {
-            included[field as unknown as KeyT] = [data];
+            included[field] = [data];
           }
         });
       });
     }
 
-    const relationIds: Partial<Record<KeyT, string[]>> = {};
+    const relationIds: Partial<Record<string, string[]>> = {};
     if ("relationships" in resp.data && resp.data.relationships) {
       Object.values(resp.data.relationships)
         .map((data) => data.data)
@@ -426,9 +420,9 @@ class BackendConnector<
         .forEach((entry) => {
           const fieldName = entry.type + "_ids";
           if (fieldName in relationIds) {
-            relationIds[fieldName as KeyT]!.push(entry.id);
+            relationIds[fieldName]!.push(entry.id);
           } else {
-            relationIds[fieldName as KeyT] = [entry.id];
+            relationIds[fieldName] = [entry.id];
           }
         });
     }
@@ -451,8 +445,8 @@ class BackendConnector<
 
   async completeAttributes(
     data: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<Record<KeyT, unknown>> {
+    model?: ModelUnknown,
+  ): Promise<Record<string, unknown>> {
     if (!model) return data;
 
     const defaults: Record<string, unknown> = {};
@@ -473,8 +467,8 @@ class BackendConnector<
 
   async create(
     data: Record<string, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<ModelGetResponse<KeyT>> {
+    model?: ModelUnknown,
+  ): Promise<ModelGetResponse<ModelUnknown>> {
     if (this.additionalOptions.singleton)
       throw new Error("BackendConnector is in singleton mode, create disabled");
 
@@ -489,8 +483,8 @@ class BackendConnector<
 
   async read(
     id: string,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<ModelGetResponse<KeyT>> {
+    model?: ModelUnknown,
+  ): Promise<ModelGetResponse<ModelUnknown>> {
     const resp = await BackendHttpClient.get<DataResponse>(
       this.additionalOptions.singleton
         ? this.getApiBase(true, "show")
@@ -503,13 +497,13 @@ class BackendConnector<
 
   async update(
     data: Record<ModelFieldName, unknown>,
-    model?: Model<KeyT, VisibilityT, CustomT>,
-  ): Promise<ModelGetResponse<KeyT>> {
+    model?: ModelUnknown,
+  ): Promise<ModelGetResponse<ModelUnknown>> {
     // remove not updated images: a picked image is a Blob, or a data URI
     if (model) {
       for (const keyRaw in data) {
         if (!Object.prototype.hasOwnProperty.call(data, keyRaw)) continue;
-        const key = keyRaw as KeyT;
+        const key = keyRaw;
         if (model.fields[key]?.type instanceof ModelDataTypeImageRenderer) {
           const value = data[key];
           const picked =

@@ -2,10 +2,11 @@ import { Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import { useFormContext } from "components-care";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import type { TenantModelType } from "../../../../../components-care/models/TenantModel";
 
 const ModuleSelector = () => {
   const { t } = useTranslation("actors");
-  const { values, setFieldValue } = useFormContext();
+  const { values, setFieldValue } = useFormContext<TenantModelType>();
   const available = values.modules_available as string[] | null;
   const selected = values.modules_selected as string[] | null;
 

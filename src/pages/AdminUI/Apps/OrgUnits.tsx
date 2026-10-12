@@ -4,6 +4,7 @@ import {
   DefaultErrorComponent,
   Form,
   Loader,
+  ModelRecord,
   throwError,
   Link,
   useParams,
@@ -24,13 +25,11 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
-import {
-  OrganizationModel,
-  useOrganizationModel,
-} from "../../../components-care/models/OrganizationModel";
+import { useOrganizationModel } from "../../../components-care/models/OrganizationModel";
 import FormPagePaper from "../../../components/FormPagePaper";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
+import type { OrganizationModelType } from "../../../components-care/models/OrganizationModel";
 
 const OrgUnitRoot = styled(Box)({
   height: "100%",
@@ -40,18 +39,17 @@ const FullHeightGrid = styled(Grid)({
   height: "100%",
 });
 
-const APP_ACTOR: Record<string, unknown> = {
+// the app, the root of the tree, has no record of its own, so no id
+const APP_ACTOR: Pick<
+  ModelRecord<OrganizationModelType>,
+  "leaf" | "insertable_child_types"
+> & { id?: undefined } = {
   leaf: false,
   insertable_child_types: ["ou", "group"],
 };
 
 export const useOrgUnitTree = (
-  form: React.ComponentType<
-    PageProps<
-      keyof ReturnType<typeof OrganizationModel>["fields"],
-      CrudFormProps
-    >
-  >,
+  form: React.ComponentType<PageProps<OrganizationModelType, CrudFormProps>>,
 ) => {
   const { t } = useTranslation("ous");
   const { app } = useParams();
@@ -80,13 +78,13 @@ export const useOrgUnitTree = (
     if (current == null) return APP_ACTOR;
     if (current === "new") return false;
     const [record] = await fetchModel.getCached(current ?? app);
-    return record as Record<string, unknown>;
+    return record;
   }, [current]);
   const parentRecord = useAsyncMemo(async () => {
     if (!parent) return false;
     if (parent === app) return APP_ACTOR;
     const [record] = await fetchModel.getCached(parent);
-    return record as Record<string, unknown>;
+    return record;
   }, [parent, app]);
   // switch to edit tab if record is leaf
   useEffect(() => {
@@ -114,7 +112,7 @@ export const useOrgUnitTree = (
               .map((id) => fetchModel.getCached(id)),
           )
         ).map((entry) => [entry[0].id, entry[0].title]),
-      ) as Record<string, string>;
+      );
     },
     [path],
     true,
@@ -122,7 +120,7 @@ export const useOrgUnitTree = (
   const model = useOrganizationModel(
     current,
     true,
-    parentRecord ? (parentRecord.insertable_child_types as string[]) : null,
+    parentRecord ? parentRecord.insertable_child_types : null,
   );
   if (currentRecord == null || parentRecord == null) return <Loader />;
   return (
@@ -173,7 +171,7 @@ export const useOrgUnitTree = (
               <Grid size="grow">
                 {tab === "edit" && (
                   <Form
-                    id={currentRecord ? (currentRecord.id as string) : null}
+                    id={currentRecord ? (currentRecord.id ?? null) : null}
                     model={model}
                     initialRecord={parent ? { parent_id: parent } : undefined}
                     errorComponent={DefaultErrorComponent}

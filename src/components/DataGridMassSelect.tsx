@@ -2,9 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   BackendDataGrid,
   DataGridNoPersist,
-  Model,
-  ModelFieldName,
-  PageVisibility,
+  ModelRecordPartial,
+  ModelUnknown,
   useDialogContext,
   useModelMutation,
 } from "components-care";
@@ -12,11 +11,10 @@ import { BackendDataGridProps } from "components-care/dist/backend-components/Da
 import DataGridPicker, { DataGridPickerProps } from "./DataGridPicker";
 
 export interface DataGridMultiSelectCRUDProps<
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
+  M extends ModelUnknown,
+  OptionsM extends ModelUnknown,
 > extends Omit<
-  BackendDataGridProps<KeyT, VisibilityT, CustomT>,
+  BackendDataGridProps<M>,
   | "model"
   | "disableSelection"
   | "customSelectionControl"
@@ -25,22 +23,21 @@ export interface DataGridMultiSelectCRUDProps<
   | "enableDelete"
   | "disableExport"
 > {
-  selectedModel: Model<KeyT, VisibilityT, CustomT>;
-  serializeCreate: (id: string) => Record<string, unknown>;
-  optionsModel: Model<ModelFieldName, PageVisibility, unknown>;
+  selectedModel: M;
+  serializeCreate: (id: string) => ModelRecordPartial<M>;
+  optionsModel: OptionsM;
   readOnly?: boolean;
   pickerProps?: Omit<
-    DataGridPickerProps<ModelFieldName, PageVisibility, unknown>,
+    DataGridPickerProps<OptionsM>,
     "model" | "onClose" | "onSelect" | "multiple"
   >;
 }
 
 const DataGridMultiSelectCRUD = <
-  KeyT extends ModelFieldName,
-  VisibilityT extends PageVisibility,
-  CustomT,
+  M extends ModelUnknown,
+  OptionsM extends ModelUnknown,
 >(
-  props: DataGridMultiSelectCRUDProps<KeyT, VisibilityT, CustomT>,
+  props: DataGridMultiSelectCRUDProps<M, OptionsM>,
 ) => {
   const {
     selectedModel,
@@ -78,7 +75,7 @@ const DataGridMultiSelectCRUD = <
         {...pickerProps}
         model={optionsModel}
         onClose={popDialog}
-        onSelect={addToSelection as (id: string | string[]) => void}
+        onSelect={addToSelection}
         multiple
       />,
     );

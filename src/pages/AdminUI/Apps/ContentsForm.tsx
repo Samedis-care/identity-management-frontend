@@ -2,15 +2,10 @@ import React from "react";
 import { DefaultFormPage, FormField, PageProps } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { Grid } from "@mui/material";
-import { ContentModel } from "../../../components-care/models/ContentModel";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { ContentModelType } from "../../../components-care/models/ContentModel";
 
-const ContentsForm = (
-  props: PageProps<
-    keyof ReturnType<typeof ContentModel>["fields"],
-    CrudFormProps
-  >,
-) => {
+const ContentsForm = (props: PageProps<ContentModelType, CrudFormProps>) => {
   return (
     <DefaultFormPage {...props}>
       <FormPagePaper>

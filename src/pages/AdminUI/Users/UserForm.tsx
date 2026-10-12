@@ -2,15 +2,13 @@ import React, { useCallback } from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { Button, Grid } from "@mui/material";
 import { DefaultFormPage, FormField, useDialogContext } from "components-care";
-import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
 import ResetPasswordAdminDialog from "./ResetPasswordAdminDialog";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { UserModelType } from "../../../components-care/models/UserModel";
 
-const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
-) => {
+const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
   const { t } = useTranslation("users");
   const [pushDialog] = useDialogContext();
 

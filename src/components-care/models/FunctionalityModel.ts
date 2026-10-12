@@ -3,6 +3,7 @@ import {
   ModelDataTypeBooleanCheckboxRendererMUI,
   ModelDataTypeLocalizedStringRenderer,
   ModelDataTypeStringRendererMUI,
+  ModelRecord,
   ModelVisibilityDisabledReadOnly,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
@@ -177,6 +178,8 @@ export const FunctionalityModel = ({
     },
   );
 
+export type FunctionalityModelType = ReturnType<typeof FunctionalityModel>;
+
 export const useFunctionalityModel = (
   params?: Partial<FunctionalityModelParams>,
 ) => {
@@ -198,9 +201,9 @@ export const useFunctionalityModel = (
 };
 
 export const FunctionalityModelToSelectorData = (
-  data: Record<keyof ReturnType<typeof FunctionalityModel>["fields"], unknown>,
+  data: ModelRecord<FunctionalityModelType>,
 ): MultiSelectorData => ({
-  value: data.id as string,
+  value: data.id,
   label: `${data.app}/${data.module}.${data.ident}`,
 });
 

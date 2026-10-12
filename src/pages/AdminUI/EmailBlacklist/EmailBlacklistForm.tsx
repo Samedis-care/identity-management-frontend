@@ -3,14 +3,11 @@ import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { Grid } from "@mui/material";
 import { DefaultFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { EmailBlacklistModel } from "../../../components-care/models/EmailBlacklistModel";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { EmailBlacklistModelType } from "../../../components-care/models/EmailBlacklistModel";
 
 const EmailBlacklistForm = (
-  props: PageProps<
-    keyof ReturnType<typeof EmailBlacklistModel>["fields"],
-    CrudFormProps
-  >,
+  props: PageProps<EmailBlacklistModelType, CrudFormProps>,
 ) => {
   return (
     <DefaultFormPage {...props}>

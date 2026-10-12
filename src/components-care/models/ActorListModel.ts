@@ -110,6 +110,7 @@ export const ActorListModel = (
             value: type,
             getLabel: () => t("actors:enums.actor_type." + type),
           })),
+          "",
         ),
         getLabel: () => t("actors:fields.actor_type"),
         customData: null,
@@ -205,6 +206,8 @@ export const ActorListModel = (
     ),
     { app, role, user, tenant, org },
   );
+
+export type ActorListModelType = ReturnType<typeof ActorListModel>;
 
 export const useActorListModel = (
   params: Omit<ActorListModelParams, "app"> & { app?: string | null },

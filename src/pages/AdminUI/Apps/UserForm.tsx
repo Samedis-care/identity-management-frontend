@@ -11,7 +11,6 @@ import {
   RoutedTabPanelWrapper,
   useRoutedTabPanel,
 } from "components-care";
-import { UserModel } from "../../../components-care/models/UserModel";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../../components-care/ImCrud";
@@ -22,6 +21,7 @@ import { KeyboardArrowRight as OpenIcon } from "@mui/icons-material";
 import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { useTenantModel } from "../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../components/FormPagePaper";
+import type { UserModelType } from "../../../components-care/models/UserModel";
 
 const StyledOpenIcon = styled(OpenIcon)(({ theme }) => ({
   cursor: "pointer",
@@ -52,7 +52,7 @@ export const OpenTenant = (props: IDataGridContentSelectRowViewProps) => {
   const { t } = useTranslation("common");
   const { app } = useParams();
   const navigate = useNavigate();
-  const { id: userId } = useFormContextLite();
+  const { id: userId } = useFormContextLite<UserModelType>();
 
   const handleOpen = useCallback(() => {
     navigate(`/apps/${app}/tenants/${id}/users/${userId}`);
@@ -84,9 +84,7 @@ export const OpenFunctionality = (
   );
 };
 
-const UserForm = (
-  props: PageProps<keyof ReturnType<typeof UserModel>["fields"], CrudFormProps>,
-) => {
+const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
 

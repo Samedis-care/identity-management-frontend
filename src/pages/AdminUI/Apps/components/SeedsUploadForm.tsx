@@ -3,13 +3,10 @@ import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { Box, Grid } from "@mui/material";
 import { EditOnlyFormPage, FormField } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import { AppAdminModel } from "../../../../components-care/models/AppAdminModel";
+import type { AppAdminModelType } from "../../../../components-care/models/AppAdminModel";
 
 const SeedsUploadForm = (
-  props: PageProps<
-    keyof ReturnType<typeof AppAdminModel>["fields"],
-    CrudFormProps
-  >,
+  props: PageProps<AppAdminModelType, CrudFormProps>,
 ) => {
   return (
     <EditOnlyFormPage {...props} customProps={undefined}>

@@ -19,10 +19,7 @@ import {
   ModelVisibilityDisabled,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
-import {
-  ProfileModel,
-  useProfileModel,
-} from "../../components-care/models/ProfileModel";
+import { useProfileModel } from "../../components-care/models/ProfileModel";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../components-care/ImCrud";
@@ -42,6 +39,7 @@ import AccountManager from "../../utils/AccountManager";
 import SetupRecoveryEmailDialog from "./components/SetupRecoveryEmailDialog";
 import ChangeEmailDialog from "./components/ChangeEmailDialog";
 import useCCTranslations from "components-care/dist/utils/useCCTranslations";
+import type { ProfileModelType } from "../../components-care/models/ProfileModel";
 
 /** how many login ids to put into one DELETE request URL */
 const DELETE_BATCH_SIZE = 50;
@@ -87,12 +85,7 @@ const GrayActionButton = styled(ActionButton, {
   },
 }));
 
-const ProfileForm = (
-  props: PageProps<
-    keyof ReturnType<typeof ProfileModel>["fields"],
-    CrudFormProps
-  >,
-) => {
+const ProfileForm = (props: PageProps<ProfileModelType, CrudFormProps>) => {
   const { t } = useTranslation("profile");
   const { t: ccT } = useCCTranslations();
   const tab = useRoutedTabPanel();
@@ -102,7 +95,7 @@ const ProfileForm = (
   const activityModel = useProfileActivityModel();
   const [pushDialog] = useDialogContext();
   const { mutateAsync: deleteProfile } = useModelDelete(model);
-  const email = (props.values!.email as string) ?? "";
+  const email = props.values!.email ?? "";
   const [deleteRequested, setDeleteRequested] = useState(false);
   const authCtx = useAuthProviderContext();
 
@@ -165,8 +158,8 @@ const ProfileForm = (
         rows: 100,
       });
       const sessionsToDelete = sessions
-        .filter((session) => !(session.current as boolean))
-        .map((session) => session.id as string);
+        .filter((session) => !session.current)
+        .map((session) => session.id);
       if (sessionsToDelete.length === 0) return;
       // the ids travel in the request URL, and the list now also holds every
       // logged-out-but-remembered session, which nothing purges - so it can
@@ -183,8 +176,7 @@ const ProfileForm = (
   const confirmDeleteSessions = useCallback(
     async (invert: boolean, ids: string[]) => {
       const [sessions] = await loginsModel.index({ page: 1, rows: 100 });
-      const currentId = sessions.find((session) => session.current as boolean)
-        ?.id as string | undefined;
+      const currentId = sessions.find((session) => session.current)?.id;
       const deletesCurrent = !!currentId && ids.includes(currentId) !== invert;
       const message = ccT(
         "backend-components.data-grid.delete.confirm-dialog." +
@@ -254,8 +246,7 @@ const ProfileForm = (
               </Grid>
               <Grid size={12}>
                 <Typography variant={"h1"} align={"center"}>
-                  {props.values!.first_name as string}{" "}
-                  {props.values!.last_name as string}
+                  {props.values!.first_name} {props.values!.last_name}
                 </Typography>
               </Grid>
               <Grid size={12}>
