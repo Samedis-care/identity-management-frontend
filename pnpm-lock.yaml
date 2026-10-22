@@ -39,7 +39,7 @@ importers:
         version: 5.104.5(@tanstack/react-query@5.104.5(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(csstype@3.2.3)(react@19.3.1)
       components-care:
         specifier: github:Samedis-care/react-components#master_dist
-        version: https://codeload.github.com/Samedis-care/react-components/tar.gz/9c1593d6a5fd6734640b675bdb1bbcbd80b40104(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@mui/system@9.5.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1))(@sentry/react@10.76.2(react@19.3.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)
+        version: https://codeload.github.com/Samedis-care/react-components/tar.gz/822891398adf776c5c86d624ca6f1149c917dafb(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@mui/system@9.5.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1))(@sentry/react@10.76.2(react@19.3.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)
       dompurify:
         specifier: ^3.4.17
         version: 3.4.17
@@ -1439,8 +1439,8 @@ packages:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
 
-  components-care@https://codeload.github.com/Samedis-care/react-components/tar.gz/9c1593d6a5fd6734640b675bdb1bbcbd80b40104:
-    resolution: {gitHosted: true, integrity: sha512-9pTeS4vHd50fQRz9KmLUDueI+Wi6EuM5uWT34VQWgaiVW9/KKRs1mbQeQ6SNDNcoY6KVcFYX72NidOS9/DJuGQ==, tarball: https://codeload.github.com/Samedis-care/react-components/tar.gz/9c1593d6a5fd6734640b675bdb1bbcbd80b40104}
+  components-care@https://codeload.github.com/Samedis-care/react-components/tar.gz/822891398adf776c5c86d624ca6f1149c917dafb:
+    resolution: {gitHosted: true, integrity: sha512-OP6eGRTuroZZb7mve3Mi4w0FXe5XTlw/J0ovUIKfnx0T004lx7eXflsV6n5MKPdWrewGHInB2lctlAnaoNrv8w==, tarball: https://codeload.github.com/Samedis-care/react-components/tar.gz/822891398adf776c5c86d624ca6f1149c917dafb}
     version: 0.1.0
     engines: {node: '>=22', pnpm: ^11}
     peerDependencies:
@@ -4907,7 +4907,7 @@ snapshots:
 
   commander@8.3.0: {}
 
-  components-care@https://codeload.github.com/Samedis-care/react-components/tar.gz/9c1593d6a5fd6734640b675bdb1bbcbd80b40104(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@mui/system@9.5.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1))(@sentry/react@10.76.2(react@19.3.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3):
+  components-care@https://codeload.github.com/Samedis-care/react-components/tar.gz/822891398adf776c5c86d624ca6f1149c917dafb(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@mui/system@9.5.0(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1))(@sentry/react@10.76.2(react@19.3.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.1)(supports-color@8.1.1)
