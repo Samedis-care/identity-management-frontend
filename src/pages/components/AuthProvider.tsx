@@ -239,6 +239,7 @@ const AuthProvider = (props: AuthProviderProps) => {
                 null,
                 {},
               );
+              tryAgain = false;
             } catch (e) {
               Sentry.captureException(e);
               await showInfoDialog(pushDialog, {
@@ -258,7 +259,6 @@ const AuthProvider = (props: AuthProviderProps) => {
                 ],
               });
             }
-            if (!tryAgain) break;
           }
         }
 
