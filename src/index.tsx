@@ -3,11 +3,11 @@ import RootPage from "./pages";
 import * as Sentry from "@sentry/react";
 import {
   ApiConnector,
-  componentsCareBrowserTracingIntegration,
   ComponentsCareI18n,
   Framework,
   setDefaultConnectorAPI,
 } from "components-care";
+import { componentsCareBrowserTracingIntegration } from "components-care/dist/sentry";
 import i18n from "./i18n";
 import moment from "moment";
 import "@fontsource/roboto";
@@ -43,6 +43,8 @@ Sentry.init({
   enabled: SentryEnabled,
   environment: SentryEnv,
   release: "identity-management-frontend@" + SentryRelease,
+  // no IP addresses, cookies or HTTP bodies
+  dataCollection: { userInfo: false, cookies: false, httpBodies: [] },
   beforeSend: (data, hint) => {
     if (hint?.originalException instanceof Error) {
       switch (hint.originalException.name) {
