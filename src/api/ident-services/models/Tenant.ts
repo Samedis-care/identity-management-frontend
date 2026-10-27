@@ -6,4 +6,5 @@ export interface Tenant {
   short_name: string | null;
   full_name: string;
   image: Image;
+  image_size: number | null;
 }
