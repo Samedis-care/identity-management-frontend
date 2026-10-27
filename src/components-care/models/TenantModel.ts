@@ -72,9 +72,9 @@ export const TenantModel = (t: TFunction, app: string, user?: string | null) =>
         getLabel: () => "",
         customData: null,
         visibility: {
-          overview: ModelVisibilityDisabled,
-          create: ModelVisibilityDisabled,
-          edit: ModelVisibilityDisabled,
+          overview: ModelVisibilityDisabledReadOnly,
+          create: ModelVisibilityDisabledReadOnly,
+          edit: ModelVisibilityDisabledReadOnly,
         },
       },
       path: {

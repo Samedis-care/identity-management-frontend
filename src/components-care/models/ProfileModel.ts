@@ -4,7 +4,7 @@ import {
   ModelDataTypeImageRenderer,
   ModelDataTypeIntegerRendererCC,
   ModelDataTypeStringRendererMUI,
-  ModelVisibilityDisabled,
+  ModelVisibilityDisabledReadOnly,
   ModelVisibilityEdit,
   ModelVisibilityEditReadOnly,
   ModelVisibilityEditRequired,
@@ -137,9 +137,9 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         getLabel: () => "",
         customData: null,
         visibility: {
-          overview: ModelVisibilityDisabled,
-          create: ModelVisibilityDisabled,
-          edit: ModelVisibilityDisabled,
+          overview: ModelVisibilityDisabledReadOnly,
+          create: ModelVisibilityDisabledReadOnly,
+          edit: ModelVisibilityDisabledReadOnly,
         },
       },
       current_password: {
