@@ -1,5 +1,6 @@
 import {
   ApiConnector,
+  BackendError,
   ConnectorIndex2Params,
   deepAssign,
   dotsToObject,
@@ -9,6 +10,7 @@ import {
   ModelFilterType,
   ModelGetResponse,
   ModelUnknown,
+  PartialDeleteError,
   ResponseMeta,
   uniqueArray,
 } from "components-care";
@@ -19,7 +21,7 @@ import {
   IDataGridFieldFilter,
   IDataGridLoadDataParameters,
 } from "components-care/dist/standalone/DataGrid/DataGrid";
-import BackendHttpClient from "./BackendHttpClient";
+import BackendHttpClient, { PotentialErrorResponse } from "./BackendHttpClient";
 import { IDataGridExporter } from "components-care/dist/standalone/DataGrid/Header";
 import ExcelExportIcon from "../../components/icons/ExcelExportIcon";
 import i18n from "../../i18n";
@@ -540,11 +542,25 @@ class BackendConnector<RelationsKeyT extends string> extends ApiConnector {
   async deleteMultiple(ids: string[]): Promise<void> {
     if (ids.length === 0) return;
 
-    return BackendHttpClient.delete(
-      `${this.getApiBase(true, "delete")}/${ids.join(",")}`,
-      this.additionalQueryParameters ?? null,
-      this.getAuthMode(),
-    );
+    try {
+      await BackendHttpClient.delete(
+        `${this.getApiBase(true, "delete")}/${ids.join(",")}`,
+        this.additionalQueryParameters ?? null,
+        this.getAuthMode(),
+      );
+    } catch (e) {
+      // the backend deletes what it can and names the records it could not delete
+      const details =
+        e instanceof Error && e.name === "BackendError"
+          ? ((e as BackendError).meta as PotentialErrorResponse | undefined)
+              ?.meta?.msg?.error_details
+          : undefined;
+      const failedIds = details
+        ? ids.filter((id) => Object.hasOwn(details, id))
+        : [];
+      if (failedIds.length === 0 || failedIds.length === ids.length) throw e;
+      throw new PartialDeleteError((e as Error).message, failedIds, e);
+    }
   }
 
   dataGridExporters: IDataGridExporter<unknown>[] = [

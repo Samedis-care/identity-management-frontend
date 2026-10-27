@@ -7,12 +7,13 @@ import {
 } from "../../pages/components/AuthProvider";
 import * as Sentry from "@sentry/react";
 
-interface PotentialErrorResponse {
+export interface PotentialErrorResponse {
   meta?: {
     msg?: {
       success?: boolean;
       error?: string;
       message?: string;
+      error_details?: Record<string, unknown>;
     };
   };
 }
@@ -22,7 +23,7 @@ class BackendHttpClient extends RailsApiClient {
     super(
       () => handleAuth(),
       async (
-        _response: Response,
+        response: Response,
         responseData: unknown,
         method: string,
         url: string,
@@ -53,7 +54,12 @@ class BackendHttpClient extends RailsApiClient {
               return this.request(method, url, args, body, auth, options);
             }
           }
-          throw new BackendError(message || error || "Invalid response", error);
+          throw new BackendError(
+            message || error || "Invalid response",
+            error,
+            rsp,
+            response,
+          );
         }
 
         return responseData;
