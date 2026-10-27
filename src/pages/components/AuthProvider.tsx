@@ -298,6 +298,7 @@ const AuthProvider = (props: AuthProviderProps) => {
             first_name: "Anonymous",
             last_name: "User",
             image: null,
+            image_size: null,
             job_title: null,
             locale: null,
             mobile: null,

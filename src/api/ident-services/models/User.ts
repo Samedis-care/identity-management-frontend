@@ -11,6 +11,7 @@ export interface User {
   first_name: string;
   last_name: string;
   image: Image | null;
+  image_size: number | null;
   job_title: string | null;
   locale: string | null;
   mobile: string | null;

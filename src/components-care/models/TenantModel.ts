@@ -1,6 +1,7 @@
 import {
   Model,
   ModelDataTypeImageRenderer,
+  ModelDataTypeIntegerRendererCC,
   ModelDataTypeStringArrayBackendRenderer,
   ModelDataTypeStringRendererMUI,
   ModelRecord,
@@ -65,6 +66,16 @@ export const TenantModel = (t: TFunction, app: string, user?: string | null) =>
         },
         filterable: true,
         sortable: true,
+      },
+      image_size: {
+        type: new ModelDataTypeIntegerRendererCC(),
+        getLabel: () => "",
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityDisabledReadOnly,
+          create: ModelVisibilityDisabledReadOnly,
+          edit: ModelVisibilityDisabledReadOnly,
+        },
       },
       path: {
         type: new ModelDataTypeStringRendererMUI(),

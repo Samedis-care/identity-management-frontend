@@ -2,7 +2,9 @@ import {
   Model,
   ModelDataTypeBooleanCheckboxRendererMUI,
   ModelDataTypeImageRenderer,
+  ModelDataTypeIntegerRendererCC,
   ModelDataTypeStringRendererMUI,
+  ModelVisibilityDisabledReadOnly,
   ModelVisibilityEdit,
   ModelVisibilityEditReadOnly,
   ModelVisibilityEditRequired,
@@ -129,6 +131,16 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         },
         filterable: true,
         sortable: true,
+      },
+      image_size: {
+        type: new ModelDataTypeIntegerRendererCC(),
+        getLabel: () => "",
+        customData: null,
+        visibility: {
+          overview: ModelVisibilityDisabledReadOnly,
+          create: ModelVisibilityDisabledReadOnly,
+          edit: ModelVisibilityDisabledReadOnly,
+        },
       },
       current_password: {
         type: new ModelDataTypeStringRendererMUI(),
