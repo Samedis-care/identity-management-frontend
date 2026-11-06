@@ -3,6 +3,7 @@ import {
   ActionButton,
   showInfoDialog,
   useDialogContext,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import {
@@ -26,7 +27,8 @@ export interface UnverifiedAccountDialogProps {
 const UnverifiedAccountDialog = (props: UnverifiedAccountDialogProps) => {
   const { email, app, extraParams } = props;
   const { t } = useTranslation("auth");
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
 
   const resendConfirm = useCallback(async () => {
     try {
@@ -51,12 +53,12 @@ const UnverifiedAccountDialog = (props: UnverifiedAccountDialogProps) => {
         message: (e as Error).message,
       });
     } finally {
-      popDialog();
+      closeThisDialog();
     }
-  }, [pushDialog, popDialog, t, email, app, extraParams]);
+  }, [pushDialog, closeThisDialog, t, email, app, extraParams]);
 
   return (
-    <Dialog open={true} onClose={popDialog}>
+    <Dialog open={true} onClose={closeThisDialog}>
       <DialogTitle>
         {t("auth.unverified-account-error-dialog.title")}
       </DialogTitle>
@@ -71,7 +73,7 @@ const UnverifiedAccountDialog = (props: UnverifiedAccountDialogProps) => {
         </ActionButton>
       </DialogContent>
       <DialogActions>
-        <Button onClick={popDialog} color={"primary"} autoFocus={true}>
+        <Button onClick={closeThisDialog} color={"primary"} autoFocus={true}>
           {t("auth.unverified-account-error-dialog.close")}
         </Button>
       </DialogActions>

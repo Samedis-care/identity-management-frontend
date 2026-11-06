@@ -12,6 +12,7 @@ import {
   showInfoDialog,
   TextFieldWithHelp,
   useDialogContext,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { isValidTotp, stripInvalidTotpChars } from "../../../utils/totpUtils";
@@ -24,7 +25,8 @@ export interface UnrollTotpDialogState {
 }
 
 const UnrollTotpDialog = () => {
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const model = useProfileModel();
   const { t } = useTranslation("profile");
   const [state, setState] = useState<UnrollTotpDialogState>({
@@ -56,7 +58,7 @@ const UnrollTotpDialog = () => {
         if (result.data.attributes.otp_enabled) {
           throw new Error("TOTP deactivation failed");
         }
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.unroll-totp.result.success.title"),
           message: t("tabs.account.dialogs.unroll-totp.result.success.info"),
@@ -69,7 +71,7 @@ const UnrollTotpDialog = () => {
         });
       }
     },
-    [popDialog, pushDialog, state.otp, t, model],
+    [closeThisDialog, pushDialog, state.otp, t, model],
   );
 
   return (
@@ -110,7 +112,7 @@ const UnrollTotpDialog = () => {
           >
             {t("tabs.account.dialogs.unroll-totp.actions.submit")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("tabs.account.dialogs.unroll-totp.actions.cancel")}
           </Button>
         </DialogActions>

@@ -47,7 +47,7 @@ const DataGridMultiSelectCRUD = <
     pickerProps,
     ...gridProps
   } = props;
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
   const { mutateAsync: addSelected } = useModelMutation(selectedModel);
   const [refreshToken, setRefreshToken] = useState(Date.now().toString(16));
   useEffect(
@@ -70,16 +70,16 @@ const DataGridMultiSelectCRUD = <
   );
 
   const handleAdd = useCallback(() => {
-    pushDialog(
+    const close = pushDialog(
       <DataGridPicker
         {...pickerProps}
         model={optionsModel}
-        onClose={popDialog}
+        onClose={() => close()}
         onSelect={addToSelection}
         multiple
       />,
     );
-  }, [pushDialog, optionsModel, popDialog, addToSelection, pickerProps]);
+  }, [pushDialog, optionsModel, addToSelection, pickerProps]);
 
   return (
     <DataGridNoPersist>

@@ -12,6 +12,7 @@ import {
   TextFieldWithHelp,
   useDialogContext,
   useModelMutation,
+  useCloseThisDialog,
 } from "components-care";
 import { useUserModel } from "../../../components-care/models/UserModel";
 import { useTranslation } from "react-i18next";
@@ -27,7 +28,8 @@ export interface ResetPasswordAdminDialogState {
 
 const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
   const { userId } = props;
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const model = useUserModel(undefined, undefined, true);
   const { mutateAsync: updateUser } = useModelMutation(model);
   const { t } = useTranslation("users");
@@ -60,7 +62,7 @@ const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
           id: userId,
           set_password: state.password,
         });
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t("form.dialogs.reset_pwd.errors.none.title"),
           message: t("form.dialogs.reset_pwd.errors.none.message"),
@@ -72,7 +74,7 @@ const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateUser, userId],
+    [closeThisDialog, pushDialog, state, t, updateUser, userId],
   );
 
   return (
@@ -110,7 +112,7 @@ const ResetPasswordAdminDialog = (props: ResetPasswordAdminDialogProps) => {
           <Button color={"secondary"} onClick={handleSubmit} type={"submit"}>
             {t("form.dialogs.reset_pwd.reset")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("form.dialogs.reset_pwd.cancel")}
           </Button>
         </DialogActions>

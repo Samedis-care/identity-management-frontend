@@ -70,7 +70,7 @@ interface AppType {
 
 const AppsList = (props: AppsListProps) => {
   const { confirmEmail } = props;
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
   const { t } = useTranslation("profile");
   const { data, isLoading, error } = useQuery({
     queryKey: ["my-user-apps"],
@@ -84,27 +84,28 @@ const AppsList = (props: AppsListProps) => {
 
   const openPolicy = useCallback(
     (appName: string, policies: string[], notAcceptedPolicies: string[]) => {
-      const openPolicy = (policyName: string) =>
-        pushDialog(
+      const openPolicy = (policyName: string) => {
+        const close = pushDialog(
           <FullFormDialog>
             <DocumentViewer
               app={appName}
               name={policyName}
-              decline={popDialog}
-              accept={popDialog}
+              decline={() => close()}
+              accept={() => close()}
               queryParams={{}}
               dialogMode
             />
           </FullFormDialog>,
         );
+      };
 
       if (policies.length === 1) {
         openPolicy(policies[0]);
         return;
       }
 
-      pushDialog(
-        <Dialog onClose={popDialog} open={true}>
+      const close = pushDialog(
+        <Dialog onClose={() => close()} open={true}>
           <DialogTitle>
             {t("tabs.apps.dialogs.select-document.title")}
           </DialogTitle>
@@ -112,7 +113,7 @@ const AppsList = (props: AppsListProps) => {
             {policies.map((policy) => (
               <ListItemButton
                 onClick={() => {
-                  popDialog();
+                  close();
                   openPolicy(policy);
                 }}
                 key={policy}
@@ -137,7 +138,7 @@ const AppsList = (props: AppsListProps) => {
         </Dialog>,
       );
     },
-    [popDialog, pushDialog, t],
+    [pushDialog, t],
   );
 
   const removeApp = useCallback(

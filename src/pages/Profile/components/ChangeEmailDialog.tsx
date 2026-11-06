@@ -13,6 +13,7 @@ import {
   useDialogContext,
   useModelMutation,
   validateEmailRaw,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
@@ -22,7 +23,8 @@ export interface ChangeEmailDialogState {
 }
 
 const ChangeEmailDialog = () => {
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const model = useProfileModel();
   const { mutateAsync: updateProfile } = useModelMutation(model);
   const { t } = useTranslation("profile");
@@ -58,7 +60,7 @@ const ChangeEmailDialog = () => {
           id: "singleton",
           email: state.email,
         });
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.change-email.result.success.title"),
           message: t(
@@ -74,7 +76,7 @@ const ChangeEmailDialog = () => {
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateProfile],
+    [closeThisDialog, pushDialog, state, t, updateProfile],
   );
 
   return (
@@ -103,7 +105,7 @@ const ChangeEmailDialog = () => {
           <Button color={"secondary"} onClick={handleSubmit} type={"submit"}>
             {t("tabs.account.dialogs.change-email.actions.save")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("tabs.account.dialogs.change-email.actions.cancel")}
           </Button>
         </DialogActions>

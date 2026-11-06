@@ -13,6 +13,7 @@ import {
   useDialogContext,
   useModelMutation,
   validateEmailRaw,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
@@ -22,7 +23,8 @@ export interface SetupRecoveryEmailDialogState {
 }
 
 const SetupRecoveryEmailDialog = () => {
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const model = useProfileModel();
   const { mutateAsync: updateProfile } = useModelMutation(model);
   const { t } = useTranslation("profile");
@@ -58,7 +60,7 @@ const SetupRecoveryEmailDialog = () => {
           id: "singleton",
           recovery_email: state.recovery_email,
         });
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t(
             "tabs.account.dialogs.setup-recovery-email.result.success.title",
@@ -76,7 +78,7 @@ const SetupRecoveryEmailDialog = () => {
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateProfile],
+    [closeThisDialog, pushDialog, state, t, updateProfile],
   );
 
   return (
@@ -107,7 +109,7 @@ const SetupRecoveryEmailDialog = () => {
           <Button color={"secondary"} onClick={handleSubmit} type={"submit"}>
             {t("tabs.account.dialogs.setup-recovery-email.actions.save")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("tabs.account.dialogs.setup-recovery-email.actions.cancel")}
           </Button>
         </DialogActions>

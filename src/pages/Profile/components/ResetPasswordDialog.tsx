@@ -12,6 +12,7 @@ import {
   TextFieldWithHelp,
   useDialogContext,
   useModelMutation,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
@@ -23,7 +24,8 @@ export interface ResetPasswordDialogState {
 }
 
 const ResetPasswordDialog = () => {
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const model = useProfileModel();
   const { mutateAsync: updateProfile } = useModelMutation(model);
   const { t } = useTranslation("profile");
@@ -74,7 +76,7 @@ const ResetPasswordDialog = () => {
           password: state.password,
           password_confirmation: state.password_confirm,
         });
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.reset-password.result.success.title"),
           message: t(
@@ -90,7 +92,7 @@ const ResetPasswordDialog = () => {
         });
       }
     },
-    [popDialog, pushDialog, state, t, updateProfile],
+    [closeThisDialog, pushDialog, state, t, updateProfile],
   );
 
   return (
@@ -147,7 +149,7 @@ const ResetPasswordDialog = () => {
           <Button color={"secondary"} onClick={handleSubmit} type={"submit"}>
             {t("tabs.account.dialogs.reset-password.actions.reset")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("tabs.account.dialogs.reset-password.actions.cancel")}
           </Button>
         </DialogActions>

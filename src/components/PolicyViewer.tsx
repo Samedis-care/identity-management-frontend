@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
-import { useDialogContext } from "components-care";
+import { useCloseThisDialog } from "components-care";
 import PolicyViewerContent from "./PolicyViewerContent";
 
 export interface PolicyViewerProps {
@@ -8,15 +8,15 @@ export interface PolicyViewerProps {
 }
 
 const PolicyViewer = (props: PolicyViewerProps) => {
-  const [, popDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
 
   return (
-    <Dialog open={true} onClose={popDialog} maxWidth={false}>
+    <Dialog open={true} onClose={closeThisDialog} maxWidth={false}>
       <DialogContent>
         <PolicyViewerContent document={props.document} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={popDialog}>Close</Button>
+        <Button onClick={closeThisDialog}>Close</Button>
       </DialogActions>
     </Dialog>
   );

@@ -16,6 +16,7 @@ import {
   TextFieldWithHelp,
   useDialogContext,
   useFrontendDownload,
+  useCloseThisDialog,
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
@@ -48,7 +49,8 @@ export type OtpResponse = DataResponse<{
 
 const EnrollTotpDialog = () => {
   const model = useProfileModel();
-  const [pushDialog, popDialog] = useDialogContext();
+  const [pushDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const otpEnrollment = useAsyncMemo(
     async () =>
       (
@@ -95,7 +97,7 @@ const EnrollTotpDialog = () => {
           throw new Error("TOTP activation failed");
         }
         await model.invalidateCacheForId("singleton");
-        popDialog();
+        closeThisDialog();
         showInfoDialog(pushDialog, {
           title: t("tabs.account.dialogs.enroll-totp.result.success.title"),
           message: (
@@ -166,7 +168,15 @@ const EnrollTotpDialog = () => {
         });
       }
     },
-    [model, otpEnrollment, state.otp, popDialog, pushDialog, t, downloadFile],
+    [
+      model,
+      otpEnrollment,
+      state.otp,
+      closeThisDialog,
+      pushDialog,
+      t,
+      downloadFile,
+    ],
   );
 
   return (
@@ -235,7 +245,7 @@ const EnrollTotpDialog = () => {
           >
             {t("tabs.account.dialogs.enroll-totp.actions.submit")}
           </Button>
-          <Button onClick={popDialog}>
+          <Button onClick={closeThisDialog}>
             {t("tabs.account.dialogs.enroll-totp.actions.cancel")}
           </Button>
         </DialogActions>

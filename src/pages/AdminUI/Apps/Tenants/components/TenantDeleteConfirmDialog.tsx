@@ -1,5 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { Loader, useDialogContext, useModelGet } from "components-care";
+import {
+  Loader,
+  useDialogContext,
+  useModelGet,
+  useCloseThisDialog,
+} from "components-care";
 import {
   Button,
   Dialog,
@@ -26,7 +31,7 @@ const ConfirmButton = styled(Button)(({ theme }) => ({
 const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
   const { id, multiDelete, onClose, tenantModel } = props;
   const { t } = useTranslation("actors");
-  const [, popDialog] = useDialogContext();
+  const closeThisDialog = useCloseThisDialog();
   const [confirmStr, setConfirmStr] = useState("");
   const { isLoading, data, error } = useModelGet(tenantModel, id);
   const [tenant] = data ?? [];
@@ -36,13 +41,13 @@ const TenantDeleteConfirmDialog = (props: TenantDeleteConfirmDialogProps) => {
 
   const handleClose = useCallback(() => {
     onClose(false);
-    popDialog();
-  }, [onClose, popDialog]);
+    closeThisDialog();
+  }, [onClose, closeThisDialog]);
 
   const handleConfirm = useCallback(() => {
     onClose(true);
-    popDialog();
-  }, [onClose, popDialog]);
+    closeThisDialog();
+  }, [onClose, closeThisDialog]);
 
   const handleChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
