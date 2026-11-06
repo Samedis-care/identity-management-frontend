@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import AccountEntry from "./components/AccountEntry";
 import AccountListButton from "./components/AccountListButton";
 import { Add as AddIcon } from "@mui/icons-material";
@@ -16,7 +16,12 @@ import { OauthTokenResponse } from "../../api/ident-services/Auth";
 import * as Sentry from "@sentry/react";
 import downloadProfileImage from "../../utils/downloadProfileImage";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams, useLocation } from "components-care";
+import {
+  useNavigate,
+  useParams,
+  useLocation,
+  PageTitle,
+} from "components-care";
 
 const AccountSelection = (_props: AuthPageProps) => {
   const params = useParams();
@@ -157,7 +162,7 @@ const AccountSelection = (_props: AuthPageProps) => {
   return (
     <Grid container spacing={2}>
       <Grid size={12}>
-        <Typography variant={"h1"}>{t("select.title")}</Typography>
+        <PageTitle>{t("select.title")}</PageTitle>
       </Grid>
       <Grid size={12}>
         <Grid container>

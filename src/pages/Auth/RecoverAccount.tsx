@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import {
   ActionButton,
   showErrorDialog,
@@ -8,6 +8,7 @@ import {
   useParams,
   useLocation,
   useNavigate,
+  PageTitle,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { AuthPageProps } from "./components/AuthPageLayout";
@@ -104,9 +105,7 @@ const RecoverAccount = (_props: AuthPageProps) => {
     <form>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
-            {t("auth.recover_account.title")}
-          </Typography>
+          <PageTitle>{t("auth.recover_account.title")}</PageTitle>
         </Grid>
         <Grid size={12}>{t("auth.recover_account.info")}</Grid>
         <Grid size={12}>

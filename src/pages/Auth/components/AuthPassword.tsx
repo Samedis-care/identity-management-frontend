@@ -27,6 +27,7 @@ import {
   Link,
   useParams,
   useLocation,
+  PageTitle,
 } from "components-care";
 import AuthMode from "components-care/dist/backend-integration/Connector/AuthMode";
 import UnverifiedAccountDialog from "./UnverifiedAccountDialog";
@@ -180,7 +181,7 @@ const AuthPassword = (_props: AuthPageProps) => {
     <form onSubmit={handleNext}>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
+          <PageTitle>
             <IconButton
               onClick={handleBack}
               size="large"
@@ -189,7 +190,7 @@ const AuthPassword = (_props: AuthPageProps) => {
               <ArrowBack />
             </IconButton>
             {t("auth.password.enter.title")}
-          </Typography>
+          </PageTitle>
         </Grid>
         <Grid size={12}>
           <TextField

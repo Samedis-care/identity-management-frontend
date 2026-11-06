@@ -8,6 +8,7 @@ import {
   useDialogContext,
   useParams,
   useLocation,
+  PageTitle,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
@@ -87,7 +88,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
     <form>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
+          <PageTitle>
             {!AccountManager.isEmpty() && (
               <IconButton
                 onClick={handleBack}
@@ -100,7 +101,7 @@ const ForgotPassword = (_props: AuthPageProps) => {
             {successMessage
               ? t("auth.password.forgot.success.title")
               : t("auth.password.forgot.title")}
-          </Typography>
+          </PageTitle>
         </Grid>
         {successMessage ? (
           <Grid size={12}>

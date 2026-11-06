@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";
@@ -8,6 +8,7 @@ import {
   ActionButton,
   showInfoDialog,
   useDialogContext,
+  PageTitle,
 } from "components-care";
 import { isValidTotp, stripInvalidTotpChars } from "../../../utils/totpUtils";
 
@@ -56,7 +57,7 @@ const AuthTotp = (_props: AuthPageProps) => {
     <form onSubmit={handleNext}>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>{t("auth.totp.enter.title")}</Typography>
+          <PageTitle>{t("auth.totp.enter.title")}</PageTitle>
         </Grid>
         <Grid size={12}>
           <TextField

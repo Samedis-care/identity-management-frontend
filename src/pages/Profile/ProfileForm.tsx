@@ -17,6 +17,7 @@ import {
   combineColors,
   ModelVisibilityEditReadOnly,
   ModelVisibilityDisabled,
+  PageTitle,
 } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useProfileModel } from "../../components-care/models/ProfileModel";
@@ -251,9 +252,9 @@ const ProfileForm = (props: PageProps<ProfileModelType, CrudFormProps>) => {
                 </Grid>
               </Grid>
               <Grid size={12}>
-                <Typography variant={"h1"} align={"center"}>
+                <PageTitle align={"center"}>
                   {props.values!.first_name} {props.values!.last_name}
-                </Typography>
+                </PageTitle>
               </Grid>
               <Grid size={12}>
                 <RoutedTabs centered>

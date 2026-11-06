@@ -22,6 +22,7 @@ import {
   useLocation,
   useNavigate,
   useParams,
+  PageTitle,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import Recaptcha from "react-recaptcha";
@@ -278,7 +279,7 @@ const CreateAccount = (_props: AuthPageProps) => {
     <form>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
+          <PageTitle>
             <IconButton
               onClick={handleBack}
               size="large"
@@ -287,7 +288,7 @@ const CreateAccount = (_props: AuthPageProps) => {
               <ArrowBack />
             </IconButton>
             {t("create.title")}
-          </Typography>
+          </PageTitle>
         </Grid>
         <Grid size={12}>
           <TextField

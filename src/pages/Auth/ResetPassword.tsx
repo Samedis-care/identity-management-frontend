@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import {
   ActionButton,
   showInfoDialog,
@@ -7,6 +7,7 @@ import {
   useNavigate,
   useParams,
   useLocation,
+  PageTitle,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { AuthPageProps } from "./components/AuthPageLayout";
@@ -82,9 +83,7 @@ const ResetPassword = (_props: AuthPageProps) => {
     <form>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
-            {t("auth.password.reset.title")}
-          </Typography>
+          <PageTitle>{t("auth.password.reset.title")}</PageTitle>
         </Grid>
         <Grid size={12}>
           <TextField

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Grid, IconButton, styled, TextField, Typography } from "@mui/material";
+import { Grid, IconButton, styled, TextField } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
 import {
@@ -14,6 +14,7 @@ import {
   useNavigate,
   useParams,
   useLocation,
+  PageTitle,
 } from "components-care";
 import { validateEmailRaw } from "components-care/dist/utils/validations/validateEmail";
 
@@ -84,7 +85,7 @@ const AddAccount = (_props: AuthPageProps) => {
     <form>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography variant={"h1"}>
+          <PageTitle>
             <IconButton
               onClick={handleBack}
               size="large"
@@ -93,7 +94,7 @@ const AddAccount = (_props: AuthPageProps) => {
               <ArrowBack />
             </IconButton>
             {t("add.title")}
-          </Typography>
+          </PageTitle>
         </Grid>
         <Grid size={12}>
           <TextField
