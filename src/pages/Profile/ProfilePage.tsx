@@ -13,6 +13,7 @@ const ProfilePage = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={null}
       disableRouting
       disableBackgroundGrid
       initialView={"singleton"}

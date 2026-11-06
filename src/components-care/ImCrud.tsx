@@ -1,10 +1,13 @@
 import React, { PropsWithChildren, useMemo } from "react";
 import { CrudProps } from "components-care/dist/backend-components/CRUD";
 import {
+  BaseSelectorData,
   CRUD,
   DataGridLocalStoragePersist,
   DefaultErrorComponent,
+  getStringLabel,
   ModelFilterType,
+  ModelRecord,
   ModelUnknown,
   useLocation,
 } from "components-care";
@@ -31,9 +34,19 @@ export interface ImCrudProps<M extends ModelUnknown> extends Omit<
    */
   formProps?: Omit<CrudProps<M>["formProps"], "errorComponent">;
   /**
-   * Custom data grid props
+   * Custom data grid props. The row label is getRowLabel.
    */
-  gridProps?: CrudProps<M>["gridProps"];
+  gridProps?: Omit<CrudProps<M>["gridProps"], "getRowLabel">;
+  /**
+   * Names a row for assistive technology: the grid's checkbox for it is
+   * "Select <label>". Takes the model's …ModelToSelectorData helper as is, or a
+   * function that returns the label. Keep it a stable reference (a module-level
+   * function), it is part of the grid's props.
+   * null only where the CRUD shows no grid (disableBackgroundGrid with an
+   * initialView): every grid names its rows explicitly, rather than through
+   * the grid's default (the first text column the user happens to show).
+   */
+  getRowLabel: ((record: ModelRecord<M>) => string | BaseSelectorData) | null;
   /**
    * Disable grid padding
    */
@@ -111,14 +124,20 @@ const ImCrud = <M extends ModelUnknown>(
     }),
     [props.formProps],
   );
+  const { disableGridWrapper, getRowLabel, ...otherProps } = props;
   const gridPropsCached = useMemo<CrudProps<M>["gridProps"]>(
     () => ({
       ...defaultGridProps,
       ...props.gridProps,
+      getRowLabel: getRowLabel
+        ? (record) => {
+            const label = getRowLabel(record);
+            return typeof label === "string" ? label : getStringLabel(label);
+          }
+        : undefined,
     }),
-    [defaultGridProps, props.gridProps],
+    [defaultGridProps, props.gridProps, getRowLabel],
   );
-  const { disableGridWrapper, ...otherProps } = props;
   return (
     <StyledRoot>
       <DataGridLocalStoragePersist

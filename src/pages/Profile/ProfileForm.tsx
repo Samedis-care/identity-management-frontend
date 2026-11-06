@@ -23,8 +23,14 @@ import { useProfileModel } from "../../components-care/models/ProfileModel";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../components-care/ImCrud";
-import { useProfileLoginsModel } from "../../components-care/models/ProfileLoginsModel";
-import { useProfileActivityModel } from "../../components-care/models/ProfileActivityModel";
+import {
+  useProfileLoginsModel,
+  ProfileLoginsModelToRowLabel,
+} from "../../components-care/models/ProfileLoginsModel";
+import {
+  useProfileActivityModel,
+  ProfileActivityModelToRowLabel,
+} from "../../components-care/models/ProfileActivityModel";
 import ResetPasswordDialog from "./components/ResetPasswordDialog";
 import AppsList from "./components/AppsList";
 import ProfilePicture from "./components/ProfilePicture";
@@ -285,6 +291,7 @@ const ProfileForm = (props: PageProps<ProfileModelType, CrudFormProps>) => {
                   </Box>
                   <ImCrud
                     model={loginsModel}
+                    getRowLabel={ProfileLoginsModelToRowLabel}
                     key={"logins"}
                     gridProps={{
                       additionalNewButtons: [
@@ -312,6 +319,7 @@ const ProfileForm = (props: PageProps<ProfileModelType, CrudFormProps>) => {
                 "activity",
                 <ImCrud
                   model={activityModel}
+                  getRowLabel={ProfileActivityModelToRowLabel}
                   key={"activity"}
                   disableGridWrapper
                   disableRouting

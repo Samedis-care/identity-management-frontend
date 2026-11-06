@@ -12,6 +12,7 @@ import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
+import moment from "moment";
 
 export const LOGIN_STATUS_ACTIVE = "active";
 export const LOGIN_STATUS_LOGGED_OUT = "logged-out";
@@ -133,3 +134,20 @@ export const useProfileLoginsModel = () => {
   const { t } = useTranslation("profile");
   return ProfileLoginsModel(t);
 };
+
+/**
+ * Names a row of the logins grid for assistive technology: the device, the app
+ * and when the login started
+ */
+export const ProfileLoginsModelToRowLabel = (data: {
+  device: string | null;
+  app: string | null;
+  created_at: Date | null;
+}): string =>
+  [
+    data.device,
+    data.app,
+    data.created_at && moment(data.created_at).format("L LT"),
+  ]
+    .filter(Boolean)
+    .join(", ");

@@ -11,8 +11,14 @@ import {
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../../../components-care/ImCrud";
-import { useFunctionalityModel } from "../../../../components-care/models/FunctionalityModel";
-import { useRoleModel } from "../../../../components-care/models/RoleModel";
+import {
+  useFunctionalityModel,
+  FunctionalityModelToSelectorData,
+} from "../../../../components-care/models/FunctionalityModel";
+import {
+  useRoleModel,
+  RoleModelToRowLabel,
+} from "../../../../components-care/models/RoleModel";
 import UserOrganizationSelector from "./components/UserOrganizationSelector";
 import { OpenFunctionality, OpenRole } from "../UserForm";
 import FormPagePaper from "../../../../components/FormPagePaper";
@@ -42,6 +48,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
             "roles",
             <ImCrud
               model={rolesModel}
+              getRowLabel={RoleModelToRowLabel}
               key={"role"}
               readPermission={false}
               editPermission={false}
@@ -62,6 +69,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
             "permissions",
             <ImCrud
               model={functionalityModel}
+              getRowLabel={FunctionalityModelToSelectorData}
               key={"func"}
               readPermission={false}
               editPermission={false}

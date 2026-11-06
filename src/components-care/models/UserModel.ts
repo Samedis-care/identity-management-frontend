@@ -228,3 +228,13 @@ export const useUserModel = (
   if (tenantOverride) tenant = tenantOverride;
   return UserModel(t, app, tenant, resetPwd);
 };
+
+/**
+ * Names a row of the user grids for assistive technology: the user's name, or
+ * their email address without one
+ */
+export const UserModelToRowLabel = (
+  data: Record<"last_name" | "first_name" | "email", string | null>,
+): string =>
+  [data.last_name, data.first_name].filter(Boolean).join(", ") ||
+  (data.email ?? "");

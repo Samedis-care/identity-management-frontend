@@ -1,7 +1,10 @@
 import React from "react";
 import ImCrud from "../../../components-care/ImCrud";
 import ContentsForm from "./ContentsForm";
-import { useContentModel } from "../../../components-care/models/ContentModel";
+import {
+  useContentModel,
+  ContentModelToRowLabel,
+} from "../../../components-care/models/ContentModel";
 
 const Contents = () => {
   const model = useContentModel();
@@ -9,6 +12,7 @@ const Contents = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={ContentModelToRowLabel}
       readPermission={"contents.reader"}
       editPermission={"contents.writer"}
       newPermission={"contents.writer"}

@@ -22,6 +22,7 @@ const SeedsUploadDialog = (props: SeedsUploadDialogProps) => {
     <FullFormDialog dialogTitle={t("form.import-roles-permissions")}>
       <ImCrud
         model={model}
+        getRowLabel={null}
         initialView={props.id}
         disableRouting
         disableBackgroundGrid

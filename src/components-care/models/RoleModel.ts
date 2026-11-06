@@ -156,3 +156,10 @@ export const useRoleModel = (params?: Partial<RoleModelParams>) => {
 export const RoleModelSelectorSort: DataGridSortSetting[] = [
   { field: "title", direction: 1 },
 ];
+
+/**
+ * Names a row of the role grids for assistive technology: the role's title
+ */
+export const RoleModelToRowLabel = (
+  data: Record<"title", string | null>,
+): string => data.title ?? "";

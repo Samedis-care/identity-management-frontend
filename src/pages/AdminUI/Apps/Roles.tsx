@@ -1,6 +1,9 @@
 import React from "react";
 import ImCrud from "../../../components-care/ImCrud";
-import { useRoleModel } from "../../../components-care/models/RoleModel";
+import {
+  useRoleModel,
+  RoleModelToRowLabel,
+} from "../../../components-care/models/RoleModel";
 import RoleForm from "./RoleForm";
 
 const Roles = () => {
@@ -9,6 +12,7 @@ const Roles = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={RoleModelToRowLabel}
       readPermission={"roles.reader"}
       editPermission={"roles.writer"}
       newPermission={"roles.writer"}

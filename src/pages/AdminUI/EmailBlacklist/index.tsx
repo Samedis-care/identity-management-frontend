@@ -1,7 +1,10 @@
 import React from "react";
 import ImCrud from "../../../components-care/ImCrud";
 import UserForm from "./EmailBlacklistForm";
-import { useEmailBlacklistModel } from "../../../components-care/models/EmailBlacklistModel";
+import {
+  useEmailBlacklistModel,
+  EmailBlacklistModelToRowLabel,
+} from "../../../components-care/models/EmailBlacklistModel";
 
 const EmailBlacklistCrud = () => {
   const model = useEmailBlacklistModel();
@@ -9,6 +12,7 @@ const EmailBlacklistCrud = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={EmailBlacklistModelToRowLabel}
       readPermission={"email-blacklists.reader"}
       editPermission={"email-blacklists.writer"}
       newPermission={"email-blacklists.writer"}

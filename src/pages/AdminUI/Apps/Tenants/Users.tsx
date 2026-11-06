@@ -1,6 +1,9 @@
 import React from "react";
 import ImCrud from "../../../../components-care/ImCrud";
-import { useUserModel } from "../../../../components-care/models/UserModel";
+import {
+  useUserModel,
+  UserModelToRowLabel,
+} from "../../../../components-care/models/UserModel";
 import UserForm from "./UserForm";
 
 const UserCrud = () => {
@@ -9,6 +12,7 @@ const UserCrud = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={UserModelToRowLabel}
       readPermission={"users.reader"}
       editPermission={"users.writer"}
       newPermission={false}

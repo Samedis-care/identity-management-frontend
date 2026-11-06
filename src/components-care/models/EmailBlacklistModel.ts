@@ -57,3 +57,10 @@ export const useEmailBlacklistModel = () => {
   const { t } = useTranslation("email-blacklist");
   return EmailBlacklistModel(t);
 };
+
+/**
+ * Names a row of the email blacklist for assistive technology: the domain
+ */
+export const EmailBlacklistModelToRowLabel = (
+  data: Record<"domain", string | null>,
+): string => data.domain ?? "";

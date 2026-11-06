@@ -1,6 +1,9 @@
 import React from "react";
 import ImCrud from "../../../components-care/ImCrud";
-import { useFunctionalityModel } from "../../../components-care/models/FunctionalityModel";
+import {
+  useFunctionalityModel,
+  FunctionalityModelToSelectorData,
+} from "../../../components-care/models/FunctionalityModel";
 import FunctionalityForm from "./FunctionalityForm";
 
 const Functionality = () => {
@@ -9,6 +12,7 @@ const Functionality = () => {
   return (
     <ImCrud
       model={model}
+      getRowLabel={FunctionalityModelToSelectorData}
       readPermission={"functionalities.reader"}
       editPermission={"functionalities.writer"}
       newPermission={"functionalities.writer"}

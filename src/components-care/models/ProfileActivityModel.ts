@@ -9,6 +9,7 @@ import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
+import moment from "moment";
 
 export const ProfileActivityModel = (t: TFunction) =>
   new Model(
@@ -78,3 +79,20 @@ export const useProfileActivityModel = () => {
   const { t } = useTranslation("profile");
   return ProfileActivityModel(t);
 };
+
+/**
+ * Names a row of the account activity grid for assistive technology: the
+ * device, the app and when it happened
+ */
+export const ProfileActivityModelToRowLabel = (data: {
+  device: string | null;
+  app: string | null;
+  created_at: Date | null;
+}): string =>
+  [
+    data.device,
+    data.app,
+    data.created_at && moment(data.created_at).format("L LT"),
+  ]
+    .filter(Boolean)
+    .join(", ");

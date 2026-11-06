@@ -17,6 +17,7 @@ import useApp from "../../utils/useApp";
 import { MultiLanguageInputSupportedLanguages } from "components-care/dist/standalone/UIKit/InputControls/MultiLanguageInput";
 import useAppLanguages from "../../utils/useAppLanguages";
 import { useMemo } from "react";
+import i18n from "../../i18n";
 
 export interface ContentModelParams {
   t: TFunction;
@@ -121,3 +122,15 @@ export const useContentModel = (params?: ContentModelParams) => {
     [t, appId, supportedLanguages, params],
   );
 };
+
+/**
+ * Names a row of the contents grid for assistive technology: the content and
+ * its version, as one content has several versions
+ */
+export const ContentModelToRowLabel = (data: {
+  name: string | null;
+  version: number | null;
+}): string =>
+  [data.name && i18n.t("content:enums.name." + data.name), data.version]
+    .filter((entry) => entry != null && entry !== "")
+    .join(", ");

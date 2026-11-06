@@ -29,6 +29,7 @@ const General = () => {
     >
       <ImCrud
         model={model}
+        getRowLabel={null}
         readPermission={"apps.reader"}
         editPermission={"apps.writer"}
         newPermission={"apps.writer"}

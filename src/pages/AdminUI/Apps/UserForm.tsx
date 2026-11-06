@@ -14,12 +14,21 @@ import {
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import { useTranslation } from "react-i18next";
 import ImCrud from "../../../components-care/ImCrud";
-import { useFunctionalityModel } from "../../../components-care/models/FunctionalityModel";
-import { useRoleModel } from "../../../components-care/models/RoleModel";
+import {
+  useFunctionalityModel,
+  FunctionalityModelToSelectorData,
+} from "../../../components-care/models/FunctionalityModel";
+import {
+  useRoleModel,
+  RoleModelToRowLabel,
+} from "../../../components-care/models/RoleModel";
 import { IDataGridContentSelectRowViewProps } from "components-care/dist/standalone/DataGrid/Content/SelectRowView";
 import { KeyboardArrowRight as OpenIcon } from "@mui/icons-material";
 import UserOrganizationSelector from "./components/UserOrganizationSelector";
-import { useTenantModel } from "../../../components-care/models/TenantModel";
+import {
+  useTenantModel,
+  TenantModelToSelectorData,
+} from "../../../components-care/models/TenantModel";
 import FormPagePaper from "../../../components/FormPagePaper";
 import type { UserModelType } from "../../../components-care/models/UserModel";
 
@@ -110,6 +119,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
             "tenants",
             <ImCrud
               model={tenantModel}
+              getRowLabel={TenantModelToSelectorData}
               key={"tenant"}
               readPermission={false}
               editPermission={false}
@@ -130,6 +140,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
             "roles",
             <ImCrud
               model={rolesModel}
+              getRowLabel={RoleModelToRowLabel}
               key={"role"}
               readPermission={false}
               editPermission={false}
@@ -150,6 +161,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
             "permissions",
             <ImCrud
               model={functionalityModel}
+              getRowLabel={FunctionalityModelToSelectorData}
               key={"func"}
               readPermission={false}
               editPermission={false}
