@@ -372,7 +372,13 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
 
   if (error)
     return (
-      <CenteredTypography variant={"h1"} color={"error"}>
+      <CenteredTypography
+        variant={"h1"}
+        color={"error"}
+        // the failure, announced: not a heading
+        component={"div"}
+        role={"alert"}
+      >
         {error.message}
       </CenteredTypography>
     );
