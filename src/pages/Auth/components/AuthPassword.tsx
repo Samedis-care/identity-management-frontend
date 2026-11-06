@@ -238,7 +238,11 @@ const AuthPassword = (_props: AuthPageProps) => {
           </Grid>
           <Grid>
             <Typography variant={"caption"}>
-              <MuiLink component={Link} to={"#"} onClick={recoverAccount}>
+              <MuiLink
+                component={"button"}
+                type={"button"}
+                onClick={recoverAccount}
+              >
                 {t("auth.password.enter.recover")}
               </MuiLink>
             </Typography>
