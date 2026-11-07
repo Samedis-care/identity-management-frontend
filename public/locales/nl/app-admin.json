@@ -92,6 +92,17 @@
       "mailer": {
         "footer_html_translations": {
           "fallback-missing": "U moet een voettekst opgeven"
+        },
+        "smtp_settings": {
+          "port": {
+            "range": "De serverpoort moet tussen 1 en 65535 liggen."
+          },
+          "open_timeout": {
+            "min": "De time-out voor het openen van de verbinding moet minstens 1 seconde zijn."
+          },
+          "read_timeout": {
+            "min": "De time-out voor het lezen van de verbinding moet minstens 1 seconde zijn."
+          }
         }
       },
       "default_locale": {

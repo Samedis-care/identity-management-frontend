@@ -311,6 +311,10 @@ export const AppAdminModel = (
           create: ModelVisibilityEdit,
           edit: ModelVisibilityEdit,
         },
+        validate: (value: number | null) =>
+          value != null && (value < 1 || value > 65535)
+            ? t("app-admin:validations.config.mailer.smtp_settings.port.range")
+            : null,
       },
       "config.mailer.smtp_settings.domain": {
         type: new ModelDataTypeStringRendererCC(),
@@ -448,6 +452,12 @@ export const AppAdminModel = (
           create: ModelVisibilityEdit,
           edit: ModelVisibilityEdit,
         },
+        validate: (value: number | null) =>
+          value != null && value < 1
+            ? t(
+                "app-admin:validations.config.mailer.smtp_settings.open_timeout.min",
+              )
+            : null,
       },
       "config.mailer.smtp_settings.read_timeout": {
         type: new ModelDataTypeIntegerRendererCC({
@@ -471,6 +481,12 @@ export const AppAdminModel = (
           create: ModelVisibilityEdit,
           edit: ModelVisibilityEdit,
         },
+        validate: (value: number | null) =>
+          value != null && value < 1
+            ? t(
+                "app-admin:validations.config.mailer.smtp_settings.read_timeout.min",
+              )
+            : null,
       },
       "config.theme.primary.main": {
         type: new ModelDataTypeColorRendererCC(),

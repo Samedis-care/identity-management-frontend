@@ -92,6 +92,17 @@
       "mailer": {
         "footer_html_translations": {
           "fallback-missing": "You must provide a footer"
+        },
+        "smtp_settings": {
+          "port": {
+            "range": "The server port must be between 1 and 65535."
+          },
+          "open_timeout": {
+            "min": "The connection open timeout must be at least 1 second."
+          },
+          "read_timeout": {
+            "min": "The connection read timeout must be at least 1 second."
+          }
         }
       },
       "default_locale": {

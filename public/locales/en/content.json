@@ -14,5 +14,10 @@
       "tos-privacy": "Terms of Service & Privacy Policy (combined)",
       "app-info": "Application Information for Authentication page"
     }
+  },
+  "validations": {
+    "version": {
+      "min": "The version must be at least 1."
+    }
   }
 }

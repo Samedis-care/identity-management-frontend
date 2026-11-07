@@ -92,6 +92,17 @@
       "mailer": {
         "footer_html_translations": {
           "fallback-missing": "Du musst eine Fußzeile bereitstellen"
+        },
+        "smtp_settings": {
+          "port": {
+            "range": "Der Serverport muss zwischen 1 und 65535 liegen."
+          },
+          "open_timeout": {
+            "min": "Das Timeout für das Öffnen der Verbindung muss mindestens 1 Sekunde betragen."
+          },
+          "read_timeout": {
+            "min": "Das Timeout beim Lesen der Verbindung muss mindestens 1 Sekunde betragen."
+          }
         }
       },
       "default_locale": {

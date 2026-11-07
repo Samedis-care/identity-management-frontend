@@ -14,5 +14,10 @@
       "tos-privacy": "Nutzungsbedingungen & Datenschutzbestimmungen (kombiniert)",
       "app-info": "Anwendungsinformationen für die Seite Authentifizierung"
     }
+  },
+  "validations": {
+    "version": {
+      "min": "Die Version muss mindestens 1 sein."
+    }
   }
 }

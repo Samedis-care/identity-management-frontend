@@ -14,5 +14,10 @@
       "tos-privacy": "Servicevoorwaarden en privacybeleid (gecombineerd)",
       "app-info": "Applicatie-informatie voor authenticatiepagina"
     }
+  },
+  "validations": {
+    "version": {
+      "min": "De versie moet minstens 1 zijn."
+    }
   }
 }

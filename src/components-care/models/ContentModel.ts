@@ -64,6 +64,10 @@ export const ContentModel = (params: ContentModelParams) =>
         },
         filterable: true,
         sortable: true,
+        validate: (value: number | null) =>
+          value != null && value < 1
+            ? params.t("content:validations.version.min")
+            : null,
       },
       active: {
         type: new ModelDataTypeBooleanCheckboxRendererMUI(),

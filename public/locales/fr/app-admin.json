@@ -92,6 +92,17 @@
       "mailer": {
         "footer_html_translations": {
           "fallback-missing": "Vous devez fournir un pied de page"
+        },
+        "smtp_settings": {
+          "port": {
+            "range": "Le port du serveur doit être compris entre 1 et 65535."
+          },
+          "open_timeout": {
+            "min": "Le délai d'ouverture de la connexion doit être d'au moins 1 seconde."
+          },
+          "read_timeout": {
+            "min": "Le délai de lecture de la connexion doit être d'au moins 1 seconde."
+          }
         }
       },
       "default_locale": {

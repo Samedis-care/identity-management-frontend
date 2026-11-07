@@ -14,5 +14,10 @@
       "tos-privacy": "Conditions d'utilisation et politique de confidentialité (combinés)",
       "app-info": "Page Informations sur l'application pour l'authentification"
     }
+  },
+  "validations": {
+    "version": {
+      "min": "La version doit être au moins égale à 1."
+    }
   }
 }
