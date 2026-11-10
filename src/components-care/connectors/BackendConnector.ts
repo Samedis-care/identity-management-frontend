@@ -4,6 +4,7 @@ import {
   ConnectorIndex2Params,
   deepAssign,
   dotsToObject,
+  ExportIcon,
   isObjectEmpty,
   ModelDataTypeImageRenderer,
   ModelFieldName,
@@ -23,7 +24,6 @@ import {
 } from "components-care/dist/standalone/DataGrid/DataGrid";
 import BackendHttpClient, { PotentialErrorResponse } from "./BackendHttpClient";
 import { IDataGridExporter } from "components-care/dist/standalone/DataGrid/Header";
-import ExcelExportIcon from "../../components/icons/ExcelExportIcon";
 import i18n from "../../i18n";
 import { ModelGetResponseRelations } from "components-care/dist/backend-integration/Model/Model";
 import { IFilterDef } from "components-care/dist/standalone/DataGrid/Content/FilterEntry";
@@ -566,7 +566,7 @@ class BackendConnector<RelationsKeyT extends string> extends ApiConnector {
   dataGridExporters: IDataGridExporter<unknown>[] = [
     {
       id: "excel",
-      icon: ExcelExportIcon,
+      icon: ExportIcon,
       getLabel: () => i18n.t("data-grid.export.excel.label")!,
       getWorkingLabel: () => i18n.t("data-grid.export.excel.working")!,
       getReadyLabel: () => i18n.t("data-grid.export.excel.ready")!,
