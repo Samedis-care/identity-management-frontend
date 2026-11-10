@@ -17,6 +17,7 @@ import {
   ModelVisibilityEdit,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
+  useCCLocaleSwitcherTranslations,
   validatePresence,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
@@ -26,7 +27,6 @@ import { BackendVisibility } from "./Visibilities";
 import LOCALE_OPTIONS from "components-care/dist/assets/data/supported-locales.json";
 import { SupportedLanguages } from "../../i18n";
 import { InputAdornment } from "@mui/material";
-import { useCCLocaleSwitcherTranslations } from "components-care/dist/utils/useCCTranslations";
 
 const translateLocale = (t: TFunction, locale: string) =>
   `${t(`locale-switcher:${locale}.language`)} (${t(

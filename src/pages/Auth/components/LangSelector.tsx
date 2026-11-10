@@ -10,8 +10,11 @@ import {
 import { Translate } from "@mui/icons-material";
 import supportedLanguages from "../../../assets/data/supported-languages.json";
 import localeData from "components-care/dist/assets/data/locale-relevance.json";
-import { ComponentsCareI18n, sortByLocaleRelevance } from "components-care";
-import { useCCLanguagesTranslations } from "components-care/dist/utils/useCCTranslations";
+import {
+  ComponentsCareI18n,
+  sortByLocaleRelevance,
+  useCCLanguagesTranslations,
+} from "components-care";
 import { useTranslation } from "react-i18next";
 
 export interface LangSelectorProps {
