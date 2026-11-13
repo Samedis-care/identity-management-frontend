@@ -19,7 +19,7 @@ RUN find build -type f -print0 | xargs -0 -P `nproc` -n 1 gzip -9k && \
     find build -type f ! -name '*.gz' -print0 | xargs -0 -P `nproc` -n 1 brotli  -Zk --
 
 # production environment
-FROM fholzer/nginx-brotli:mainline-latest
+FROM fholzer/nginx-brotli:mainline
 
 COPY --from=build /app/build /usr/share/nginx/html
 
