@@ -11,6 +11,7 @@ const General = () => {
   // data grid is displayed in Tenants/index.tsx
   return (
     <ImCrud
+      storageKey={"tenant-general"}
       model={model}
       getRowLabel={null}
       readPermission={"actors.reader"}

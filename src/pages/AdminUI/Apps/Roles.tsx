@@ -11,6 +11,7 @@ const Roles = () => {
 
   return (
     <ImCrud
+      storageKey={"app-roles"}
       model={model}
       getRowLabel={RoleModelToRowLabel}
       readPermission={"roles.reader"}

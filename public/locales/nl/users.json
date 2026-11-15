@@ -23,8 +23,11 @@
     },
     "locales": {
       "unspecified": "Niet gespecificeerd",
+      "de-DE": "Duits (Duitsland)",
       "en-US": "Engels (Verenigde Staten)",
-      "de-DE": "Duits (Duitsland)"
+      "fr-FR": "Frans (Frankrijk)",
+      "nl-NL": "Nederlands (Nederland)",
+      "ru-RU": "Russisch (Rusland)"
     }
   },
   "form": {
@@ -38,7 +41,7 @@
     "dialogs": {
       "reset_pwd": {
         "title": "Wachtwoord resetten",
-        "open": "Wachtwoord resetten",
+        "open": "Wachtwoord wijzigen",
         "password": "Nieuw wachtwoord",
         "password_confirm": "New password (confirmation)",
         "reset": "Resetten",
@@ -56,7 +59,38 @@
             "message": "Wachtwoord is succesvol ingesteld"
           }
         }
+      },
+      "change_email": {
+        "open": "Account-e-mail wijzigen",
+        "title": "Account-e-mail wijzigen",
+        "info": "Het aanmeldadres {{EMAIL}} wordt direct vervangen, zonder bevestigingsmail. Daarna meldt de gebruiker zich alleen nog met het nieuwe adres aan. Alleen voor supportgevallen, bijv. als de gebruiker geen toegang meer heeft tot de oude mailbox.",
+        "email": "Nieuw e-mailadres",
+        "email_confirm": "Nieuw e-mailadres (herhalen)",
+        "change": "Wijzigen",
+        "cancel": "Annuleren",
+        "errors": {
+          "validation": {
+            "title": "Validatiefout"
+          },
+          "invalid": {
+            "message": "Voer een geldig e-mailadres in"
+          },
+          "mismatch": {
+            "message": "De e-mailadressen komen niet overeen"
+          },
+          "backend": {
+            "title": "Fout"
+          },
+          "none": {
+            "title": "Succes",
+            "message": "Het account-e-mailadres is nu {{EMAIL}}"
+          }
+        }
       }
+    },
+    "recovery_email": {
+      "empty": "Niet ingesteld. De gebruiker kan het toevoegen onder ‘Mijn account’.",
+      "unconfirmed": "Niet bevestigd: {{EMAIL}}"
     }
   },
   "save-actors": "Sla op voordat je acteurs kunt toewijzen"

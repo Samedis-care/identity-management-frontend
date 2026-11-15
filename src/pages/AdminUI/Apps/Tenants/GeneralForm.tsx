@@ -1,9 +1,10 @@
 import React from "react";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { Grid } from "@mui/material";
-import { EditOnlyFormPage, FormField } from "components-care";
+import { EditOnlyFormPage } from "components-care";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import FormPagePaper from "../../../../components/FormPagePaper";
+import FieldsWithImage from "../../../../components/FieldsWithImage";
 import ModuleSelector from "./components/ModuleSelector";
 import type { TenantModelType } from "../../../../components-care/models/TenantModel";
 
@@ -12,11 +13,10 @@ const GeneralForm = (props: PageProps<TenantModelType, CrudFormProps>) => {
     <EditOnlyFormPage {...props} customProps={undefined}>
       <FormPagePaper>
         <Grid container spacing={2}>
-          {["short_name", "full_name", "image"].map((field) => (
-            <Grid key={field} size={12}>
-              <FormField name={field} />
-            </Grid>
-          ))}
+          <FieldsWithImage
+            fields={["short_name", "full_name"]}
+            imageField={"image"}
+          />
           <Grid size={12}>
             <ModuleSelector />
           </Grid>

@@ -1,6 +1,6 @@
 {
   "breadcrumbs": {
-    "root": "Root",
+    "root": "Organizational units",
     "new": "New"
   },
   "relationships": {
@@ -10,8 +10,9 @@
     }
   },
   "tab": {
-    "children": "Children",
+    "children": "Sub-units",
     "edit": "Edit"
   },
-  "save-actors": "Save before you can assign actors"
+  "save-actors": "Save before you can assign actors",
+  "template-info": "This organizational structure is the template for tenants: every new tenant gets the same organizational units when it is created. New units are also added to existing tenants; deleted ones remain there."
 }

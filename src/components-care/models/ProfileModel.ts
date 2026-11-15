@@ -10,7 +10,6 @@ import {
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
   ModelVisibilityGridViewHidden,
-  useLocation,
   validateEmail,
   validateOptional,
 } from "components-care";
@@ -19,6 +18,7 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import { useMemo } from "react";
+import useAccountApp from "../../utils/useAccountApp";
 
 export interface ProfileModelParams {
   t: TFunction;
@@ -90,8 +90,8 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         customData: null,
         visibility: {
           overview: ModelVisibilityGridView,
-          create: ModelVisibilityEditRequired,
-          edit: ModelVisibilityEditRequired,
+          create: ModelVisibilityEdit,
+          edit: ModelVisibilityEdit,
         },
         filterable: true,
         sortable: true,
@@ -209,11 +209,6 @@ export type ProfileModelType = ReturnType<typeof ProfileModel>;
 
 export const useProfileModel = () => {
   const { t } = useTranslation("profile");
-  const { search } = useLocation();
-  const query = new URLSearchParams(search);
-  const app = query.get("app");
-  return useMemo(
-    () => ProfileModel({ app: app ?? "identity-management", t }),
-    [app, t],
-  );
+  const app = useAccountApp();
+  return useMemo(() => ProfileModel({ app, t }), [app, t]);
 };

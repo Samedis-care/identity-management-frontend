@@ -1,230 +1,49 @@
 {
   "fields": {
-    "id": "IDENTIFIANT",
-    "first_name": "Prénom",
-    "last_name": "Nom de famille",
     "email": "E-mail",
-    "mobile": "Numéro de portable",
+    "first_name": "Prénom",
+    "id": "IDENTIFIANT",
     "image": "Image de profil",
-    "unconfirmed_recovery_email": "E-mail de récupération non confirmé",
+    "last_name": "Nom de famille",
+    "mobile": "Numéro de portable",
     "recovery_email": "E-mail de secours",
-    "unconfirmed_email": "E-mail non confirmé"
+    "unconfirmed_email": "E-mail non confirmé",
+    "unconfirmed_recovery_email": "E-mail de récupération non confirmé"
   },
   "tabs": {
     "account": {
-      "title": "Compte",
-      "buttons": {
-        "reset-password": "Réinitialiser le mot de passe",
-        "enable-mfa": "Activer MFA",
-        "disable-mfa": "Désactiver MFA",
-        "delete-account": "Supprimer le compte",
-        "update-recovery-email": "Mettre à jour l'e-mail de récupération",
-        "setup-recovery-email": "E-mail de récupération de configuration",
-        "update-email": "Changer l'e-mail"
-      },
       "dialogs": {
-        "close-confirm": {
-          "title": "Fermer le compte?",
-          "message": "Êtes-vous sûr? Toutes les données seront irréversiblement perdues",
-          "yes": "Oui",
-          "no": "Non",
-          "text-field-label": "Votre adresse e-mail",
-          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer"
-        },
-        "close-error": {
-          "title": "Échec de la clôture du compte"
-        },
         "reset-password": {
-          "title": "Réinitialiser le mot de passe",
           "fields": {
             "current-password": "Mot de passe actuel",
             "new-password": "Nouveau mot de passe",
             "new-password-repeat": "Nouveau mot de passe (répéter)"
-          },
-          "actions": {
-            "reset": "Réinitialiser",
-            "cancel": "Annuler"
-          },
-          "result": {
-            "success": {
-              "title": "Mot de passe mis à jour",
-              "message": "votre mot de passe a été changé"
-            },
-            "error-mismatch": {
-              "title": "Nouveaux mots de passe incompatibles",
-              "message": "Le mot de passe ne correspond pas au mot de passe répété"
-            },
-            "error-backend": {
-              "title": "Erreur de changement de mot de passe"
-            },
-            "error-password-empty": {
-              "title": "Le nouveau mot de passe est vide",
-              "message": "Veuillez entrer un nouveau mot de passe"
-            }
           }
-        },
-        "enroll-totp": {
-          "title": "Inscription à l'authentification multifacteur (MFA)",
-          "explainer-top": "Scannez le code ci-dessous avec votre application MFA",
-          "explainer-middle-top": "ou entrez la clé ci-dessous manuellement",
-          "explainer-middle-bottom": "puis entrez un code MFA généré ci-dessous",
-          "explainer-bottom": "Enfin, cliquez sur Soumettre pour activer MFA",
-          "secret-key": "Clef secrète",
-          "fields": {
-            "otp": "Code (mot de passe unique à 6 chiffres)"
-          },
-          "actions": {
-            "submit": "Soumettre",
-            "cancel": "Annuler"
-          },
-          "result": {
-            "success": {
-              "title": "Authentification multifactorielle (MFA) activée",
-              "info": "MFA a été activé avec succès. Vous pouvez trouver vos codes de secours ci-dessous. Veuillez les conserver dans un endroit sûr car vous ne pourrez pas récupérer votre compte si vous les perdez. Avec ces codes, vous pouvez récupérer votre compte (par exemple, si votre application n'est plus disponible)",
-              "download": "Télécharger",
-              "download-content": "Vos codes de secours MFA {{HOSTNAME}}:\n{{BACKUP_CODES}}\nVeuillez les stocker en toute sécurité.\n",
-              "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
-              "copy": "Copier dans le presse-papier",
-              "close": "Fermer"
-            },
-            "failure": {
-              "title": "MFA non activé",
-              "info": "MFA n'a pas été activé. Avez-vous entré un code correct ?"
-            }
-          }
-        },
-        "unroll-totp": {
-          "title": "Désactiver l'authentification multifacteur (MFA)",
-          "explainer-top": "Entrez un code MFA actuellement valide",
-          "explainer-bottom": "Cliquez sur Soumettre pour désactiver MFA",
-          "fields": {
-            "otp": "Code (mot de passe unique à 6 chiffres)"
-          },
-          "actions": {
-            "submit": "Soumettre",
-            "cancel": "Annuler"
-          },
-          "result": {
-            "success": {
-              "title": "MFA désactivé",
-              "info": "MFA a été désactivé avec succès."
-            },
-            "failure": {
-              "title": "MFA non désactivé",
-              "info": "MFA n'a pas été désactivé. Avez-vous entré un code correct ?"
-            }
-          }
-        },
-        "setup-recovery-email": {
-          "actions": {
-            "save": "Sauvegarder",
-            "cancel": "Annuler"
-          },
-          "fields": {
-            "recovery_email": "E-mail de secours"
-          },
-          "result": {
-            "success": {
-              "title": "E-mail de récupération enregistré",
-              "message": "Vous avez enregistré votre e-mail de récupération. Veuillez vérifier votre courrier électronique pour valider l'e-mail de récupération afin qu'il puisse être utilisé."
-            },
-            "invalid-email": {
-              "title": "E-mail invalide",
-              "message": "L'e-mail que vous avez fourni n'est pas valide."
-            },
-            "error-backend": {
-              "title": "Échec de l'enregistrement de l'e-mail de récupération"
-            }
-          },
-          "title": "E-mail de récupération de configuration"
-        },
-        "change-email": {
-          "actions": {
-            "save": "Sauvegarder",
-            "cancel": "Annuler"
-          },
-          "fields": {
-            "email": "E-mail"
-          },
-          "result": {
-            "error-backend": {
-              "title": "Échec de l'enregistrement de l'e-mail"
-            },
-            "success": {
-              "title": "Mettre a jour l'adresse email",
-              "message": "Veuillez vérifier votre courrier électronique pour valider le nouvel e-mail afin qu'il puisse être utilisé."
-            },
-            "invalid-email": {
-              "title": "E-mail invalide",
-              "message": "L'e-mail que vous avez fourni n'est pas valide."
-            }
-          },
-          "title": "Changer l'e-mail"
-        }
-      }
-    },
-    "apps": {
-      "title": "applications",
-      "buttons": {
-        "visit": "Visitez l'application",
-        "review-policy": "Politique de révision",
-        "remove-app": "Supprimer l'application"
-      },
-      "dialogs": {
-        "select-document": {
-          "title": "Sélectionnez le document à afficher",
-          "option": {
-            "tos": "Conditions d'utilisation",
-            "privacy": "Politique de confidentialité",
-            "tos-privacy": "Termes de politique de confidentialité du service"
-          }
-        },
-        "remove-app-confirm": {
-          "title": "Supprimer l'application ?",
-          "message": "Es-tu sûr ? Toutes les données seront irréversiblement perdues !",
-          "yes": "Oui",
-          "no": "Non",
-          "text-field-label": "Votre adresse e-mail",
-          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer"
-        },
-        "remove-app-error": {
-          "title": "Échec de la suppression de l'application"
-        }
-      }
-    },
-    "logins": {
-      "title": "Connexions",
-      "info": "Les entrées « Déconnectée » ne sont pas des sessions actives : l’appareil est déconnecté, mais il mémorise toujours ce compte et peut se reconnecter sans mot de passe ni authentification à deux facteurs. Supprimez une entrée pour la révoquer.",
-      "buttons": {
-        "delete-all": "Supprimer tout"
-      },
-      "fields": {
-        "id": "IDENTIFIANT",
-        "active": "Statut",
-        "location": "Emplacement",
-        "device": "Dispositif",
-        "current": "Courant",
-        "app": "Application",
-        "created_at": "Horodatage"
-      },
-      "status": {
-        "active": "Active",
-        "logged-out": "Déconnectée"
-      },
-      "dialogs": {
-        "delete-current": {
-          "message": "Cela inclut la session que vous utilisez actuellement. La supprimer vous déconnectera immédiatement."
         }
       }
     },
     "activity": {
-      "title": "Activité",
       "fields": {
-        "id": "IDENTIFIANT",
-        "location": "Emplacement",
-        "device": "Dispositif",
         "app": "Application",
-        "created_at": "Horodatage"
+        "created_at": "Horodatage",
+        "device": "Dispositif",
+        "id": "IDENTIFIANT",
+        "location": "Emplacement"
+      }
+    },
+    "logins": {
+      "fields": {
+        "active": "Statut",
+        "app": "Application",
+        "created_at": "Horodatage",
+        "current": "Courant",
+        "device": "Dispositif",
+        "id": "IDENTIFIANT",
+        "location": "Emplacement"
+      },
+      "status": {
+        "active": "Active",
+        "logged-out": "Déconnectée"
       }
     }
   }

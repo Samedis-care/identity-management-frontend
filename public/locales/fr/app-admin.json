@@ -38,14 +38,14 @@
       },
       "theme": {
         "primary": {
-          "main": "Couleur principale principale",
-          "light": "Primaire-Clair-Couleur",
-          "dark": "Couleur primaire-foncée"
+          "main": "Couleur primaire",
+          "light": "Couleur primaire (nuance plus claire)",
+          "dark": "Couleur primaire (nuance plus foncée)"
         },
         "secondary": {
-          "main": "Couleur principale secondaire",
-          "light": "Couleur de lumière secondaire",
-          "dark": "Couleur sombre secondaire"
+          "main": "Couleur secondaire",
+          "light": "Couleur secondaire (nuance plus claire)",
+          "dark": "Couleur secondaire (nuance plus foncée)"
         },
         "background": {
           "default": "Couleur de l'arrière plan",

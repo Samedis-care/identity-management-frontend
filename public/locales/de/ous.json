@@ -1,6 +1,6 @@
 {
   "breadcrumbs": {
-    "root": "Root",
+    "root": "Organisationseinheiten",
     "new": "Neu"
   },
   "relationships": {
@@ -10,8 +10,9 @@
     }
   },
   "tab": {
-    "children": "Kinder",
+    "children": "Untereinheiten",
     "edit": "Bearbeiten"
   },
-  "save-actors": "Du musst speichern, bevor Du Nutzer hinzufügen kannst."
+  "save-actors": "Du musst speichern, bevor Du Nutzer hinzufügen kannst.",
+  "template-info": "Diese Organisationsstruktur ist die Vorlage für Mandanten: Jeder neue Mandant erhält bei der Anlage dieselben Organisationseinheiten. Neue Einheiten werden auch bei bestehenden Mandanten ergänzt, gelöschte bleiben dort erhalten."
 }

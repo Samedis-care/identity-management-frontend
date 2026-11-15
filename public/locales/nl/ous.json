@@ -1,6 +1,6 @@
 {
   "breadcrumbs": {
-    "root": "Wortel",
+    "root": "Organisatie-eenheden",
     "new": "Nieuw"
   },
   "relationships": {
@@ -10,8 +10,9 @@
     }
   },
   "tab": {
-    "children": "Kinderen",
+    "children": "Subeenheden",
     "edit": "Bewerken"
   },
-  "save-actors": "Sla op voordat je acteurs kunt toewijzen"
+  "save-actors": "Sla op voordat je acteurs kunt toewijzen",
+  "template-info": "Deze organisatiestructuur is de sjabloon voor tenants: elke nieuwe tenant krijgt bij het aanmaken dezelfde organisatie-eenheden. Nieuwe eenheden worden ook bij bestaande tenants toegevoegd; verwijderde blijven daar behouden."
 }

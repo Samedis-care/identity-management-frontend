@@ -13,10 +13,10 @@ const EmailBlacklistForm = (
     <DefaultFormPage {...props}>
       <FormPagePaper>
         <Grid container spacing={2}>
-          <Grid size={2}>
+          <Grid size={{ xs: 12, sm: 2 }}>
             <FormField name={"active"} />
           </Grid>
-          <Grid size={10}>
+          <Grid size={{ xs: 12, sm: 10 }}>
             <FormField name={"domain"} />
           </Grid>
         </Grid>

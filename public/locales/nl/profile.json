@@ -1,230 +1,49 @@
 {
   "fields": {
-    "id": "ID",
-    "first_name": "Voornaam",
-    "last_name": "Achternaam",
     "email": "E-mail",
-    "mobile": "Mobiel nummer",
+    "first_name": "Voornaam",
+    "id": "ID",
     "image": "Profielfoto",
+    "last_name": "Achternaam",
+    "mobile": "Mobiel nummer",
     "recovery_email": "Herstelmailadres",
-    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd",
-    "unconfirmed_email": "Onbevestigde e-mail"
+    "unconfirmed_email": "Onbevestigde e-mail",
+    "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd"
   },
   "tabs": {
     "account": {
-      "title": "Account",
-      "buttons": {
-        "reset-password": "Wachtwoord resetten",
-        "enable-mfa": "MFA inschakelen",
-        "disable-mfa": "MFA uitschakelen",
-        "delete-account": "Verwijder account",
-        "update-recovery-email": "Herstel-e-mailadres updaten",
-        "setup-recovery-email": "Herstel-e-mailadres instellen",
-        "update-email": "Wijzig e-mailadres"
-      },
       "dialogs": {
-        "close-confirm": {
-          "title": "Account afsluiten?",
-          "message": "Weet je het zeker? Alle gegevens gaan onomkeerbaar verloren",
-          "yes": "Ja",
-          "no": "Nee",
-          "text-field-label": "Jouw e-mailadres",
-          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
-        },
-        "close-error": {
-          "title": "Account afsluiten mislukt"
-        },
         "reset-password": {
-          "title": "Wachtwoord resetten",
           "fields": {
             "current-password": "Huidig ​​wachtwoord",
             "new-password": "Nieuw wachtwoord",
             "new-password-repeat": "Nieuw wachtwoord (herhalen)"
-          },
-          "actions": {
-            "reset": "Resetten",
-            "cancel": "Annuleren"
-          },
-          "result": {
-            "success": {
-              "title": "Wachtwoord bijgewerkt",
-              "message": "Jouww wachtwoord is veranderd"
-            },
-            "error-mismatch": {
-              "title": "Nieuw wachtwoord komt niet overeen",
-              "message": "Het wachtwoord komt niet overeen met het herhaalde wachtwoord"
-            },
-            "error-backend": {
-              "title": "Wachtwoord wijzigen fout"
-            },
-            "error-password-empty": {
-              "title": "Nieuw wachtwoord is leeg",
-              "message": "Voer een nieuw wachtwoord in"
-            }
           }
-        },
-        "enroll-totp": {
-          "title": "Multi Factor Authentication (MFA) Inschrijving",
-          "explainer-top": "Scan onderstaande code met uw MFA-app",
-          "explainer-middle-top": "of voer onderstaande toets handmatig in",
-          "explainer-middle-bottom": "voer dan hieronder een gegenereerde MFA-code in",
-          "explainer-bottom": "Klik ten slotte op verzenden om MFA in te schakelen",
-          "secret-key": "Geheime sleutel",
-          "fields": {
-            "otp": "Code (eenmalig wachtwoord van 6 cijfers)"
-          },
-          "actions": {
-            "submit": "Indienen",
-            "cancel": "Annuleren"
-          },
-          "result": {
-            "success": {
-              "title": "Multi Factor Authentication (MFA) ingeschakeld",
-              "info": "MFA is succesvol ingeschakeld. Hieronder vindt je jouw back-upcodes. Bewaar ze op een veilige plaats, aangezien je jouw account niet kunt herstellen als je ze kwijtraakt. Met deze codes kun je jouw account herstellen (bijv. als uw app niet meer beschikbaar is)",
-              "download": "Download",
-              "download-content": "Jouww {{HOSTNAME}} MFA-back-upcodes:\n{{BACKUP_CODES}}\nBerg ze veilig op.\n",
-              "download-filename": "{{HOSTNAME}}_mfa_backup_codes.txt",
-              "copy": "Kopieer naar klembord",
-              "close": "Sluiten"
-            },
-            "failure": {
-              "title": "MFA niet ingeschakeld",
-              "info": "MFA is niet ingeschakeld. Heb je een juiste code ingevoerd?"
-            }
-          }
-        },
-        "unroll-totp": {
-          "title": "Schakel meervoudige authenticatie (MFA) uit",
-          "explainer-top": "Voer een momenteel geldige MFA-code in",
-          "explainer-bottom": "Klik op verzenden om MFA uit te schakelen",
-          "fields": {
-            "otp": "Code (eenmalig wachtwoord van 6 cijfers)"
-          },
-          "actions": {
-            "submit": "Indienen",
-            "cancel": "Annuleren"
-          },
-          "result": {
-            "success": {
-              "title": "MFA uitgeschakeld",
-              "info": "MFA is met succes uitgeschakeld."
-            },
-            "failure": {
-              "title": "MFA niet uitgeschakeld",
-              "info": "MFA is niet uitgeschakeld. Heb je een juiste code ingevoerd?"
-            }
-          }
-        },
-        "setup-recovery-email": {
-          "actions": {
-            "cancel": "Annuleren",
-            "save": "Opslaan"
-          },
-          "result": {
-            "success": {
-              "message": "Je herstel-e-mailadres is opgeslagen. Controleer uw e-mail om de herstel-e-mail te valideren, zodat deze kan worden gebruikt.",
-              "title": "Herstel-e-mailadres opgeslagen"
-            },
-            "invalid-email": {
-              "message": "Het door jou opgegeven e-mailadres is ongeldig.",
-              "title": "E-mail ongeldig"
-            },
-            "error-backend": {
-              "title": "Kan herstel-e-mailadres niet opslaan"
-            }
-          },
-          "fields": {
-            "recovery_email": "Herstelmailadres"
-          },
-          "title": "Herstel-e-mailadres instellen"
-        },
-        "change-email": {
-          "actions": {
-            "save": "Opslaan",
-            "cancel": "Annuleren"
-          },
-          "fields": {
-            "email": "Email"
-          },
-          "result": {
-            "error-backend": {
-              "title": "Kan e-mail niet opslaan"
-            },
-            "success": {
-              "title": "Update emailadres",
-              "message": "Controleer uw e-mail om de nieuwe e-mail te valideren, zodat deze kan worden gebruikt."
-            },
-            "invalid-email": {
-              "title": "E-mail ongeldig",
-              "message": "Het door jou opgegeven e-mailadres is ongeldig."
-            }
-          },
-          "title": "Wijzig e-mailadres"
-        }
-      }
-    },
-    "apps": {
-      "title": "Apps",
-      "buttons": {
-        "visit": "Bezoek app",
-        "review-policy": "Beoordelingsbeleid",
-        "remove-app": "App verwijderen"
-      },
-      "dialogs": {
-        "select-document": {
-          "title": "Selecteer document om te bekijken",
-          "option": {
-            "tos": "Terms of Service",
-            "privacy": "Privacybeleid",
-            "tos-privacy": "Servicevoorwaarden en privacybeleid"
-          }
-        },
-        "remove-app-confirm": {
-          "title": "App verwijderen?",
-          "message": "Weet je het zeker? Alle gegevens gaan onomkeerbaar verloren!",
-          "yes": "Ja",
-          "no": "Nee",
-          "text-field-label": "Jouw e-mailadres",
-          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
-        },
-        "remove-app-error": {
-          "title": "Kan de app niet verwijderen"
-        }
-      }
-    },
-    "logins": {
-      "title": "Logins",
-      "info": "Vermeldingen met “Afgemeld” zijn geen actieve sessies: het apparaat is afgemeld, maar onthoudt dit account nog steeds en kan opnieuw inloggen zonder wachtwoord of tweefactorauthenticatie. Verwijder een vermelding om deze in te trekken.",
-      "buttons": {
-        "delete-all": "Verwijder alles"
-      },
-      "fields": {
-        "id": "ID",
-        "active": "Status",
-        "location": "Plaats",
-        "device": "Apparaat",
-        "current": "Huidig",
-        "app": "App",
-        "created_at": "Tijdstempel"
-      },
-      "status": {
-        "active": "Actief",
-        "logged-out": "Afgemeld"
-      },
-      "dialogs": {
-        "delete-current": {
-          "message": "Hieronder valt ook de sessie die u nu gebruikt. Als u deze verwijdert, wordt u direct afgemeld."
         }
       }
     },
     "activity": {
-      "title": "Activiteit",
       "fields": {
-        "id": "ID",
-        "location": "Plaats",
-        "device": "Apparaat",
         "app": "App",
-        "created_at": "Tijdstempel"
+        "created_at": "Tijdstempel",
+        "device": "Apparaat",
+        "id": "ID",
+        "location": "Plaats"
+      }
+    },
+    "logins": {
+      "fields": {
+        "active": "Status",
+        "app": "App",
+        "created_at": "Tijdstempel",
+        "current": "Huidig",
+        "device": "Apparaat",
+        "id": "ID",
+        "location": "Plaats"
+      },
+      "status": {
+        "active": "Actief",
+        "logged-out": "Afgemeld"
       }
     }
   }

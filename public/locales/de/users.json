@@ -23,8 +23,11 @@
     },
     "locales": {
       "unspecified": "Nicht spezifiziert",
+      "de-DE": "Deutsch (Deutschland)",
       "en-US": "Englisch (USA)",
-      "de-DE": "Deutsches (Deutschland)"
+      "fr-FR": "Französisch (Frankreich)",
+      "nl-NL": "Niederländisch (Niederlande)",
+      "ru-RU": "Russisch (Russland)"
     }
   },
   "form": {
@@ -38,7 +41,7 @@
     "dialogs": {
       "reset_pwd": {
         "title": "Passwort zurücksetzen",
-        "open": "Passwort zurücksetzen",
+        "open": "Passwort ändern",
         "password": "Neues Passwort",
         "password_confirm": "Neues Passwort (wiederholen)",
         "reset": "Zurücksetzen",
@@ -56,7 +59,38 @@
             "message": "Das Passwort wurde erfolgreich festgelegt"
           }
         }
+      },
+      "change_email": {
+        "open": "Konto-E-Mail ändern",
+        "title": "Konto-E-Mail ändern",
+        "info": "Die Anmelde-Adresse {{EMAIL}} wird sofort ersetzt, ohne Bestätigungsmail. Der Nutzer meldet sich danach nur noch mit der neuen Adresse an. Nur für Supportfälle, z. B. wenn er keinen Zugriff mehr auf das alte Postfach hat.",
+        "email": "Neue E-Mail-Adresse",
+        "email_confirm": "Neue E-Mail-Adresse (wiederholen)",
+        "change": "Ändern",
+        "cancel": "Abbrechen",
+        "errors": {
+          "validation": {
+            "title": "Validierungsfehler"
+          },
+          "invalid": {
+            "message": "Bitte eine gültige E-Mail-Adresse eingeben"
+          },
+          "mismatch": {
+            "message": "Die E-Mail-Adressen stimmen nicht überein"
+          },
+          "backend": {
+            "title": "Fehler"
+          },
+          "none": {
+            "title": "Erfolg",
+            "message": "Die Konto-E-Mail ist jetzt {{EMAIL}}"
+          }
+        }
       }
+    },
+    "recovery_email": {
+      "empty": "Keine hinterlegt. Der Nutzer kann sie unter „Mein Konto“ eintragen.",
+      "unconfirmed": "Unbestätigt: {{EMAIL}}"
     }
   },
   "save-actors": "Speichern, bevor Benutzer hinzugefügt werden können"

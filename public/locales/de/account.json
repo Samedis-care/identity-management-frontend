@@ -1,0 +1,211 @@
+{
+  "header": {
+    "product": "Konto",
+    "back-to": "Zurück zu {{APP}}",
+    "user-menu": "Benutzermenü",
+    "open-menu": "Menü öffnen",
+    "navigation": "Navigation",
+    "menu-left": "Menü links",
+    "menu-top": "Menü oben",
+    "language": "Sprache",
+    "logout": "Abmelden",
+    "appearance": "Darstellung",
+    "theme-light": "Hell",
+    "theme-dark": "Dunkel"
+  },
+  "menu": {
+    "profile": "Profil",
+    "security": "Anmeldung und Sicherheit",
+    "devices": "Geräte und Aktivität",
+    "apps": "Verknüpfte Anwendungen",
+    "admin": "Administration"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "close": "Schließen",
+    "error": "Das hat nicht geklappt"
+  },
+  "profile": {
+    "title": "Profil",
+    "personal": {
+      "title": "Persönliche Daten",
+      "picture": "Profilbild",
+      "first-name": "Vorname",
+      "last-name": "Nachname",
+      "mobile": "Mobilnummer",
+      "mobile-help": "Optional, für Rückfragen aus den verknüpften Anwendungen",
+      "required": "Pflichtfeld",
+      "saved": "Gespeichert"
+    },
+    "email": {
+      "title": "E-Mail-Adressen",
+      "login": "Anmelde-E-Mail",
+      "login-help": "Für Anmeldung und Benachrichtigungen",
+      "login-pending": "Änderung ausstehend: {{EMAIL}}",
+      "login-pending-text": "Wir haben einen Bestätigungslink an die neue Adresse geschickt. Bis du ihn öffnest, meldest du dich weiter mit der bisherigen Adresse an.",
+      "recovery": "Wiederherstellungs-E-Mail",
+      "recovery-help": "Bestätigt · nur zum Zurückholen des Kontos, nicht zur Anmeldung",
+      "recovery-none": "Keine Wiederherstellungs-E-Mail hinterlegt. Mit ihr holst du dein Konto zurück, wenn du keinen Zugriff mehr auf die Anmelde-E-Mail hast.",
+      "recovery-pending": "Bestätigung ausstehend: {{EMAIL}}",
+      "recovery-pending-text": "Wir haben einen Bestätigungslink an diese Adresse geschickt. Erst nach der Bestätigung kann sie dein Konto wiederherstellen.",
+      "change-login": "Anmelde-E-Mail ändern",
+      "change-recovery": "Wiederherstellungs-E-Mail ändern",
+      "setup-recovery": "Wiederherstellungs-E-Mail hinterlegen"
+    },
+    "delete": {
+      "title": "Konto löschen",
+      "text": "Dein Konto wird deaktiviert, alle Sitzungen werden beendet und du verlierst den Zugriff auf alle verknüpften Anwendungen. Das lässt sich nicht rückgängig machen.",
+      "button": "Konto löschen"
+    }
+  },
+  "security": {
+    "title": "Anmeldung und Sicherheit",
+    "status": {
+      "heading": "{{COUNT}} von 3 Schutzmaßnahmen aktiv",
+      "password": "Passwort gesetzt",
+      "totp-on": "Authenticator-App aktiv",
+      "totp-off": "Keine Zwei-Faktor-Anmeldung",
+      "recovery-on": "Wiederherstellungs-E-Mail bestätigt",
+      "recovery-pending": "Wiederherstellungs-E-Mail nicht bestätigt",
+      "recovery-off": "Keine Wiederherstellungs-E-Mail"
+    },
+    "password": {
+      "title": "Passwort",
+      "text": "Wähle ein Passwort, das du nirgendwo sonst nutzt. Beim Ändern werden alle anderen Sitzungen abgemeldet.",
+      "button": "Passwort ändern"
+    },
+    "totp": {
+      "title": "Zwei-Faktor-Anmeldung",
+      "on": "Authenticator-App aktiv",
+      "off": "Nicht eingerichtet",
+      "text-on": "Nach dem Passwort fragt die Anmeldung nach einem Code aus deiner Authenticator-App. Die Backup-Codes hast du bei der Einrichtung erhalten.",
+      "text-off": "Schütze dein Konto mit einem Code aus einer Authenticator-App zusätzlich zum Passwort.",
+      "enroll": "Einrichten",
+      "unroll": "Deaktivieren"
+    }
+  },
+  "devices": {
+    "title": "Geräte und Aktivität",
+    "sessions": {
+      "title": "Sitzungen",
+      "text": "„Aktiv“ heißt angemeldet. „Abgemeldet“ heißt: Das Gerät ist gemerkt und kann sich ohne Passwort und Zwei-Faktor-Anmeldung wieder anmelden. Entferne Einträge, die du nicht kennst.",
+      "sign-out-others": "Alle anderen abmelden",
+      "delete-current": "Darunter ist die Sitzung, die du gerade benutzt. Danach musst du dich neu anmelden."
+    },
+    "history": {
+      "title": "Anmeldeverlauf",
+      "text": "Kommt dir eine Anmeldung unbekannt vor, ändere dein Passwort."
+    }
+  },
+  "apps": {
+    "title": "Verknüpfte Anwendungen",
+    "box": "Anwendungen mit Zugriff",
+    "none": "Du bist mit keiner Anwendung verknüpft.",
+    "terms-accepted": "Bestimmungen akzeptiert",
+    "terms-pending": "Bestimmungen ausstehend",
+    "terms-none": "Keine Bestimmungen",
+    "open": "Öffnen",
+    "terms": "Bestimmungen",
+    "remove": "Zugriff entfernen",
+    "remove-hint": "Wenn du eine Anwendung entfernst, verlierst du dort alle Rollen und Mandanten. Ein Admin muss dich neu einladen.",
+    "documents": {
+      "tos": "Nutzungsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "tos-privacy": "Nutzungsbedingungen und Datenschutzerklärung"
+    }
+  },
+  "dialogs": {
+    "password": {
+      "title": "Passwort ändern",
+      "current": "Aktuelles Passwort",
+      "new": "Neues Passwort",
+      "new-help": "Mindestens 8 Zeichen",
+      "repeat": "Neues Passwort wiederholen",
+      "mismatch": "Die Passwörter stimmen nicht überein",
+      "info-heading": "Alle anderen Sitzungen werden abgemeldet",
+      "info": "Auf diesem Gerät bleibst du angemeldet. Überall sonst musst du dich mit dem neuen Passwort neu anmelden.",
+      "submit": "Passwort ändern",
+      "success-title": "Passwort geändert",
+      "success": "Dein neues Passwort gilt ab sofort."
+    },
+    "email": {
+      "title-login": "Anmelde-E-Mail ändern",
+      "title-recovery": "Wiederherstellungs-E-Mail ändern",
+      "title-recovery-new": "Wiederherstellungs-E-Mail hinterlegen",
+      "current": "Bisherige Adresse",
+      "new": "Neue Adresse",
+      "invalid": "Keine gültige E-Mail-Adresse",
+      "text-login": "Wir schicken einen Bestätigungslink an die neue Adresse. Bis du ihn öffnest, meldest du dich weiter mit der bisherigen Adresse an.",
+      "text-recovery": "Wir schicken einen Bestätigungslink an die Adresse. Erst nach der Bestätigung kann sie dein Konto wiederherstellen. Zur Anmeldung dient sie nicht.",
+      "submit": "Bestätigungslink senden"
+    },
+    "delete": {
+      "title": "Konto löschen",
+      "heading": "Das lässt sich nicht rückgängig machen",
+      "text": "Dein Konto wird deaktiviert, alle Sitzungen werden beendet und du verlierst den Zugriff auf alle verknüpften Anwendungen.",
+      "confirm": "Zur Bestätigung deine Anmelde-E-Mail eingeben",
+      "submit": "Konto endgültig löschen"
+    },
+    "enroll": {
+      "title": "Zwei-Faktor-Anmeldung einrichten",
+      "step-scan": "1. Scanne den QR-Code mit einer Authenticator-App, zum Beispiel Microsoft Authenticator oder Google Authenticator.",
+      "secret": "Oder Schlüssel von Hand eingeben",
+      "step-code": "2. Gib den sechsstelligen Code ein, den die App anzeigt.",
+      "code": "Code aus der App",
+      "submit": "Aktivieren",
+      "failure": "Der Code passt nicht. Prüfe die Uhrzeit auf deinem Telefon und versuche es mit dem nächsten Code.",
+      "codes-title": "Backup-Codes sichern",
+      "codes-heading": "Zwei-Faktor-Anmeldung ist aktiv",
+      "codes-text": "Bewahre die Backup-Codes sicher auf. Jeder Code funktioniert einmal, falls du keinen Zugriff auf die Authenticator-App hast. Sie werden nur jetzt angezeigt.",
+      "download": "Herunterladen",
+      "copy": "Kopieren",
+      "done": "Fertig",
+      "download-content": "Deine Backup-Codes für {{HOSTNAME}}:\n{{BACKUP_CODES}}\nJeder Code funktioniert einmal. Bewahre sie sicher auf.\n",
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+    },
+    "unroll": {
+      "title": "Zwei-Faktor-Anmeldung deaktivieren",
+      "text": "Ohne zweiten Faktor reicht dein Passwort zur Anmeldung. Bestätige mit einem Code aus deiner Authenticator-App oder einem Backup-Code.",
+      "code": "Code aus der App oder Backup-Code",
+      "submit": "Deaktivieren",
+      "failure": "Der Code passt nicht. Versuche es mit dem nächsten Code aus der App oder einem Backup-Code."
+    },
+    "sign-out-others": {
+      "title": "Alle anderen Sitzungen abmelden?",
+      "list_one": "Diese Sitzung wird beendet:",
+      "list_other": "Diese {{count}} Sitzungen werden beendet:",
+      "more_one": "und {{count}} weitere",
+      "more_other": "und {{count}} weitere",
+      "since": "angemeldet seit {{DATE}}",
+      "logged-out": "abgemeldet, gemerkt",
+      "none": "Es gibt keine anderen Sitzungen.",
+      "text": "Auf diesem Gerät bleibst du angemeldet. Auf den anderen Geräten musst du dich neu anmelden, auch auf gemerkten.",
+      "submit": "Abmelden"
+    },
+    "remove-app": {
+      "title": "Zugriff auf {{APP}} entfernen?",
+      "heading": "Rollen und Mandanten gehen verloren",
+      "text": "Du verlierst in dieser Anwendung alle Rollen und Mandanten. Ein Admin muss dich neu einladen.",
+      "confirm": "Zur Bestätigung deine Anmelde-E-Mail eingeben",
+      "submit": "Zugriff entfernen"
+    },
+    "documents": {
+      "title": "Bestimmungen von {{APP}}"
+    }
+  },
+  "admin": {
+    "profile": "Profil",
+    "apps": "Apps",
+    "email-blacklist": "E-Mail-Blacklist",
+    "users": "Benutzer",
+    "back": "Zurück",
+    "general": "Allgemein",
+    "functions": "Funktionen",
+    "roles": "Rollen",
+    "org-units": "Organisationseinheiten",
+    "tenants": "Mandanten",
+    "tenant": "Mandant",
+    "contents": "Inhalte"
+  }
+}

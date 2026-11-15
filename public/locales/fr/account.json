@@ -1,0 +1,213 @@
+{
+  "header": {
+    "product": "Compte",
+    "back-to": "Retour à {{APP}}",
+    "user-menu": "Menu utilisateur",
+    "open-menu": "Ouvrir le menu",
+    "navigation": "Navigation",
+    "menu-left": "Menu à gauche",
+    "menu-top": "Menu en haut",
+    "language": "Langue",
+    "logout": "Se déconnecter",
+    "appearance": "Apparence",
+    "theme-light": "Clair",
+    "theme-dark": "Sombre"
+  },
+  "menu": {
+    "profile": "Profil",
+    "security": "Connexion et sécurité",
+    "devices": "Appareils et activité",
+    "apps": "Applications connectées",
+    "admin": "Administration"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "close": "Fermer",
+    "error": "Ça n'a pas marché"
+  },
+  "profile": {
+    "title": "Profil",
+    "personal": {
+      "title": "Données personnelles",
+      "picture": "Image de profil",
+      "first-name": "Prénom",
+      "last-name": "Nom de famille",
+      "mobile": "Numéro de portable",
+      "mobile-help": "Facultatif, pour les questions des applications connectées",
+      "required": "Champ obligatoire",
+      "saved": "Enregistré"
+    },
+    "email": {
+      "title": "Adresses e-mail",
+      "login": "E-mail de connexion",
+      "login-help": "Pour la connexion et les notifications",
+      "login-pending": "Modification en attente : {{EMAIL}}",
+      "login-pending-text": "Nous avons envoyé un lien de confirmation à la nouvelle adresse. Tant que tu ne l'as pas ouvert, tu continues à te connecter avec l'adresse actuelle.",
+      "recovery": "E-mail de récupération",
+      "recovery-help": "Confirmé · uniquement pour récupérer ton compte, pas pour te connecter",
+      "recovery-none": "Aucun e-mail de récupération enregistré. Il te permet de récupérer ton compte si tu n'as plus accès à ton e-mail de connexion.",
+      "recovery-pending": "Confirmation en attente : {{EMAIL}}",
+      "recovery-pending-text": "Nous avons envoyé un lien de confirmation à cette adresse. Elle ne pourra récupérer ton compte qu'après ta confirmation.",
+      "change-login": "Modifier l'e-mail de connexion",
+      "change-recovery": "Modifier l'e-mail de récupération",
+      "setup-recovery": "Ajouter un e-mail de récupération"
+    },
+    "delete": {
+      "title": "Supprimer le compte",
+      "text": "Ton compte est désactivé, toutes les sessions sont fermées et tu perds l'accès à toutes les applications connectées. Cette action est irréversible.",
+      "button": "Supprimer le compte"
+    }
+  },
+  "security": {
+    "title": "Connexion et sécurité",
+    "status": {
+      "heading": "{{COUNT}} protections sur 3 actives",
+      "password": "Mot de passe défini",
+      "totp-on": "Application d'authentification active",
+      "totp-off": "Pas de connexion à deux facteurs",
+      "recovery-on": "E-mail de récupération confirmé",
+      "recovery-pending": "E-mail de récupération non confirmé",
+      "recovery-off": "Pas d'e-mail de récupération"
+    },
+    "password": {
+      "title": "Mot de passe",
+      "text": "Choisis un mot de passe que tu n'utilises nulle part ailleurs. Le modifier déconnecte toutes les autres sessions.",
+      "button": "Modifier le mot de passe"
+    },
+    "totp": {
+      "title": "Connexion à deux facteurs",
+      "on": "Application d'authentification active",
+      "off": "Non configurée",
+      "text-on": "Après ton mot de passe, la connexion demande un code de ton application d'authentification. Tu as reçu les codes de secours lors de la configuration.",
+      "text-off": "Protège ton compte avec un code d'une application d'authentification en plus de ton mot de passe.",
+      "enroll": "Configurer",
+      "unroll": "Désactiver"
+    }
+  },
+  "devices": {
+    "title": "Appareils et activité",
+    "sessions": {
+      "title": "Sessions",
+      "text": "« Active » signifie connecté. « Déconnectée » signifie que l'appareil est mémorisé et peut se reconnecter sans mot de passe ni connexion à deux facteurs. Supprime les entrées que tu ne reconnais pas.",
+      "sign-out-others": "Déconnecter toutes les autres",
+      "delete-current": "Cela inclut la session que tu utilises en ce moment. Tu devras te reconnecter."
+    },
+    "history": {
+      "title": "Historique des connexions",
+      "text": "Si une connexion te semble inconnue, modifie ton mot de passe."
+    }
+  },
+  "apps": {
+    "title": "Applications connectées",
+    "box": "Applications ayant accès",
+    "none": "Tu n'es connecté à aucune application.",
+    "terms-accepted": "Conditions acceptées",
+    "terms-pending": "Conditions en attente",
+    "terms-none": "Aucune condition",
+    "open": "Ouvrir",
+    "terms": "Conditions",
+    "remove": "Retirer l'accès",
+    "remove-hint": "Si tu retires une application, tu y perds tous tes rôles et locataires. Un administrateur devra t'inviter à nouveau.",
+    "documents": {
+      "tos": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "tos-privacy": "Conditions d'utilisation et politique de confidentialité"
+    }
+  },
+  "dialogs": {
+    "password": {
+      "title": "Modifier le mot de passe",
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "new-help": "Au moins 8 caractères",
+      "repeat": "Répéter le nouveau mot de passe",
+      "mismatch": "Les mots de passe ne correspondent pas",
+      "info-heading": "Toutes les autres sessions seront déconnectées",
+      "info": "Tu restes connecté sur cet appareil. Partout ailleurs, tu dois te reconnecter avec le nouveau mot de passe.",
+      "submit": "Modifier le mot de passe",
+      "success-title": "Mot de passe modifié",
+      "success": "Ton nouveau mot de passe est valable dès maintenant."
+    },
+    "email": {
+      "title-login": "Modifier l'e-mail de connexion",
+      "title-recovery": "Modifier l'e-mail de récupération",
+      "title-recovery-new": "Ajouter un e-mail de récupération",
+      "current": "Adresse actuelle",
+      "new": "Nouvelle adresse",
+      "invalid": "Adresse e-mail non valide",
+      "text-login": "Nous envoyons un lien de confirmation à la nouvelle adresse. Tant que tu ne l'as pas ouvert, tu continues à te connecter avec l'adresse actuelle.",
+      "text-recovery": "Nous envoyons un lien de confirmation à l'adresse. Elle ne pourra récupérer ton compte qu'après ta confirmation. Elle ne sert pas à la connexion.",
+      "submit": "Envoyer le lien de confirmation"
+    },
+    "delete": {
+      "title": "Supprimer le compte",
+      "heading": "Cette action est irréversible",
+      "text": "Ton compte est désactivé, toutes les sessions sont fermées et tu perds l'accès à toutes les applications connectées.",
+      "confirm": "Saisis ton e-mail de connexion pour confirmer",
+      "submit": "Supprimer définitivement le compte"
+    },
+    "enroll": {
+      "title": "Configurer la connexion à deux facteurs",
+      "step-scan": "1. Scanne le code QR avec une application d'authentification, par exemple Microsoft Authenticator ou Google Authenticator.",
+      "secret": "Ou saisis la clé manuellement",
+      "step-code": "2. Saisis le code à six chiffres affiché par l'application.",
+      "code": "Code de l'application",
+      "submit": "Activer",
+      "failure": "Le code ne correspond pas. Vérifie l'heure de ton téléphone et essaie le code suivant.",
+      "codes-title": "Sauvegarde tes codes de secours",
+      "codes-heading": "La connexion à deux facteurs est active",
+      "codes-text": "Conserve les codes de secours en lieu sûr. Chaque code fonctionne une fois si tu n'as pas accès à ton application d'authentification. Ils ne sont affichés que maintenant.",
+      "download": "Télécharger",
+      "copy": "Copier",
+      "done": "Terminé",
+      "download-content": "Tes codes de secours pour {{HOSTNAME}} :\n{{BACKUP_CODES}}\nChaque code fonctionne une fois. Conserve-les en lieu sûr.\n",
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+    },
+    "unroll": {
+      "title": "Désactiver la connexion à deux facteurs",
+      "text": "Sans second facteur, ton mot de passe suffit pour te connecter. Confirme avec un code de ton application d'authentification ou un code de secours.",
+      "code": "Code de l'application ou code de secours",
+      "submit": "Désactiver",
+      "failure": "Le code ne correspond pas. Essaie le code suivant de l'application ou un code de secours."
+    },
+    "sign-out-others": {
+      "title": "Déconnecter toutes les autres sessions ?",
+      "list_one": "Cette session sera fermée :",
+      "list_many": "Ces {{count}} sessions seront fermées :",
+      "list_other": "Ces {{count}} sessions seront fermées :",
+      "more_one": "et {{count}} autre",
+      "more_many": "et {{count}} autres",
+      "more_other": "et {{count}} autres",
+      "since": "connecté depuis le {{DATE}}",
+      "logged-out": "déconnectée, mémorisée",
+      "none": "Il n'y a pas d'autres sessions.",
+      "text": "Tu restes connecté sur cet appareil. Sur les autres appareils, tu dois te reconnecter, y compris sur ceux mémorisés.",
+      "submit": "Se déconnecter"
+    },
+    "remove-app": {
+      "title": "Retirer l'accès à {{APP}} ?",
+      "heading": "Les rôles et locataires seront perdus",
+      "text": "Tu perds tous tes rôles et locataires dans cette application. Un administrateur devra t'inviter à nouveau.",
+      "confirm": "Saisis ton e-mail de connexion pour confirmer",
+      "submit": "Retirer l'accès"
+    },
+    "documents": {
+      "title": "Conditions de {{APP}}"
+    }
+  },
+  "admin": {
+    "profile": "Profil",
+    "apps": "Applications",
+    "email-blacklist": "Liste noire d’e-mails",
+    "users": "Utilisateurs",
+    "back": "Retour",
+    "general": "Général",
+    "functions": "Fonctions",
+    "roles": "Rôles",
+    "org-units": "Unités organisationnelles",
+    "tenants": "Locataires",
+    "tenant": "Locataire",
+    "contents": "Contenus"
+  }
+}

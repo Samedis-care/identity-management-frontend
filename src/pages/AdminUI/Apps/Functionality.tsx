@@ -11,6 +11,7 @@ const Functionality = () => {
 
   return (
     <ImCrud
+      storageKey={"app-functionality"}
       model={model}
       getRowLabel={FunctionalityModelToSelectorData}
       readPermission={"functionalities.reader"}

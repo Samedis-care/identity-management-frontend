@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
 import { Loader, Route, Routes } from "components-care";
-import { AnonRoutes, AuthRoutes, ExternalAuthenticatedRoutes } from "./Routes";
+import { AnonRoutes, AuthRoutes } from "./Routes";
 import AuthPageLayout from "./Auth/components/AuthPageLayout";
 import AuthProvider from "./components/AuthProvider";
 
-const Portal = React.lazy(() => import("./AdminUI"));
+// account pages and admin portal share one layout
+const AccountLayout = React.lazy(() => import("./Account"));
 
 const AuthPages = () => {
   return (
@@ -27,18 +28,9 @@ const AuthPages = () => {
 const AuthenticatedRoutes = () => {
   return (
     <AuthProvider>
-      <Routes>
-        {[
-          ...ExternalAuthenticatedRoutes.map((entry) => (
-            <Route
-              key={entry.path}
-              path={entry.path + "/*"}
-              element={React.createElement(entry.component)}
-            />
-          )),
-          <Route key={"portal"} path={"*"} element={<Portal />} />,
-        ]}
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <AccountLayout />
+      </Suspense>
     </AuthProvider>
   );
 };
