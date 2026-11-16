@@ -13,7 +13,7 @@ const AppIndicator = () => {
   const appModel = useAppAdminModel();
   const { isLoading, data, error } = useModelGet(appModel, app);
   if (isLoading || error || data == null) return <></>;
-  return <Root>{data[0].short_name as string}</Root>;
+  return <Root>{data[0].short_name}</Root>;
 };
 
 export default React.memo(AppIndicator);

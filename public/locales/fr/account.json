@@ -22,21 +22,12 @@
   },
   "common": {
     "cancel": "Annuler",
-    "save": "Enregistrer",
-    "close": "Fermer",
     "error": "Ça n'a pas marché"
   },
   "profile": {
     "title": "Profil",
     "personal": {
-      "title": "Données personnelles",
-      "picture": "Image de profil",
-      "first-name": "Prénom",
-      "last-name": "Nom de famille",
-      "mobile": "Numéro de portable",
-      "mobile-help": "Facultatif, pour les questions des applications connectées",
-      "required": "Champ obligatoire",
-      "saved": "Enregistré"
+      "title": "Données personnelles"
     },
     "email": {
       "title": "Adresses e-mail",
@@ -96,7 +87,8 @@
     "history": {
       "title": "Historique des connexions",
       "text": "Si une connexion te semble inconnue, modifie ton mot de passe."
-    }
+    },
+    "info-heading": "Ce qui est affiché ici"
   },
   "apps": {
     "title": "Applications connectées",
@@ -163,7 +155,8 @@
       "copy": "Copier",
       "done": "Terminé",
       "download-content": "Tes codes de secours pour {{HOSTNAME}} :\n{{BACKUP_CODES}}\nChaque code fonctionne une fois. Conserve-les en lieu sûr.\n",
-      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt",
+      "qr": "Code QR pour l'application d'authentification"
     },
     "unroll": {
       "title": "Désactiver la connexion à deux facteurs",
@@ -199,7 +192,6 @@
     }
   },
   "admin": {
-    "profile": "Profil",
     "apps": "Applications",
     "email-blacklist": "Liste noire d’e-mails",
     "users": "Utilisateurs",

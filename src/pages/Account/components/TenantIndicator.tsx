@@ -14,7 +14,7 @@ const TenantIndicator = () => {
   const tenantModel = useTenantModel(app ?? "null");
   const { isLoading, data, error } = useModelGet(tenantModel, tenant);
   if (isLoading || error || data == null) return <></>;
-  return <Root>{data[0].short_name as string}</Root>;
+  return <Root>{data[0].short_name}</Root>;
 };
 
 export default React.memo(TenantIndicator);

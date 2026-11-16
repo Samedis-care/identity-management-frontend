@@ -101,11 +101,14 @@ setDefaultConnectorAPI((endpoint, extraParams): ApiConnector => {
   return new BackendConnector(endpoint, "data", {}, extraParams);
 });
 
+// the look picked in the user menu; the OS preference the Framework passes is ignored
+const getStoredTheme = () => getTheme(loadThemeMode() === "dark");
+
 const domRoot = document.getElementById("root")!;
 const root = createRoot(domRoot);
 root.render(
   <React.StrictMode>
-    <Framework defaultTheme={() => getTheme(loadThemeMode() === "dark")}>
+    <Framework defaultTheme={getStoredTheme}>
       {IS_DEV && <ReactQueryDevtools buttonPosition={"bottom-right"} />}
       <ErrorBoundary>
         <BrowserCompatCheck>

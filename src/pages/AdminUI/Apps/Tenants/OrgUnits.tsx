@@ -5,7 +5,11 @@ import { TenantCrumbsContext } from "./TenantCrumbsContext";
 
 const OrgUnits = () => {
   const crumbs = useContext(TenantCrumbsContext);
-  return useOrgUnitTree(OrgUnitForm, "tenant-ous", crumbs);
+  return useOrgUnitTree({
+    form: OrgUnitForm,
+    storageKey: "tenant-ous",
+    crumbsPrefix: crumbs,
+  });
 };
 
 export default React.memo(OrgUnits);

@@ -67,30 +67,20 @@
         "email": "Neue E-Mail-Adresse",
         "email_confirm": "Neue E-Mail-Adresse (wiederholen)",
         "change": "Ändern",
-        "cancel": "Abbrechen",
         "errors": {
-          "validation": {
-            "title": "Validierungsfehler"
-          },
           "invalid": {
             "message": "Bitte eine gültige E-Mail-Adresse eingeben"
           },
           "mismatch": {
             "message": "Die E-Mail-Adressen stimmen nicht überein"
           },
-          "backend": {
-            "title": "Fehler"
-          },
           "none": {
             "title": "Erfolg",
             "message": "Die Konto-E-Mail ist jetzt {{EMAIL}}"
           }
-        }
+        },
+        "info-heading": "Gilt sofort"
       }
-    },
-    "recovery_email": {
-      "empty": "Keine hinterlegt. Der Nutzer kann sie unter „Mein Konto“ eintragen.",
-      "unconfirmed": "Unbestätigt: {{EMAIL}}"
     }
   },
   "save-actors": "Speichern, bevor Benutzer hinzugefügt werden können",

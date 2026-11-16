@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Send } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import {
@@ -9,12 +9,11 @@ import {
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
-import AccountDialog, {
-  DialogButtons,
-  DialogError,
-  Full,
-} from "../components/AccountDialog";
-import { readOnly } from "../components/Section";
+import AccountDialog from "../components/AccountDialog";
+import DialogButtons from "../components/DialogButtons";
+import DialogError from "../components/DialogError";
+import DialogRow from "../components/DialogRow";
+import { READ_ONLY_SLOT_PROPS } from "../constants";
 
 export interface ChangeEmailDialogProps {
   /** login: the sign-in address (email), recovery: the recovery address */
@@ -32,31 +31,32 @@ const ChangeEmailDialog = (props: ChangeEmailDialogProps) => {
   const { t } = useTranslation("account");
   const close = useCloseThisDialog();
   const model = useProfileModel();
-  const { mutateAsync: updateProfile } = useModelMutation(model);
+  const { mutateAsync, isPending, error } = useModelMutation(model);
   const [email, setEmail] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const login = kind === "login";
   const valid = validateEmailRaw(email.trim());
   const invalid = !!email && !valid;
 
-  const submit = async () => {
+  const handleChange = useCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => setEmail(evt.target.value),
+    [],
+  );
+  const submit = useCallback(async () => {
     if (!valid) return;
-    setBusy(true);
-    setError(null);
+    const address = email.trim();
     try {
-      await updateProfile(
+      await mutateAsync(
         login
-          ? { id: "singleton", email: email.trim() }
-          : { id: "singleton", recovery_email: email.trim() },
+          ? { id: "singleton", email: address }
+          : { id: "singleton", recovery_email: address },
       );
-      await model.invalidateCacheForId("singleton");
-      close();
-    } catch (e) {
-      setError((e as Error).message);
-      setBusy(false);
+    } catch {
+      // shown through the mutation's error
+      return;
     }
-  };
+    await model.invalidateCacheForId("singleton");
+    close();
+  }, [close, email, login, model, mutateAsync, valid]);
 
   return (
     <AccountDialog
@@ -67,47 +67,45 @@ const ChangeEmailDialog = (props: ChangeEmailDialogProps) => {
             ? "dialogs.email.title-recovery"
             : "dialogs.email.title-recovery-new",
       )}
-      onClose={close}
       onSubmit={submit}
     >
       {current && (
-        <Full>
+        <DialogRow>
           <TextFieldWithHelp
             label={t("dialogs.email.current")}
             value={current}
-            slotProps={readOnly}
+            slotProps={READ_ONLY_SLOT_PROPS}
             disableClearable
             fullWidth
           />
-        </Full>
+        </DialogRow>
       )}
-      <Full>
+      <DialogRow>
         <TextFieldWithHelp
           label={t("dialogs.email.new")}
           type={"email"}
           autoComplete={"email"}
           value={email}
-          onChange={(evt) => setEmail(evt.target.value)}
+          onChange={handleChange}
           error={invalid}
           helperText={invalid ? t("dialogs.email.invalid") : " "}
           autoFocus
           fullWidth
         />
-      </Full>
-      <Full>
+      </DialogRow>
+      <DialogRow>
         <Typography>
           {t(
             login ? "dialogs.email.text-login" : "dialogs.email.text-recovery",
           )}
         </Typography>
-      </Full>
-      <DialogError error={error} />
+      </DialogRow>
+      <DialogError message={error?.message} />
       <DialogButtons
         label={t("dialogs.email.submit")}
         icon={<Send />}
         disabled={!valid}
-        busy={busy}
-        onCancel={close}
+        busy={isPending}
       />
     </AccountDialog>
   );

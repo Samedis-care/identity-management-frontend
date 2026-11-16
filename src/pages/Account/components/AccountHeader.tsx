@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import {
   Avatar,
-  Box,
   ButtonBase,
   Divider,
   Link,
@@ -10,6 +9,7 @@ import {
   ListSubheader,
   Menu,
   MenuItem,
+  PopoverOrigin,
   styled,
   Typography,
 } from "@mui/material";
@@ -89,6 +89,91 @@ const Wordmark = styled(Typography)(({ theme }) => ({
   "& span": { color: theme.palette.brand.accent, fontWeight: 500 },
 }));
 
+const Root = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(1),
+  minHeight: 56,
+  minWidth: 0,
+  flexGrow: 1,
+  [theme.breakpoints.up("sm")]: { gap: theme.spacing(2) },
+}));
+
+const Spacer = styled("div")({ flexGrow: 1 });
+
+// hidden on phones, where the top bar has room for the word mark only
+const ProductDivider = styled(Divider)(({ theme }) => ({
+  borderColor: theme.palette.brand.topDivider,
+  margin: theme.spacing(2, 0),
+  [theme.breakpoints.only("xs")]: { display: "none" },
+}));
+
+const Product = styled(Typography)(({ theme }) => ({
+  color: theme.palette.brand.topMuted,
+  fontSize: 15,
+  [theme.breakpoints.only("xs")]: { display: "none" },
+}));
+
+const Context = styled("div")(({ theme }) => ({
+  display: "flex",
+  gap: theme.spacing(2),
+  color: theme.palette.brand.topMuted,
+  fontSize: 15,
+  minWidth: 0,
+  overflow: "hidden",
+  [theme.breakpoints.only("xs")]: { display: "none" },
+}));
+
+const BackLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.brand.topText,
+  display: "flex",
+  alignItems: "center",
+  marginRight: theme.spacing(1),
+  [theme.breakpoints.only("xs")]: { display: "none" },
+}));
+
+const BackIcon = styled(ChevronLeft)(({ theme }) => ({
+  color: theme.palette.brand.topMuted,
+}));
+
+const UserButton = styled(ButtonBase)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(1),
+  borderRadius: 25,
+}));
+
+const UserAvatar = styled(Avatar)(({ theme }) => ({
+  width: 30,
+  height: 30,
+  fontSize: 12,
+  fontWeight: 700,
+  backgroundColor: theme.palette.brand.accent,
+  color: "#002D50",
+}));
+
+const UserName = styled(Typography)(({ theme }) => ({
+  color: theme.palette.brand.topText,
+  [theme.breakpoints.down("md")]: { display: "none" },
+}));
+
+const MenuHeading = styled(ListSubheader)({
+  lineHeight: "36px",
+});
+
+const OptionItem = styled(MenuItem)({
+  minWidth: 220,
+});
+
+const MENU_ANCHOR_ORIGIN: PopoverOrigin = {
+  vertical: "bottom",
+  horizontal: "right",
+};
+const MENU_TRANSFORM_ORIGIN: PopoverOrigin = {
+  vertical: "top",
+  horizontal: "right",
+};
+
 const HOST = window.location.hostname;
 const HOST_DOT = HOST.lastIndexOf(".");
 const HOST_NAME = HOST_DOT > 0 ? HOST.slice(0, HOST_DOT) : HOST;
@@ -123,120 +208,80 @@ const AccountHeader = (props: AccountHeaderProps) => {
   const [pushDialog] = useDialogContext();
   const setTheme = useContext(ThemeContext);
   const [themeMode, setThemeMode] = useState<ThemeMode>(loadThemeMode);
-  const changeThemeMode = (mode: ThemeMode) => {
-    setThemeMode(mode);
-    storeThemeMode(mode);
-    setTheme?.(getTheme(mode === "dark"));
-  };
   const [userMenu, setUserMenu] = useState<HTMLElement | null>(null);
-  const closeUserMenu = () => setUserMenu(null);
+
+  const openUserMenu = useCallback(
+    (evt: React.MouseEvent<HTMLElement>) => setUserMenu(evt.currentTarget),
+    [],
+  );
+  const closeUserMenu = useCallback(() => setUserMenu(null), []);
+  // the menu items carry their option in data-value
+  const changeThemeMode = useCallback(
+    (evt: React.MouseEvent<HTMLElement>) => {
+      const mode = evt.currentTarget.dataset.value as ThemeMode;
+      setThemeMode(mode);
+      storeThemeMode(mode);
+      setTheme?.(getTheme(mode === "dark"));
+      setUserMenu(null);
+    },
+    [setTheme],
+  );
+  const changeMenuPosition = useCallback(
+    (evt: React.MouseEvent<HTMLElement>) => {
+      onMenuPositionChange(evt.currentTarget.dataset.value as MenuPosition);
+      setUserMenu(null);
+    },
+    [onMenuPositionChange],
+  );
+  const openLanguageDialog = useCallback(() => {
+    setUserMenu(null);
+    pushDialog(<LocaleSelectorDialog />);
+  }, [pushDialog]);
+  const logout = useCallback(async () => {
+    setUserMenu(null);
+    await destroySession();
+    redirectToLogin(false);
+  }, []);
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        gap: { xs: 1, sm: 2 },
-        minHeight: 56,
-        minWidth: 0,
-        flexGrow: 1,
-      }}
-    >
+    <Root>
       {mobileMenu}
       <Wordmark>
         {HOST_NAME}
         <span>{HOST_TLD}</span>
       </Wordmark>
-      <Divider
-        orientation={"vertical"}
-        flexItem
-        sx={{
-          borderColor: "brand.topDivider",
-          my: 2,
-          display: { xs: "none", sm: "block" },
-        }}
-      />
-      <Typography
-        sx={{
-          color: "brand.topMuted",
-          fontSize: 15,
-          display: { xs: "none", sm: "block" },
-        }}
-      >
-        {product}
-      </Typography>
-      {context && (
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            gap: 2,
-            color: "brand.topMuted",
-            fontSize: 15,
-            minWidth: 0,
-            overflow: "hidden",
-          }}
-        >
-          {context}
-        </Box>
-      )}
-      <Box sx={{ flexGrow: 1 }} />
+      <ProductDivider orientation={"vertical"} flexItem />
+      <Product>{product}</Product>
+      {context && <Context>{context}</Context>}
+      <Spacer />
       {appName && (
-        <Link
-          href={appUrl}
-          underline={"hover"}
-          sx={{
-            color: "brand.topText",
-            display: { xs: "none", sm: "flex" },
-            alignItems: "center",
-            mr: 1,
-          }}
-        >
-          <ChevronLeft sx={{ color: "brand.topMuted" }} />
+        <BackLink href={appUrl} underline={"hover"}>
+          <BackIcon />
           {t("header.back-to", { APP: appName })}
-        </Link>
+        </BackLink>
       )}
-      <ButtonBase
-        onClick={(evt) => setUserMenu(evt.currentTarget)}
+      <UserButton
+        onClick={openUserMenu}
         aria-haspopup={"menu"}
         aria-label={t("header.user-menu")}
-        sx={{ display: "flex", alignItems: "center", gap: 1, borderRadius: 5 }}
       >
-        <Avatar
-          sx={{
-            width: 30,
-            height: 30,
-            fontSize: 12,
-            fontWeight: 700,
-            bgcolor: "brand.accent",
-            color: "#002D50",
-          }}
-        >
-          {initials(userName)}
-        </Avatar>
-        <Typography
-          sx={{ color: "brand.topText", display: { xs: "none", md: "block" } }}
-        >
-          {userName}
-        </Typography>
-      </ButtonBase>
+        <UserAvatar>{initials(userName)}</UserAvatar>
+        <UserName>{userName}</UserName>
+      </UserButton>
       <Menu
         anchorEl={userMenu}
         open={!!userMenu}
         onClose={closeUserMenu}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={MENU_ANCHOR_ORIGIN}
+        transformOrigin={MENU_TRANSFORM_ORIGIN}
       >
-        <ListSubheader sx={{ lineHeight: "36px" }}>
-          {t("header.appearance")}
-        </ListSubheader>
+        <MenuHeading>{t("header.appearance")}</MenuHeading>
         {THEME_MODES.map(({ value, label, icon: Icon }) => (
-          <MenuItem
+          <OptionItem
             key={value}
+            data-value={value}
             selected={themeMode === value}
-            onClick={() => {
-              changeThemeMode(value);
-              closeUserMenu();
-            }}
-            sx={{ minWidth: 220 }}
+            onClick={changeThemeMode}
           >
             <ListItemIcon>
               <Icon fontSize={"small"} />
@@ -245,21 +290,16 @@ const AccountHeader = (props: AccountHeaderProps) => {
             {themeMode === value && (
               <Check fontSize={"small"} color={"primary"} />
             )}
-          </MenuItem>
+          </OptionItem>
         ))}
         <Divider />
-        <ListSubheader sx={{ lineHeight: "36px" }}>
-          {t("header.navigation")}
-        </ListSubheader>
+        <MenuHeading>{t("header.navigation")}</MenuHeading>
         {POSITIONS.map(({ value, label, icon: Icon }) => (
-          <MenuItem
+          <OptionItem
             key={value}
+            data-value={value}
             selected={menuPosition === value}
-            onClick={() => {
-              onMenuPositionChange(value);
-              closeUserMenu();
-            }}
-            sx={{ minWidth: 220 }}
+            onClick={changeMenuPosition}
           >
             <ListItemIcon>
               <Icon fontSize={"small"} />
@@ -268,34 +308,23 @@ const AccountHeader = (props: AccountHeaderProps) => {
             {menuPosition === value && (
               <Check fontSize={"small"} color={"primary"} />
             )}
-          </MenuItem>
+          </OptionItem>
         ))}
         <Divider />
-        <MenuItem
-          onClick={() => {
-            closeUserMenu();
-            pushDialog(<LocaleSelectorDialog />);
-          }}
-        >
+        <MenuItem onClick={openLanguageDialog}>
           <ListItemIcon>
             <Language fontSize={"small"} />
           </ListItemIcon>
           <ListItemText primary={t("header.language")} />
         </MenuItem>
-        <MenuItem
-          onClick={async () => {
-            closeUserMenu();
-            await destroySession();
-            redirectToLogin(false);
-          }}
-        >
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <ExitToApp fontSize={"small"} />
           </ListItemIcon>
           <ListItemText primary={t("header.logout")} />
         </MenuItem>
       </Menu>
-    </Box>
+    </Root>
   );
 };
 

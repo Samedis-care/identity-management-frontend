@@ -17,5 +17,6 @@
   "template-info": "Cette structure organisationnelle sert de modèle aux locataires : chaque nouveau locataire reçoit les mêmes unités organisationnelles lors de sa création. Les nouvelles unités sont également ajoutées aux locataires existants ; les unités supprimées y sont conservées.",
   "picker": {
     "actors": "Affecter des acteurs"
-  }
+  },
+  "template-info-heading": "Modèle pour les locataires"
 }

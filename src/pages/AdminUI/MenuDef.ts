@@ -1,15 +1,15 @@
 import { IRoutedMenuItemDefinition } from "components-care/dist/non-standalone/Portal/Menu";
-import React from "react";
+import React, { useMemo } from "react";
 import {
-  AccountCircle as ProfileIcon,
   AccountTree as OUIcon,
-  Apps as AppsIcon,
+  AppsOutlined,
   ArrowBack as BackIcon,
+  BlockOutlined,
   Description as ContentsIcon,
   DeviceHub as RolesIcon,
   Domain as TenantIcon,
-  Email as EmailIcon,
   Functions as FunctionsIcon,
+  GroupOutlined,
   Home as HomeIcon,
   Person as UsersIcon,
 } from "@mui/icons-material";
@@ -31,30 +31,24 @@ export interface MyMenuItemDefinition extends Omit<
   component?: React.ComponentType;
 }
 
+// the admin portal's top level, the "Administration" group of the account menu
 const MenuDefL0: MyMenuItemDefinition[] = [
   {
-    icon: ProfileIcon,
-    title: "admin.profile",
-    cando: null,
-    route: "/profile",
-    component: React.lazy(() => import("./ProfileRedirect")),
-  },
-  {
-    icon: AppsIcon,
+    icon: AppsOutlined,
     title: "admin.apps",
     cando: "apps.reader",
     route: "/apps",
     component: React.lazy(() => import("./Apps")),
   },
   {
-    icon: EmailIcon,
+    icon: BlockOutlined,
     title: "admin.email-blacklist",
     cando: "email-blacklists.reader",
     route: "/email-blacklist",
     component: React.lazy(() => import("./EmailBlacklist")),
   },
   {
-    icon: UsersIcon,
+    icon: GroupOutlined,
     title: "admin.users",
     cando: "users.reader",
     route: "/users",
@@ -147,23 +141,21 @@ export const useMenuDefinition = (): IRoutedMenuItemDefinition[] => {
   const [perms] = usePermissionContext();
   const { t } = useTranslation("account");
 
-  const convMenuDef = (
-    def: MyMenuItemDefinition,
-  ): IRoutedMenuItemDefinition => ({
-    ...def,
-    title: t(def.title),
-    shouldRender: checkMenuItemPermission(perms, def),
-  });
+  const { pathname } = location;
 
-  const newOrImport = (prefix: string) =>
-    CrudSpecialIds.find((id) => location.pathname.endsWith(prefix + id));
-  let defs: MyMenuItemDefinition[];
-  if (location.pathname.match(/\/apps\/.+?/) && !newOrImport("/apps/")) {
-    defs = MenuDefL1Apps;
-  } else {
-    defs = MenuDefL0;
-  }
-  return defs.map(convMenuDef);
+  return useMemo(() => {
+    const newOrImport = (prefix: string) =>
+      CrudSpecialIds.find((id) => pathname.endsWith(prefix + id));
+    const defs =
+      pathname.match(/\/apps\/.+?/) && !newOrImport("/apps/")
+        ? MenuDefL1Apps
+        : MenuDefL0;
+    return defs.map((def): IRoutedMenuItemDefinition => ({
+      ...def,
+      title: t(def.title),
+      shouldRender: checkMenuItemPermission(perms, def),
+    }));
+  }, [pathname, perms, t]);
 };
 
 export const useAppIdFromPath = () => {

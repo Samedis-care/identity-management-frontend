@@ -22,21 +22,12 @@
   },
   "common": {
     "cancel": "Cancel",
-    "save": "Save",
-    "close": "Close",
     "error": "That did not work"
   },
   "profile": {
     "title": "Profile",
     "personal": {
-      "title": "Personal details",
-      "picture": "Profile picture",
-      "first-name": "First name",
-      "last-name": "Last name",
-      "mobile": "Mobile number",
-      "mobile-help": "Optional, for queries from the connected applications",
-      "required": "Required",
-      "saved": "Saved"
+      "title": "Personal details"
     },
     "email": {
       "title": "Email addresses",
@@ -96,7 +87,8 @@
     "history": {
       "title": "Sign-in history",
       "text": "If a sign-in looks unfamiliar, change your password."
-    }
+    },
+    "info-heading": "What you see here"
   },
   "apps": {
     "title": "Connected applications",
@@ -163,7 +155,8 @@
       "copy": "Copy",
       "done": "Done",
       "download-content": "Your backup codes for {{HOSTNAME}}:\n{{BACKUP_CODES}}\nEach code works once. Keep them safe.\n",
-      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt",
+      "qr": "QR code for the authenticator app"
     },
     "unroll": {
       "title": "Turn off two-factor sign-in",
@@ -197,7 +190,6 @@
     }
   },
   "admin": {
-    "profile": "Profile",
     "apps": "Apps",
     "email-blacklist": "Email blacklist",
     "users": "Users",

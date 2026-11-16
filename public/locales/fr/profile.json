@@ -6,6 +6,7 @@
     "image": "Image de profil",
     "last_name": "Nom de famille",
     "mobile": "Numéro de portable",
+    "mobile-help": "Facultatif, pour les questions des applications connectées",
     "recovery_email": "E-mail de secours",
     "unconfirmed_email": "E-mail non confirmé",
     "unconfirmed_recovery_email": "E-mail de récupération non confirmé"

@@ -17,5 +17,6 @@
   "template-info": "Diese Organisationsstruktur ist die Vorlage für Mandanten: Jeder neue Mandant erhält bei der Anlage dieselben Organisationseinheiten. Neue Einheiten werden auch bei bestehenden Mandanten ergänzt, gelöschte bleiben dort erhalten.",
   "picker": {
     "actors": "Akteure zuweisen"
-  }
+  },
+  "template-info-heading": "Vorlage für Mandanten"
 }

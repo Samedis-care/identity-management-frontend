@@ -4,6 +4,7 @@ import {
   DataGridLocalStoragePersist,
   DefaultErrorComponent,
   Form,
+  InfoBox,
   Loader,
   ModelRecord,
   throwError,
@@ -14,7 +15,7 @@ import {
 import GridWrapper from "../../../components-care/GridWrapper";
 import { gridStorageKey } from "../../../components-care/ImCrud";
 import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
-import { Alert, AppBar, Box, Tab, Tabs, styled } from "@mui/material";
+import { AppBar, Box, Tab, Tabs, styled } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
 import { useOrganizationModel } from "../../../components-care/models/OrganizationModel";
@@ -30,6 +31,10 @@ const OrgUnitRoot = styled(Box)({
   "& > :last-child": { flexGrow: 1, minHeight: 0 },
 });
 
+const Intro = styled("div")(({ theme }) => ({
+  margin: theme.spacing(2, 2, 0),
+}));
+
 // the app, the root of the tree, has no record of its own, so no id
 const APP_ACTOR: Pick<
   ModelRecord<OrganizationModelType>,
@@ -39,15 +44,19 @@ const APP_ACTOR: Pick<
   insertable_child_types: ["ou", "group"],
 };
 
-export const useOrgUnitTree = (
-  form: React.ComponentType<PageProps<OrganizationModelType, CrudFormProps>>,
+export interface OrgUnitTreeParams {
+  /** form of a unit */
+  form: React.ComponentType<PageProps<OrganizationModelType, CrudFormProps>>;
   /** where the grid keeps its settings, see ImCrud storageKey */
-  storageKey: string,
+  storageKey: string;
   /** crumbs in front of the tree path, e.g. the tenant */
-  crumbsPrefix?: DrillDownCrumb[],
+  crumbsPrefix?: DrillDownCrumb[];
   /** hint above the grid on the top level */
-  intro?: React.ReactNode,
-) => {
+  intro?: React.ReactNode;
+}
+
+export const useOrgUnitTree = (params: OrgUnitTreeParams) => {
+  const { form, storageKey, crumbsPrefix, intro } = params;
   const { t } = useTranslation("ous");
   const { app } = useParams();
   const { pathname } = useLocation();
@@ -119,14 +128,22 @@ export const useOrgUnitTree = (
     true,
     parentRecord ? parentRecord.insertable_child_types : null,
   );
+  const openUnit = useCallback(
+    (id: string) => navigate(`${pathname}/${id}`),
+    [navigate, pathname],
+  );
+  const addUnit = useCallback(
+    () => navigate(`${pathname}/new`),
+    [navigate, pathname],
+  );
   if (currentRecord == null || parentRecord == null) return <Loader />;
   const grid = (
     <GridWrapper>
       <DataGridLocalStoragePersist storageKey={gridStorageKey(storageKey)}>
         <BackendDataGrid
           model={model}
-          onEdit={(id) => navigate(`${pathname}/${id}`)}
-          onAddNew={() => navigate(`${pathname}/new`)}
+          onEdit={openUnit}
+          onAddNew={addUnit}
           enableDelete
           forceRefreshToken={current ?? "app"}
         />
@@ -137,11 +154,7 @@ export const useOrgUnitTree = (
   if (path.length === 0)
     return (
       <OrgUnitRoot>
-        {intro && (
-          <Alert severity={"info"} sx={{ m: 2, mb: 0 }}>
-            {intro}
-          </Alert>
-        )}
+        {intro && <Intro>{intro}</Intro>}
         {grid}
       </OrgUnitRoot>
     );
@@ -207,12 +220,18 @@ export const useOrgUnitTree = (
 
 const OrgUnits = () => {
   const { t } = useTranslation("ous");
-  return useOrgUnitTree(
-    OrgUnitForm,
-    "app-ous",
-    undefined,
-    t("ous:template-info"),
-  );
+  return useOrgUnitTree({
+    form: OrgUnitForm,
+    storageKey: "app-ous",
+    intro: (
+      <InfoBox
+        status={"info"}
+        heading={t("template-info-heading")}
+        message={t("template-info")}
+        expanded
+      />
+    ),
+  });
 };
 
 export default React.memo(OrgUnits);

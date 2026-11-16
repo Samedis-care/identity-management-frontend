@@ -6,6 +6,7 @@
     "image": "Profilbild",
     "last_name": "Nachname",
     "mobile": "Mobilnummer",
+    "mobile-help": "Optional, für Rückfragen aus den verknüpften Anwendungen",
     "recovery_email": "E-Mail zur Kontowiederherstellung",
     "unconfirmed_email": "Unbestätigte E-Mail",
     "unconfirmed_recovery_email": "Unbestätigte Wiederherstellungs-E-Mail"

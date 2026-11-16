@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { KeyOutlined } from "@mui/icons-material";
 import {
   InfoBox,
@@ -10,13 +10,25 @@ import {
 } from "components-care";
 import { useTranslation } from "react-i18next";
 import { useProfileModel } from "../../../components-care/models/ProfileModel";
-import AccountDialog, {
-  DialogButtons,
-  DialogError,
-  Full,
-} from "../components/AccountDialog";
+import AccountDialog from "../components/AccountDialog";
+import DialogButtons from "../components/DialogButtons";
+import DialogError from "../components/DialogError";
+import DialogRow from "../components/DialogRow";
 
+// IMB config.password_length = 8..128
 const MIN_LENGTH = 8;
+
+interface PasswordFields {
+  current_password: string;
+  password: string;
+  password_confirmation: string;
+}
+
+const EMPTY_FIELDS: PasswordFields = {
+  current_password: "",
+  password: "",
+  password_confirmation: "",
+};
 
 /** changes the password; the backend signs out every other session */
 const ChangePasswordDialog = () => {
@@ -24,92 +36,92 @@ const ChangePasswordDialog = () => {
   const [pushDialog] = useDialogContext();
   const close = useCloseThisDialog();
   const model = useProfileModel();
-  const { mutateAsync: updateProfile } = useModelMutation(model);
-  const [current, setCurrent] = useState("");
-  const [next, setNext] = useState("");
-  const [repeat, setRepeat] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const mismatch = !!repeat && next !== repeat;
-  const valid = !!current && next.length >= MIN_LENGTH && next === repeat;
+  const { mutateAsync, isPending, error } = useModelMutation(model);
+  const [fields, setFields] = useState<PasswordFields>(EMPTY_FIELDS);
+  const { current_password, password, password_confirmation } = fields;
+  const mismatch =
+    !!password_confirmation && password !== password_confirmation;
+  const valid =
+    !!current_password &&
+    password.length >= MIN_LENGTH &&
+    password === password_confirmation;
 
-  const submit = async () => {
+  // the inputs are named after the fields
+  const handleChange = useCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = evt.target;
+      setFields((prev) => ({ ...prev, [name]: value }));
+    },
+    [],
+  );
+  const submit = useCallback(async () => {
     if (!valid) return;
-    setBusy(true);
-    setError(null);
     try {
-      await updateProfile({
-        id: "singleton",
-        current_password: current,
-        password: next,
-        password_confirmation: repeat,
-      });
-      close();
-      showInfoDialog(pushDialog, {
-        title: t("dialogs.password.success-title"),
-        message: t("dialogs.password.success"),
-      });
-    } catch (e) {
-      setError((e as Error).message);
-      setBusy(false);
+      await mutateAsync({ id: "singleton", ...fields });
+    } catch {
+      // shown through the mutation's error
+      return;
     }
-  };
+    close();
+    void showInfoDialog(pushDialog, {
+      title: t("dialogs.password.success-title"),
+      message: t("dialogs.password.success"),
+    });
+  }, [close, fields, mutateAsync, pushDialog, t, valid]);
 
   return (
-    <AccountDialog
-      title={t("dialogs.password.title")}
-      onClose={close}
-      onSubmit={submit}
-    >
-      <Full>
+    <AccountDialog title={t("dialogs.password.title")} onSubmit={submit}>
+      <DialogRow>
         <TextFieldWithHelp
+          name={"current_password"}
           label={t("dialogs.password.current")}
           type={"password"}
           autoComplete={"current-password"}
-          value={current}
-          onChange={(evt) => setCurrent(evt.target.value)}
+          value={current_password}
+          onChange={handleChange}
           autoFocus
           fullWidth
         />
-      </Full>
-      <Full>
+      </DialogRow>
+      <DialogRow>
         <TextFieldWithHelp
+          name={"password"}
           label={t("dialogs.password.new")}
           type={"password"}
           autoComplete={"new-password"}
-          value={next}
-          onChange={(evt) => setNext(evt.target.value)}
+          value={password}
+          onChange={handleChange}
           helperText={t("dialogs.password.new-help")}
           fullWidth
         />
-      </Full>
-      <Full>
+      </DialogRow>
+      <DialogRow>
         <TextFieldWithHelp
+          name={"password_confirmation"}
           label={t("dialogs.password.repeat")}
           type={"password"}
           autoComplete={"new-password"}
-          value={repeat}
-          onChange={(evt) => setRepeat(evt.target.value)}
+          value={password_confirmation}
+          onChange={handleChange}
           error={mismatch}
           helperText={mismatch ? t("dialogs.password.mismatch") : " "}
           fullWidth
         />
-      </Full>
-      <Full>
+      </DialogRow>
+      <DialogRow>
         <InfoBox
           status={"info"}
           heading={t("dialogs.password.info-heading")}
           message={t("dialogs.password.info")}
           expanded
         />
-      </Full>
-      <DialogError error={error} />
+      </DialogRow>
+      <DialogError message={error?.message} />
       <DialogButtons
         label={t("dialogs.password.submit")}
         icon={<KeyOutlined />}
         disabled={!valid}
-        busy={busy}
-        onCancel={close}
+        busy={isPending}
       />
     </AccountDialog>
   );

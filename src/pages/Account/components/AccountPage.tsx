@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, styled } from "@mui/material";
+import { Paper, styled } from "@mui/material";
 
 export interface AccountPageProps {
   title: string;
@@ -43,18 +43,32 @@ export const PageTitle = styled("h1")(({ theme }) => ({
   },
 }));
 
+const Root = styled("div")(({ theme }) => ({
+  width: "100%",
+  maxWidth: 1264,
+  margin: "0 auto",
+  [theme.breakpoints.up("sm")]: { padding: theme.spacing(2) },
+  [theme.breakpoints.up("lg")]: { padding: theme.spacing(4) },
+}));
+
+const Body = styled("div")(({ theme }) => ({
+  [theme.breakpoints.only("xs")]: { padding: theme.spacing(1) },
+}));
+
+const ContentPaper = styled(Paper)(({ theme }) => ({
+  width: "100%",
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  [theme.breakpoints.up("md")]: { padding: theme.spacing(3) },
+}));
+
 const AccountPage = (props: AccountPageProps) => (
-  <Box sx={{ width: "100%", maxWidth: 1264, mx: "auto", p: { sm: 2, lg: 4 } }}>
+  <Root>
     <PageTitle>{props.title}</PageTitle>
-    <Box sx={{ p: { xs: 1, sm: 0 } }}>
-      <Paper
-        elevation={0}
-        sx={{ p: { xs: 2, md: 3 }, borderRadius: 1, width: "100%" }}
-      >
-        {props.children}
-      </Paper>
-    </Box>
-  </Box>
+    <Body>
+      <ContentPaper elevation={0}>{props.children}</ContentPaper>
+    </Body>
+  </Root>
 );
 
 export default React.memo(AccountPage);
