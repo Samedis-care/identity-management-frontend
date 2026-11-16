@@ -43,12 +43,22 @@ export type DataGridPickerProps<M extends ModelUnknown> = Omit<
         onSelect: (ids: string[]) => void;
         multiple: true;
       }
-  ) & { onClose: () => void };
+  ) & {
+    onClose: () => void;
+    /** names the dialog, which shows no title: what is picked, translated */
+    "aria-label": string;
+  };
 
 const DataGridPicker = <M extends ModelUnknown>(
   props: DataGridPickerProps<M>,
 ) => {
-  const { onSelect, onClose, multiple, ...gridProps } = props;
+  const {
+    onSelect,
+    onClose,
+    multiple,
+    "aria-label": ariaLabel,
+    ...gridProps
+  } = props;
   const { t } = useTranslation("common");
 
   const [selected, setSelected] = useState<string[]>([]);
@@ -61,7 +71,7 @@ const DataGridPicker = <M extends ModelUnknown>(
   }, [onSelect, selected, onClose]);
 
   return (
-    <FormDialog onClose={onClose}>
+    <FormDialog onClose={onClose} aria-label={ariaLabel}>
       <Root>
         <DataGridNoPersist>
           {multiple ? (

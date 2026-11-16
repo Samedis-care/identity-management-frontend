@@ -20,5 +20,9 @@
     }
   },
   "save-actors": "Sla op voordat je acteurs kunt toewijzen",
-  "save-functionalities": "Sla op voordat je machtigingen kunt toewijzen"
+  "save-functionalities": "Sla op voordat je machtigingen kunt toewijzen",
+  "picker": {
+    "actors": "Acteurs toewijzen",
+    "functionalities": "Machtigingen toewijzen"
+  }
 }

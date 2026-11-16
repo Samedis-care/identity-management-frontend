@@ -93,5 +93,9 @@
       "unconfirmed": "Unbestätigt: {{EMAIL}}"
     }
   },
-  "save-actors": "Speichern, bevor Benutzer hinzugefügt werden können"
+  "save-actors": "Speichern, bevor Benutzer hinzugefügt werden können",
+  "picker": {
+    "actors": "Akteure zuweisen",
+    "tenant-actors": "Akteure zuweisen"
+  }
 }

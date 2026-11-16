@@ -145,6 +145,7 @@
       "heading": "Das lässt sich nicht rückgängig machen",
       "text": "Dein Konto wird deaktiviert, alle Sitzungen werden beendet und du verlierst den Zugriff auf alle verknüpften Anwendungen.",
       "confirm": "Zur Bestätigung deine Anmelde-E-Mail eingeben",
+      "invalid": "Das ist nicht die Anmelde-E-Mail deines Kontos",
       "submit": "Konto endgültig löschen"
     },
     "enroll": {
@@ -188,6 +189,7 @@
       "heading": "Rollen und Mandanten gehen verloren",
       "text": "Du verlierst in dieser Anwendung alle Rollen und Mandanten. Ein Admin muss dich neu einladen.",
       "confirm": "Zur Bestätigung deine Anmelde-E-Mail eingeben",
+      "invalid": "Das ist nicht die Anmelde-E-Mail deines Kontos",
       "submit": "Zugriff entfernen"
     },
     "documents": {

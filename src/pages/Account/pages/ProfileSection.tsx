@@ -119,6 +119,7 @@ const ProfileSection = () => {
         heading={t("dialogs.delete.heading")}
         text={t("dialogs.delete.text")}
         confirmLabel={t("dialogs.delete.confirm")}
+        invalidText={t("dialogs.delete.invalid")}
         submitLabel={t("dialogs.delete.submit")}
         submitIcon={<DeleteOutlined />}
         email={email}

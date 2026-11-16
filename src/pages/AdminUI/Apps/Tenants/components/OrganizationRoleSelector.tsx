@@ -3,7 +3,6 @@ import {
   FormCrudMultiSelect,
   ModelRecord,
   MultiSelectorData,
-  useFormContextLite,
   useNavigate,
 } from "components-care";
 import useApp from "../../../../../utils/useApp";
@@ -13,7 +12,6 @@ import {
   useRoleModel,
 } from "../../../../../components-care/models/RoleModel";
 import useTenant from "../../../../../utils/useTenant";
-import type { OrganizationModelType } from "../../../../../components-care/models/OrganizationModel";
 import type { RoleModelType } from "../../../../../components-care/models/RoleModel";
 
 export interface OrganizationRoleSelectorProps {
@@ -32,7 +30,6 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
   const app = useApp();
   const tenant = useTenant();
   const { t } = useTranslation("ous");
-  const { readOnly } = useFormContextLite<OrganizationModelType>();
   const navigate = useNavigate();
 
   return (
@@ -66,7 +63,6 @@ const OrganizationRoleSelector = (props: OrganizationRoleSelectorProps) => {
         onClick: () => navigate(`/apps/${app}/roles/${data.id}`),
       })}
       getIdOfData={(data) => data.role_id}
-      disabled={readOnly}
       sort={RoleModelSelectorSort}
     />
   );

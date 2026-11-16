@@ -13,5 +13,8 @@
       "roles": "Rollen"
     }
   },
-  "save-roles": "Sla op voordat je rollen kunt toewijzen"
+  "save-roles": "Sla op voordat je rollen kunt toewijzen",
+  "picker": {
+    "roles": "Rollen toewijzen"
+  }
 }

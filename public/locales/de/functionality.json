@@ -13,5 +13,8 @@
       "roles": "Rollen"
     }
   },
-  "save-roles": "Speichern, bevor Rollen zugewiesen werden können"
+  "save-roles": "Speichern, bevor Rollen zugewiesen werden können",
+  "picker": {
+    "roles": "Rollen zuweisen"
+  }
 }

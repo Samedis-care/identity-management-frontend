@@ -145,6 +145,7 @@
       "heading": "Dit kan niet ongedaan worden gemaakt",
       "text": "Je account wordt gedeactiveerd, alle sessies worden beëindigd en je verliest de toegang tot alle gekoppelde applicaties.",
       "confirm": "Voer ter bevestiging je inlog-e-mailadres in",
+      "invalid": "Dit is niet het inlog-e-mailadres van je account",
       "submit": "Account definitief verwijderen"
     },
     "enroll": {
@@ -188,6 +189,7 @@
       "heading": "Rollen en tenants gaan verloren",
       "text": "Je verliest in deze applicatie alle rollen en tenants. Een beheerder moet je opnieuw uitnodigen.",
       "confirm": "Voer ter bevestiging je inlog-e-mailadres in",
+      "invalid": "Dit is niet het inlog-e-mailadres van je account",
       "submit": "Toegang verwijderen"
     },
     "documents": {

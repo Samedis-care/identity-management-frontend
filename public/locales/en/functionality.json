@@ -13,5 +13,8 @@
       "roles": "Roles"
     }
   },
-  "save-roles": "Save before you can assign roles"
+  "save-roles": "Save before you can assign roles",
+  "picker": {
+    "roles": "Assign roles"
+  }
 }

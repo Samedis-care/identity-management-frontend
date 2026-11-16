@@ -145,6 +145,7 @@
       "heading": "This cannot be undone",
       "text": "Your account is deactivated, all sessions end and you lose access to all connected applications.",
       "confirm": "Enter your sign-in email to confirm",
+      "invalid": "This is not the sign-in email of your account",
       "submit": "Delete account permanently"
     },
     "enroll": {
@@ -188,6 +189,7 @@
       "heading": "Roles and tenants will be lost",
       "text": "You lose all roles and tenants in this application. An admin has to invite you again.",
       "confirm": "Enter your sign-in email to confirm",
+      "invalid": "This is not the sign-in email of your account",
       "submit": "Remove access"
     },
     "documents": {

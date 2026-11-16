@@ -145,6 +145,7 @@
       "heading": "Cette action est irréversible",
       "text": "Ton compte est désactivé, toutes les sessions sont fermées et tu perds l'accès à toutes les applications connectées.",
       "confirm": "Saisis ton e-mail de connexion pour confirmer",
+      "invalid": "Ce n'est pas l'e-mail de connexion de ton compte",
       "submit": "Supprimer définitivement le compte"
     },
     "enroll": {
@@ -190,6 +191,7 @@
       "heading": "Les rôles et locataires seront perdus",
       "text": "Tu perds tous tes rôles et locataires dans cette application. Un administrateur devra t'inviter à nouveau.",
       "confirm": "Saisis ton e-mail de connexion pour confirmer",
+      "invalid": "Ce n'est pas l'e-mail de connexion de ton compte",
       "submit": "Retirer l'accès"
     },
     "documents": {

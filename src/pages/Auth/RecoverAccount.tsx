@@ -7,7 +7,6 @@ import {
   useDialogContext,
   useParams,
   useLocation,
-  useNavigate,
   PageTitle,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
@@ -27,7 +26,6 @@ interface RecoverAccountState {
 
 const RecoverAccount = (_props: AuthPageProps) => {
   const params = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const { token } = Object.fromEntries(queryParams.entries());
@@ -81,7 +79,8 @@ const RecoverAccount = (_props: AuthPageProps) => {
             new Error("Recover account returned no redirect URL"),
             { data: { user_id: resp.data.attributes.id } },
           );
-        navigate(resp.meta.redirect_url!);
+        // the app's URL, on another host: navigate() only moves within this app
+        window.location.href = resp.meta.redirect_url!;
       } catch (e) {
         await showInfoDialog(pushDialog, {
           title: t("auth.recovery_email.error.title"),
@@ -92,7 +91,6 @@ const RecoverAccount = (_props: AuthPageProps) => {
     [
       app,
       location.search,
-      navigate,
       pushDialog,
       state.email,
       state.recovery_email,

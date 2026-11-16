@@ -37,6 +37,7 @@ const OrgUnitForm = (
               <Grid style={{ minHeight: "100vh" }} size={12}>
                 {props.id ? (
                   <DataGridMassSelect
+                    pickerLabel={t("picker.actors")}
                     selectedModel={orgActorList}
                     serializeCreate={(id: string) => ({ map_actor_id: id })}
                     optionsModel={orgActorPicker}

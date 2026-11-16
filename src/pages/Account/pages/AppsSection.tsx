@@ -117,7 +117,9 @@ const AppsSection = () => {
 
   const openDocument = (app: MyApp, name: string) => {
     const close = pushDialog(
-      <FullFormDialog>
+      <FullFormDialog
+        aria-label={t("apps.documents." + name, { defaultValue: name })}
+      >
         <DocumentViewer
           app={app.name}
           name={name}
@@ -151,6 +153,7 @@ const AppsSection = () => {
         heading={t("dialogs.remove-app.heading")}
         text={t("dialogs.remove-app.text")}
         confirmLabel={t("dialogs.remove-app.confirm")}
+        invalidText={t("dialogs.remove-app.invalid")}
         submitLabel={t("dialogs.remove-app.submit")}
         submitIcon={<DeleteOutlined />}
         email={email}

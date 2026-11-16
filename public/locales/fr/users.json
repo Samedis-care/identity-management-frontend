@@ -93,5 +93,9 @@
       "unconfirmed": "Non confirmée : {{EMAIL}}"
     }
   },
-  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs"
+  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",
+  "picker": {
+    "actors": "Affecter des acteurs",
+    "tenant-actors": "Affecter des acteurs"
+  }
 }

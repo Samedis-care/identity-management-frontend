@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   InfoBox,
   TextFieldWithHelp,
@@ -15,6 +15,8 @@ export interface ConfirmByEmailDialogProps {
   heading: string;
   text: string;
   confirmLabel: string;
+  /** shown below the field while the typed address doesn't match */
+  invalidText: string;
   submitLabel: string;
   submitIcon: React.ReactNode;
   /** the user's sign-in address, which has to be typed to confirm */
@@ -32,10 +34,17 @@ const ConfirmByEmailDialog = (props: ConfirmByEmailDialogProps) => {
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [touched, setTouched] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const valid = value.trim().toLowerCase() === props.email.toLowerCase();
+  const showInvalid = touched && value.trim() !== "" && !valid;
 
   const submit = async () => {
-    if (!valid) return;
+    if (!valid) {
+      setTouched(true);
+      inputRef.current?.focus();
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
@@ -63,6 +72,10 @@ const ConfirmByEmailDialog = (props: ConfirmByEmailDialogProps) => {
           placeholder={props.email}
           value={value}
           onChange={(evt) => setValue(evt.target.value)}
+          onBlur={() => setTouched(true)}
+          inputRef={inputRef}
+          error={showInvalid}
+          helperText={showInvalid ? props.invalidText : undefined}
           autoComplete={"off"}
           autoFocus
           fullWidth
