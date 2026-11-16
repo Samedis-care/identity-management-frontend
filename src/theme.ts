@@ -1,6 +1,10 @@
 import { createTheme, ThemeOptions } from "@mui/material";
 import { TypographyVariantsOptions } from "@mui/material/styles";
-import { BackButtonDefaultColorClass, combineColors } from "components-care";
+import {
+  BackButtonDefaultColorClass,
+  combineColors,
+  deepClone,
+} from "components-care";
 import ImFormPageLayout, {
   ImInlineFormButtonsClassName,
   ImPhoneFormButtonsClassName,
@@ -158,7 +162,9 @@ const typography: TypographyVariantsOptions = {
 const BORDER_RADIUS = 5;
 
 export const getTheme = (preferDark: boolean): ThemeOptions => {
-  const palette = preferDark ? dark : light;
+  // a copy per call: callers merge app palettes into the result (deepAssign
+  // in AuthPageLayout writes into the objects it is given)
+  const palette = deepClone(preferDark ? dark : light);
   return {
     shape: { borderRadius: BORDER_RADIUS },
     typography,

@@ -13,6 +13,11 @@ export interface DrillDownCrumb {
   to?: string;
 }
 
+export interface DrillDownBarProps {
+  /** from the page down to the open record */
+  crumbs: DrillDownCrumb[];
+}
+
 const Root = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -27,7 +32,7 @@ const Root = styled("div")(({ theme }) => ({
  * Path of a record opened from a tab of a page, in place of that page's tab
  * bar: the record brings its own tabs, so only one tab level is visible
  */
-const DrillDownBar = (props: { crumbs: DrillDownCrumb[] }) => (
+const DrillDownBar = (props: DrillDownBarProps) => (
   <Root>
     <Breadcrumbs>
       {props.crumbs.map((crumb, idx) =>

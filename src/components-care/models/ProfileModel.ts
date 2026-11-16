@@ -12,6 +12,7 @@ import {
   ModelVisibilityGridViewHidden,
   validateEmail,
   validateOptional,
+  validatePresence,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -85,7 +86,11 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         sortable: true,
       },
       mobile: {
-        type: new ModelDataTypeStringRendererMUI(),
+        type: new ModelDataTypeStringRendererMUI({
+          type: "tel",
+          autoComplete: "tel",
+          helperText: t("profile:fields.mobile-help"),
+        }),
         getLabel: () => t("profile:fields.mobile"),
         customData: null,
         visibility: {
@@ -97,7 +102,9 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         sortable: true,
       },
       first_name: {
-        type: new ModelDataTypeStringRendererMUI(),
+        type: new ModelDataTypeStringRendererMUI({
+          autoComplete: "given-name",
+        }),
         getLabel: () => t("profile:fields.first_name"),
         customData: null,
         visibility: {
@@ -107,9 +114,12 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       last_name: {
-        type: new ModelDataTypeStringRendererMUI(),
+        type: new ModelDataTypeStringRendererMUI({
+          autoComplete: "family-name",
+        }),
         getLabel: () => t("profile:fields.last_name"),
         customData: null,
         visibility: {
@@ -119,6 +129,7 @@ export const ProfileModel = ({ t, app }: ProfileModelParams) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       image: {
         type: new ModelDataTypeImageRenderer({ variant: "profile_picture" }),

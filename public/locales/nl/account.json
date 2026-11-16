@@ -22,21 +22,12 @@
   },
   "common": {
     "cancel": "Annuleren",
-    "save": "Opslaan",
-    "close": "Sluiten",
     "error": "Dat is niet gelukt"
   },
   "profile": {
     "title": "Profiel",
     "personal": {
-      "title": "Persoonlijke gegevens",
-      "picture": "Profielfoto",
-      "first-name": "Voornaam",
-      "last-name": "Achternaam",
-      "mobile": "Mobiel nummer",
-      "mobile-help": "Optioneel, voor vragen vanuit de gekoppelde applicaties",
-      "required": "Verplicht veld",
-      "saved": "Opgeslagen"
+      "title": "Persoonlijke gegevens"
     },
     "email": {
       "title": "E-mailadressen",
@@ -96,7 +87,8 @@
     "history": {
       "title": "Inloggeschiedenis",
       "text": "Komt een inlogpoging je onbekend voor, wijzig dan je wachtwoord."
-    }
+    },
+    "info-heading": "Wat hier wordt getoond"
   },
   "apps": {
     "title": "Gekoppelde applicaties",
@@ -163,7 +155,8 @@
       "copy": "Kopiëren",
       "done": "Klaar",
       "download-content": "Je back-upcodes voor {{HOSTNAME}}:\n{{BACKUP_CODES}}\nElke code werkt één keer. Bewaar ze op een veilige plek.\n",
-      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt",
+      "qr": "QR-code voor de authenticator-app"
     },
     "unroll": {
       "title": "Tweestapsaanmelding uitschakelen",
@@ -197,7 +190,6 @@
     }
   },
   "admin": {
-    "profile": "Profiel",
     "apps": "Apps",
     "email-blacklist": "E-mail-blacklist",
     "users": "Gebruikers",

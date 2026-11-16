@@ -67,30 +67,20 @@
         "email": "Новый адрес e-mail",
         "email_confirm": "Новый адрес e-mail (повторите)",
         "change": "Изменить",
-        "cancel": "Отмена",
         "errors": {
-          "validation": {
-            "title": "Ошибка проверки"
-          },
           "invalid": {
             "message": "Введите действительный адрес e-mail"
           },
           "mismatch": {
             "message": "Адреса e-mail не совпадают"
           },
-          "backend": {
-            "title": "Ошибка"
-          },
           "none": {
             "title": "Успешно",
             "message": "E-mail аккаунта теперь {{EMAIL}}"
           }
-        }
+        },
+        "info-heading": "Действует сразу"
       }
-    },
-    "recovery_email": {
-      "empty": "Не указан. Пользователь может добавить его в разделе «Мой аккаунт».",
-      "unconfirmed": "Не подтверждён: {{EMAIL}}"
     }
   },
   "save-actors": "Сохраните, прежде чем вы сможете назначать актеров",

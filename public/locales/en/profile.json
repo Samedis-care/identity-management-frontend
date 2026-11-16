@@ -6,6 +6,7 @@
     "image": "Profile picture",
     "last_name": "Last name",
     "mobile": "Mobile number",
+    "mobile-help": "Optional, for queries from the connected applications",
     "recovery_email": "Recovery email",
     "unconfirmed_email": "Unconfirmed email",
     "unconfirmed_recovery_email": "Unconfirmed recovery email"

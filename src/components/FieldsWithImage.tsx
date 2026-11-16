@@ -9,6 +9,10 @@ export interface FieldsWithImageProps {
   imageField: string;
 }
 
+const FieldsCell = styled(Grid)({
+  alignContent: "flex-start",
+});
+
 // keeps the image preview at logo size instead of the full column width
 const ImageCell = styled(Grid)({
   "& img": {
@@ -22,18 +26,13 @@ const ImageCell = styled(Grid)({
  */
 const FieldsWithImage = (props: FieldsWithImageProps) => (
   <Grid container spacing={2} size={12}>
-    <Grid
-      container
-      spacing={2}
-      size={{ xs: 12, md: 8 }}
-      sx={{ alignContent: "flex-start" }}
-    >
+    <FieldsCell container spacing={2} size={{ xs: 12, md: 8 }}>
       {props.fields.map((field) => (
         <Grid key={field} size={12}>
           <FormField name={field} />
         </Grid>
       ))}
-    </Grid>
+    </FieldsCell>
     <ImageCell size={{ xs: 12, md: 4 }}>
       <FormField name={props.imageField} />
     </ImageCell>

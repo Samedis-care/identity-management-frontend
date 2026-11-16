@@ -22,21 +22,12 @@
   },
   "common": {
     "cancel": "Abbrechen",
-    "save": "Speichern",
-    "close": "Schließen",
     "error": "Das hat nicht geklappt"
   },
   "profile": {
     "title": "Profil",
     "personal": {
-      "title": "Persönliche Daten",
-      "picture": "Profilbild",
-      "first-name": "Vorname",
-      "last-name": "Nachname",
-      "mobile": "Mobilnummer",
-      "mobile-help": "Optional, für Rückfragen aus den verknüpften Anwendungen",
-      "required": "Pflichtfeld",
-      "saved": "Gespeichert"
+      "title": "Persönliche Daten"
     },
     "email": {
       "title": "E-Mail-Adressen",
@@ -96,7 +87,8 @@
     "history": {
       "title": "Anmeldeverlauf",
       "text": "Kommt dir eine Anmeldung unbekannt vor, ändere dein Passwort."
-    }
+    },
+    "info-heading": "Was hier angezeigt wird"
   },
   "apps": {
     "title": "Verknüpfte Anwendungen",
@@ -163,7 +155,8 @@
       "copy": "Kopieren",
       "done": "Fertig",
       "download-content": "Deine Backup-Codes für {{HOSTNAME}}:\n{{BACKUP_CODES}}\nJeder Code funktioniert einmal. Bewahre sie sicher auf.\n",
-      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt",
+      "qr": "QR-Code für die Authenticator-App"
     },
     "unroll": {
       "title": "Zwei-Faktor-Anmeldung deaktivieren",
@@ -197,7 +190,6 @@
     }
   },
   "admin": {
-    "profile": "Profil",
     "apps": "Apps",
     "email-blacklist": "E-Mail-Blacklist",
     "users": "Benutzer",

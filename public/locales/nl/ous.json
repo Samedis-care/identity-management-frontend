@@ -17,5 +17,6 @@
   "template-info": "Deze organisatiestructuur is de sjabloon voor tenants: elke nieuwe tenant krijgt bij het aanmaken dezelfde organisatie-eenheden. Nieuwe eenheden worden ook bij bestaande tenants toegevoegd; verwijderde blijven daar behouden.",
   "picker": {
     "actors": "Acteurs toewijzen"
-  }
+  },
+  "template-info-heading": "Sjabloon voor tenants"
 }

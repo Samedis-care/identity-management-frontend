@@ -5,6 +5,7 @@ import {
   ModelDataTypeEnumRadioRendererMUI,
   ModelDataTypeEnumSelectRendererMUI,
   ModelDataTypeStringRendererMUI,
+  ModelRenderParams,
   ModelVisibilityDisabled,
   ModelVisibilityEdit,
   ModelVisibilityEditReadOnly,
@@ -15,6 +16,7 @@ import {
   validateOptional,
   validateEmail,
 } from "components-care";
+import React from "react";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
@@ -26,15 +28,37 @@ const LOCALES = ["de-DE", "en-US", "fr-FR", "nl-NL", "ru-RU"];
 /**
  * The backend takes any locale string, and accounts carry short ones such as
  * "de" (set by apps or social logins). Those are shown as the option of their
- * language, else the select would stay empty and refuse to save the form.
+ * language. Any other locale (e.g. "es" from a social login) stays as it is and
+ * is offered as an option of its own: the form sends every field on save, so
+ * an empty select would clear the user's locale.
  */
 class LocaleSelect extends ModelDataTypeEnumSelectRendererMUI<string> {
   deserialize = (value: unknown): string => {
     if (typeof value !== "string" || !value) return "";
     if (LOCALES.includes(value)) return value;
     const language = value.split(/[-_]/)[0].toLowerCase();
-    return LOCALES.find((locale) => locale.startsWith(language + "-")) ?? "";
+    return LOCALES.find((locale) => locale.startsWith(language + "-")) ?? value;
   };
+
+  validate(): string | null {
+    return null;
+  }
+
+  stringify(value: string): string {
+    return (
+      this.values.find((entry) => entry.value === value)?.getLabel() ?? value
+    );
+  }
+
+  render(params: ModelRenderParams<string>): React.ReactElement {
+    if (this.values.some((entry) => entry.value === params.value))
+      return super.render(params);
+    const withValue = [
+      ...this.values,
+      { value: params.value, getLabel: () => params.value },
+    ];
+    return new LocaleSelect(withValue, "").render(params);
+  }
 }
 
 export const UserModel = (

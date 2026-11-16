@@ -67,30 +67,20 @@
         "email": "New email address",
         "email_confirm": "New email address (repeat)",
         "change": "Change",
-        "cancel": "Cancel",
         "errors": {
-          "validation": {
-            "title": "Validation error"
-          },
           "invalid": {
             "message": "Please enter a valid email address"
           },
           "mismatch": {
             "message": "The email addresses do not match"
           },
-          "backend": {
-            "title": "Error"
-          },
           "none": {
             "title": "Success",
             "message": "The account email is now {{EMAIL}}"
           }
-        }
+        },
+        "info-heading": "Takes effect immediately"
       }
-    },
-    "recovery_email": {
-      "empty": "None set. The user can add one under “My account”.",
-      "unconfirmed": "Unconfirmed: {{EMAIL}}"
     }
   },
   "save-actors": "Save before you can assign actors",

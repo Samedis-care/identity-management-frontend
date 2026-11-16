@@ -1,9 +1,10 @@
-import React, { useCallback } from "react";
-import { Alert, Box, Grid, Typography } from "@mui/material";
+import React, { useCallback, useMemo } from "react";
+import { Grid, styled, Typography } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import {
   ActionButton,
   GroupBox,
+  InfoBox,
   showConfirmDialog,
   useDialogContext,
 } from "components-care";
@@ -19,8 +20,20 @@ import {
   useProfileLoginsModel,
 } from "../../../components-care/models/ProfileLoginsModel";
 import AccountPage from "../components/AccountPage";
-import { BoxBody, Buttons, Cell, GridBox } from "../components/Section";
+import GridBox from "../components/GridBox";
+import SectionBody from "../components/SectionBody";
+import SectionButtons from "../components/SectionButtons";
+import SectionCell from "../components/SectionCell";
 import SignOutOthersDialog from "../dialogs/SignOutOthersDialog";
+
+const InfoList = styled("ul")(({ theme }) => ({
+  margin: 0,
+  paddingLeft: theme.spacing(2.5),
+}));
+
+const CurrentSessionWarning = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
 
 const DevicesSection = () => {
   const { t } = useTranslation("account");
@@ -46,9 +59,9 @@ const DevicesSection = () => {
         message: deletesCurrent ? (
           <>
             {message}
-            <Typography color={"error"} sx={{ mt: 1 }}>
+            <CurrentSessionWarning color={"error"}>
               {t("devices.sessions.delete-current")}
-            </Typography>
+            </CurrentSessionWarning>
           </>
         ) : (
           message
@@ -63,27 +76,39 @@ const DevicesSection = () => {
     },
     [ccT, loginsModel, pushDialog, t],
   );
+  const sessionsGridProps = useMemo(
+    () => ({ customDeleteConfirm: confirmDeleteSessions }),
+    [confirmDeleteSessions],
+  );
+  const signOutOthers = useCallback(() => {
+    pushDialog(<SignOutOthersDialog />);
+  }, [pushDialog]);
 
   return (
     <AccountPage title={t("devices.title")}>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Alert severity={"info"}>
-            <Box component={"ul"} sx={{ m: 0, pl: 2.5 }}>
-              <li>{t("devices.sessions.text")}</li>
-              <li>{t("devices.history.text")}</li>
-            </Box>
-          </Alert>
+          <InfoBox
+            status={"info"}
+            heading={t("devices.info-heading")}
+            message={
+              <InfoList>
+                <li>{t("devices.sessions.text")}</li>
+                <li>{t("devices.history.text")}</li>
+              </InfoList>
+            }
+            expanded
+          />
         </Grid>
-        <Cell md={12}>
+        <SectionCell md={12}>
           <GroupBox label={t("devices.sessions.title")}>
-            <BoxBody>
+            <SectionBody>
               <GridBox height={440}>
                 <ImCrud
                   storageKey={"account-sessions"}
                   model={loginsModel}
                   getRowLabel={ProfileLoginsModelToRowLabel}
-                  gridProps={{ customDeleteConfirm: confirmDeleteSessions }}
+                  gridProps={sessionsGridProps}
                   disableGridWrapper
                   disableRouting
                   readPermission={null}
@@ -95,22 +120,22 @@ const DevicesSection = () => {
                   {undefined}
                 </ImCrud>
               </GridBox>
-              <Buttons>
+              <SectionButtons>
                 <ActionButton
                   fullWidth={false}
                   color={"error"}
                   icon={<Logout />}
-                  onClick={() => pushDialog(<SignOutOthersDialog />)}
+                  onClick={signOutOthers}
                 >
                   {t("devices.sessions.sign-out-others")}
                 </ActionButton>
-              </Buttons>
-            </BoxBody>
+              </SectionButtons>
+            </SectionBody>
           </GroupBox>
-        </Cell>
-        <Cell md={12}>
+        </SectionCell>
+        <SectionCell md={12}>
           <GroupBox label={t("devices.history.title")}>
-            <BoxBody>
+            <SectionBody>
               <GridBox height={400}>
                 <ImCrud
                   storageKey={"account-activity"}
@@ -127,9 +152,9 @@ const DevicesSection = () => {
                   {undefined}
                 </ImCrud>
               </GridBox>
-            </BoxBody>
+            </SectionBody>
           </GroupBox>
-        </Cell>
+        </SectionCell>
       </Grid>
     </AccountPage>
   );

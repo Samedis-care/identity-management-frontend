@@ -67,30 +67,20 @@
         "email": "Nouvelle adresse e-mail",
         "email_confirm": "Nouvelle adresse e-mail (répéter)",
         "change": "Modifier",
-        "cancel": "Annuler",
         "errors": {
-          "validation": {
-            "title": "Erreur de validation"
-          },
           "invalid": {
             "message": "Veuillez saisir une adresse e-mail valide"
           },
           "mismatch": {
             "message": "Les adresses e-mail ne correspondent pas"
           },
-          "backend": {
-            "title": "Erreur"
-          },
           "none": {
             "title": "Succès",
             "message": "L'e-mail du compte est désormais {{EMAIL}}"
           }
-        }
+        },
+        "info-heading": "Prend effet immédiatement"
       }
-    },
-    "recovery_email": {
-      "empty": "Aucune adresse. L'utilisateur peut l'ajouter sous « Mon compte ».",
-      "unconfirmed": "Non confirmée : {{EMAIL}}"
     }
   },
   "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",

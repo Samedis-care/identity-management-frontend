@@ -1,23 +1,20 @@
 import React, { useCallback, useState } from "react";
+import { Send } from "@mui/icons-material";
 import {
-  Alert,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Grid,
-} from "@mui/material";
-import {
+  InfoBox,
   showInfoDialog,
   TextFieldWithHelp,
+  useCloseThisDialog,
   useDialogContext,
   useModelMutation,
-  useCloseThisDialog,
-  validateEmail,
+  validateEmailRaw,
 } from "components-care";
-import { useUserModel } from "../../../components-care/models/UserModel";
 import { useTranslation } from "react-i18next";
+import { useUserModel } from "../../../components-care/models/UserModel";
+import AccountDialog from "../../Account/components/AccountDialog";
+import DialogButtons from "../../Account/components/DialogButtons";
+import DialogError from "../../Account/components/DialogError";
+import DialogRow from "../../Account/components/DialogRow";
 
 export interface ChangeEmailAdminDialogProps {
   userId: string;
@@ -27,6 +24,13 @@ export interface ChangeEmailAdminDialogProps {
   onChanged?: () => void;
 }
 
+interface EmailFields {
+  email: string;
+  email_confirm: string;
+}
+
+const EMPTY_FIELDS: EmailFields = { email: "", email_confirm: "" };
+
 /**
  * Support case: a global admin changes the account (sign-in) address of a
  * user, e.g. when the user lost access to the old mailbox. The backend takes
@@ -35,110 +39,100 @@ export interface ChangeEmailAdminDialogProps {
  */
 const ChangeEmailAdminDialog = (props: ChangeEmailAdminDialogProps) => {
   const { userId, currentEmail, onChanged } = props;
-  const [pushDialog] = useDialogContext();
-  const closeThisDialog = useCloseThisDialog();
-  const model = useUserModel();
-  const { mutateAsync: updateUser } = useModelMutation(model);
   const { t } = useTranslation("users");
-  const [state, setState] = useState({ email: "", email_confirm: "" });
+  const [pushDialog] = useDialogContext();
+  const close = useCloseThisDialog();
+  const model = useUserModel();
+  const { mutateAsync, isPending, error } = useModelMutation(model);
+  const [fields, setFields] = useState<EmailFields>(EMPTY_FIELDS);
+  const email = fields.email.trim();
+  const confirm = fields.email_confirm.trim();
+  const invalid = !!email && !validateEmailRaw(email);
+  const mismatch = !!confirm && email !== confirm;
+  const valid = !!email && !invalid && email === confirm;
+
+  // the inputs are named after the fields
   const handleChange = useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
-      setState((prev) => ({
-        ...prev,
-        [evt.target.name]: evt.target.value,
-      }));
+      const { name, value } = evt.target;
+      setFields((prev) => ({ ...prev, [name]: value }));
     },
     [],
   );
-  const handleSubmit = useCallback(
-    async (evt: React.MouseEvent | React.FormEvent) => {
-      evt.preventDefault();
-      const email = state.email.trim();
-      const invalid = validateEmail(
-        email,
-        {},
-        { getLabel: () => t("form.dialogs.change_email.email") },
-      );
-      if (!email || invalid) {
-        showInfoDialog(pushDialog, {
-          title: t("form.dialogs.change_email.errors.validation.title"),
-          message: t("form.dialogs.change_email.errors.invalid.message"),
-        });
-        return;
-      }
-      if (email !== state.email_confirm.trim()) {
-        showInfoDialog(pushDialog, {
-          title: t("form.dialogs.change_email.errors.validation.title"),
-          message: t("form.dialogs.change_email.errors.mismatch.message"),
-        });
-        return;
-      }
-      try {
-        await updateUser({ id: userId, email });
-        closeThisDialog();
-        onChanged?.();
-        showInfoDialog(pushDialog, {
-          title: t("form.dialogs.change_email.errors.none.title"),
-          message: t("form.dialogs.change_email.errors.none.message", {
-            EMAIL: email,
-          }),
-        });
-      } catch (e) {
-        showInfoDialog(pushDialog, {
-          title: t("form.dialogs.change_email.errors.backend.title"),
-          message: (e as Error).message,
-        });
-      }
-    },
-    [closeThisDialog, onChanged, pushDialog, state, t, updateUser, userId],
-  );
+  const submit = useCallback(async () => {
+    if (!valid) return;
+    try {
+      await mutateAsync({ id: userId, email });
+    } catch {
+      // shown through the mutation's error
+      return;
+    }
+    close();
+    onChanged?.();
+    void showInfoDialog(pushDialog, {
+      title: t("form.dialogs.change_email.errors.none.title"),
+      message: t("form.dialogs.change_email.errors.none.message", {
+        EMAIL: email,
+      }),
+    });
+  }, [close, email, mutateAsync, onChanged, pushDialog, t, userId, valid]);
 
   return (
-    <Dialog open maxWidth={"sm"} fullWidth>
-      <form onSubmit={handleSubmit}>
-        <DialogTitle>{t("form.dialogs.change_email.title")}</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2}>
-            <Grid size={12}>
-              <Alert severity={"warning"}>
-                {t("form.dialogs.change_email.info", { EMAIL: currentEmail })}
-              </Alert>
-            </Grid>
-            <Grid size={12}>
-              <TextFieldWithHelp
-                value={state.email}
-                name={"email"}
-                onChange={handleChange}
-                type={"email"}
-                label={t("form.dialogs.change_email.email")}
-                autoFocus
-                fullWidth
-                variant={"standard"}
-              />
-            </Grid>
-            <Grid size={12}>
-              <TextFieldWithHelp
-                value={state.email_confirm}
-                name={"email_confirm"}
-                onChange={handleChange}
-                type={"email"}
-                label={t("form.dialogs.change_email.email_confirm")}
-                fullWidth
-                variant={"standard"}
-              />
-            </Grid>
-          </Grid>
-        </DialogContent>
-        <DialogActions>
-          <Button color={"secondary"} onClick={handleSubmit} type={"submit"}>
-            {t("form.dialogs.change_email.change")}
-          </Button>
-          <Button onClick={closeThisDialog}>
-            {t("form.dialogs.change_email.cancel")}
-          </Button>
-        </DialogActions>
-      </form>
-    </Dialog>
+    <AccountDialog
+      title={t("form.dialogs.change_email.title")}
+      onSubmit={submit}
+    >
+      <DialogRow>
+        <InfoBox
+          status={"warning"}
+          heading={t("form.dialogs.change_email.info-heading")}
+          message={t("form.dialogs.change_email.info", { EMAIL: currentEmail })}
+          expanded
+        />
+      </DialogRow>
+      <DialogRow>
+        <TextFieldWithHelp
+          name={"email"}
+          value={fields.email}
+          onChange={handleChange}
+          type={"email"}
+          label={t("form.dialogs.change_email.email")}
+          error={invalid}
+          helperText={
+            invalid
+              ? t("form.dialogs.change_email.errors.invalid.message")
+              : " "
+          }
+          autoComplete={"off"}
+          autoFocus
+          fullWidth
+        />
+      </DialogRow>
+      <DialogRow>
+        <TextFieldWithHelp
+          name={"email_confirm"}
+          value={fields.email_confirm}
+          onChange={handleChange}
+          type={"email"}
+          label={t("form.dialogs.change_email.email_confirm")}
+          error={mismatch}
+          helperText={
+            mismatch
+              ? t("form.dialogs.change_email.errors.mismatch.message")
+              : " "
+          }
+          autoComplete={"off"}
+          fullWidth
+        />
+      </DialogRow>
+      <DialogError message={error?.message} />
+      <DialogButtons
+        label={t("form.dialogs.change_email.change")}
+        icon={<Send />}
+        disabled={!valid}
+        busy={isPending}
+      />
+    </AccountDialog>
   );
 };
 

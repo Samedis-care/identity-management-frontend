@@ -15,19 +15,14 @@ import General from "./General";
 import Users from "./Users";
 import OrgUnits from "./OrgUnits";
 import Forbidden from "../../../Forbidden";
-import DrillDownBar, {
-  DrillDownCrumb,
-} from "../../../../components/DrillDownBar";
+import type { DrillDownCrumb } from "../../../../components/DrillDownBar";
 import { useTenantModel } from "../../../../components-care/models/TenantModel";
-import {
-  useUserModel,
-  UserModelToRowLabel,
-} from "../../../../components-care/models/UserModel";
 import { CrudSpecialIds } from "components-care/dist/backend-components/CRUD";
 import useApp from "../../../../utils/useApp";
 import useTenant from "../../../../utils/useTenant";
 import { useAdminTitle } from "../../AdminTitle";
 import { TenantCrumbsContext } from "./TenantCrumbsContext";
+import TenantUserCrumbs from "./TenantUserCrumbs";
 
 const Root = styled(Box)({
   flexGrow: 1,
@@ -36,15 +31,6 @@ const Root = styled(Box)({
   flexDirection: "column",
   "& > :last-child": { flexGrow: 1, minHeight: 0 },
 });
-
-const UserCrumbs = (props: { userId: string; prefix: DrillDownCrumb[] }) => {
-  const { userId, prefix } = props;
-  const model = useUserModel();
-  const special = CrudSpecialIds.includes(userId);
-  const { data } = useModelGet(model, special ? null : userId);
-  const label = data ? UserModelToRowLabel(data[0]) : "…";
-  return <DrillDownBar crumbs={[...prefix, { label }]} />;
-};
 
 /**
  * One page per tenant: tabs tenant data, users and org units. A user or an
@@ -68,7 +54,7 @@ const TenantPage = () => {
 
   const tenantModel = useTenantModel(app);
   const { data } = useModelGet(tenantModel, isNew ? null : tenant);
-  const tenantName = data ? (data[0].short_name as string) : null;
+  const tenantName = data ? data[0].short_name : null;
   useAdminTitle(isNew ? null : tenantName);
 
   const canUsers = hasPermission(perms, "users.reader");
@@ -100,7 +86,7 @@ const TenantPage = () => {
         </AppBar>
       )}
       {drillDown && section === "users" && (
-        <UserCrumbs userId={rest[1]} prefix={usersCrumbs} />
+        <TenantUserCrumbs userId={rest[1]} prefix={usersCrumbs} />
       )}
       <TenantCrumbsContext.Provider value={ousCrumbs}>
         <Routes>

@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import {
   InfoBox,
   TextFieldWithHelp,
   useCloseThisDialog,
 } from "components-care";
-import AccountDialog, {
-  DialogButtons,
-  DialogError,
-  Full,
-} from "../components/AccountDialog";
+import AccountDialog from "../components/AccountDialog";
+import DialogButtons from "../components/DialogButtons";
+import DialogError from "../components/DialogError";
+import DialogRow from "../components/DialogRow";
 
 export interface ConfirmByEmailDialogProps {
   title: string;
@@ -19,7 +19,7 @@ export interface ConfirmByEmailDialogProps {
   invalidText: string;
   submitLabel: string;
   submitIcon: React.ReactNode;
-  /** the user's sign-in address, which has to be typed to confirm */
+  /** the user's sign-in address, which has to be typed to confirm; empty never matches */
   email: string;
   /** runs the destructive action; a thrown error is shown in the dialog */
   onConfirm: () => Promise<void>;
@@ -30,49 +30,55 @@ export interface ConfirmByEmailDialogProps {
  * user types their sign-in address before the red button unlocks.
  */
 const ConfirmByEmailDialog = (props: ConfirmByEmailDialogProps) => {
+  const { email, onConfirm } = props;
   const close = useCloseThisDialog();
+  const { mutateAsync, isPending, error } = useMutation({
+    mutationFn: onConfirm,
+  });
   const [value, setValue] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [touched, setTouched] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const valid = value.trim().toLowerCase() === props.email.toLowerCase();
+  // an address that isn't known yet must not let an empty field through
+  const valid = !!email && value.trim().toLowerCase() === email.toLowerCase();
   const showInvalid = touched && value.trim() !== "" && !valid;
 
-  const submit = async () => {
+  const handleChange = useCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => setValue(evt.target.value),
+    [],
+  );
+  const handleBlur = useCallback(() => setTouched(true), []);
+  const submit = useCallback(async () => {
     if (!valid) {
       setTouched(true);
       inputRef.current?.focus();
       return;
     }
-    setBusy(true);
-    setError(null);
     try {
-      await props.onConfirm();
-      close();
-    } catch (e) {
-      setError((e as Error).message);
-      setBusy(false);
+      await mutateAsync();
+    } catch {
+      // shown through the mutation's error
+      return;
     }
-  };
+    close();
+  }, [close, mutateAsync, valid]);
 
   return (
-    <AccountDialog title={props.title} onClose={close} onSubmit={submit}>
-      <Full>
+    <AccountDialog title={props.title} onSubmit={submit}>
+      <DialogRow>
         <InfoBox
           status={"error"}
           heading={props.heading}
           message={props.text}
           expanded
         />
-      </Full>
-      <Full>
+      </DialogRow>
+      <DialogRow>
         <TextFieldWithHelp
           label={props.confirmLabel}
-          placeholder={props.email}
+          placeholder={email}
           value={value}
-          onChange={(evt) => setValue(evt.target.value)}
-          onBlur={() => setTouched(true)}
+          onChange={handleChange}
+          onBlur={handleBlur}
           inputRef={inputRef}
           error={showInvalid}
           helperText={showInvalid ? props.invalidText : undefined}
@@ -80,15 +86,14 @@ const ConfirmByEmailDialog = (props: ConfirmByEmailDialogProps) => {
           autoFocus
           fullWidth
         />
-      </Full>
-      <DialogError error={error} />
+      </DialogRow>
+      <DialogError message={error?.message} />
       <DialogButtons
         label={props.submitLabel}
         icon={props.submitIcon}
         color={"error"}
         disabled={!valid}
-        busy={busy}
-        onCancel={close}
+        busy={isPending}
       />
     </AccountDialog>
   );

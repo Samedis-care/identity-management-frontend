@@ -6,6 +6,7 @@
     "image": "Profielfoto",
     "last_name": "Achternaam",
     "mobile": "Mobiel nummer",
+    "mobile-help": "Optioneel, voor vragen vanuit de gekoppelde applicaties",
     "recovery_email": "Herstelmailadres",
     "unconfirmed_email": "Onbevestigde e-mail",
     "unconfirmed_recovery_email": "Herstelmailadres niet bevestigd"
