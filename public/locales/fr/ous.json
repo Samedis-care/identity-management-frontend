@@ -13,5 +13,8 @@
     "children": "Enfants",
     "edit": "Éditer"
   },
-  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs"
+  "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",
+  "picker": {
+    "actors": "Affecter des acteurs"
+  }
 }

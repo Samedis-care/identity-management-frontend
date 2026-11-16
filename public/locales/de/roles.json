@@ -20,5 +20,9 @@
     }
   },
   "save-actors": "Das Formular speichern, bevor Benutzer hinzugefügt werden können",
-  "save-functionalities": "Speichern, bevor Berechtigungen zugewiesen werden können"
+  "save-functionalities": "Speichern, bevor Berechtigungen zugewiesen werden können",
+  "picker": {
+    "actors": "Akteure zuweisen",
+    "functionalities": "Berechtigungen zuweisen"
+  }
 }

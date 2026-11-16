@@ -59,5 +59,9 @@
       }
     }
   },
-  "save-actors": "Save before you can assign actors"
+  "save-actors": "Save before you can assign actors",
+  "picker": {
+    "actors": "Assign actors",
+    "tenant-actors": "Assign actors"
+  }
 }

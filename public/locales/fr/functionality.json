@@ -13,5 +13,8 @@
       "roles": "Les rôles"
     }
   },
-  "save-roles": "Enregistrez avant de pouvoir attribuer des rôles"
+  "save-roles": "Enregistrez avant de pouvoir attribuer des rôles",
+  "picker": {
+    "roles": "Attribuer des rôles"
+  }
 }

@@ -20,5 +20,9 @@
     }
   },
   "save-actors": "Save before you can assign actors",
-  "save-functionalities": "Save before you can assign permissions"
+  "save-functionalities": "Save before you can assign permissions",
+  "picker": {
+    "actors": "Assign actors",
+    "functionalities": "Assign permissions"
+  }
 }

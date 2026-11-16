@@ -86,7 +86,11 @@ const AppsList = (props: AppsListProps) => {
     (appName: string, policies: string[], notAcceptedPolicies: string[]) => {
       const openPolicy = (policyName: string) => {
         const close = pushDialog(
-          <FullFormDialog>
+          <FullFormDialog
+            aria-label={t(
+              "tabs.apps.dialogs.select-document.option." + policyName,
+            )}
+          >
             <DocumentViewer
               app={appName}
               name={policyName}

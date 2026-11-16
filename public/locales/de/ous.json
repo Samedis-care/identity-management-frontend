@@ -13,5 +13,8 @@
     "children": "Kinder",
     "edit": "Bearbeiten"
   },
-  "save-actors": "Du musst speichern, bevor Du Nutzer hinzufügen kannst."
+  "save-actors": "Du musst speichern, bevor Du Nutzer hinzufügen kannst.",
+  "picker": {
+    "actors": "Akteure zuweisen"
+  }
 }

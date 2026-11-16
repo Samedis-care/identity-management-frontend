@@ -13,5 +13,8 @@
     "children": "Kinderen",
     "edit": "Bewerken"
   },
-  "save-actors": "Sla op voordat je acteurs kunt toewijzen"
+  "save-actors": "Sla op voordat je acteurs kunt toewijzen",
+  "picker": {
+    "actors": "Acteurs toewijzen"
+  }
 }

@@ -33,6 +33,7 @@ const UserOrganizationSelector = (props: UserOrganizationSelectorProps) => {
 
   return props.userId ? (
     <DataGridMassSelect
+      pickerLabel={t("picker.tenant-actors")}
       selectedModel={actorList}
       serializeCreate={serializeCreate}
       optionsModel={actorPicker}

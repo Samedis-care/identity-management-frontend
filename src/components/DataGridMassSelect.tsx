@@ -29,8 +29,10 @@ export interface DataGridMultiSelectCRUDProps<
   readOnly?: boolean;
   pickerProps?: Omit<
     DataGridPickerProps<OptionsM>,
-    "model" | "onClose" | "onSelect" | "multiple"
+    "model" | "onClose" | "onSelect" | "multiple" | "aria-label"
   >;
+  /** names the picker dialog: what is picked, translated */
+  pickerLabel: string;
 }
 
 const DataGridMultiSelectCRUD = <
@@ -45,6 +47,7 @@ const DataGridMultiSelectCRUD = <
     serializeCreate,
     readOnly,
     pickerProps,
+    pickerLabel,
     ...gridProps
   } = props;
   const [pushDialog] = useDialogContext();
@@ -73,13 +76,14 @@ const DataGridMultiSelectCRUD = <
     const close = pushDialog(
       <DataGridPicker
         {...pickerProps}
+        aria-label={pickerLabel}
         model={optionsModel}
         onClose={() => close()}
         onSelect={addToSelection}
         multiple
       />,
     );
-  }, [pushDialog, optionsModel, addToSelection, pickerProps]);
+  }, [pushDialog, optionsModel, addToSelection, pickerProps, pickerLabel]);
 
   return (
     <DataGridNoPersist>

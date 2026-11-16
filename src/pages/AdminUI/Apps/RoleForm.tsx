@@ -41,6 +41,7 @@ const RoleForm = (props: PageProps<RoleModelType, CrudFormProps>) => {
             <>
               {props.id ? (
                 <DataGridMassSelect
+                  pickerLabel={t("picker.actors")}
                   selectedModel={roleActorList}
                   serializeCreate={(id: string) => ({ actor_id: id })}
                   optionsModel={roleActorPicker}

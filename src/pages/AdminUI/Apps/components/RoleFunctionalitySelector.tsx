@@ -26,6 +26,7 @@ const RoleFunctionalitySelector = (props: RoleFunctionalitySelectorProps) => {
 
   return props.roleId ? (
     <DataGridMassSelect
+      pickerLabel={t("picker.functionalities")}
       selectedModel={listModel}
       serializeCreate={serializeCreate}
       optionsModel={pickerModel}

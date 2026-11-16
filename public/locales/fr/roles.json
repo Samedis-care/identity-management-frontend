@@ -20,5 +20,9 @@
     }
   },
   "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",
-  "save-functionalities": "Enregistrez avant de pouvoir attribuer des autorisations"
+  "save-functionalities": "Enregistrez avant de pouvoir attribuer des autorisations",
+  "picker": {
+    "actors": "Affecter des acteurs",
+    "functionalities": "Attribuer des autorisations"
+  }
 }
