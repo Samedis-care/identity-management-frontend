@@ -86,10 +86,12 @@ const SignOutOthersDialog = (props: SignOutOthersDialogProps) => {
     try {
       await signOut(others.map((session) => session.id));
     } catch {
-      // shown through the mutation's error
+      // shown through the mutation's error; the dialog stays open for a retry
       return;
+    } finally {
+      // also after a failure: the batches before it are signed out already
+      onSignedOut?.();
     }
-    onSignedOut?.();
     close();
   }, [close, onSignedOut, others, signOut]);
 
