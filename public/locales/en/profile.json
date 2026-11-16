@@ -29,7 +29,8 @@
           "yes": "Yes",
           "no": "No",
           "text-field-label": "Your email address",
-          "text-field-placeholder": "Please enter your email address to confirm"
+          "text-field-placeholder": "Please enter your email address to confirm",
+          "invalid": "Enter the email address of your account"
         },
         "close-error": {
           "title": "Failed closing account"
@@ -185,7 +186,8 @@
           "yes": "Yes",
           "no": "No",
           "text-field-label": "Your email address",
-          "text-field-placeholder": "Please enter your email address to confirm"
+          "text-field-placeholder": "Please enter your email address to confirm",
+          "invalid": "Enter the email address of your account"
         },
         "remove-app-error": {
           "title": "Failed removing app"

@@ -160,6 +160,7 @@ const AppsList = (props: AppsListProps) => {
             "tabs.apps.dialogs.remove-app-confirm.text-field-placeholder",
           ),
           textFieldValidator: (value) => value === confirmEmail,
+          textFieldErrorText: t("tabs.apps.dialogs.remove-app-confirm.invalid"),
         });
       } catch (_e) {
         // cancelled

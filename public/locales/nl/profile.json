@@ -29,7 +29,8 @@
           "yes": "Ja",
           "no": "Nee",
           "text-field-label": "Jouw e-mailadres",
-          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
+          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen",
+          "invalid": "Voer het e-mailadres van je account in"
         },
         "close-error": {
           "title": "Account afsluiten mislukt"
@@ -185,7 +186,8 @@
           "yes": "Ja",
           "no": "Nee",
           "text-field-label": "Jouw e-mailadres",
-          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen"
+          "text-field-placeholder": "Voer uw e-mailadres in om te bevestigen",
+          "invalid": "Voer het e-mailadres van je account in"
         },
         "remove-app-error": {
           "title": "Kan de app niet verwijderen"

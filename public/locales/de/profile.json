@@ -29,7 +29,8 @@
           "yes": "Ja",
           "no": "Nein",
           "text-field-label": "Deine E-Mail Adresse",
-          "text-field-placeholder": "Bitte trage Deine E-Mail Adresse ein um den Vorgang zu bestätigen"
+          "text-field-placeholder": "Bitte trage Deine E-Mail Adresse ein um den Vorgang zu bestätigen",
+          "invalid": "Gib die E-Mail-Adresse Deines Kontos ein"
         },
         "close-error": {
           "title": "Kontoschließung fehlgeschlagen"
@@ -185,7 +186,8 @@
           "yes": "Ja",
           "no": "Nein",
           "text-field-label": "Dein E-Mail Adresse",
-          "text-field-placeholder": "Bitte gib zur Bestätigung Deine E-Mail-Adresse ein"
+          "text-field-placeholder": "Bitte gib zur Bestätigung Deine E-Mail-Adresse ein",
+          "invalid": "Gib die E-Mail-Adresse Deines Kontos ein"
         },
         "remove-app-error": {
           "title": "Entfernen der App fehlgeschlagen"

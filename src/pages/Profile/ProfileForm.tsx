@@ -149,6 +149,7 @@ const ProfileForm = (props: PageProps<ProfileModelType, CrudFormProps>) => {
           "tabs.account.dialogs.close-confirm.text-field-placeholder",
         ),
         textFieldValidator: (value) => value === email,
+        textFieldErrorText: t("tabs.account.dialogs.close-confirm.invalid"),
       });
     } catch (_e) {
       // cancelled

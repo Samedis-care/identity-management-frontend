@@ -29,7 +29,8 @@
           "yes": "Oui",
           "no": "Non",
           "text-field-label": "Votre adresse e-mail",
-          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer"
+          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer",
+          "invalid": "Entrez l'adresse e-mail de votre compte"
         },
         "close-error": {
           "title": "Échec de la clôture du compte"
@@ -185,7 +186,8 @@
           "yes": "Oui",
           "no": "Non",
           "text-field-label": "Votre adresse e-mail",
-          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer"
+          "text-field-placeholder": "Veuillez entrer votre adresse e-mail pour confirmer",
+          "invalid": "Entrez l'adresse e-mail de votre compte"
         },
         "remove-app-error": {
           "title": "Échec de la suppression de l'application"
