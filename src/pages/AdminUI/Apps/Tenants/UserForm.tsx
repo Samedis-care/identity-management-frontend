@@ -47,6 +47,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
           {tab(
             "roles",
             <ImCrud
+              storageKey={"tenant-user-roles"}
               model={rolesModel}
               getRowLabel={RoleModelToRowLabel}
               key={"role"}
@@ -68,6 +69,7 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
           {tab(
             "permissions",
             <ImCrud
+              storageKey={"tenant-user-functionality"}
               model={functionalityModel}
               getRowLabel={FunctionalityModelToSelectorData}
               key={"func"}
@@ -89,28 +91,28 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
           {tab(
             "",
             <Grid container spacing={2}>
-              <Grid size={2}>
+              <Grid size={{ xs: 12, sm: 2 }}>
                 <FormField name={"active"} />
               </Grid>
-              <Grid size={10}>
+              <Grid size={{ xs: 12, sm: 10 }}>
                 <FormField name={"email"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"recovery_email"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"unconfirmed_recovery_email"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"first_name"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"last_name"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"gender"} />
               </Grid>
-              <Grid size={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <FormField name={"locale"} />
               </Grid>
             </Grid>,

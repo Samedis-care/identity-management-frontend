@@ -20,6 +20,23 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 
+/** languages a user can be set to, the IM frontend's languages */
+const LOCALES = ["de-DE", "en-US", "fr-FR", "nl-NL", "ru-RU"];
+
+/**
+ * The backend takes any locale string, and accounts carry short ones such as
+ * "de" (set by apps or social logins). Those are shown as the option of their
+ * language, else the select would stay empty and refuse to save the form.
+ */
+class LocaleSelect extends ModelDataTypeEnumSelectRendererMUI<string> {
+  deserialize = (value: unknown): string => {
+    if (typeof value !== "string" || !value) return "";
+    if (LOCALES.includes(value)) return value;
+    const language = value.split(/[-_]/)[0].toLowerCase();
+    return LOCALES.find((locale) => locale.startsWith(language + "-")) ?? "";
+  };
+}
+
 export const UserModel = (
   t: TFunction,
   app?: string,
@@ -50,7 +67,8 @@ export const UserModel = (
           create: app
             ? ModelVisibilityEditReadOnly
             : ModelVisibilityEditRequired,
-          edit: app ? ModelVisibilityEditReadOnly : ModelVisibilityEditRequired,
+          // changed through its own dialog (ChangeEmailAdminDialog)
+          edit: ModelVisibilityEditReadOnly,
         },
         filterable: true,
         sortable: true,
@@ -158,8 +176,8 @@ export const UserModel = (
         },
       },
       locale: {
-        type: new ModelDataTypeEnumSelectRendererMUI(
-          ["", "en-US", "de-DE"].map((locale) => ({
+        type: new LocaleSelect(
+          ["", ...LOCALES].map((locale) => ({
             value: locale,
             getLabel: () =>
               t("users:enums.locales." + (locale || "unspecified")),

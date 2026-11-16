@@ -7,7 +7,10 @@ import {
   usePermissionContext,
   useNavigate,
 } from "components-care";
-import { useDefaultGridProps } from "../../../components-care/ImCrud";
+import {
+  gridStorageKey,
+  useDefaultGridProps,
+} from "../../../components-care/ImCrud";
 import GridWrapper from "../../../components-care/GridWrapper";
 
 const AppsCrud = () => {
@@ -24,9 +27,7 @@ const AppsCrud = () => {
 
   return (
     <GridWrapper>
-      <DataGridLocalStoragePersist
-        storageKey={"datagrid-persist-" + model.modelId}
-      >
+      <DataGridLocalStoragePersist storageKey={gridStorageKey("apps")}>
         <BackendDataGrid
           enableDelete={hasPermission(perms, "apps.deleter")}
           disableExport={!hasPermission(perms, "apps.exporter")}

@@ -38,14 +38,14 @@
       },
       "theme": {
         "primary": {
-          "main": "Primär-Hauptfarbe",
-          "light": "Primär-Farbe Light Theme",
-          "dark": "Primär-Farbe Dark-Theme"
+          "main": "Primärfarbe",
+          "light": "Primärfarbe (hellere Abstufung)",
+          "dark": "Primärfarbe (dunklere Abstufung)"
         },
         "secondary": {
-          "main": "Sekundär-Hauptfarbe",
-          "light": "Sekundär-Farbe Light Theme",
-          "dark": "Sekundär-Farbe Dark Theme"
+          "main": "Sekundärfarbe",
+          "light": "Sekundärfarbe (hellere Abstufung)",
+          "dark": "Sekundärfarbe (dunklere Abstufung)"
         },
         "background": {
           "default": "Hintergrundfarbe",

@@ -11,6 +11,7 @@ const Contents = () => {
 
   return (
     <ImCrud
+      storageKey={"app-contents"}
       model={model}
       getRowLabel={ContentModelToRowLabel}
       readPermission={"contents.reader"}

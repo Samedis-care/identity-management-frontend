@@ -11,6 +11,7 @@ const UserCrud = () => {
 
   return (
     <ImCrud
+      storageKey={"tenant-users"}
       model={model}
       getRowLabel={UserModelToRowLabel}
       readPermission={"users.reader"}

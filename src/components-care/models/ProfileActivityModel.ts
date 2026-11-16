@@ -10,6 +10,7 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import moment from "moment";
+import { useMemo } from "react";
 
 export const ProfileActivityModel = (t: TFunction) =>
   new Model(
@@ -77,7 +78,7 @@ export type ProfileActivityModelType = ReturnType<typeof ProfileActivityModel>;
 
 export const useProfileActivityModel = () => {
   const { t } = useTranslation("profile");
-  return ProfileActivityModel(t);
+  return useMemo(() => ProfileActivityModel(t), [t]);
 };
 
 /**

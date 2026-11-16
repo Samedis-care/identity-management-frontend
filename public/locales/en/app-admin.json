@@ -38,14 +38,14 @@
       },
       "theme": {
         "primary": {
-          "main": "Primary-Main-Color",
-          "light": "Prinary-Light-Color",
-          "dark": "Primary-Dark-Color"
+          "main": "Primary color",
+          "light": "Primary color (lighter shade)",
+          "dark": "Primary color (darker shade)"
         },
         "secondary": {
-          "main": "Secondary-Main-Color",
-          "light": "Secondary-Light-Color",
-          "dark": "Secondary-Dark-Color"
+          "main": "Secondary color",
+          "light": "Secondary color (lighter shade)",
+          "dark": "Secondary color (darker shade)"
         },
         "background": {
           "default": "Background color",

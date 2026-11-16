@@ -19,7 +19,9 @@ import {
   usePermissionContext,
   useLocation,
 } from "components-care";
+import { useTranslation } from "react-i18next";
 
+/** title is a key of the account namespace (admin.*) */
 export interface MyMenuItemDefinition extends Omit<
   IRoutedMenuItemDefinition,
   "shouldRender"
@@ -32,28 +34,28 @@ export interface MyMenuItemDefinition extends Omit<
 const MenuDefL0: MyMenuItemDefinition[] = [
   {
     icon: ProfileIcon,
-    title: "Profile",
+    title: "admin.profile",
     cando: null,
     route: "/profile",
-    component: React.lazy(() => import("../Profile/ProfilePage")),
+    component: React.lazy(() => import("./ProfileRedirect")),
   },
   {
     icon: AppsIcon,
-    title: "Apps",
+    title: "admin.apps",
     cando: "apps.reader",
     route: "/apps",
     component: React.lazy(() => import("./Apps")),
   },
   {
     icon: EmailIcon,
-    title: "E-Mail Blacklist",
+    title: "admin.email-blacklist",
     cando: "email-blacklists.reader",
     route: "/email-blacklist",
     component: React.lazy(() => import("./EmailBlacklist")),
   },
   {
     icon: UsersIcon,
-    title: "Benutzer",
+    title: "admin.users",
     cando: "users.reader",
     route: "/users",
     component: React.lazy(() => import("./Users")),
@@ -63,95 +65,74 @@ const MenuDefL0: MyMenuItemDefinition[] = [
 const MenuDefL1Apps: MyMenuItemDefinition[] = [
   {
     icon: BackIcon,
-    title: "Back",
+    title: "admin.back",
     cando: null,
     isBack: true,
     route: "/apps",
   },
   {
     icon: HomeIcon,
-    title: "General",
+    title: "admin.general",
     cando: "apps.writer",
     route: "/apps/:app",
     component: React.lazy(() => import("./Apps/General")),
   },
   {
     icon: FunctionsIcon,
-    title: "Functions",
+    title: "admin.functions",
     cando: "functionalities.reader",
     route: "/apps/:app/functions",
     component: React.lazy(() => import("./Apps/Functionality")),
   },
   {
     icon: RolesIcon,
-    title: "Roles",
+    title: "admin.roles",
     cando: "roles.reader",
     route: "/apps/:app/roles",
     component: React.lazy(() => import("./Apps/Roles")),
   },
   {
     icon: UsersIcon,
-    title: "Users",
+    title: "admin.users",
     cando: "users.reader",
     route: "/apps/:app/users",
     component: React.lazy(() => import("./Apps/Users")),
   },
   {
     icon: OUIcon,
-    title: "Organizational Units",
+    title: "admin.org-units",
     cando: "actors.reader",
     route: "/apps/:app/ous",
     component: React.lazy(() => import("./Apps/OrgUnits")),
   },
   {
     icon: TenantIcon,
-    title: "Tenants",
+    title: "admin.tenants",
     cando: "tenants.reader",
     route: "/apps/:app/tenants",
     component: React.lazy(() => import("./Apps/Tenants")),
   },
   {
     icon: ContentsIcon,
-    title: "Contents",
+    title: "admin.contents",
     cando: "contents.reader",
     route: "/apps/:app/contents",
     component: React.lazy(() => import("./Apps/Contents")),
   },
 ];
 
-const MenuDefL2Tenants: MyMenuItemDefinition[] = [
-  {
-    icon: BackIcon,
-    title: "Back",
-    cando: null,
-    isBack: true,
-    route: "/apps/:app/tenants",
-  },
-  {
-    icon: HomeIcon,
-    title: "General",
-    cando: "tenants.writer",
-    route: "/apps/:app/tenants/:tenant",
-    component: React.lazy(() => import("./Apps/Tenants/General")),
-  },
-  {
-    icon: OUIcon,
-    title: "Organizational Units",
-    cando: "actors.reader",
-    route: "/apps/:app/tenants/:tenant/ous",
-    component: React.lazy(() => import("./Apps/Tenants/OrgUnits")),
-  },
-  {
-    icon: UsersIcon,
-    title: "Users",
-    cando: "users.reader",
-    route: "/apps/:app/tenants/:tenant/users",
-    component: React.lazy(() => import("./Apps/Tenants/Users")),
-  },
-];
+// a tenant is one page (tabs tenant, users, org units), shown below the
+// "Mandanten" entry of the app menu; no menu level of its own
+const TenantPageRoute: MyMenuItemDefinition = {
+  icon: TenantIcon,
+  title: "admin.tenant",
+  cando: "tenants.reader",
+  route: "/apps/:app/tenants/:tenant",
+  component: React.lazy(() => import("./Apps/Tenants/TenantPage")),
+};
 
 export const AllMenuItems: MyMenuItemDefinition[] = [
-  ...MenuDefL2Tenants,
+  TenantPageRoute,
   ...MenuDefL1Apps,
   ...MenuDefL0,
 ];
@@ -164,23 +145,20 @@ export const checkMenuItemPermission = (
 export const useMenuDefinition = (): IRoutedMenuItemDefinition[] => {
   const location = useLocation();
   const [perms] = usePermissionContext();
+  const { t } = useTranslation("account");
 
   const convMenuDef = (
     def: MyMenuItemDefinition,
   ): IRoutedMenuItemDefinition => ({
     ...def,
+    title: t(def.title),
     shouldRender: checkMenuItemPermission(perms, def),
   });
 
   const newOrImport = (prefix: string) =>
     CrudSpecialIds.find((id) => location.pathname.endsWith(prefix + id));
   let defs: MyMenuItemDefinition[];
-  if (
-    location.pathname.match(/\/apps\/.+?\/tenants\/.+?/) &&
-    !newOrImport("/tenants/")
-  ) {
-    defs = MenuDefL2Tenants;
-  } else if (location.pathname.match(/\/apps\/.+?/) && !newOrImport("/apps/")) {
+  if (location.pathname.match(/\/apps\/.+?/) && !newOrImport("/apps/")) {
     defs = MenuDefL1Apps;
   } else {
     defs = MenuDefL0;

@@ -38,14 +38,14 @@
       },
       "theme": {
         "primary": {
-          "main": "Primaire hoofdkleur",
-          "light": "Primaire lichtkleur",
-          "dark": "Primaire donkere kleur"
+          "main": "Primaire kleur",
+          "light": "Primaire kleur (lichtere tint)",
+          "dark": "Primaire kleur (donkerdere tint)"
         },
         "secondary": {
-          "main": "Secundaire hoofdkleur",
-          "light": "Secundaire-lichtkleur",
-          "dark": "Secundaire-donkere kleur"
+          "main": "Secundaire kleur",
+          "light": "Secundaire kleur (lichtere tint)",
+          "dark": "Secundaire kleur (donkerdere tint)"
         },
         "background": {
           "default": "Achtergrond kleur",

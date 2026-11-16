@@ -13,6 +13,7 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { BackendVisibility } from "./Visibilities";
 import moment from "moment";
+import { useMemo } from "react";
 
 export const LOGIN_STATUS_ACTIVE = "active";
 export const LOGIN_STATUS_LOGGED_OUT = "logged-out";
@@ -132,7 +133,7 @@ export type ProfileLoginsModelType = ReturnType<typeof ProfileLoginsModel>;
 
 export const useProfileLoginsModel = () => {
   const { t } = useTranslation("profile");
-  return ProfileLoginsModel(t);
+  return useMemo(() => ProfileLoginsModel(t), [t]);
 };
 
 /**

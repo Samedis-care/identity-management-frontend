@@ -30,6 +30,7 @@ import {
   useParams,
 } from "components-care";
 import { Account } from "../../../utils/AccountManager";
+import { getTheme } from "../../../theme";
 import { useQuery } from "@tanstack/react-query";
 import BackendHttpClient from "../../../components-care/connectors/BackendHttpClient";
 import { AppInfo, AppInfoResponse } from "../../../api/ident-services/AppInfo";
@@ -409,11 +410,13 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
   return (
     <AuthPageAppInfoContext.Provider value={data.data.attributes}>
       <ThemeProvider
-        theme={(outer) =>
+        theme={() =>
+          // always the light IM theme as base: the dark mode picked on the
+          // account pages must not reach the login pages of the apps
           createTheme(
             deepAssign(
               {},
-              outer as unknown as Record<string, unknown>,
+              getTheme(false) as Record<string, unknown>,
               inner as Record<string, unknown>,
             ),
           )

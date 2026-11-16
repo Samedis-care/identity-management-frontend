@@ -1,42 +1,33 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   BackendDataGrid,
+  DataGridLocalStoragePersist,
   DefaultErrorComponent,
   Form,
   Loader,
   ModelRecord,
   throwError,
-  Link,
   useParams,
   useNavigate,
   useLocation,
 } from "components-care";
 import GridWrapper from "../../../components-care/GridWrapper";
+import { gridStorageKey } from "../../../components-care/ImCrud";
 import useAsyncMemo from "components-care/dist/utils/useAsyncMemo";
-import {
-  AppBar,
-  Box,
-  Breadcrumbs,
-  Grid,
-  Link as MuiLink,
-  Tab,
-  Tabs,
-  styled,
-} from "@mui/material";
+import { Alert, AppBar, Box, Tab, Tabs, styled } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
 import { useOrganizationModel } from "../../../components-care/models/OrganizationModel";
-import FormPagePaper from "../../../components/FormPagePaper";
+import DrillDownBar, { DrillDownCrumb } from "../../../components/DrillDownBar";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import type { OrganizationModelType } from "../../../components-care/models/OrganizationModel";
 
 const OrgUnitRoot = styled(Box)({
   height: "100%",
-});
-
-const FullHeightGrid = styled(Grid)({
-  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  "& > :last-child": { flexGrow: 1, minHeight: 0 },
 });
 
 // the app, the root of the tree, has no record of its own, so no id
@@ -50,6 +41,12 @@ const APP_ACTOR: Pick<
 
 export const useOrgUnitTree = (
   form: React.ComponentType<PageProps<OrganizationModelType, CrudFormProps>>,
+  /** where the grid keeps its settings, see ImCrud storageKey */
+  storageKey: string,
+  /** crumbs in front of the tree path, e.g. the tenant */
+  crumbsPrefix?: DrillDownCrumb[],
+  /** hint above the grid on the top level */
+  intro?: React.ReactNode,
 ) => {
   const { t } = useTranslation("ous");
   const { app } = useParams();
@@ -123,101 +120,99 @@ export const useOrgUnitTree = (
     parentRecord ? parentRecord.insertable_child_types : null,
   );
   if (currentRecord == null || parentRecord == null) return <Loader />;
+  const grid = (
+    <GridWrapper>
+      <DataGridLocalStoragePersist storageKey={gridStorageKey(storageKey)}>
+        <BackendDataGrid
+          model={model}
+          onEdit={(id) => navigate(`${pathname}/${id}`)}
+          onAddNew={() => navigate(`${pathname}/new`)}
+          enableDelete
+          forceRefreshToken={current ?? "app"}
+        />
+      </DataGridLocalStoragePersist>
+    </GridWrapper>
+  );
+  // top level: just the grid, the page (or its tab) says what it lists
+  if (path.length === 0)
+    return (
+      <OrgUnitRoot>
+        {intro && (
+          <Alert severity={"info"} sx={{ m: 2, mb: 0 }}>
+            {intro}
+          </Alert>
+        )}
+        {grid}
+      </OrgUnitRoot>
+    );
+  // an opened unit: path back instead of the page tabs, then its own tabs
+  const crumbs: DrillDownCrumb[] = [
+    ...(crumbsPrefix ?? []),
+    { label: t("ous:breadcrumbs.root"), to: pathPrefix },
+    ...path.map((id, idx, arr) => ({
+      label: id === "new" ? t("ous:breadcrumbs.new") : (pathData?.[id] ?? "…"),
+      to:
+        idx === arr.length - 1
+          ? undefined
+          : `${pathPrefix}/${arr.slice(0, idx + 1).join("/")}`,
+    })),
+  ];
   return (
-    <OrgUnitRoot sx={{ p: 2 }}>
-      <FullHeightGrid
-        container
-        spacing={2}
-        sx={{ flexDirection: "column", flexWrap: "nowrap" }}
-      >
-        <Grid>
-          <FormPagePaper>
-            <Breadcrumbs>
-              <MuiLink key={"root"} to={pathPrefix} component={Link}>
-                {t("ous:breadcrumbs.root")}
-              </MuiLink>
-              {pathData &&
-                path.map((id, idx, arr) => (
-                  <MuiLink
-                    key={id}
-                    to={`${pathPrefix}/${arr.slice(0, idx + 1).join("/")}`}
-                    component={Link}
-                  >
-                    {id === "new" ? t("ous:breadcrumbs.new") : pathData[id]}
-                  </MuiLink>
-                ))}
-            </Breadcrumbs>
-          </FormPagePaper>
-        </Grid>
-        <Grid size="grow">
-          <GridWrapper>
-            <FullHeightGrid container sx={{ flexDirection: "column" }}>
-              <Grid>
-                <AppBar position={"static"}>
-                  <Tabs value={tab} onChange={handleTabChange}>
-                    <Tab
-                      value={"children"}
-                      label={t("ous:tab.children")}
-                      disabled={current === "new"}
-                    />
-                    <Tab
-                      value={"edit"}
-                      label={t("ous:tab.edit")}
-                      disabled={!parentRecord}
-                    />
-                  </Tabs>
-                </AppBar>
-              </Grid>
-              <Grid size="grow">
-                {tab === "edit" && (
-                  <Form
-                    id={currentRecord ? (currentRecord.id ?? null) : null}
-                    model={model}
-                    initialRecord={parent ? { parent_id: parent } : undefined}
-                    errorComponent={DefaultErrorComponent}
-                    renderConditionally
-                    onSubmit={(data) => {
-                      const id = data.id;
-                      navigate(
-                        path
-                          .map((part) => (part === "new" ? id : part))
-                          .join("/"),
-                      );
-                    }}
-                    customProps={{
-                      goBack: () =>
-                        navigate(
-                          `${pathPrefix}/${path
-                            .slice(0, path.length - 1)
-                            .join("/")}`,
-                        ),
-                      open: () => throwError("open not implemented"),
-                      hasCustomSubmitHandler: false,
-                    }}
-                  >
-                    {form}
-                  </Form>
-                )}
-                {tab === "children" && (
-                  <BackendDataGrid
-                    model={model}
-                    onEdit={(id) => navigate(`${pathname}/${id}`)}
-                    onAddNew={() => navigate(`${pathname}/new`)}
-                    enableDelete
-                    forceRefreshToken={current ?? "app"}
-                  />
-                )}
-              </Grid>
-            </FullHeightGrid>
-          </GridWrapper>
-        </Grid>
-      </FullHeightGrid>
+    <OrgUnitRoot>
+      <DrillDownBar crumbs={crumbs} />
+      <AppBar position={"static"}>
+        <Tabs value={tab} onChange={handleTabChange}>
+          <Tab
+            value={"children"}
+            label={t("ous:tab.children")}
+            disabled={current === "new"}
+          />
+          <Tab
+            value={"edit"}
+            label={t("ous:tab.edit")}
+            disabled={!parentRecord}
+          />
+        </Tabs>
+      </AppBar>
+      {tab === "edit" ? (
+        <Form
+          id={currentRecord ? (currentRecord.id ?? null) : null}
+          model={model}
+          initialRecord={parent ? { parent_id: parent } : undefined}
+          errorComponent={DefaultErrorComponent}
+          renderConditionally
+          onSubmit={(data) => {
+            const id = data.id;
+            navigate(
+              path.map((part) => (part === "new" ? id : part)).join("/"),
+            );
+          }}
+          customProps={{
+            goBack: () =>
+              navigate(
+                `${pathPrefix}/${path.slice(0, path.length - 1).join("/")}`,
+              ),
+            open: () => throwError("open not implemented"),
+            hasCustomSubmitHandler: false,
+          }}
+        >
+          {form}
+        </Form>
+      ) : (
+        grid
+      )}
     </OrgUnitRoot>
   );
 };
 
 const OrgUnits = () => {
-  return useOrgUnitTree(OrgUnitForm);
+  const { t } = useTranslation("ous");
+  return useOrgUnitTree(
+    OrgUnitForm,
+    "app-ous",
+    undefined,
+    t("ous:template-info"),
+  );
 };
 
 export default React.memo(OrgUnits);

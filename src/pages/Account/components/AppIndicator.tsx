@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppIdFromPath } from "../../MenuDef";
-import { useAppAdminModel } from "../../../../components-care/models/AppAdminModel";
+import { useAppIdFromPath } from "../../AdminUI/MenuDef";
+import { useAppAdminModel } from "../../../components-care/models/AppAdminModel";
 import { useModelGet } from "components-care";
 import { styled } from "@mui/material";
 

@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppIdFromPath, useTenantIdFromPath } from "../../MenuDef";
+import { useAppIdFromPath, useTenantIdFromPath } from "../../AdminUI/MenuDef";
 import { useModelGet } from "components-care";
 import { styled } from "@mui/material";
-import { useTenantModel } from "../../../../components-care/models/TenantModel";
+import { useTenantModel } from "../../../components-care/models/TenantModel";
 
 const Root = styled("div")({
   whiteSpace: "nowrap",

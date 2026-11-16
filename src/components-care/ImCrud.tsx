@@ -51,7 +51,16 @@ export interface ImCrudProps<M extends ModelUnknown> extends Omit<
    * Disable grid padding
    */
   disableGridWrapper?: boolean;
+  /**
+   * Where the grid keeps its columns, sort, filters and search: one key per
+   * grid on screen, never the model id, which several grids share
+   */
+  storageKey: string;
 }
+
+/** localStorage key of a grid's persisted state */
+export const gridStorageKey = (storageKey: string) =>
+  "datagrid-persist-" + storageKey;
 
 export const useDefaultGridProps = (): Pick<
   DataGridProps,
@@ -99,7 +108,11 @@ export const useDefaultGridProps = (): Pick<
   );
 };
 
-const FORM_CLASS_NAME = "ImCrud-form";
+/** class of the CRUD form, lets the page frame let it grow */
+export const ImCrudFormClassName = "ImCrud-form";
+const FORM_CLASS_NAME = ImCrudFormClassName;
+/** class of the CRUD root, lets form pages size nested grids */
+export const ImCrudRootClassName = "ImCrud-root";
 
 const StyledRoot = styled("div")({
   flexGrow: 1,
@@ -124,7 +137,7 @@ const ImCrud = <M extends ModelUnknown>(
     }),
     [props.formProps],
   );
-  const { disableGridWrapper, getRowLabel, ...otherProps } = props;
+  const { disableGridWrapper, getRowLabel, storageKey, ...otherProps } = props;
   const gridPropsCached = useMemo<CrudProps<M>["gridProps"]>(
     () => ({
       ...defaultGridProps,
@@ -139,10 +152,8 @@ const ImCrud = <M extends ModelUnknown>(
     [defaultGridProps, props.gridProps, getRowLabel],
   );
   return (
-    <StyledRoot>
-      <DataGridLocalStoragePersist
-        storageKey={"datagrid-persist-" + props.model.modelId}
-      >
+    <StyledRoot className={ImCrudRootClassName}>
+      <DataGridLocalStoragePersist storageKey={gridStorageKey(storageKey)}>
         <CRUD
           {...otherProps}
           formProps={formPropsCached}

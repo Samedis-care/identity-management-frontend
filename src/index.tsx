@@ -11,7 +11,11 @@ import { componentsCareBrowserTracingIntegration } from "components-care/dist/se
 import i18n from "./i18n";
 import moment from "moment";
 import "@fontsource/roboto";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource/roboto-condensed/700.css";
 import { getTheme } from "./theme";
+import { loadThemeMode } from "./utils/themeMode";
 import MarkedRenderer from "./components/MarkedRenderer";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
@@ -101,7 +105,7 @@ const domRoot = document.getElementById("root")!;
 const root = createRoot(domRoot);
 root.render(
   <React.StrictMode>
-    <Framework defaultTheme={getTheme}>
+    <Framework defaultTheme={() => getTheme(loadThemeMode() === "dark")}>
       {IS_DEV && <ReactQueryDevtools buttonPosition={"bottom-right"} />}
       <ErrorBoundary>
         <BrowserCompatCheck>

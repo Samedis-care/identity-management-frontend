@@ -28,6 +28,7 @@ const General = () => {
       }}
     >
       <ImCrud
+        storageKey={"app-general"}
         model={model}
         getRowLabel={null}
         readPermission={"apps.reader"}

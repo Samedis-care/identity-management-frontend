@@ -1,0 +1,213 @@
+{
+  "header": {
+    "product": "Account",
+    "back-to": "Terug naar {{APP}}",
+    "user-menu": "Gebruikersmenu",
+    "open-menu": "Menu openen",
+    "navigation": "Navigatie",
+    "menu-left": "Menu links",
+    "menu-top": "Menu boven",
+    "language": "Taal",
+    "logout": "Uitloggen",
+    "appearance": "Weergave",
+    "theme-light": "Licht",
+    "theme-dark": "Donker"
+  },
+  "menu": {
+    "profile": "Profiel",
+    "security": "Inloggen en beveiliging",
+    "devices": "Apparaten en activiteit",
+    "apps": "Gekoppelde applicaties",
+    "admin": "Beheer"
+  },
+  "common": {
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "close": "Sluiten",
+    "error": "Dat is niet gelukt"
+  },
+  "profile": {
+    "title": "Profiel",
+    "personal": {
+      "title": "Persoonlijke gegevens",
+      "picture": "Profielfoto",
+      "first-name": "Voornaam",
+      "last-name": "Achternaam",
+      "mobile": "Mobiel nummer",
+      "mobile-help": "Optioneel, voor vragen vanuit de gekoppelde applicaties",
+      "required": "Verplicht veld",
+      "saved": "Opgeslagen"
+    },
+    "email": {
+      "title": "E-mailadressen",
+      "login": "Inlog-e-mailadres",
+      "login-help": "Voor inloggen en meldingen",
+      "login-pending": "Wijziging in behandeling: {{EMAIL}}",
+      "login-pending-text": "We hebben een bevestigingslink naar het nieuwe adres gestuurd. Tot je die opent, log je verder in met het huidige adres.",
+      "recovery": "Herstelmailadres",
+      "recovery-help": "Bevestigd · alleen om je account te herstellen, niet om in te loggen",
+      "recovery-none": "Geen herstelmailadres ingesteld. Hiermee herstel je je account als je geen toegang meer hebt tot je inlog-e-mailadres.",
+      "recovery-pending": "Bevestiging in behandeling: {{EMAIL}}",
+      "recovery-pending-text": "We hebben een bevestigingslink naar dit adres gestuurd. Pas na je bevestiging kan het je account herstellen.",
+      "change-login": "Inlog-e-mailadres wijzigen",
+      "change-recovery": "Herstelmailadres wijzigen",
+      "setup-recovery": "Herstelmailadres instellen"
+    },
+    "delete": {
+      "title": "Account verwijderen",
+      "text": "Je account wordt gedeactiveerd, alle sessies worden beëindigd en je verliest de toegang tot alle gekoppelde applicaties. Dit kan niet ongedaan worden gemaakt.",
+      "button": "Account verwijderen"
+    }
+  },
+  "security": {
+    "title": "Inloggen en beveiliging",
+    "status": {
+      "heading": "{{COUNT}} van 3 beveiligingen actief",
+      "password": "Wachtwoord ingesteld",
+      "totp-on": "Authenticator-app actief",
+      "totp-off": "Geen tweestapsaanmelding",
+      "recovery-on": "Herstelmailadres bevestigd",
+      "recovery-pending": "Herstelmailadres niet bevestigd",
+      "recovery-off": "Geen herstelmailadres"
+    },
+    "password": {
+      "title": "Wachtwoord",
+      "text": "Kies een wachtwoord dat je nergens anders gebruikt. Bij het wijzigen worden alle andere sessies uitgelogd.",
+      "button": "Wachtwoord wijzigen"
+    },
+    "totp": {
+      "title": "Tweestapsaanmelding",
+      "on": "Authenticator-app actief",
+      "off": "Niet ingesteld",
+      "text-on": "Na je wachtwoord vraagt het inloggen om een code uit je authenticator-app. De back-upcodes heb je bij het instellen ontvangen.",
+      "text-off": "Bescherm je account met een code uit een authenticator-app naast je wachtwoord.",
+      "enroll": "Instellen",
+      "unroll": "Uitschakelen"
+    }
+  },
+  "devices": {
+    "title": "Apparaten en activiteit",
+    "sessions": {
+      "title": "Sessies",
+      "text": "‘Actief’ betekent ingelogd. ‘Uitgelogd’ betekent: het apparaat wordt onthouden en kan zonder wachtwoord en tweestapsaanmelding opnieuw inloggen. Verwijder items die je niet herkent.",
+      "sign-out-others": "Alle andere uitloggen",
+      "delete-current": "Hieronder valt ook de sessie die je nu gebruikt. Daarna moet je opnieuw inloggen."
+    },
+    "history": {
+      "title": "Inloggeschiedenis",
+      "text": "Komt een inlogpoging je onbekend voor, wijzig dan je wachtwoord."
+    }
+  },
+  "apps": {
+    "title": "Gekoppelde applicaties",
+    "box": "Applicaties met toegang",
+    "none": "Je bent met geen enkele applicatie gekoppeld.",
+    "terms-accepted": "Voorwaarden geaccepteerd",
+    "terms-pending": "Voorwaarden openstaand",
+    "terms-none": "Geen voorwaarden",
+    "open": "Openen",
+    "terms": "Voorwaarden",
+    "remove": "Toegang verwijderen",
+    "remove-hint": "Als je een applicatie verwijdert, verlies je daar alle rollen en tenants. Een beheerder moet je opnieuw uitnodigen.",
+    "documents": {
+      "tos": "Gebruiksvoorwaarden",
+      "privacy": "Privacyverklaring",
+      "tos-privacy": "Gebruiksvoorwaarden en privacyverklaring"
+    }
+  },
+  "dialogs": {
+    "password": {
+      "title": "Wachtwoord wijzigen",
+      "current": "Huidig wachtwoord",
+      "new": "Nieuw wachtwoord",
+      "new-help": "Minstens 8 tekens",
+      "repeat": "Nieuw wachtwoord herhalen",
+      "mismatch": "De wachtwoorden komen niet overeen",
+      "info-heading": "Alle andere sessies worden uitgelogd",
+      "info": "Op dit apparaat blijf je ingelogd. Overal elders moet je opnieuw inloggen met het nieuwe wachtwoord.",
+      "submit": "Wachtwoord wijzigen",
+      "success-title": "Wachtwoord gewijzigd",
+      "success": "Je nieuwe wachtwoord geldt vanaf nu."
+    },
+    "email": {
+      "title-login": "Inlog-e-mailadres wijzigen",
+      "title-recovery": "Herstelmailadres wijzigen",
+      "title-recovery-new": "Herstelmailadres instellen",
+      "current": "Huidig adres",
+      "new": "Nieuw adres",
+      "invalid": "Geen geldig e-mailadres",
+      "text-login": "We sturen een bevestigingslink naar het nieuwe adres. Tot je die opent, log je verder in met het huidige adres.",
+      "text-recovery": "We sturen een bevestigingslink naar het adres. Pas na je bevestiging kan het je account herstellen. Het wordt niet gebruikt om in te loggen.",
+      "submit": "Bevestigingslink sturen"
+    },
+    "delete": {
+      "title": "Account verwijderen",
+      "heading": "Dit kan niet ongedaan worden gemaakt",
+      "text": "Je account wordt gedeactiveerd, alle sessies worden beëindigd en je verliest de toegang tot alle gekoppelde applicaties.",
+      "confirm": "Voer ter bevestiging je inlog-e-mailadres in",
+      "invalid": "Dit is niet het inlog-e-mailadres van je account",
+      "submit": "Account definitief verwijderen"
+    },
+    "enroll": {
+      "title": "Tweestapsaanmelding instellen",
+      "step-scan": "1. Scan de QR-code met een authenticator-app, bijvoorbeeld Microsoft Authenticator of Google Authenticator.",
+      "secret": "Of voer de sleutel handmatig in",
+      "step-code": "2. Voer de zescijferige code in die de app toont.",
+      "code": "Code uit de app",
+      "submit": "Activeren",
+      "failure": "De code klopt niet. Controleer de tijd op je telefoon en probeer de volgende code.",
+      "codes-title": "Bewaar je back-upcodes",
+      "codes-heading": "Tweestapsaanmelding is actief",
+      "codes-text": "Bewaar de back-upcodes op een veilige plek. Elke code werkt één keer als je geen toegang hebt tot je authenticator-app. Ze worden alleen nu getoond.",
+      "download": "Downloaden",
+      "copy": "Kopiëren",
+      "done": "Klaar",
+      "download-content": "Je back-upcodes voor {{HOSTNAME}}:\n{{BACKUP_CODES}}\nElke code werkt één keer. Bewaar ze op een veilige plek.\n",
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+    },
+    "unroll": {
+      "title": "Tweestapsaanmelding uitschakelen",
+      "text": "Zonder tweede factor is je wachtwoord genoeg om in te loggen. Bevestig met een code uit je authenticator-app of een back-upcode.",
+      "code": "Code uit de app of back-upcode",
+      "submit": "Uitschakelen",
+      "failure": "De code klopt niet. Probeer de volgende code uit de app of een back-upcode."
+    },
+    "sign-out-others": {
+      "title": "Alle andere sessies uitloggen?",
+      "list_one": "Deze sessie wordt beëindigd:",
+      "list_other": "Deze {{count}} sessies worden beëindigd:",
+      "more_one": "en nog {{count}}",
+      "more_other": "en nog {{count}}",
+      "since": "ingelogd sinds {{DATE}}",
+      "logged-out": "uitgelogd, onthouden",
+      "none": "Er zijn geen andere sessies.",
+      "text": "Op dit apparaat blijf je ingelogd. Op de andere apparaten moet je opnieuw inloggen, ook op onthouden apparaten.",
+      "submit": "Uitloggen"
+    },
+    "remove-app": {
+      "title": "Toegang tot {{APP}} verwijderen?",
+      "heading": "Rollen en tenants gaan verloren",
+      "text": "Je verliest in deze applicatie alle rollen en tenants. Een beheerder moet je opnieuw uitnodigen.",
+      "confirm": "Voer ter bevestiging je inlog-e-mailadres in",
+      "invalid": "Dit is niet het inlog-e-mailadres van je account",
+      "submit": "Toegang verwijderen"
+    },
+    "documents": {
+      "title": "Voorwaarden van {{APP}}"
+    }
+  },
+  "admin": {
+    "profile": "Profiel",
+    "apps": "Apps",
+    "email-blacklist": "E-mail-blacklist",
+    "users": "Gebruikers",
+    "back": "Terug",
+    "general": "Algemeen",
+    "functions": "Functies",
+    "roles": "Rollen",
+    "org-units": "Organisatie-eenheden",
+    "tenants": "Tenants",
+    "tenant": "Tenant",
+    "contents": "Inhoud"
+  }
+}

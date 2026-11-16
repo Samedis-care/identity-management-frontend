@@ -23,8 +23,11 @@
     },
     "locales": {
       "unspecified": "Non spécifié",
-      "en-US": "États Unis Anglais)",
-      "de-DE": "Allemand Allemagne)"
+      "de-DE": "Allemand (Allemagne)",
+      "en-US": "Anglais (États-Unis)",
+      "fr-FR": "Français (France)",
+      "nl-NL": "Néerlandais (Pays-Bas)",
+      "ru-RU": "Russe (Russie)"
     }
   },
   "form": {
@@ -38,7 +41,7 @@
     "dialogs": {
       "reset_pwd": {
         "title": "Réinitialiser le mot de passe",
-        "open": "Réinitialiser le mot de passe",
+        "open": "Modifier le mot de passe",
         "password": "Nouveau mot de passe",
         "password_confirm": "Confirmation du nouveau mot de passe)",
         "reset": "Réinitialiser",
@@ -56,7 +59,38 @@
             "message": "Le mot de passe a été défini avec succès"
           }
         }
+      },
+      "change_email": {
+        "open": "Modifier l'e-mail du compte",
+        "title": "Modifier l'e-mail du compte",
+        "info": "L'adresse de connexion {{EMAIL}} est remplacée immédiatement, sans e-mail de confirmation. L'utilisateur se connecte ensuite uniquement avec la nouvelle adresse. Réservé au support, p. ex. lorsqu'il n'a plus accès à l'ancienne boîte mail.",
+        "email": "Nouvelle adresse e-mail",
+        "email_confirm": "Nouvelle adresse e-mail (répéter)",
+        "change": "Modifier",
+        "cancel": "Annuler",
+        "errors": {
+          "validation": {
+            "title": "Erreur de validation"
+          },
+          "invalid": {
+            "message": "Veuillez saisir une adresse e-mail valide"
+          },
+          "mismatch": {
+            "message": "Les adresses e-mail ne correspondent pas"
+          },
+          "backend": {
+            "title": "Erreur"
+          },
+          "none": {
+            "title": "Succès",
+            "message": "L'e-mail du compte est désormais {{EMAIL}}"
+          }
+        }
       }
+    },
+    "recovery_email": {
+      "empty": "Aucune adresse. L'utilisateur peut l'ajouter sous « Mon compte ».",
+      "unconfirmed": "Non confirmée : {{EMAIL}}"
     }
   },
   "save-actors": "Enregistrez avant de pouvoir affecter des acteurs",

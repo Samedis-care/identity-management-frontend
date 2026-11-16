@@ -23,8 +23,11 @@
     },
     "locales": {
       "unspecified": "Unspecified",
+      "de-DE": "German (Germany)",
       "en-US": "English (United States)",
-      "de-DE": "German (Germany)"
+      "fr-FR": "French (France)",
+      "nl-NL": "Dutch (Netherlands)",
+      "ru-RU": "Russian (Russia)"
     }
   },
   "form": {
@@ -38,7 +41,7 @@
     "dialogs": {
       "reset_pwd": {
         "title": "Reset password",
-        "open": "Reset password",
+        "open": "Change password",
         "password": "New password",
         "password_confirm": "New password (confirmation)",
         "reset": "Reset",
@@ -56,7 +59,38 @@
             "message": "Password was successfully set"
           }
         }
+      },
+      "change_email": {
+        "open": "Change account email",
+        "title": "Change account email",
+        "info": "The sign-in address {{EMAIL}} is replaced at once, without a confirmation mail. Afterwards the user signs in with the new address only. For support cases only, e.g. when the user lost access to the old mailbox.",
+        "email": "New email address",
+        "email_confirm": "New email address (repeat)",
+        "change": "Change",
+        "cancel": "Cancel",
+        "errors": {
+          "validation": {
+            "title": "Validation error"
+          },
+          "invalid": {
+            "message": "Please enter a valid email address"
+          },
+          "mismatch": {
+            "message": "The email addresses do not match"
+          },
+          "backend": {
+            "title": "Error"
+          },
+          "none": {
+            "title": "Success",
+            "message": "The account email is now {{EMAIL}}"
+          }
+        }
       }
+    },
+    "recovery_email": {
+      "empty": "None set. The user can add one under “My account”.",
+      "unconfirmed": "Unconfirmed: {{EMAIL}}"
     }
   },
   "save-actors": "Save before you can assign actors",

@@ -1,0 +1,213 @@
+{
+  "header": {
+    "product": "Account",
+    "back-to": "Back to {{APP}}",
+    "user-menu": "User menu",
+    "open-menu": "Open menu",
+    "navigation": "Navigation",
+    "menu-left": "Menu on the left",
+    "menu-top": "Menu at the top",
+    "language": "Language",
+    "logout": "Sign out",
+    "appearance": "Appearance",
+    "theme-light": "Light",
+    "theme-dark": "Dark"
+  },
+  "menu": {
+    "profile": "Profile",
+    "security": "Sign-in and security",
+    "devices": "Devices and activity",
+    "apps": "Connected applications",
+    "admin": "Administration"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "error": "That did not work"
+  },
+  "profile": {
+    "title": "Profile",
+    "personal": {
+      "title": "Personal details",
+      "picture": "Profile picture",
+      "first-name": "First name",
+      "last-name": "Last name",
+      "mobile": "Mobile number",
+      "mobile-help": "Optional, for queries from the connected applications",
+      "required": "Required",
+      "saved": "Saved"
+    },
+    "email": {
+      "title": "Email addresses",
+      "login": "Sign-in email",
+      "login-help": "For sign-in and notifications",
+      "login-pending": "Change pending: {{EMAIL}}",
+      "login-pending-text": "We sent a confirmation link to the new address. Until you open it, you keep signing in with the current address.",
+      "recovery": "Recovery email",
+      "recovery-help": "Confirmed · only for recovering your account, not for signing in",
+      "recovery-none": "No recovery email set. It lets you recover your account if you lose access to your sign-in email.",
+      "recovery-pending": "Confirmation pending: {{EMAIL}}",
+      "recovery-pending-text": "We sent a confirmation link to this address. It can recover your account only after you confirm it.",
+      "change-login": "Change sign-in email",
+      "change-recovery": "Change recovery email",
+      "setup-recovery": "Add recovery email"
+    },
+    "delete": {
+      "title": "Delete account",
+      "text": "Your account is deactivated, all sessions end and you lose access to all connected applications. This cannot be undone.",
+      "button": "Delete account"
+    }
+  },
+  "security": {
+    "title": "Sign-in and security",
+    "status": {
+      "heading": "{{COUNT}} of 3 safeguards active",
+      "password": "Password set",
+      "totp-on": "Authenticator app active",
+      "totp-off": "No two-factor sign-in",
+      "recovery-on": "Recovery email confirmed",
+      "recovery-pending": "Recovery email not confirmed",
+      "recovery-off": "No recovery email"
+    },
+    "password": {
+      "title": "Password",
+      "text": "Choose a password you use nowhere else. Changing it signs out all other sessions.",
+      "button": "Change password"
+    },
+    "totp": {
+      "title": "Two-factor sign-in",
+      "on": "Authenticator app active",
+      "off": "Not set up",
+      "text-on": "After your password, sign-in asks for a code from your authenticator app. You received the backup codes during setup.",
+      "text-off": "Protect your account with a code from an authenticator app in addition to your password.",
+      "enroll": "Set up",
+      "unroll": "Turn off"
+    }
+  },
+  "devices": {
+    "title": "Devices and activity",
+    "sessions": {
+      "title": "Sessions",
+      "text": "\"Active\" means signed in. \"Signed out\" means the device is remembered and can sign in again without password and two-factor sign-in. Remove entries you don't recognize.",
+      "sign-out-others": "Sign out all others",
+      "delete-current": "This includes the session you are using right now. You will have to sign in again."
+    },
+    "history": {
+      "title": "Sign-in history",
+      "text": "If a sign-in looks unfamiliar, change your password."
+    }
+  },
+  "apps": {
+    "title": "Connected applications",
+    "box": "Applications with access",
+    "none": "You are not connected to any application.",
+    "terms-accepted": "Terms accepted",
+    "terms-pending": "Terms pending",
+    "terms-none": "No terms",
+    "open": "Open",
+    "terms": "Terms",
+    "remove": "Remove access",
+    "remove-hint": "If you remove an application, you lose all roles and tenants there. An admin has to invite you again.",
+    "documents": {
+      "tos": "Terms of use",
+      "privacy": "Privacy policy",
+      "tos-privacy": "Terms of use and privacy policy"
+    }
+  },
+  "dialogs": {
+    "password": {
+      "title": "Change password",
+      "current": "Current password",
+      "new": "New password",
+      "new-help": "At least 8 characters",
+      "repeat": "Repeat new password",
+      "mismatch": "The passwords do not match",
+      "info-heading": "All other sessions will be signed out",
+      "info": "You stay signed in on this device. Everywhere else you have to sign in again with the new password.",
+      "submit": "Change password",
+      "success-title": "Password changed",
+      "success": "Your new password is valid now."
+    },
+    "email": {
+      "title-login": "Change sign-in email",
+      "title-recovery": "Change recovery email",
+      "title-recovery-new": "Add recovery email",
+      "current": "Current address",
+      "new": "New address",
+      "invalid": "Not a valid email address",
+      "text-login": "We send a confirmation link to the new address. Until you open it, you keep signing in with the current address.",
+      "text-recovery": "We send a confirmation link to the address. It can recover your account only after you confirm it. It is not used for signing in.",
+      "submit": "Send confirmation link"
+    },
+    "delete": {
+      "title": "Delete account",
+      "heading": "This cannot be undone",
+      "text": "Your account is deactivated, all sessions end and you lose access to all connected applications.",
+      "confirm": "Enter your sign-in email to confirm",
+      "invalid": "This is not the sign-in email of your account",
+      "submit": "Delete account permanently"
+    },
+    "enroll": {
+      "title": "Set up two-factor sign-in",
+      "step-scan": "1. Scan the QR code with an authenticator app, for example Microsoft Authenticator or Google Authenticator.",
+      "secret": "Or enter the key manually",
+      "step-code": "2. Enter the six-digit code the app shows.",
+      "code": "Code from the app",
+      "submit": "Activate",
+      "failure": "The code does not match. Check the time on your phone and try the next code.",
+      "codes-title": "Save your backup codes",
+      "codes-heading": "Two-factor sign-in is active",
+      "codes-text": "Keep the backup codes safe. Each code works once if you have no access to your authenticator app. They are shown only now.",
+      "download": "Download",
+      "copy": "Copy",
+      "done": "Done",
+      "download-content": "Your backup codes for {{HOSTNAME}}:\n{{BACKUP_CODES}}\nEach code works once. Keep them safe.\n",
+      "download-filename": "{{HOSTNAME}}_backup_codes.txt"
+    },
+    "unroll": {
+      "title": "Turn off two-factor sign-in",
+      "text": "Without a second factor, your password is enough to sign in. Confirm with a code from your authenticator app or a backup code.",
+      "code": "Code from the app or backup code",
+      "submit": "Turn off",
+      "failure": "The code does not match. Try the next code from the app or a backup code."
+    },
+    "sign-out-others": {
+      "title": "Sign out all other sessions?",
+      "list_one": "This session will end:",
+      "list_other": "These {{count}} sessions will end:",
+      "more_one": "and {{count}} more",
+      "more_other": "and {{count}} more",
+      "since": "signed in since {{DATE}}",
+      "logged-out": "signed out, remembered",
+      "none": "There are no other sessions.",
+      "text": "You stay signed in on this device. On the other devices you have to sign in again, remembered ones included.",
+      "submit": "Sign out"
+    },
+    "remove-app": {
+      "title": "Remove access to {{APP}}?",
+      "heading": "Roles and tenants will be lost",
+      "text": "You lose all roles and tenants in this application. An admin has to invite you again.",
+      "confirm": "Enter your sign-in email to confirm",
+      "invalid": "This is not the sign-in email of your account",
+      "submit": "Remove access"
+    },
+    "documents": {
+      "title": "Terms of {{APP}}"
+    }
+  },
+  "admin": {
+    "profile": "Profile",
+    "apps": "Apps",
+    "email-blacklist": "Email blacklist",
+    "users": "Users",
+    "back": "Back",
+    "general": "General",
+    "functions": "Functions",
+    "roles": "Roles",
+    "org-units": "Organizational units",
+    "tenants": "Tenants",
+    "tenant": "Tenant",
+    "contents": "Contents"
+  }
+}

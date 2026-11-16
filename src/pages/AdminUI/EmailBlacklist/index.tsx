@@ -11,6 +11,7 @@ const EmailBlacklistCrud = () => {
 
   return (
     <ImCrud
+      storageKey={"email-blacklist"}
       model={model}
       getRowLabel={EmailBlacklistModelToRowLabel}
       readPermission={"email-blacklists.reader"}

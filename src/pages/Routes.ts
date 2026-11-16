@@ -16,10 +16,6 @@ const DocumentViewerPage = React.lazy(
   () => import("./Standalone/DocumentViewerPage"),
 );
 
-const ProfilePageStandalone = React.lazy(
-  () => import("./Profile/ProfilePageStandalone"),
-);
-
 export interface BasicRouteDefinition {
   path: string;
   component: React.ComponentType;
@@ -68,12 +64,5 @@ export const AnonRoutes: BasicRouteDefinition[] = [
   {
     path: "/acceptance/:app/:name",
     component: DocumentViewerPage,
-  },
-];
-
-export const ExternalAuthenticatedRoutes: BasicRouteDefinition[] = [
-  {
-    path: "/my-profile",
-    component: ProfilePageStandalone,
   },
 ];
