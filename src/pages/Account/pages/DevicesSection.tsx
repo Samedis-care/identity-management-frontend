@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Grid, styled, Typography } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import {
@@ -80,9 +80,16 @@ const DevicesSection = () => {
     () => ({ customDeleteConfirm: confirmDeleteSessions }),
     [confirmDeleteSessions],
   );
+  // the sessions grid reloads only through its CRUD's key: bumped after the
+  // dialog signed out the other sessions
+  const [sessionsKey, setSessionsKey] = useState(0);
+  const reloadSessions = useCallback(
+    () => setSessionsKey((prev) => prev + 1),
+    [],
+  );
   const signOutOthers = useCallback(() => {
-    pushDialog(<SignOutOthersDialog />);
-  }, [pushDialog]);
+    pushDialog(<SignOutOthersDialog onSignedOut={reloadSessions} />);
+  }, [pushDialog, reloadSessions]);
 
   return (
     <AccountPage title={t("devices.title")}>
@@ -105,6 +112,7 @@ const DevicesSection = () => {
             <SectionBody>
               <GridBox height={440}>
                 <ImCrud
+                  key={sessionsKey}
                   storageKey={"account-sessions"}
                   model={loginsModel}
                   getRowLabel={ProfileLoginsModelToRowLabel}

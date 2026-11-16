@@ -23,6 +23,14 @@ import DialogRow from "../components/DialogRow";
 const LIST_LIMIT = 5;
 /** how many login ids go into one DELETE request URL */
 const DELETE_BATCH_SIZE = 50;
+// a fresh list on every open: the deletes don't invalidate the fetch-all
+// cache, so a kept list would show signed-out sessions and miss new ones
+const FRESH_LIST = { gcTime: 0 };
+
+export interface SignOutOthersDialogProps {
+  /** called after the other sessions were signed out */
+  onSignedOut?: () => void;
+}
 
 const SessionList = styled("ul")(({ theme }) => ({
   margin: 0,
@@ -45,11 +53,16 @@ const Device = styled(Typography)({
  * Lists the other sessions of the user, then signs them all out: active ones
  * and logged-out-but-remembered ones, everything except the current session.
  */
-const SignOutOthersDialog = () => {
+const SignOutOthersDialog = (props: SignOutOthersDialogProps) => {
+  const { onSignedOut } = props;
   const { t } = useTranslation("account");
   const close = useCloseThisDialog();
   const model = useProfileLoginsModel();
-  const { data, isLoading, error: loadError } = useModelFetchAll(model);
+  const {
+    data,
+    isLoading,
+    error: loadError,
+  } = useModelFetchAll(model, undefined, FRESH_LIST);
   const { mutateAsync: deleteSessions } = useModelDeleteMultiple(model);
   const others = useMemo(
     () => (data ? data[0].filter((session) => !session.current) : []),
@@ -76,8 +89,9 @@ const SignOutOthersDialog = () => {
       // shown through the mutation's error
       return;
     }
+    onSignedOut?.();
     close();
-  }, [close, others, signOut]);
+  }, [close, onSignedOut, others, signOut]);
 
   const listed = others.slice(0, LIST_LIMIT);
   const more = others.length - listed.length;
