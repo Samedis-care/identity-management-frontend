@@ -63,7 +63,7 @@ const DataGridMultiSelectCRUD = <M extends ModelUnknown>(
           model,
         ),
       [],
-    ) ?? [];
+    ).value ?? [];
 
   const [selection, setSelection] = useState<string[]>([]);
   // update selection when new data fetched

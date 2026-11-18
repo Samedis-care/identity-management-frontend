@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 import OrgUnitForm from "./OrgUnitForm";
 import { useOrganizationModel } from "../../../components-care/models/OrganizationModel";
 import DrillDownBar, { DrillDownCrumb } from "../../../components/DrillDownBar";
+import ErrorInfo from "../../Account/components/ErrorInfo";
 import { PageProps } from "components-care/dist/backend-components/Form/Form";
 import { CrudFormProps } from "components-care/dist/backend-components/CRUD";
 import type { OrganizationModelType } from "../../../components-care/models/OrganizationModel";
@@ -80,18 +81,20 @@ export const useOrgUnitTree = (params: OrgUnitTreeParams) => {
   const parent =
     path.length === 0 ? null : path.length === 1 ? app : path[path.length - 2];
   const fetchModel = useOrganizationModel();
-  const currentRecord = useAsyncMemo(async () => {
-    if (current == null) return APP_ACTOR;
-    if (current === "new") return false;
-    const [record] = await fetchModel.getCached(current ?? app);
-    return record;
-  }, [current]);
-  const parentRecord = useAsyncMemo(async () => {
-    if (!parent) return false;
-    if (parent === app) return APP_ACTOR;
-    const [record] = await fetchModel.getCached(parent);
-    return record;
-  }, [parent, app]);
+  const { value: currentRecord, error: currentRecordError } =
+    useAsyncMemo(async () => {
+      if (current == null) return APP_ACTOR;
+      if (current === "new") return false;
+      const [record] = await fetchModel.getCached(current ?? app);
+      return record;
+    }, [current]);
+  const { value: parentRecord, error: parentRecordError } =
+    useAsyncMemo(async () => {
+      if (!parent) return false;
+      if (parent === app) return APP_ACTOR;
+      const [record] = await fetchModel.getCached(parent);
+      return record;
+    }, [parent, app]);
   // switch to edit tab if record is leaf
   useEffect(() => {
     if (!currentRecord) return;
@@ -107,8 +110,8 @@ export const useOrgUnitTree = (params: OrgUnitTreeParams) => {
     if (current !== "new") return;
     setTab("edit");
   }, [current]);
-  // generate path
-  const pathData = useAsyncMemo(
+  // generate path; the crumbs show "…" for a title that failed to load
+  const { value: pathData } = useAsyncMemo(
     async () => {
       return Object.fromEntries(
         (
@@ -136,6 +139,8 @@ export const useOrgUnitTree = (params: OrgUnitTreeParams) => {
     () => navigate(`${pathname}/new`),
     [navigate, pathname],
   );
+  const loadError = currentRecordError ?? parentRecordError;
+  if (loadError) return <ErrorInfo message={loadError.message} />;
   if (currentRecord == null || parentRecord == null) return <Loader />;
   const grid = (
     <GridWrapper>
