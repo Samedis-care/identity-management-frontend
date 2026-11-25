@@ -11,7 +11,7 @@ import {
   ModelUnknown,
   useLocation,
 } from "components-care";
-import { styled, useTheme } from "@mui/material";
+import { styled } from "@mui/material";
 import { DataGridProps } from "components-care/dist/standalone/DataGrid/DataGrid";
 import { FilterType } from "components-care/dist/standalone/DataGrid/Content/FilterEntry";
 import Forbidden from "../pages/Forbidden";
@@ -64,20 +64,16 @@ export const gridStorageKey = (storageKey: string) =>
 
 export const useDefaultGridProps = (): Pick<
   DataGridProps,
-  | "enableFilterDialogMediaQuery"
   | "getAdditionalFilters"
   | "filterLimit"
   | "sortLimit"
   | "overrideCustomData"
   | "isFilterSupported"
 > => {
-  const theme = useTheme();
-  const gridFilterBreakpoint = theme.breakpoints.down("lg");
   const location = useLocation();
 
   return useMemo(
     () => ({
-      enableFilterDialogMediaQuery: gridFilterBreakpoint,
       getAdditionalFilters: (data) => data,
       filterLimit: 1,
       sortLimit: 1,
@@ -104,7 +100,7 @@ export const useDefaultGridProps = (): Pick<
         ? Object.fromEntries(new URLSearchParams(location.search).entries())
         : undefined,
     }),
-    [gridFilterBreakpoint, location.search],
+    [location.search],
   );
 };
 
