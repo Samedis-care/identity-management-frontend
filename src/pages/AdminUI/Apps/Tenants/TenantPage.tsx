@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import {
+  getTabId,
+  getTabPanelId,
   hasPermission,
   Route,
   RoutedTabs,
@@ -27,6 +29,12 @@ import TenantUserCrumbs from "./TenantUserCrumbs";
 const Root = styled(Box)({
   flexGrow: 1,
   minHeight: 0,
+  display: "flex",
+  flexDirection: "column",
+  "& > :last-child": { flexGrow: 1, minHeight: 0 },
+});
+
+const TabPanel = styled("div")({
   display: "flex",
   flexDirection: "column",
   "& > :last-child": { flexGrow: 1, minHeight: 0 },
@@ -74,9 +82,20 @@ const TenantPage = () => {
 
   // records opened from a tab: users/:id, ous/:id/...
   const drillDown = rest.length > 1 && section !== "";
+  const tabsShown = !isNew && !drillDown;
+  // the tab the content below belongs to, null for a path no tab opens. The
+  // panels can't go through RoutedTabPanelWrapper: in a drill-down the bar is
+  // gone, and the content must stay mounted when it goes
+  const panelTab =
+    section === ""
+      ? ""
+      : (section === "users" && canUsers) || (section === "ous" && canOus)
+        ? section
+        : null;
+  const panelLinked = tabsShown && panelTab !== null;
   return (
     <Root>
-      {!isNew && !drillDown && (
+      {tabsShown && (
         <AppBar position={"static"}>
           <RoutedTabs>
             <Tab value={""} label={t("admin.tenant")} />
@@ -89,17 +108,23 @@ const TenantPage = () => {
         <TenantUserCrumbs userId={rest[1]} prefix={usersCrumbs} />
       )}
       <TenantCrumbsContext.Provider value={ousCrumbs}>
-        <Routes>
-          <Route
-            path={"users/*"}
-            element={canUsers ? <Users /> : <Forbidden />}
-          />
-          <Route
-            path={"ous/*"}
-            element={canOus ? <OrgUnits /> : <Forbidden />}
-          />
-          <Route path={"*"} element={<General />} />
-        </Routes>
+        <TabPanel
+          role={panelLinked ? "tabpanel" : undefined}
+          id={panelLinked ? getTabPanelId(url, panelTab) : undefined}
+          aria-labelledby={panelLinked ? getTabId(url, panelTab) : undefined}
+        >
+          <Routes>
+            <Route
+              path={"users/*"}
+              element={canUsers ? <Users /> : <Forbidden />}
+            />
+            <Route
+              path={"ous/*"}
+              element={canOus ? <OrgUnits /> : <Forbidden />}
+            />
+            <Route path={"*"} element={<General />} />
+          </Routes>
+        </TabPanel>
       </TenantCrumbsContext.Provider>
     </Root>
   );
