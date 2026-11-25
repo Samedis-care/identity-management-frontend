@@ -16,8 +16,8 @@ import {
   ModelVisibilityView,
   validatePresence,
   useParams,
+  validateLocalizedPresence,
 } from "components-care";
-import validateLocalizedPresence from "../../utils/validateLocalizedPresence";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
