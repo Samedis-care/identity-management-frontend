@@ -81,6 +81,8 @@ const LangSelector = (props: LangSelectorProps) => {
         className={className}
         size="large"
         aria-label={authT("a11y.language")}
+        aria-haspopup={"menu"}
+        aria-expanded={!!langMenuAnchor}
       >
         <Translate />
       </IconButton>

@@ -132,6 +132,8 @@ const AccountEntry = (props: AccountEntryProps) => {
             onClick={openMenu}
             size="large"
             aria-label={t("a11y.account-options")}
+            aria-haspopup={"menu"}
+            aria-expanded={menuAnchor != null}
           >
             <MoreIcon />
           </IconButton>

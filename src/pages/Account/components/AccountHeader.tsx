@@ -266,6 +266,7 @@ const AccountHeader = (props: AccountHeaderProps) => {
       <UserButton
         onClick={openUserMenu}
         aria-haspopup={"menu"}
+        aria-expanded={!!userMenu}
         aria-label={t("header.user-menu")}
       >
         <UserAvatar>{initials(userName)}</UserAvatar>
