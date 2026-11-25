@@ -30,6 +30,7 @@ import {
 } from "components-care";
 import { getTheme } from "../../../theme";
 import supportedLanguages from "../../../assets/data/supported-languages.json";
+import useCurrentLanguageName from "../../../utils/useCurrentLanguageName";
 import {
   loadThemeMode,
   storeThemeMode,
@@ -206,6 +207,7 @@ const AccountHeader = (props: AccountHeaderProps) => {
     mobileMenu,
   } = props;
   const { t } = useTranslation("account");
+  const languageName = useCurrentLanguageName();
   const [pushDialog] = useDialogContext();
   const setTheme = useContext(ThemeContext);
   const [themeMode, setThemeMode] = useState<ThemeMode>(loadThemeMode);
@@ -316,7 +318,10 @@ const AccountHeader = (props: AccountHeaderProps) => {
           <ListItemIcon>
             <Language fontSize={"small"} />
           </ListItemIcon>
-          <ListItemText primary={t("header.language")} />
+          <ListItemText
+            primary={t("header.language")}
+            secondary={languageName}
+          />
         </MenuItem>
         <MenuItem onClick={logout}>
           <ListItemIcon>
