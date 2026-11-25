@@ -29,6 +29,7 @@ import {
   useNavigate,
   useParams,
 } from "components-care";
+import type { PaletteColor, PaletteColorOptions } from "@mui/material/styles";
 import { Account } from "../../../utils/AccountManager";
 import { getTheme } from "../../../theme";
 import { useQuery } from "@tanstack/react-query";
@@ -46,6 +47,22 @@ import {
   ProviderLegalName,
   ProviderLogoUrl,
 } from "../../../constants";
+
+// the action button color an app can set for its login pages
+// (config.theme.components_care.ui_kit.action_button.background_color)
+declare module "@mui/material/styles" {
+  interface Palette {
+    actionButton?: PaletteColor;
+  }
+  interface PaletteOptions {
+    actionButton?: PaletteColorOptions;
+  }
+}
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    actionButton: true;
+  }
+}
 
 export interface AuthPageLayoutProps {
   children: NonNullable<React.ReactNode>;
@@ -388,23 +405,25 @@ const AuthPageLayout = (props: AuthPageLayoutProps) => {
   const { components_care: componentsCare, ...palette } =
     data.data.attributes.config.theme;
 
+  // A palette color, not a fill: the ActionButtons take text and hover from it
+  // too, and components-care keeps both readable.
+  const actionButtonColor =
+    componentsCare?.ui_kit?.action_button?.background_color;
   const inner = {
-    palette: palette,
-    components: {
-      CcActionButton: {
-        styleOverrides: {
-          button: {
-            ...(componentsCare?.ui_kit?.action_button?.background_color && {
-              backgroundColor:
-                componentsCare.ui_kit.action_button.background_color,
-              color: theme.palette.getContrastText(
-                componentsCare.ui_kit.action_button.background_color,
-              ),
-            }),
-          },
-        },
-      },
+    palette: {
+      ...palette,
+      ...(actionButtonColor && {
+        actionButton: theme.palette.augmentColor({
+          color: { main: actionButtonColor },
+          name: "actionButton",
+        }),
+      }),
     },
+    ...(actionButtonColor && {
+      components: {
+        CcActionButton: { defaultProps: { color: "actionButton" } },
+      },
+    }),
   } as ThemeOptions;
 
   return (
