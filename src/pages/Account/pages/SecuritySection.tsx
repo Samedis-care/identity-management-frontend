@@ -58,7 +58,7 @@ const SecuritySection = () => {
       const enrollment = await startEnrollment({ otp_enable: "true" });
       pushDialog(<EnrollTotpDialog enrollment={enrollment} />);
     } catch (e) {
-      await showErrorDialog(pushDialog, e as Error);
+      await showErrorDialog(pushDialog, e);
     }
   }, [pushDialog, startEnrollment, totp]);
 

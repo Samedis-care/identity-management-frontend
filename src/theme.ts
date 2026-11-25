@@ -306,15 +306,6 @@ export const getTheme = (preferDark: boolean): ThemeOptions => {
           },
         },
       },
-      // MUI Accordion rounds the top only as first child of its parent; an
-      // InfoBox below other content (e.g. fields) would get square top corners
-      CcInfoBox: {
-        styleOverrides: {
-          root: {
-            "&.MuiAccordion-rounded": { borderRadius: BORDER_RADIUS },
-          },
-        },
-      },
       // like samedis.care: the back/cancel button in primary, not MUI grey;
       // on phones the menu leads back, so the form shows no back button
       CcDefaultFormPageButtons: {
@@ -360,7 +351,6 @@ export const getTheme = (preferDark: boolean): ThemeOptions => {
                 ? "rgba(18, 38, 58, 0.55) 10px 10px 10px 6px"
                 : "rgba(185, 215, 240, 0.35) 10px 10px 10px 6px",
             backdropFilter: "blur(30px) opacity(0.7)",
-            flexWrap: "wrap",
             [`.${ImInlineFormButtonsClassName} &`]: {
               backgroundColor: "unset",
               boxShadow: "unset",
