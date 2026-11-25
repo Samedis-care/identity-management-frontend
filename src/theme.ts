@@ -1,10 +1,6 @@
 import { createTheme, ThemeOptions } from "@mui/material";
 import { TypographyVariantsOptions } from "@mui/material/styles";
-import {
-  BackButtonDefaultColorClass,
-  combineColors,
-  deepClone,
-} from "components-care";
+import { BackButtonDefaultColorClass, deepClone } from "components-care";
 import ImFormPageLayout, {
   ImInlineFormButtonsClassName,
   ImPhoneFormButtonsClassName,
@@ -266,28 +262,17 @@ export const getTheme = (preferDark: boolean): ThemeOptions => {
       // CC Start
       CcActionButton: {
         styleOverrides: {
-          button: ({ ownerState }) => ({
+          button: {
             padding: "7px 25px",
             borderRadius: 25,
             fontSize: "0.75rem",
             border: "none",
-            backgroundColor: ownerState.color
-              ? undefined
-              : palette.primary.main,
-            "&:hover": {
-              backgroundColor: ownerState.color
-                ? undefined
-                : combineColors(
-                    palette.primary.main,
-                    defaultTheme.palette.action.hover,
-                  ),
-            },
             "&.Mui-disabled": {
               backgroundColor: palette.mode === "dark" ? "#35506A" : "#BCBDBF",
               border: "none",
             },
             "&.MuiButton-contained": { borderRadius: 25 },
-          }),
+          },
         },
       },
       CcPortalLayoutMenu: {
