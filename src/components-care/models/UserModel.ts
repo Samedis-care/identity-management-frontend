@@ -15,6 +15,7 @@ import {
   useParams,
   validateOptional,
   validateEmail,
+  validatePresence,
 } from "components-care";
 import React from "react";
 import BackendConnector from "../connectors/BackendConnector";
@@ -96,6 +97,7 @@ export const UserModel = (
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       recovery_email: {
         type: new ModelDataTypeStringRendererMUI(),
@@ -165,6 +167,7 @@ export const UserModel = (
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       last_name: {
         type: new ModelDataTypeStringRendererMUI(),
@@ -179,6 +182,7 @@ export const UserModel = (
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       gender: {
         type: new ModelDataTypeEnumRadioRendererMUI(

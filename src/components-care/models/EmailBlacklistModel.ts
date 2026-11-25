@@ -6,6 +6,7 @@ import {
   ModelVisibilityEditRequired,
   ModelVisibilityGridEdit,
   ModelVisibilityGridView,
+  validatePresence,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -33,6 +34,7 @@ export const EmailBlacklistModel = (t: TFunction) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       active: {
         type: new ModelDataTypeBooleanCheckboxRendererMUI(),

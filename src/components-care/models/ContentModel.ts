@@ -8,7 +8,9 @@ import {
   ModelVisibilityDisabled,
   ModelVisibilityEditRequired,
   ModelVisibilityGridView,
+  validatePresence,
 } from "components-care";
+import validateLocalizedPresence from "../../utils/validateLocalizedPresence";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
@@ -52,6 +54,7 @@ export const ContentModel = (params: ContentModelParams) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       version: {
         type: new ModelDataTypeIntegerRendererCC(),
@@ -109,6 +112,7 @@ export const ContentModel = (params: ContentModelParams) =>
         },
         filterable: true,
         sortable: true,
+        validate: validateLocalizedPresence,
       },
     },
     new BackendConnector(`v1/apps/${params.appId}/contents`),

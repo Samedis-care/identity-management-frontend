@@ -14,6 +14,7 @@ import {
   ModelVisibilityHidden,
   MultiSelectorData,
   useParams,
+  validatePresence,
 } from "components-care";
 import BackendConnector from "../connectors/BackendConnector";
 import { TFunction } from "i18next";
@@ -42,6 +43,7 @@ export const TenantModel = (t: TFunction, app: string, user?: string | null) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       full_name: {
         type: new ModelDataTypeStringRendererMUI(),
@@ -54,6 +56,7 @@ export const TenantModel = (t: TFunction, app: string, user?: string | null) =>
         },
         filterable: true,
         sortable: true,
+        validate: validatePresence,
       },
       image: {
         type: new ModelDataTypeImageRenderer(),

@@ -61,6 +61,7 @@ export const AppAdminModel = (
           create: ModelVisibilityEditRequired,
           edit: ModelVisibilityEditRequired,
         },
+        validate: validatePresence,
       },
       full_name: {
         type: new ModelDataTypeStringRendererMUI(),
