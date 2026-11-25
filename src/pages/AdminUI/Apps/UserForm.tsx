@@ -4,6 +4,8 @@ import { AppBar, Grid, Tab, Tooltip, styled } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,
+  FormTab,
+  ModelFieldNames,
   useFormContextLite,
   useNavigate,
   useParams,
@@ -93,6 +95,18 @@ export const OpenFunctionality = (
   );
 };
 
+/** The model fields of the main tab, for its tab's marks (keep in step with the fields there) */
+const MAIN_FIELDS: readonly ModelFieldNames<UserModelType>[] = [
+  "active",
+  "email",
+  "recovery_email",
+  "unconfirmed_recovery_email",
+  "first_name",
+  "last_name",
+  "gender",
+  "locale",
+];
+
 const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
@@ -105,7 +119,11 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
     <DefaultFormPage {...props}>
       <AppBar position={"static"}>
         <RoutedTabs>
-          <Tab value={""} label={t("form.tabs.main")} />
+          <FormTab
+            value={""}
+            label={t("form.tabs.main")}
+            fields={MAIN_FIELDS}
+          />
           <Tab value={"tenants"} label={t("form.tabs.tenants")} />
           <Tab value={"actors"} label={t("form.tabs.actors")} />
           <Tab value={"roles"} label={t("form.tabs.roles")} />

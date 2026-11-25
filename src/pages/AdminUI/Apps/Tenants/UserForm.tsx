@@ -4,6 +4,8 @@ import { AppBar, Grid, Tab } from "@mui/material";
 import {
   DefaultFormPage,
   FormField,
+  FormTab,
+  ModelFieldNames,
   RoutedTabs,
   RoutedTabPanelWrapper,
   useRoutedTabPanel,
@@ -24,6 +26,18 @@ import { OpenFunctionality, OpenRole } from "../UserForm";
 import FormPagePaper from "../../../../components/FormPagePaper";
 import type { UserModelType } from "../../../../components-care/models/UserModel";
 
+/** The model fields of the main tab, for its tab's marks (keep in step with the fields there) */
+const MAIN_FIELDS: readonly ModelFieldNames<UserModelType>[] = [
+  "active",
+  "email",
+  "recovery_email",
+  "unconfirmed_recovery_email",
+  "first_name",
+  "last_name",
+  "gender",
+  "locale",
+];
+
 const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
   const { t } = useTranslation("users");
   const tab = useRoutedTabPanel();
@@ -35,7 +49,11 @@ const UserForm = (props: PageProps<UserModelType, CrudFormProps>) => {
     <DefaultFormPage {...props}>
       <AppBar position={"static"}>
         <RoutedTabs>
-          <Tab value={""} label={t("form.tabs.main")} />
+          <FormTab
+            value={""}
+            label={t("form.tabs.main")}
+            fields={MAIN_FIELDS}
+          />
           <Tab value={"actors"} label={t("form.tabs.actors")} />
           <Tab value={"roles"} label={t("form.tabs.roles")} />
           <Tab value={"permissions"} label={t("form.tabs.permissions")} />
