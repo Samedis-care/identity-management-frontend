@@ -63,6 +63,9 @@ const AccountMenuBarItem = (props: AccountMenuBarItemProps) => {
         type={"button"}
         className={active ? "active" : undefined}
         aria-haspopup={isGroup ? "menu" : undefined}
+        aria-expanded={isGroup ? !!anchorEl : undefined}
+        // a group isn't a page: its active entry says so in the dropdown
+        aria-current={!isGroup && active ? "page" : undefined}
         onClick={handleClick}
       >
         {item.title}

@@ -30,7 +30,11 @@ const AccountMenuEntry = (props: AccountMenuEntryProps) => {
   );
   const Icon = item.icon;
   return (
-    <Root selected={active} onClick={handleClick}>
+    <Root
+      selected={active}
+      aria-current={active ? "page" : undefined}
+      onClick={handleClick}
+    >
       {Icon && (
         <ListItemIcon>
           <Icon fontSize={"small"} />

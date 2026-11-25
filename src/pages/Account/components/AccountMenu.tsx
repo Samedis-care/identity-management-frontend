@@ -57,7 +57,12 @@ const AccountMenu = (props: AccountMenuProps) => {
     <MenuContext.Provider value={controlledState}>
       {mobile ? (
         <>
-          <OpenButton onClick={open} aria-label={t("header.open-menu")}>
+          <OpenButton
+            onClick={open}
+            aria-label={t("header.open-menu")}
+            aria-haspopup={"menu"}
+            aria-expanded={!!anchorEl}
+          >
             <MenuIcon />
           </OpenButton>
           <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={close}>
