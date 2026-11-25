@@ -29,6 +29,7 @@ import {
   useDialogContext,
 } from "components-care";
 import { getTheme } from "../../../theme";
+import supportedLanguages from "../../../assets/data/supported-languages.json";
 import {
   loadThemeMode,
   storeThemeMode,
@@ -235,7 +236,7 @@ const AccountHeader = (props: AccountHeaderProps) => {
   );
   const openLanguageDialog = useCallback(() => {
     setUserMenu(null);
-    pushDialog(<LocaleSelectorDialog />);
+    pushDialog(<LocaleSelectorDialog supportedLocales={supportedLanguages} />);
   }, [pushDialog]);
   const logout = useCallback(async () => {
     setUserMenu(null);
