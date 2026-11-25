@@ -1,5 +1,6 @@
 import React from "react";
 import { Paper, styled } from "@mui/material";
+import { PageTitle as CcPageTitle } from "components-care";
 
 export interface AccountPageProps {
   title: string;
@@ -15,9 +16,12 @@ export interface AccountPageProps {
  * Page spacing 8/16/32px (mobile/tablet/desktop) like usePageContainerSpacing.
  */
 
-/** page heading on the gradient, also used by the admin pages */
-export const PageTitle = styled("h1")(({ theme }) => ({
-  ...theme.typography.h1,
+/**
+ * page heading on the gradient, also used by the admin pages. components-care's
+ * PageTitle: it names the document, and a navigation moves the focus to it and
+ * announces the page.
+ */
+export const PageTitle = styled(CcPageTitle)(({ theme }) => ({
   color: "#FFFFFF",
   // gap to the box = page spacing, like the grid spacing in samedis.care
   margin: theme.spacing(0, 0, 4),
