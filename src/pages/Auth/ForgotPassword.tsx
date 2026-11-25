@@ -9,6 +9,7 @@ import {
   useParams,
   useLocation,
   PageTitle,
+  ValidationError,
 } from "components-care";
 import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material";
 import AccountManager from "../../utils/AccountManager";
@@ -43,9 +44,12 @@ const ForgotPassword = (_props: AuthPageProps) => {
 
       if (!state.activeAccount) {
         if (!validateEmailRaw(email)) {
-          return showErrorDialog(pushDialog, {
-            email: t("auth.password.forgot.email-invalid"),
-          });
+          return showErrorDialog(
+            pushDialog,
+            new ValidationError("error", {
+              email: t("auth.password.forgot.email-invalid"),
+            }),
+          );
         }
       }
 

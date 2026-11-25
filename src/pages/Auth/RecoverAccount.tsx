@@ -8,6 +8,7 @@ import {
   useParams,
   useLocation,
   PageTitle,
+  ValidationError,
 } from "components-care";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { AuthPageProps } from "./components/AuthPageLayout";
@@ -49,14 +50,20 @@ const RecoverAccount = (_props: AuthPageProps) => {
       evt.preventDefault();
 
       if (!validateEmailRaw(state.email)) {
-        return showErrorDialog(pushDialog, {
-          email: t("auth.recover_account.email-invalid"),
-        });
+        return showErrorDialog(
+          pushDialog,
+          new ValidationError("error", {
+            email: t("auth.recover_account.email-invalid"),
+          }),
+        );
       }
       if (!validateEmailRaw(state.recovery_email)) {
-        return showErrorDialog(pushDialog, {
-          recovery_email: t("auth.recover_account.recovery-email-invalid"),
-        });
+        return showErrorDialog(
+          pushDialog,
+          new ValidationError("error", {
+            recovery_email: t("auth.recover_account.recovery-email-invalid"),
+          }),
+        );
       }
 
       try {
